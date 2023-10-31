@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  31 OCT 2023 18:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  31 OCT 2023 18:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1311,11 +1311,6 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 33--33
  []
 
 
-Overfull \hbox (6.59267pt too wide) in paragraph at lines 33--33
-[]\OT1/jkp/m/n/12 15.09.2013. 
- []
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
@@ -1327,6 +1322,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 33--33
+[]\OT1/jkp/m/n/12 15.09.2013. 
+ []
+
+
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 33--33
 []\OT1/jkp/m/n/12 15.09.2013. 
  []
@@ -1975,7 +1975,7 @@ exlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texl
 ive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/
 2023/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2023/t
 exmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (35 pages, 160012 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (35 pages, 160053 bytes).
 PDF statistics:
  493 PDF objects out of 1000 (max. 8388607)
  435 compressed objects within 5 object streams
