@@ -11,7 +11,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 @Service
-public class RadServiceJpa implements RadService {
+public class RadServiceJPA implements RadService {
 
     @Autowired
     private RadRepository radRepo;
