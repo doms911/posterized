@@ -27,7 +27,7 @@ public class RadServiceJPA implements RadService {
         Assert.notNull(rad,"Rad object must be given");
         Assert.isNull(rad.getId(), "Rad ID must be null, not" + rad.getId());
 
-
+        //mozda pravila formata za ime?
         if(radRepo.countByImeRada(rad.getImeRada())>0){
             throw new RequestDeniedException("Rad with name " + rad.getImeRada() + " already exits");
         }
