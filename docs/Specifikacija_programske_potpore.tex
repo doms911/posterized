@@ -13,9 +13,9 @@
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item Administrator
+				\item Neregistrirani korisnik/posjetitelj			
+				\item Registrirani korisnik/posjetitelj
 				
 			\end{packed_enum}
 			
@@ -23,30 +23,54 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item  \underbar{Administrator (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
-					\end{packed_enum}
-					\item  funkcionalnost 3
+					\item dodati autore i radove
+					\item kreirati stručne konferencije
+					\item izabirati fotografije koje su slikane tijekom konferencije
+					\item objaviti rezultate konferencije
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				\item  \underbar{Neregistrirani korisnik (inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item unijeti lozinku za pristup sustavu
+					\item registrirati se u sustav
 					
 				\end{packed_enum}
+				
+				
+				\item  \underbar{Registrirani korisnik (inicijator) može:}
+				
+				\begin{packed_enum}
+					
+					\item pregledavati promotivne materijale pokrovitelja konferencije
+					\item pregledavati radove/postere sudionika
+					\item ocjenjivati radove svakog pojedinca
+					\item uz pomoć direktnog video praćenja pratiti trenutna događanja u glavnoj konferencijskoj dvorani
+					\item glasati za svaki pojedini rad/poster
+					\item vidjeti konačne reultate konferencije
+					\item dobiti pozivnicu na mail za dodjelu nagrade za prva tri nagrađena rada
+					\item pregledavati i spremati fotografije koje su fotografirane tijekom konferencije
+					\item vidjeti mjesto održavanje konferencije i podatke o trenutnim vremenskim uvjetima
+					
+				\end{packed_enum}
+					
+				\item  \underbar{Baza podataka (sudionik) obavlja:}
+					
+					\begin{packed_enum}
+						
+						\item pohranjuje sve podatke o korisnicima
+						\item pohranjuje sve podatke o autorima i njihovim radovima
+						\item pohranjuje sve podatke o glasovima
+						\item pohranjuje sve podatke o fotografija slikanim tijekom konferencije
+						
+					\end{packed_enum}
+				
 			\end{packed_enum}
 			
 			\eject 
@@ -438,6 +462,19 @@
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
 					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
+					
+					\begin{figure}[H]
+						\includegraphics[scale=0.6]{slike/uc dijagram admin.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Dijagram obrazaca uporabe - administrator}
+						\label{fig:promjene}
+					\end{figure}
+					\begin{figure}[H]
+						\includegraphics[scale=0.6]{slike/uc dijagram registrirani i neregistrirani korisnik.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Dijagram obrazaca uporabe - korisnici}
+						\label{fig:promjene}
+					\end{figure}
 				\eject		
 				
 			\subsection{Sekvencijski dijagrami}
