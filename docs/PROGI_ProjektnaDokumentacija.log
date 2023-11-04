@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  4 NOV 2023 14:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  4 NOV 2023 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1858,14 +1858,14 @@ Overfull \hbox (2.29738pt too wide) in paragraph at lines 189--189
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=370, 959.08313pt x 500.36937pt>
+<slike/dijagram baze podataka.PNG, id=370, 908.39375pt x 456.70625pt>
 File: slike/dijagram baze podataka.PNG Graphic file (type png)
 <use slike/dijagram baze podataka.PNG>
 Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 2
 08.
-(pdftex.def)             Requested size: 527.49736pt x 275.204pt.
+(pdftex.def)             Requested size: 499.61812pt x 251.18921pt.
 
-Overfull \hbox (91.88657pt too wide) in paragraph at lines 208--210
+Overfull \hbox (64.00732pt too wide) in paragraph at lines 208--210
  [][] 
  []
 
@@ -2169,9 +2169,15 @@ L3 programming layer <2023-10-23>
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija.out' has not ch
-anged.
-(rerunfilecheck)             Checksum: 73DC96050B1C6E228BBC05CE1994BB16;4565.
+
+Package rerunfilecheck Warning: File `PROGI_ProjektnaDokumentacija.out' has cha
+nged.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `PROGI_ProjektnaDokumentacija.out':
+(rerunfilecheck)             Before: 1FE32163DFC435AAFA118EF99A4FE263;4592
+(rerunfilecheck)             After:  73DC96050B1C6E228BBC05CE1994BB16;4565.
  ) 
 Here is how much of TeX's memory you used:
  17761 strings out of 474398
@@ -2191,7 +2197,7 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpsy
 .pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 423056 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 419683 bytes).
 PDF statistics:
  557 PDF objects out of 1000 (max. 8388607)
  487 compressed objects within 5 object streams
