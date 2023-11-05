@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KorisnikRepository extends JpaRepository<Korisnik,Long> {
     int countByEmail(String email);
+    Korisnik findByEmail(String email);
 }

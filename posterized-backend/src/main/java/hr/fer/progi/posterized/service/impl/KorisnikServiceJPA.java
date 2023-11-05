@@ -5,6 +5,7 @@ import hr.fer.progi.posterized.domain.Korisnik;
 import hr.fer.progi.posterized.service.KorisnikService;
 import hr.fer.progi.posterized.service.RequestDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -21,6 +22,8 @@ public class KorisnikServiceJPA implements KorisnikService {
         return korisnikRepo.findAll();
     }
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
+    @Autowired
+    private PasswordEncoder pswdEncoder;
     @Override
     public Korisnik createKorisnik(Korisnik korisnik) {
         Assert.notNull(korisnik, "Korisnik object must be given");
@@ -36,6 +39,10 @@ public class KorisnikServiceJPA implements KorisnikService {
             throw new RequestDeniedException(
                     "Korisnik with email " + korisnik.getEmail() + " already exists"
             );
+        String lozinka = korisnik.getLozinka();
+        Assert.hasText(lozinka, "Lozinka must be given");
+        String kodiranaLozinka = pswdEncoder.encode(korisnik.getLozinka());
+        korisnik.setLozinka(kodiranaLozinka);
         return korisnikRepo.save(korisnik);
     }
 }

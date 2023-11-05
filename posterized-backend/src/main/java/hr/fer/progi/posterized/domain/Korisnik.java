@@ -22,8 +22,8 @@ public class Korisnik {
     @Column(unique = true)
     private String email;
 
-    private String givenName;
-    private String familyName;
+    @NotNull
+    private String lozinka;
 
     public Long getId() {
         return id;
@@ -41,20 +41,11 @@ public class Korisnik {
         this.email = email;
     }
 
-    public String getGivenName() {
-        return givenName;
+    public String getLozinka() {
+        return lozinka;
     }
 
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
     }
-
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
-
 }
