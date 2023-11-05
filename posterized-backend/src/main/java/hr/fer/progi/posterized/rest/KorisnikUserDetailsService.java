@@ -33,7 +33,7 @@ public class KorisnikUserDetailsService implements UserDetailsService {
             return new User(
                     korisnik.getEmail(),
                     korisnik.getLozinka(),
-                    commaSeparatedStringToAuthorityList("ROLE_ADMIN")
+                    commaSeparatedStringToAuthorityList("ROLE_USER")
             );
         } else {
             throw new UsernameNotFoundException("No user " + username);
