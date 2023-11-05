@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  5 NOV 2023 14:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  5 NOV 2023 19:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1700,22 +1700,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: parse table inner spec.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
-
-Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
-[]\OT1/jkp/m/n/12 ukupnoGlasova  
- []
-
-
-Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
-[]\OT1/jkp/m/n/12 ukupnoGlasova  
- []
-
 > Step: build the whole table.
-
-Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
-[]\OT1/jkp/m/n/12 ukupnoGlasova  
- []
-
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1724,6 +1709,7 @@ Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1803,6 +1789,15 @@ Overfull \hbox (13.64484pt too wide) in paragraph at lines 103--116
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[23]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1822,14 +1817,6 @@ Overfull \hbox (1.59691pt too wide) in paragraph at lines 160--160
 
 > Step: build the whole table.
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[23]
 Overfull \hbox (1.59691pt too wide) in paragraph at lines 160--160
 []\OT1/jkp/m/n/12 lozinkaAdmin  
  []
@@ -2198,7 +2185,7 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpsy
 .pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 412193 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 412269 bytes).
 PDF statistics:
  557 PDF objects out of 1000 (max. 8388607)
  487 compressed objects within 5 object streams
