@@ -21,7 +21,6 @@
 		\item Rad
 		\item Autor
 		\item Konferencija
-		\item Prijava
 		\item Korisnik
 		\item Prisutan\_na
 		\item Mjesto
@@ -31,7 +30,7 @@
 		\item Pokrovitelj\_na	
 	\end{itemize}
 			\subsection{Opis tablica}
-			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije i naslov rada. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u ternarnoj je vezi s entitetima Autor i Konferencija \textit{(One-to-One-to-Many)}.
+			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, OIB autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Autor.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -45,9 +44,12 @@
 					nazivPoster	& VARCHAR &   	naziv postera koji prikazuje rad\\ \hline 
 					nazivPptx & VARCHAR &   naziv prezentacije koja prikazuje rad, može biti null\\ \hline 
 					naslov & VARCHAR	&    naslov rada\\ \hline 
+					ukupnoGlasova & INT &   ukupan broj osvojenih glasova na konferenciji\\ \hline 
+					\SetCell{LightBlue}idKonf	& SERIAL &   	jedinstveni identifikator konferencije\\ \hline 
+					\SetCell{LightBlue}OIB & INT	&    osobni identifikacijski broj autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Autor} sadrži informacije o autoru. Sadrži atribute: OIB autora, email autora i ime i prezime autora. Entitet Autor u ternarnoj je vezi s entitetima Rad i Konferencija \textit{(One-to-One-to-Many)}.
+			\noindent Entitet \textbf {Autor} sadrži informacije o autoru. Sadrži atribute: OIB autora, email autora i ime i prezime autora. Entitet Autor u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -63,7 +65,7 @@
 					prezime & VARCHAR	&    prezime autora\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u ternarnoj je vezi s entitetima Rad i Autor \textit{(Many-to-One-to-One)}, u binarnoj vezi \textit{(Many-to-Many)} s entitetom Korisnik, u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija, \textit{(Many-to-One)} s entitetom Admin i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
+			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-Many)} s entitetom Korisnik, u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija, \textit{(Many-to-One)} s entitetom Admin i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -81,22 +83,6 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					vrijemeKraj & TIMESTAMP	&    kraj konferencije\\ \hline 
 					\SetCell{LightBlue} idAdmin & SERIAL &   jedinstveni identifikator admina zaduženog za konferenciju\\ \hline 
 					\SetCell{LightBlue} pbr & INT &   poštanski broj mjesta u kojem se održava konferencija\\ \hline 
-				\end{longtblr}	
-
-			\noindent Entitet \textbf {Prijava} sadrži informacije o autoru, radu koji je prijavio na određenu konferenciju te broju glasova koji je osvojio na toj konferenciji za svoj rad. Sadrži atribute: ID rada, ID konferencije, ukupan broj osvojenih glasova i OIB autora. Entitet Prijava rezultat je ternarne veze entiteta Autor, Rad i Konferencija.
-				\begin{longtblr}[
-					label=none,
-					entry=none
-					]{
-						width = \textwidth,
-						colspec={|X[7,l]|X[6, l]|X[20, l]|}, 
-						rowhead = 1,
-					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Prijava}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}idRad & SERIAL	&  	jedinstveni identifikator rada \\ \hline
-					\SetCell{LightGreen}idKonf	& SERIAL &   	jedinstveni identifikator konferencije\\ \hline 
-					ukupnoGlasova & INT &   ukupan broj osvojenih glasova na konferenciji\\ \hline 
-					\SetCell{LightBlue}OIB & INT	&    osobni identifikacijski broj autora\\ \hline 
 				\end{longtblr}		
 
 			\noindent Entitet \textbf {Korisnik} sadrži informacije o korisniku aplikacije. Sadrži atribute: ID korisnika, email korisnika i lozinka korisnika. Entitet Korisnik u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-Many)}.

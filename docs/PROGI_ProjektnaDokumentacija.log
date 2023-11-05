@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  4 NOV 2023 23:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  5 NOV 2023 14:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1700,7 +1700,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: parse table inner spec.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
+
+Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
+[]\OT1/jkp/m/n/12 ukupnoGlasova  
+ []
+
+
+Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
+[]\OT1/jkp/m/n/12 ukupnoGlasova  
+ []
+
 > Step: build the whole table.
+
+Overfull \hbox (9.25288pt too wide) in paragraph at lines 50--50
+[]\OT1/jkp/m/n/12 ukupnoGlasova  
+ []
+
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1708,24 +1723,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: parse table inner spec.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
-> Step: build the whole table.
-> Step: init table outer spec.
-> Step: parse table options.
-> Step: split table.
-> Step: init table inner spec.
-> Step: parse table inner spec.
-> Step: execute table commands.
-> Step: calculate cell and line sizes.
-
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 84--84
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
-
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 84--84
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
 > Step: build the whole table.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1736,10 +1733,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [21]
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 84--84
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1747,7 +1740,22 @@ Overfull \hbox (6.46889pt too wide) in paragraph at lines 84--84
 > Step: parse table inner spec.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
 > Step: build the whole table.
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1774,7 +1782,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
 
-Overfull \hbox (13.64484pt too wide) in paragraph at lines 117--130
+Overfull \hbox (13.64484pt too wide) in paragraph at lines 103--116
 \OT1/jkp/m/n/12 Entitet \OT1/jkp/b/n/12 Pri-su-tan[]na \OT1/jkp/m/n/12 sadr[]zi
  in-for-ma-cije o pri-sut-nosti po-je-di-nog ko-ris-nika na odre[]denoj
  []
@@ -1795,6 +1803,24 @@ Overfull \hbox (13.64484pt too wide) in paragraph at lines 117--130
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+
+Overfull \hbox (1.59691pt too wide) in paragraph at lines 160--160
+[]\OT1/jkp/m/n/12 lozinkaAdmin  
+ []
+
+
+Overfull \hbox (1.59691pt too wide) in paragraph at lines 160--160
+[]\OT1/jkp/m/n/12 lozinkaAdmin  
+ []
+
+> Step: build the whole table.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1804,26 +1830,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [23]
-> Step: init table outer spec.
-> Step: parse table options.
-> Step: split table.
-> Step: init table inner spec.
-> Step: parse table inner spec.
-> Step: execute table commands.
-> Step: calculate cell and line sizes.
-
-Overfull \hbox (1.59691pt too wide) in paragraph at lines 174--174
-[]\OT1/jkp/m/n/12 lozinkaAdmin  
- []
-
-
-Overfull \hbox (1.59691pt too wide) in paragraph at lines 174--174
-[]\OT1/jkp/m/n/12 lozinkaAdmin  
- []
-
-> Step: build the whole table.
-
-Overfull \hbox (1.59691pt too wide) in paragraph at lines 174--174
+Overfull \hbox (1.59691pt too wide) in paragraph at lines 160--160
 []\OT1/jkp/m/n/12 lozinkaAdmin  
  []
 
@@ -1835,18 +1842,18 @@ Overfull \hbox (1.59691pt too wide) in paragraph at lines 174--174
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 189--189
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 175--175
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
 
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 189--189
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 175--175
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
 > Step: build the whole table.
 
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 189--189
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 175--175
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
@@ -1858,14 +1865,14 @@ Overfull \hbox (2.29738pt too wide) in paragraph at lines 189--189
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=370, 908.39375pt x 456.70625pt>
+<slike/dijagram baze podataka.PNG, id=370, 880.79062pt x 428.09938pt>
 File: slike/dijagram baze podataka.PNG Graphic file (type png)
 <use slike/dijagram baze podataka.PNG>
-Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 2
-08.
-(pdftex.def)             Requested size: 499.61812pt x 251.18921pt.
+Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 1
+94.
+(pdftex.def)             Requested size: 484.43634pt x 235.45538pt.
 
-Overfull \hbox (64.00732pt too wide) in paragraph at lines 208--210
+Overfull \hbox (48.82555pt too wide) in paragraph at lines 194--196
  [][] 
  []
 
@@ -1891,24 +1898,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.213 			\eject
+l.199 			\eject
                 <./slike/dijagram baze podataka.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
 
  []
 
@@ -1921,7 +1928,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
 
  []
 
@@ -1934,7 +1941,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
@@ -1947,7 +1954,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
@@ -2169,22 +2176,16 @@ L3 programming layer <2023-10-23>
 
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `PROGI_ProjektnaDokumentacija.out' has cha
-nged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `PROGI_ProjektnaDokumentacija.out':
-(rerunfilecheck)             Before: 1FE32163DFC435AAFA118EF99A4FE263;4592
-(rerunfilecheck)             After:  73DC96050B1C6E228BBC05CE1994BB16;4565.
+Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija.out' has not ch
+anged.
+(rerunfilecheck)             Checksum: 73DC96050B1C6E228BBC05CE1994BB16;4565.
  ) 
 Here is how much of TeX's memory you used:
- 17761 strings out of 474398
- 312619 string characters out of 5754206
+ 17758 strings out of 474398
+ 312546 string characters out of 5754206
  2063036 words of memory out of 5000000
- 39331 multiletter control sequences out of 15000+600000
- 632109 words of font info for 198 fonts, out of 8000000 for 9000
+ 39328 multiletter control sequences out of 15000+600000
+ 631113 words of font info for 195 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,12n,115p,906b,1172s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -2197,7 +2198,7 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpsy
 .pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 419683 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 412193 bytes).
 PDF statistics:
  557 PDF objects out of 1000 (max. 8388607)
  487 compressed objects within 5 object streams
