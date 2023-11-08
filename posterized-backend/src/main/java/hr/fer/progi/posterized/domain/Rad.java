@@ -11,7 +11,7 @@ public class Rad {
     private String imeRada;
 
     @OneToOne
-    private Korisnik autor;
+    private Osoba osoba;
 
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Rad {
         this.imeRada = imeRada;
     }
 
-    public Korisnik getAutor() {
-        return autor;
+    public Osoba getAutor() {
+        return osoba;
     }
 
-    public void setAutor(Korisnik autor) {
-        this.autor = autor;
+    public void setOsoba(Osoba osoba) {
+        this.osoba = osoba;
     }
 }
