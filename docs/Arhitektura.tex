@@ -19,18 +19,16 @@
 		U aplikaciji će baza podataka bit prikazana relacijskim modelom podataka. Objekti relacijskog modela su relacije, a svaka ima jedinstveno ime unutar sheme baze podataka. Relacija je tablica čiji se imenovani stupci nazivaju atributi, a redci n-torke. Ključ entiteta je skup atributa koji jednoznačno određuje entitet. U našem sustavu entiteti baze podataka su:
 	\begin{itemize}
 		\item Rad
-		\item Autor
+		\item Osoba
 		\item Konferencija
-		\item Korisnik
 		\item Prisutan\_na
 		\item Mjesto
 		\item Fotografija
-		\item Admin
 		\item Pokrovitelj	
 		\item Pokrovitelj\_na	
 	\end{itemize}
 			\subsection{Opis tablica}
-			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, OIB autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Autor.
+			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor" ili "autor-korisnik".
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -46,26 +44,28 @@
 					naslov & VARCHAR	&    naslov rada\\ \hline 
 					ukupnoGlasova & INT &   ukupan broj osvojenih glasova na konferenciji\\ \hline 
 					\SetCell{LightBlue}idKonf	& SERIAL &   	jedinstveni identifikator konferencije\\ \hline 
-					\SetCell{LightBlue}OIB & INT	&    osobni identifikacijski broj autora\\ \hline 
+					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Autor} sadrži informacije o autoru. Sadrži atribute: OIB autora, email autora i ime i prezime autora. Entitet Autor u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik", "autor" ili "autor-korisnik". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik i autor-korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						colspec={|X[7,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Autor}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}OIB & INT	&  	osobni identifikacijski broj autora \\ \hline
-					emailAutor	& VARCHAR &   	email autora\\ \hline 
-					ime & VARCHAR &   ime autora\\ \hline 
-					prezime & VARCHAR	&    prezime autora\\ \hline 
+					\hline \SetCell[c=3]{c}{\textbf{Osoba}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}idOsoba & SERIAL	&  	jedinstveni identifikator osobe\\ \hline
+					email	& VARCHAR &   	email osobe\\ \hline 
+					ime & VARCHAR &   ime osobe\\ \hline 
+					prezime & VARCHAR	&    prezime osobe\\ \hline 
+					lozinkaKorisnik & VARCHAR &   hash lozinke korisnika ili admina\\ \hline 
+					uloga & VARCHAR &  uloga osobe\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-Many)} s entitetom Korisnik, u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija, \textit{(Many-to-One)} s entitetom Admin i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
+			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno s onim njegovim n-torkama kojima je vrijednost atributa uloga "admin" i \textit{(Many-to-Many)} s n-torkama kojima je vrijednost atributa uloga "korisnik" ili "autor-korisnik", u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -85,22 +85,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					\SetCell{LightBlue} pbr & INT &   poštanski broj mjesta u kojem se održava konferencija\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Korisnik} sadrži informacije o korisniku aplikacije. Sadrži atribute: ID korisnika, email korisnika i lozinka korisnika. Entitet Korisnik u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-Many)}.
-				\begin{longtblr}[
-					label=none,
-					entry=none
-					]{
-						width = \textwidth,
-						colspec={|X[7,l]|X[6, l]|X[20, l]|}, 
-						rowhead = 1,
-					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Korisnik}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}idKorisnik & SERIAL	&  	jedinstveni identifikator korisnika \\ \hline
-					emailKorisnik 	& VARCHAR &   	email korisnika\\ \hline 
-					lozinkaKorisnik & VARCHAR &   hash lozinke korisnika\\ \hline 
-				\end{longtblr}	
-
-			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Korisnik i Konferencija.
+			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Osoba, odnosno veze onih njegovih n-torka kojima je vrijednost atributa uloga "korisnik" ili "autor-korisnik" s entitetom Konferencija.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -142,21 +127,6 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					\SetCell{LightGreen}idFoto & SERIAL	&  	jedinstveni identifikator fotografije\\ \hline
 					naziv	& VARCHAR &   	naziv fotografije\\ \hline 
 					\SetCell{LightBlue}idKonf & SERIAL &   jedinstveni identifikator konferencije\\ \hline 
-				\end{longtblr}
-
-			\noindent Entitet \textbf {Admin} sadrži informacije o adminima. Sadrži atribute: ID admina, email i lozinka admina. Entitet Admin u binarnoj je vezi s entitetom Konferencija \textit{(One-to-Many)}. 
-				\begin{longtblr}[
-					label=none,
-					entry=none
-					]{
-						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
-						rowhead = 1,
-					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{Admin}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}idAdmin & SERIAL	&  	jedinstveni identifikator admina\\ \hline
-					emailAdmin	& VARCHAR &   	email admina\\ \hline 
-					lozinkaAdmin & VARCHAR &   hash lozinke admina\\ \hline 
 				\end{longtblr}
 
 			\noindent Entitet \textbf {Pokrovitelj} sadrži informacije o pokrovitelju. Sadrži atribute: ID pokrovitelja,  url stranice pokrovitelja i naziv pokrovitelja. Entitet Pokrovitelj u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-Many)}. 
