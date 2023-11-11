@@ -28,8 +28,8 @@ public class RadServiceJPA implements RadService {
         Assert.isNull(rad.getId(), "Rad ID must be null, not" + rad.getId());
 
         //mozda pravila formata za ime?
-        if(radRepo.countByImeRada(rad.getImeRada())>0){
-            throw new RequestDeniedException("Rad with name " + rad.getImeRada() + " already exits");
+        if(radRepo.countByNaslov(rad.getNaslov())>0){
+            throw new RequestDeniedException("Rad with name " + rad.getNaslov() + " already exits");
         }
 
         return radRepo.save(rad);

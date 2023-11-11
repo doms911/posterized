@@ -4,5 +4,5 @@ import hr.fer.progi.posterized.domain.Rad;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RadRepository extends JpaRepository<Rad,Long> {
-    int countByImeRada(String imeRada) ;
+    int countByNaslov(String imeRada) ;
 }

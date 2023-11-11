@@ -13,25 +13,25 @@ import org.springframework.stereotype.Service;
 import static org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList;
 
 @Service
-public class OsobaUserDetailsService implements UserDetailsService {
+public class KorisnikUserDetailsService implements UserDetailsService {
     @Value("${hr.fer.progi.posterized.admin.password}")
-    private String adminPasswordHash;
+    private String adminLozinkaHash;
 
     @Autowired
     private OsobaRepository osobaRepository;
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Osoba osoba = osobaRepository.findByEmail(username);
+        Osoba korisnik = osobaRepository.findByEmail(username);
         if ("admin".equals(username)) {
             return new User(
                     username,
-                    adminPasswordHash,
+                    adminLozinkaHash,
                     commaSeparatedStringToAuthorityList("ROLE_ADMIN")
             );}
-        if (osoba != null) {
+        if (korisnik != null) {
             return new User(
-                    osoba.getEmail(),
-                    osoba.getLozinka(),
+                    korisnik.getEmail(),
+                    korisnik.getLozinka(),
                     commaSeparatedStringToAuthorityList("ROLE_USER")
             );
         } else {

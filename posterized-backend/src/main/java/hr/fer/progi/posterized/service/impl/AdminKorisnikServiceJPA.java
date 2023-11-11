@@ -2,30 +2,35 @@ package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.service.OsobaService;
+import hr.fer.progi.posterized.service.AdminKorisnikService;
 import hr.fer.progi.posterized.service.RequestDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class OsobaServiceJPA implements OsobaService {
+public class AdminKorisnikServiceJPA implements AdminKorisnikService {
 
     @Autowired
     private OsobaRepository osobaRepo;
 
     @Override
     public List<Osoba> listAll() {
-        return osobaRepo.findAll();
+        List<Osoba> korisnici = osobaRepo.findByUloga("korisnik");
+        List<Osoba> admini = osobaRepo.findByUloga("admin");
+        List<Osoba> svi = new ArrayList<>(korisnici);
+        svi.addAll(admini);
+        return svi;
     }
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
     @Autowired
     private PasswordEncoder pswdEncoder;
     @Override
-    public Osoba createOsoba(Osoba osoba) {  //slučaj samo za korisnika (admin i autor nisu obrađeni)
+    public Osoba createAdminKorisnik(Osoba osoba) {
         Assert.notNull(osoba, "Osoba object must be given");
         Assert.isNull(osoba.getId(),
                 "Osoba ID must be null, not" + osoba.getId()
@@ -46,7 +51,7 @@ public class OsobaServiceJPA implements OsobaService {
         String ime = osoba.getIme();
         Assert.hasText(ime, "Ime must be given");
         String prezime = osoba.getPrezime();
-        Assert.hasText(prezime, "Prezima must be given");
+        Assert.hasText(prezime, "Prezime must be given");
         return osobaRepo.save(osoba);
     }
 }

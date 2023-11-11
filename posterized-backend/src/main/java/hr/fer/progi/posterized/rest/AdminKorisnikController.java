@@ -1,33 +1,35 @@
 package hr.fer.progi.posterized.rest;
 
+import hr.fer.progi.posterized.service.AdminKorisnikService;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.service.OsobaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 //@RestController
 @RequestMapping("/registracija")
-public class RegistracijaController {
+public class AdminKorisnikController {
     @Autowired
-    private OsobaService osobaService;
+    private AdminKorisnikService akService;
     @GetMapping("")
-    public String showRegistrationForm() {
-        // Return the name of the HTML file without the extension
+    public String prikaziFormu() {
         return "registracija";
     }
     @PostMapping("")
-    public Osoba registrirajOsobu(@RequestParam String email, @RequestParam String lozinka, @RequestParam String ime,
-                                  @RequestParam String prezime) {
+    public Osoba createAdminKorisnik(@RequestParam String email, @RequestParam String lozinka, @RequestParam String ime,
+                                  @RequestParam String prezime, @RequestParam String uloga) {
         Osoba osoba = new Osoba();
         osoba.setEmail(email);
         osoba.setLozinka(lozinka);
         osoba.setIme(ime);
         osoba.setPrezime(prezime);
-        osoba.setUloga("korisnik");
-        return osobaService.createOsoba(osoba);
+        osoba.setUloga(uloga);
+        return akService.createAdminKorisnik(osoba);
     }
 }

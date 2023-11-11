@@ -3,7 +3,7 @@ import hr.fer.progi.posterized.domain.Osoba;
 
 import java.util.List;
 
-public interface OsobaService {
+public interface AdminKorisnikService {
     List<Osoba> listAll();
-    Osoba createOsoba(Osoba osoba);
+    Osoba createAdminKorisnik(Osoba osoba);
 }

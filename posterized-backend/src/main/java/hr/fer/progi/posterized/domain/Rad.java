@@ -8,10 +8,38 @@ public class Rad {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String imeRada;
+    private String naslov;
+
+    private String nazivPptx;
+    private String nazivPoster;
+    private Integer ukupnoGlasova;
+
+    public String getNazivPptx() {
+        return nazivPptx;
+    }
+
+    public void setNazivPptx(String nazivPptx) {
+        this.nazivPptx = nazivPptx;
+    }
+
+    public String getNazivPoster() {
+        return nazivPoster;
+    }
+
+    public void setNazivPoster(String nazivPoster) {
+        this.nazivPoster = nazivPoster;
+    }
+
+    public Integer getUkupnoGlasova() {
+        return ukupnoGlasova;
+    }
+
+    public void setUkupnoGlasova(Integer ukupnoGlasova) {
+        this.ukupnoGlasova = ukupnoGlasova;
+    }
 
     @OneToOne
-    private Osoba osoba;
+    private Osoba autor;
 
     public Long getId() {
         return id;
@@ -21,19 +49,19 @@ public class Rad {
         this.id = id;
     }
 
-    public String getImeRada() {
-        return imeRada;
+    public String getNaslov() {
+        return naslov;
     }
 
-    public void setImeRada(String imeRada) {
-        this.imeRada = imeRada;
+    public void setNaslov(String naslov) {
+        this.naslov = naslov;
     }
 
     public Osoba getAutor() {
-        return osoba;
+        return autor;
     }
 
-    public void setOsoba(Osoba osoba) {
-        this.osoba = osoba;
+    public void setAutor(Osoba osoba) {
+        this.autor = autor;
     }
 }
