@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  8 NOV 2023 22:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  11 NOV 2023 01:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1129,7 +1129,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 ...{Indeks slika i dijagrama}{36}{chapter*.5}
+l.29 ...{Indeks slika i dijagrama}{37}{chapter*.5}
                                                   % [1
 
 ])
@@ -1696,25 +1696,38 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
  (./Arhitektura.tex
 Poglavlje 4.
+<slike/arh1.PNG, id=357, 788.9475pt x 347.04657pt>
+File: slike/arh1.PNG Graphic file (type png)
+<use slike/arh1.PNG>
+Package pdftex.def Info: slike/arh1.PNG  used on input line 7.
+(pdftex.def)             Requested size: 315.5734pt x 138.81616pt.
+<slike/arh2.PNG, id=358, 1243.64626pt x 282.30469pt>
+File: slike/arh2.PNG Graphic file (type png)
+<use slike/arh2.PNG>
+Package pdftex.def Info: slike/arh2.PNG  used on input line 14.
+(pdftex.def)             Requested size: 373.09676pt x 84.69205pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
 
- []
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-
-Overfull \hbox (25.95198pt too wide) in paragraph at lines 5--6
-\OT1/jkp/m/it/12 radnu plat-formu, spremi[]sta po-da-taka, mre[]zne pro-to-kole
-, glo-balni uprav-lja[]cki tok i sklopovsko-
- []
-
-
-Overfull \hbox (4.51157pt too wide) in paragraph at lines 7--8
-[]\OT1/jkp/m/it/12 izbor ar-hi-tek-ture te-me-ljem prin-cipa obli-ko-va-nja po-
-ka-za-nih na pre-da-va-njima (objas-
- []
+[21
 
 
-Overfull \hbox (0.38019pt too wide) in paragraph at lines 19--20
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.19 	Z
+       a izradu naše aplikacije korišten je Java Spring Boot okvir koji ko...
+ <./slike/arh1.png>]
+Overfull \hbox (0.38019pt too wide) in paragraph at lines 27--28
 \OT1/jkp/m/n/12 U apli-ka-ciji []ce baza po-da-taka bit pri-ka-zana re-la-cij-s
 kim mo-de-lom po-da-taka. Objekti
  []
@@ -1735,12 +1748,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[21
-
-
-
-
-]
+[22
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.2}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.56 				\end
+             {longtblr}						 <./slike/arh2.png>]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1749,52 +1763,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[22]
-> Step: init table outer spec.
-> Step: parse table options.
-> Step: split table.
-> Step: init table inner spec.
-> Step: parse table inner spec.
-> Step: execute table commands.
-> Step: calculate cell and line sizes.
-
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
-
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
-> Step: build the whole table.
-
-Overfull \hbox (6.46889pt too wide) in paragraph at lines 86--86
-[]\OT1/jkp/m/n/12 vrijemePocetak  
- []
-
-> Step: init table outer spec.
-> Step: parse table options.
-> Step: split table.
-> Step: init table inner spec.
-> Step: parse table inner spec.
-> Step: execute table commands.
-> Step: calculate cell and line sizes.
-> Step: build the whole table.
-
-Overfull \hbox (13.64484pt too wide) in paragraph at lines 88--101
-\OT1/jkp/m/n/12 Entitet \OT1/jkp/b/n/12 Pri-su-tan[]na \OT1/jkp/m/n/12 sadr[]zi
- in-for-ma-cije o pri-sut-nosti po-je-di-nog ko-ris-nika na odre[]denoj
- []
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1812,6 +1780,52 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: parse table inner spec.
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 94--94
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 94--94
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
+> Step: build the whole table.
+
+Overfull \hbox (6.46889pt too wide) in paragraph at lines 94--94
+[]\OT1/jkp/m/n/12 vrijemePocetak  
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Overfull \hbox (13.64484pt too wide) in paragraph at lines 96--109
+\OT1/jkp/m/n/12 Entitet \OT1/jkp/b/n/12 Pri-su-tan[]na \OT1/jkp/m/n/12 sadr[]zi
+ in-for-ma-cije o pri-sut-nosti po-je-di-nog ko-ris-nika na odre[]denoj
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[24]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
 > Step: build the whole table.
 > Step: init table outer spec.
 > Step: parse table options.
@@ -1829,12 +1843,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 145--145
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 153--153
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
 
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 145--145
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 153--153
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
@@ -1847,8 +1861,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[24]
-Overfull \hbox (2.29738pt too wide) in paragraph at lines 145--145
+[25]
+Overfull \hbox (2.29738pt too wide) in paragraph at lines 153--153
 []\OT1/jkp/m/n/12 nazivPokrovitelj  
  []
 
@@ -1860,14 +1874,14 @@ Overfull \hbox (2.29738pt too wide) in paragraph at lines 145--145
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=378, 835.62187pt x 318.18875pt>
+<slike/dijagram baze podataka.PNG, id=389, 835.62187pt x 318.18875pt>
 File: slike/dijagram baze podataka.PNG Graphic file (type png)
 <use slike/dijagram baze podataka.PNG>
 Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 1
-64.
+72.
 (pdftex.def)             Requested size: 459.59344pt x 175.00433pt.
 
-Overfull \hbox (23.98265pt too wide) in paragraph at lines 164--166
+Overfull \hbox (23.98265pt too wide) in paragraph at lines 172--174
  [][] 
  []
 
@@ -1879,42 +1893,29 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[25
-pdfTeX warning (ext4): destination with the same identifier (name{figure.4.1}) 
+[26
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.169 			\eject
+l.177 			\eject
                 <./slike/dijagram baze podataka.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 174--175
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+Underfull \hbox (badness 10000) in paragraph at lines 184--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
-
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
 
@@ -1927,7 +1928,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
+Underfull \hbox (badness 10000) in paragraph at lines 199--200
 
  []
 
@@ -1940,7 +1941,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 207--208
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
 
  []
 
@@ -1953,7 +1967,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[29]
+[30]
 \openout2 = `Implementacija.aux'.
 
  (./Implementacija.tex
@@ -1971,7 +1985,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[30
+[31
 
 
 
@@ -1994,7 +2008,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[31]
+[32]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2003,7 +2017,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[32]
+[33]
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
@@ -2016,7 +2030,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[33])
+[34])
 \openout2 = `Zakljucak.aux'.
 
  (./Zakljucak.tex
@@ -2034,7 +2048,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[34
+[35
 
 
 
@@ -2063,7 +2077,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[35
+[36
 
 
 
@@ -2081,7 +2095,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[36
+[37
 
 
 
@@ -2101,7 +2115,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[37
+[38
 
 
 ]
@@ -2125,7 +2139,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[38]
+[39]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2134,7 +2148,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[39]
+[40]
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
@@ -2148,7 +2162,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[40] 
+[41] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
 (./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
@@ -2167,13 +2181,13 @@ anged.
 (rerunfilecheck)             Checksum: 73DC96050B1C6E228BBC05CE1994BB16;4565.
  ) 
 Here is how much of TeX's memory you used:
- 17760 strings out of 474398
- 312675 string characters out of 5754206
+ 17779 strings out of 474398
+ 313024 string characters out of 5754206
  2063036 words of memory out of 5000000
- 39329 multiletter control sequences out of 15000+600000
+ 39345 multiletter control sequences out of 15000+600000
  629019 words of font info for 189 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,12n,115p,918b,1139s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,13n,115p,906b,1139s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
@@ -2184,10 +2198,10 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpsy
 .pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (41 pages, 634711 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (42 pages, 745407 bytes).
 PDF statistics:
- 560 PDF objects out of 1000 (max. 8388607)
- 489 compressed objects within 5 object streams
- 165 named destinations out of 1000 (max. 500000)
- 242 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 573 PDF objects out of 1000 (max. 8388607)
+ 497 compressed objects within 5 object streams
+ 168 named destinations out of 1000 (max. 500000)
+ 252 words of extra memory for PDF output out of 10000 (max. 10000000)
 

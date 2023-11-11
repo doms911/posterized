@@ -1,14 +1,22 @@
 \chapter{Arhitektura i dizajn sustava}
 		
-		\textbf{\textit{dio 1. revizije}}\\
-
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
-	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
-	\end{itemize}
-
+		Na arhitekturu sustava najveći utjecaj imali su principi oblikovanja: Podijeli pa vladaj, Zadrži razinu apstrakcije te Oblikuj za prenosivost. Princip Podijeli pa vladaj očituje se u podijeli sustava na manje komponente radi povećane razumljivosti te lakše zamjene dijelova i ponovnog korištenja. Princip Zadrži razinu apstrakcije omogućava razumijevanje poante podsustava bez poznavanja nepotrebnih detalja. Korištenje Jave kao objektno orijentiranog programskog jezika omogućuje nam upotrebu razreda, podatkovnih apstrakcija koje sadrže proceduralne apstrakcije (metode). Osim upotrebe razreda Java omogućuje rad na više platformi, čime je osigurana prenosivost.
+		
+	Organizacija sustava s najviše razine apstrakcije je klijent-poslužitelj-baza podataka. Klijenta predstavlja preglednik weba koji omogućuje korisniku slanje zahtjeva poslužitelju protokolom HTTP \textit{(engl. Hyper Text Transfer Protocol)}. Poslužitelj je server koji poslužuje te zahtjeve, prosljeđuje ih web aplikaciji koja se pokreće preko poslužitelja te vraća odgovore koji se prikazuju preko klijenta (preglednika). Podaci su spremljeni u bazi podataka te joj po potrebi pristupa web aplikacija koristeći SQL upite.
+					\begin{figure}[H]
+						\includegraphics[scale=0.4]{slike/arh1.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Organizacija sustava s najviše razine apstrakcije}
+						\label{fig:promjene4}
+					\end{figure}	
+	Arhitektura aplikacije je troslojna. Prvi sloj je \textbf {kontroler} koji prima zahtjeve, poziva odgovarajuće metode drugog sloja \textbf {servisa}, te na kraju vraća odgovore. Servis sadrži poslovnu logiku aplikacije, a za pristup podacima koristi treći sloj \textbf {repozitorij} koji komunicira s bazom podataka.
+					\begin{figure}[H]
+						\includegraphics[scale=0.3]{slike/arh2.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+						\centering
+						\caption{Organizacija aplikacije}
+						\label{fig:promjene5}
+					\end{figure}	
+	Za izradu naše aplikacije korišten je Java Spring Boot okvir koji koristi MVC \textit{(engl. Model-View-Controller)} oblikovni obrazac u kojem je poslužitelj organiziran u tri dijela u cilju razdvajanja nadležnosti. Aplikacija je podijeljena na tri komponente. \textbf {Kontroler} prima zahtjeve koje prosljeđuje modelu te upravlja modelom i pogledom. \textbf {Model} je zadužen za obradu i dohvat podataka te komunicira s bazom podataka. \textbf {Pogled} prezentira dostavljene podatke.
 	
 		
 
@@ -28,7 +36,7 @@
 		\item Pokrovitelj\_na	
 	\end{itemize}
 			\subsection{Opis tablica}
-			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor" ili "autor-korisnik".
+			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor".
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -47,7 +55,7 @@
 					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik", "autor" ili "autor-korisnik". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik i autor-korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik", "autor". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -65,7 +73,7 @@
 					uloga & VARCHAR &  uloga osobe\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno s onim njegovim n-torkama kojima je vrijednost atributa uloga "admin" i \textit{(Many-to-Many)} s n-torkama kojima je vrijednost atributa uloga "korisnik" ili "autor-korisnik", u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
+			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno s onim njegovim n-torkama kojima je vrijednost atributa uloga "admin" i \textit{(Many-to-Many)} s n-torkama kojima je vrijednost atributa uloga "korisnik", u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -85,7 +93,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					\SetCell{LightBlue} pbr & INT &   poštanski broj mjesta u kojem se održava konferencija\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Osoba, odnosno veze onih njegovih n-torka kojima je vrijednost atributa uloga "korisnik" ili "autor-korisnik" s entitetom Konferencija.
+			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Osoba, odnosno veze onih njegovih n-torka kojima je vrijednost atributa uloga "korisnik" s entitetom Konferencija.
 				\begin{longtblr}[
 					label=none,
 					entry=none
