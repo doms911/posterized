@@ -11,25 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-//@RestController
+@RestController
 @RequestMapping("/registracija")
 public class AdminKorisnikController {
     @Autowired
     private AdminKorisnikService akService;
     @GetMapping("")
     public String prikaziFormu() {
-        return "registracija";
+        return "Register";
     }
     @PostMapping("")
-    public Osoba createAdminKorisnik(@RequestParam String email, @RequestParam String lozinka, @RequestParam String ime,
-                                  @RequestParam String prezime, @RequestParam String uloga) {
-        Osoba osoba = new Osoba();
-        osoba.setEmail(email);
-        osoba.setLozinka(lozinka);
-        osoba.setIme(ime);
-        osoba.setPrezime(prezime);
-        osoba.setUloga(uloga);
+    public Osoba createAdminKorisnik(@RequestBody Osoba osoba) {
         return akService.createAdminKorisnik(osoba);
     }
 }
