@@ -3,7 +3,6 @@ package hr.fer.progi.posterized.service.impl;
 import hr.fer.progi.posterized.dao.RadRepository;
 import hr.fer.progi.posterized.domain.Rad;
 import hr.fer.progi.posterized.service.RadService;
-import hr.fer.progi.posterized.service.RequestDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -29,7 +28,7 @@ public class RadServiceJPA implements RadService {
 
         //mozda pravila formata za ime?
         if(radRepo.countByNaslov(rad.getNaslov())>0){
-            throw new RequestDeniedException("Rad with name " + rad.getNaslov() + " already exits");
+            Assert.hasText("","Rad with name " + rad.getNaslov() + " already exits");
         }
 
         return radRepo.save(rad);

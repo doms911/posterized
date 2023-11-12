@@ -45,7 +45,7 @@
                     <div>
                         <label>Prezime:</label>
                         <input
-                            type="prezimel"
+                            type="prezime"
                             value={prezime}
                             onChange={(event) => {
                                 setPrezime(event.target.value);

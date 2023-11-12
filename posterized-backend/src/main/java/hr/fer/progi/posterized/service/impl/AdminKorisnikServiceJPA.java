@@ -3,7 +3,6 @@ package hr.fer.progi.posterized.service.impl;
 import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.AdminKorisnikService;
-import hr.fer.progi.posterized.service.RequestDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,10 +39,9 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
         );
-        if (osobaRepo.countByEmail(osoba.getEmail()) > 0)
-            throw new RequestDeniedException(
-                    "Osoba with email " + osoba.getEmail() + " already exists"
-            );
+        if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
+            Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+        }
         String lozinka = osoba.getLozinka();
         Assert.hasText(lozinka, "Lozinka must be given");
         String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
