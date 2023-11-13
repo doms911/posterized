@@ -55,7 +55,7 @@
 					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik", "autor". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik" i "autor". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
