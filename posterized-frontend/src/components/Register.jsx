@@ -24,7 +24,9 @@
                     });
                 } catch(err) {
                     console.error(err);
-                    alert("An error occurred. Please check the console for details.");
+                    if(err.response.data.message) {
+                        alert(err.response.data.message)
+                    } else alert("An error occurred. Please check the console for details.");
                 }
         }
     
