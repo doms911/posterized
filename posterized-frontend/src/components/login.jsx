@@ -1,18 +1,28 @@
 
 import React, { useState } from 'react';
-import axios from 'axios';
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [lozinka, setLozinka] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    async function authenticate(event) {
-        event.preventDefault();
-        try {
-            console.log("Logging in with:", email, lozinka);
-        } catch (error) {
-            console.error("Login error:", error);
-        }
+    async function authenticate(e) {
+        e.preventDefault();
+        const body = `username=${username}&password=${password}`;
+        const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body
+        };
+        fetch('http://localhost:8080/login', options)
+        .then(response => {
+            if (response.status === 401) {
+            alert("Pogrešna lozinka")
+            } else {
+            alert("Prijava uspješna");
+            }
+      });
     }
 
     return (
@@ -20,21 +30,21 @@ function Login() {
             <h2>Login Page</h2>
             <form onSubmit={authenticate}>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label>Email:</label>
                     <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="username"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div>
-                    <label htmlFor="lozinka">Password:</label>
+                    <label>Password:</label>
                     <input
                         type="password"
-                        id="lozinka"
-                        value={lozinka}
-                        onChange={(e) => setLozinka(e.target.value)}
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div>
