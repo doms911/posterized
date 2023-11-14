@@ -179,12 +179,53 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
+		
+			Radi preglednosti, dijagram je razlomljen na nekoliko dijelova. Na njima su prikazani razredi koji pripadaju backend dijelu MVC arhitekture.
+			Na slici 4.4 su prikazane DTO klase. DTO klase služe za prijenos podataka između baze podataka i serverske strane aplikacije. Ti su objekti zapravo preslika baze podataka, ali umjesto relacijske koristimo objektno-orijentiranu paradigmu. 
+			Razred Konferencija predstavlja konferenciju koja se prikazuje u aplikaciji. 
+Razred Mjesto predstavlja lokaciju na kojoj se konferencija održava.
+Razred Osoba predstavlja čovjeka koji na neki način sudjeluje na konferenciji.  Taj razred ima atribut uloga kojim se određuje je li ta osoba autor, administrator ili posjetitelj konferencije. 
+Razred Rad predstavlja rad (poster i/ili pptx) kojim se autor predstavlja na konferenciji.
+Razred PrisutanNa omogućuje da pratimo tko je na konferenciji te da li je ta osoba glasala za neki rad.
+Razred Fotografija predstavlja fotografije konferencije koje administrator stavlja u aplikaciju tijekom ili nakon konferencije.
+Razred Pokrovitelj predstavlja sponzore konferencije. 
+			Na slikama 4.5, 4.6, 4.7 je prikazan glavni dijagram u čijem središtu se nalazi JPARepository o kojem ovise ostala sučelja koja su specifična za svaki objekt. Ova sučelja nam omogućuju da izbjegnemo pisanje složenih SQL upita i umjesto toga koristimo generičke metode za izvođenje uobičajenih operacija s bazom podataka.
+U dijagramu su i servisi u kojima su funkcije za obradu podataka. Po potrebi zovu repozitorijeve funkcije kako bi došli do baze podataka.
+Kontroleri nam služe za komunikaciju s frontendom. 
+U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije. WebSecurityBasic je zadužen za zaštitu cijele aplikacije.
+
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/dto_klase.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda - DTO}
+				\label{fig:promjena9}
+			\end{figure}
+			\eject
+
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/glavni_1.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda - glavni dijagram 1.dio}
+				\label{fig:promjena9}
+			\end{figure}
 			
-			\textbf{\textit{dio 1. revizije}}\\
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/glavni_2.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda - glavni dijagram 2.dio}
+				\label{fig:promjena9}
+			\end{figure}
 			
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
-			
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/glavni_3.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razreda - glavni dijagram 3.dio}
+				\label{fig:promjena9}
+			\end{figure}
+			\eject
+
+
+
 			\textbf{\textit{dio 2. revizije}}\\			
 			
 			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}

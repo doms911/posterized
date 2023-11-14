@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  13 NOV 2023 23:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.12)  14 NOV 2023 11:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PROGI_ProjektnaDokumentacija.tex
-(./PROGI_ProjektnaDokumentacija.tex
+**./PROGI_ProjektnaDokumentacija.tex
+(PROGI_ProjektnaDokumentacija.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
-(c:/texlive/2023/texmf-dist/tex/latex/base/report.cls
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
 Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
-(c:/texlive/2023/texmf-dist/tex/latex/base/size12.clo
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
 File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count186
@@ -24,27 +24,36 @@ File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
-(c:/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
 Package: babel 2023/10/25 v3.96 The Babel package
 \babel@savecnt=\count195
 \U@D=\dimen141
-\l@unhyphenated=\language89
+\l@unhyphenated=\language79
 
-(c:/texlive/2023/texmf-dist/tex/generic/babel/txtbabel.def)
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
 \bbl@dirlevel=\count196
 
-(c:/texlive/2023/texmf-dist/tex/generic/babel-croatian/croatian.ldf
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/babel-croatian\croatian
+.ldf
 Language: croatian 2014/03/31 v1.3m Croatian support from the babel system
 ))
-(c:/texlive/2023/texmf-dist/tex/generic/babel/locale/hr/babel-croatian.tex
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/hr\babel
+-croatian.tex
 Package babel Info: Importing font and identification data for croatian
 (babel)             from babel-hr.ini. Reported on input line 11.
 )
-(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks17
 \symAMSa=\mathgroup4
@@ -52,25 +61,24 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(c:/texlive/2023/texmf-dist/tex/latex/amsmath/amsmath.sty
+)) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2023/texmf-dist/tex/latex/amsmath/amstext.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
 
-(c:/texlive/2023/texmf-dist/tex/latex/amsmath/amsgen.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks18
 \ex@=\dimen142
 ))
-(c:/texlive/2023/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen143
 )
-(c:/texlive/2023/texmf-dist/tex/latex/amsmath/amsopn.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count197
@@ -121,7 +129,7 @@ LaTeX Info: Redefining \Relbar on input line 971.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-(c:/texlive/2023/texmf-dist/tex/latex/txfonts/txfonts.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\txfonts.sty
 Package: txfonts 2008/01/22 v3.2.1
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -207,7 +215,7 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
 LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 164.
 LaTeX Info: Redefining \not on input line 1043.
 )
-(c:/texlive/2023/texmf-dist/tex/generic/mathdots/mathdots.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/mathdots\mathdots.sty
 Package: mathdots 2014/06/11 v0.9 Improve and add various macros for dots in ma
 th.
 \MDo@unit=\dimen151
@@ -215,8 +223,7 @@ th.
 \MDoprekern=\muskip17
 \MDopostkern=\muskip18
 \MDodotkern=\muskip19
-)
-(c:/texlive/2023/texmf-dist/tex/latex/titlesec/titlesec.sty
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box54
 \beforetitleunit=\skip53
@@ -227,8 +234,7 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \titlewidth=\dimen154
 \titlewidthlast=\dimen155
 \titlewidthfirst=\dimen156
-)
-(c:/texlive/2023/texmf-dist/tex/latex/tools/array.sty
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen157
 \ar@mcellbox=\box55
@@ -238,26 +244,29 @@ Package: array 2022/09/04 v2.5g Tabular extension package (FMi)
 \backup@length=\skip56
 \ar@cellbox=\box56
 )
-(c:/texlive/2023/texmf-dist/tex/latex/lastpage/lastpage.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpage.sty
 Package: lastpage 2023/10/14 v2.0e lastpage: 2.09 or 2e? (HMM)
 
-(c:/texlive/2023/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpage2e.sty
 Package: lastpage2e 2023/10/14 v2.0e Decide which 2e lastpage version to use (H
 MM)
 
-(c:/texlive/2023/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpagemodern
+.sty
 Package: lastpagemodern 2023-10-14 v2.0e Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count275
 ) 
-)) (c:/texlive/2023/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+))
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count276
 )
-(c:/texlive/2023/texmf-dist/tex/latex/tabularray/tabularray.sty
-(c:/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/tabularray\tabularray.s
+ty (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
 Package: expl3 2023-10-23 L3 programming layer (loader) 
 
-(c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
 File: l3backend-pdftex.def 2023-10-23 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count277
 \l__pdf_internal_box=\box57
@@ -353,55 +362,55 @@ Package: tabularray 2023-03-01 v2023A Typeset tabulars and arrays with LaTeX3
 \l__tblr_cell_ht_dim=\dimen256
 \l__tblr_diag_box=\box81
 )
-(c:/texlive/2023/texmf-dist/tex/latex/graphics/color.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
 Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
 
-(c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 
-(c:/texlive/2023/texmf-dist/tex/latex/graphics-def/pdftex.def
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 )
-(c:/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(c:/texlive/2023/texmf-dist/tex/latex/colortbl/colortbl.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \everycr=\toks25
 \minrowclearance=\skip57
 )
-(c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.sty
 Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
-
-(c:/texlive/2023/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(c:/texlive/2023/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
 \XKV@toks=\toks26
 \XKV@tempa@toks=\toks27
 
-(c:/texlive/2023/texmf-dist/tex/generic/xkeyval/keyval.tex))
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\keyval.tex))
 \XKV@depth=\count301
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-(c:/texlive/2023/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+)) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.st
+y
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(c:/texlive/2023/texmf-dist/tex/latex/adjustbox/trimclip.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 
-(c:/texlive/2023/texmf-dist/tex/latex/graphics/graphicx.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(c:/texlive/2023/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
@@ -409,7 +418,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen257
 \Gin@req@width=\dimen258
 )
-(c:/texlive/2023/texmf-dist/tex/latex/collectbox/collectbox.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.s
+ty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \collectedbox=\box82
 )
@@ -419,7 +429,7 @@ Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \tc@ury=\dimen262
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(c:/texlive/2023/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen263
@@ -431,24 +441,23 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen269
 \adjbox@ptotalheight=\dimen270
 
-(c:/texlive/2023/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count302
-)
-(c:/texlive/2023/texmf-dist/tex/latex/varwidth/varwidth.sty
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box83
 \sift@deathcycles=\count303
 \@vwid@loff=\dimen271
 \@vwid@roff=\dimen272
 ))
-(c:/texlive/2023/texmf-dist/tex/latex/geometry/geometry.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(c:/texlive/2023/texmf-dist/tex/generic/iftex/ifvtex.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(c:/texlive/2023/texmf-dist/tex/generic/iftex/iftex.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 \Gm@cnth=\count304
@@ -463,8 +472,9 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layouthoffset=\dimen279
 \Gm@layoutvoffset=\dimen280
 \Gm@dimlist=\toks28
-)
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/kpfonts.sty
+
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\kpfonts.sty
 Package: kpfonts  2023/01/18 v3.35
 \c@mv@rm=\count307
 \c@mv@boldrm=\count308
@@ -798,51 +808,56 @@ LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldsf'
 LaTeX Font Info:    Redeclaring math symbol \n@tch@r on input line 1601.
 LaTeX Info: Redefining \not on input line 1603.
 )
-(c:/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-10-27 v7.01d Hypertext links for LaTeX
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2023-10-21 v7.01c Hypertext links for LaTeX
 
-(c:/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(c:/texlive/2023/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(c:/texlive/2023/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(c:/texlive/2023/texmf-dist/tex/latex/hycolor/hycolor.sty
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
+.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/latex/auxhook/auxhook.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/latex/hyperref/nameref.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2023-10-05 v2.54 Cross-referencing by name of section
 
-(c:/texlive/2023/texmf-dist/tex/latex/refcount/refcount.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(c:/texlive/2023/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 
-(c:/texlive/2023/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
 \c@section@level=\count311
@@ -850,19 +865,16 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \@linkdim=\dimen281
 \Hy@linkcounter=\count312
 \Hy@pagecounter=\count313
-
-(c:/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-10-27 v7.01d Hyperref: PDFDocEncoding definition (HO)
+ (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2023-10-21 v7.01c Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(c:/texlive/2023/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count314
-
-(c:/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-10-27 v7.01d Hyperref: PDF Unicode definition (HO)
+ (C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2023-10-21 v7.01c Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -875,17 +887,18 @@ Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4435.
 \c@Hy@tempcnt=\count315
 
-(c:/texlive/2023/texmf-dist/tex/latex/url/url.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip20
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4773.
 \XeTeXLinkMargin=\dimen282
 
-(c:/texlive/2023/texmf-dist/tex/generic/bitset/bitset.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(c:/texlive/2023/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -900,7 +913,7 @@ Package hyperref Info: Link coloring OFF on input line 6072.
 Package hyperref Info: Link coloring with OCG OFF on input line 6077.
 Package hyperref Info: PDF/A mode OFF on input line 6082.
 
-(c:/texlive/2023/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
@@ -909,11 +922,10 @@ package with kernel methods
 \c@Hfootnote=\count319
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2023-10-21 v7.01c Hyperref driver for pdfTeX
 
-(c:/texlive/2023/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2023-10-27 v7.01d Hyperref driver for pdfTeX
-
-(c:/texlive/2023/texmf-dist/tex/latex/base/atveryend-ltx.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
@@ -921,10 +933,12 @@ with kernel methods
 \Fld@listcount=\count320
 \c@bookmark@seq@number=\count321
 
-(c:/texlive/2023/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 
-(c:/texlive/2023/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -932,7 +946,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip58
 )
-(c:/texlive/2023/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 
 \f@nch@headwidth=\skip59
@@ -945,7 +959,7 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@olf=\skip66
 \f@nch@O@orf=\skip67
 )
-(c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count322
 \float@exts=\toks29
@@ -953,7 +967,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks30
 \@floatcapt=\box85
 )
-(c:/texlive/2023/texmf-dist/tex/latex/setspace/setspace.sty
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
 Package: setspace 2022/12/04 v6.7b set line spacing
 )
 \@float@every@table=\toks31
@@ -961,23 +975,32 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 40.
 LaTeX Font Info:    Trying to load font information for OT1+jkp on input line 8
 5.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ot1jkp.fd
 File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
 )
-(./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
-(./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux
+(PROGI_ProjektnaDokumentacija.aux (Dnevnik_promjena_dokumentacije.aux)
+(Opis_projektnog_zadatka.aux) (Specifikacija_programske_potpore.aux
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
-) (./Arhitektura.aux) (./Implementacija.aux) (./Zakljucak.aux)
-(./Literatura.aux) (./Dodatak.aux))
+) (Arhitektura.aux
+
+LaTeX Warning: Label `fig:promjena9' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjena9' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjena9' multiply defined.
+
+) (Implementacija.aux) (Zakljucak.aux) (Literatura.aux) (Dodatak.aux))
 \openout1 = `PROGI_ProjektnaDokumentacija.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 85.
 LaTeX Font Info:    Trying to load font information for OML+jkp on input line 8
 5.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/omljkp.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\omljkp.fd
 File: omljkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 85.
@@ -985,7 +1008,7 @@ LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 85.
 LaTeX Font Info:    Trying to load font information for OMS+jkp on input line 8
 5.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/omsjkp.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\omsjkp.fd
 File: omsjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 85.
@@ -999,7 +1022,7 @@ LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 85.
 LaTeX Font Info:    Trying to load font information for OMX+jkp on input line 8
 5.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/omxjkp.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\omxjkp.fd
 File: omxjkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 85.
@@ -1007,7 +1030,7 @@ LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 85.
 LaTeX Font Info:    Trying to load font information for U+jkpexa on input line 
 85.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ujkpexa.fd
 File: ujkpexa.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 85.
@@ -1016,7 +1039,8 @@ LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
 
-(c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count323
 \scratchdimen=\dimen285
@@ -1029,14 +1053,16 @@ LaTeX Font Info:    ... okay on input line 85.
 \MPnumerator=\count327
 \makeMPintoPDFobject=\count328
 \everyMPtoPDFconversion=\toks33
-) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+)
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1073,43 +1099,45 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 85.
-(./PROGI_ProjektnaDokumentacija.out) (./PROGI_ProjektnaDokumentacija.out)
+(PROGI_ProjektnaDokumentacija.out) (PROGI_ProjektnaDokumentacija.out)
 \@outlinefile=\write3
 \openout3 = `PROGI_ProjektnaDokumentacija.out'.
 
 LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 
 98.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ujkpsya.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ujkpsya.fd
 File: ujkpsya.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyb on input line 
 98.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ujkpsyb.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ujkpsyb.fd
 File: ujkpsyb.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for OT1+txr on input line 9
 8.
 
-(c:/texlive/2023/texmf-dist/tex/latex/txfonts/ot1txr.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/txfonts\ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Trying to load font information for U+jkpmia on input line 
 98.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ujkpmia.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ujkpmia.fd
 File: ujkpmia.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    Trying to load font information for U+jkpsyc on input line 
 98.
 
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ujkpsyc.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ujkpsyc.fd
 File: ujkpsyc.fd 2006/08/15 v1.0
-) [1
+)
+[1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/
-texmf-dist/fonts/enc/dvips/base/8r.enc}] (./PROGI_ProjektnaDokumentacija.toc
+{C:/Users/lanab/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/lana
+b/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
+(PROGI_ProjektnaDokumentacija.toc
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1123,7 +1151,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...: Prikaz aktivnosti grupe}{38}{chapter*.5}
+l.28 ...: Prikaz aktivnosti grupe}{42}{chapter*.5}
                                                   % [1
 
 ])
@@ -1142,7 +1170,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [2]
 \openout2 = `Dnevnik_promjena_dokumentacije.aux'.
 
- (./Dnevnik_promjena_dokumentacije.tex
+ (Dnevnik_promjena_dokumentacije.tex
 Poglavlje 1.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -1202,13 +1230,18 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
  []
 
 
-Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
-[]\OT1/jkp/m/n/12 09.09.2013. 
+Overfull \hbox (1.33664pt too wide) in paragraph at lines 34--34
+[]\OT1/jkp/m/n/12 Topolevec,
  []
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
-[]\OT1/jkp/m/n/12 10.09.2013. 
+[]\OT1/jkp/m/n/12 13.11.2023. 
+ []
+
+
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
+[]\OT1/jkp/m/n/12 14.11.2023. 
  []
 
 
@@ -1298,13 +1331,18 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
  []
 
 
-Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
-[]\OT1/jkp/m/n/12 09.09.2013. 
+Overfull \hbox (1.33664pt too wide) in paragraph at lines 34--34
+[]\OT1/jkp/m/n/12 Topolevec,
  []
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
-[]\OT1/jkp/m/n/12 10.09.2013. 
+[]\OT1/jkp/m/n/12 13.11.2023. 
+ []
+
+
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
+[]\OT1/jkp/m/n/12 14.11.2023. 
  []
 
 
@@ -1315,11 +1353,6 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
 []\OT1/jkp/m/n/12 11.09.2013. 
- []
-
-
-Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
-[]\OT1/jkp/m/n/12 14.09.2013. 
  []
 
 
@@ -1334,6 +1367,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
+[]\OT1/jkp/m/n/12 14.09.2013. 
+ []
+
+
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 34--34
 []\OT1/jkp/m/n/12 15.09.2013. 
  []
@@ -1370,7 +1408,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [4]
 \openout2 = `Opis_projektnog_zadatka.aux'.
 
- (./Opis_projektnog_zadatka.tex
+ (Opis_projektnog_zadatka.tex
 Poglavlje 2.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1393,7 +1431,7 @@ g is-kus-tva koje je u[]cinkovito,
 
 LaTeX Font Info:    Trying to load font information for TS1+jkp on input line 2
 2.
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ts1jkp.fd
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ts1jkp.fd
 File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
 )
 Overfull \hbox (16.24957pt too wide) in paragraph at lines 38--39
@@ -1426,7 +1464,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [7])
 \openout2 = `Specifikacija_programske_potpore.aux'.
 
- (./Specifikacija_programske_potpore.tex
+ (Specifikacija_programske_potpore.tex
 Poglavlje 3.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1492,13 +1530,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [13]
-<slike/UC_dijagram_administrator.JPG, id=275, 956.57375pt x 936.49875pt>
+<slike/UC_dijagram_administrator.JPG, id=272, 956.57375pt x 936.49875pt>
 File: slike/UC_dijagram_administrator.JPG Graphic file (type jpg)
 <use slike/UC_dijagram_administrator.JPG>
 Package pdftex.def Info: slike/UC_dijagram_administrator.JPG  used on input lin
 e 424.
 (pdftex.def)             Requested size: 430.45421pt x 421.42055pt.
-<slike/UC_dijagram_korisnik.JPG, id=276, 1494.58376pt x 1347.0325pt>
+<slike/UC_dijagram_korisnik.JPG, id=273, 1494.58376pt x 1347.0325pt>
 File: slike/UC_dijagram_korisnik.JPG Graphic file (type jpg)
 <use slike/UC_dijagram_korisnik.JPG>
 Package pdftex.def Info: slike/UC_dijagram_korisnik.JPG  used on input line 430
@@ -1532,7 +1570,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.435 				\eject
-                		 <./slike/UC_dijagram_administrator.jpg>]
+                		 <./slike/UC_dijagram_administrator.JPG>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1547,7 +1585,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.435 				\eject
-                		 <./slike/UC_dijagram_korisnik.jpg>]
+                		 <./slike/UC_dijagram_korisnik.JPG>]
 Overfull \hbox (1.05362pt too wide) in paragraph at lines 442--443
 []\OT1/jkp/m/n/12 Za vri-jeme su-dje-lo-va-nja na kon-fe-ren-ciji ko-ris-nik mo
 []ze pre-gle-da-vati sadr[]zaj kon-
@@ -1562,7 +1600,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [17]
-<slike/koristenje_aplikacije.JPG, id=304, 1425.325pt x 2352.79pt>
+<slike/koristenje_aplikacije.JPG, id=301, 1425.325pt x 2352.79pt>
 File: slike/koristenje_aplikacije.JPG Graphic file (type jpg)
 <use slike/koristenje_aplikacije.JPG>
 Package pdftex.def Info: slike/koristenje_aplikacije.JPG  used on input line 44
@@ -1586,8 +1624,8 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.453 
-       <./slike/koristenje_aplikacije.jpg>]
-<slike/sekv2.png, id=312, 1333.98375pt x 1609.51312pt>
+       <./slike/koristenje_aplikacije.JPG>]
+<slike/sekv2.png, id=309, 1333.98375pt x 1609.51312pt>
 File: slike/sekv2.png Graphic file (type png)
 <use slike/sekv2.png>
 Package pdftex.def Info: slike/sekv2.png  used on input line 462.
@@ -1619,14 +1657,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [20]
 \openout2 = `Arhitektura.aux'.
 
- (./Arhitektura.tex
+ (Arhitektura.tex
 Poglavlje 4.
-<slike/arh1.PNG, id=326, 788.9475pt x 347.04657pt>
+<slike/arh1.PNG, id=323, 788.9475pt x 347.04657pt>
 File: slike/arh1.PNG Graphic file (type png)
 <use slike/arh1.PNG>
 Package pdftex.def Info: slike/arh1.PNG  used on input line 7.
 (pdftex.def)             Requested size: 315.5734pt x 138.81616pt.
-<slike/arh2.PNG, id=327, 1243.64626pt x 282.30469pt>
+<slike/arh2.PNG, id=324, 1243.64626pt x 282.30469pt>
 File: slike/arh2.PNG Graphic file (type png)
 <use slike/arh2.PNG>
 Package pdftex.def Info: slike/arh2.PNG  used on input line 14.
@@ -1651,7 +1689,7 @@ has been already used, duplicate ignored
                                                   \__shipout_drop_firstpage_...
 l.19 	Z
        a izradu naše aplikacije korišten je Java Spring Boot okvir koji ko...
- <./slike/arh1.png>]
+ <./slike/arh1.PNG>]
 Overfull \hbox (0.38019pt too wide) in paragraph at lines 27--28
 \OT1/jkp/m/n/12 U apli-ka-ciji []ce baza po-da-taka bit pri-ka-zana re-la-cij-s
 kim mo-de-lom po-da-taka. Objekti
@@ -1679,7 +1717,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.56 				\end
-             {longtblr}						 <./slike/arh2.png>]
+             {longtblr}						 <./slike/arh2.PNG>]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -1786,7 +1824,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=358, 813.53937pt x 269.005pt>
+<slike/dijagram baze podataka.PNG, id=355, 813.53937pt x 269.005pt>
 File: slike/dijagram baze podataka.PNG Graphic file (type png)
 <use slike/dijagram baze podataka.PNG>
 Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 1
@@ -1811,25 +1849,12 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.177 			\eject
-                <./slike/dijagram baze podataka.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 184--185
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 186--187
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 188--189
-
- []
+                <./slike/dijagram baze podataka.PNG>]
+<slike/dto_klase.png, id=363, 994.71625pt x 629.85312pt>
+File: slike/dto_klase.png Graphic file (type png)
+<use slike/dto_klase.png>
+Package pdftex.def Info: slike/dto_klase.png  used on input line 198.
+(pdftex.def)             Requested size: 397.87946pt x 251.93678pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1840,7 +1865,78 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[28
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.203 			\eject
+                <./slike/dto_klase.png>]
+<slike/glavni_1.png, id=376, 1109.14375pt x 597.73312pt>
+File: slike/glavni_1.png Graphic file (type png)
+<use slike/glavni_1.png>
+Package pdftex.def Info: slike/glavni_1.png  used on input line 206.
+(pdftex.def)             Requested size: 443.64964pt x 239.089pt.
+
+Overfull \hbox (8.03885pt too wide) in paragraph at lines 206--208
+ [][][] 
+ []
+
+<slike/glavni_2.png, id=377, 1084.05pt x 578.66188pt>
+File: slike/glavni_2.png Graphic file (type png)
+<use slike/glavni_2.png>
+Package pdftex.def Info: slike/glavni_2.png  used on input line 213.
+(pdftex.def)             Requested size: 433.61232pt x 231.46065pt.
+<slike/glavni_3.png, id=378, 604.2575pt x 480.79625pt>
+File: slike/glavni_3.png Graphic file (type png)
+<use slike/glavni_3.png>
+Package pdftex.def Info: slike/glavni_3.png  used on input line 220.
+(pdftex.def)             Requested size: 302.128pt x 240.39752pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[29
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.225 			\eject
+               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.6}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.225 			\eject
+                <./slike/glavni_1.png> <./slike/glavni_2.png>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[30
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4.7}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.225 			\eject
+                <./slike/glavni_3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
@@ -1852,67 +1948,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
-
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 215--216
-
- []
-
-)
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[30]
-\openout2 = `Implementacija.aux'.
-
- (./Implementacija.tex
-Poglavlje 5.
-
-Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
-|[]\OT1/jkp/b/n/24.88 Implementacija i ko-risni[]cko su[]celje| 
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[31
-
-
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-
- []
-
-LaTeX Font Info:    Trying to load font information for OT1+jkptt on input line
- 28.
-(c:/texlive/2023/texmf-dist/tex/latex/kpfonts/ot1jkptt.fd
-File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
@@ -1925,16 +1962,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [32]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
+Underfull \hbox (badness 10000) in paragraph at lines 249--250
 
  []
 
@@ -1946,14 +1974,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[34])
-\openout2 = `Zakljucak.aux'.
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
- (./Zakljucak.tex
-Poglavlje 6.
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+)
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[34]
+\openout2 = `Implementacija.aux'.
+
+ (Implementacija.tex
+Poglavlje 5.
+
+Overfull \hbox (10.38434pt too wide) in paragraph at lines 1--1
+|[]\OT1/jkp/b/n/24.88 Implementacija i ko-risni[]cko su[]celje| 
  []
 
 
@@ -1969,10 +2011,77 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
+]
+Underfull \hbox (badness 10000) in paragraph at lines 16--17
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OT1+jkptt on input line
+ 28.
+(C:\Users\lanab\AppData\Local\Programs\MiKTeX\tex/latex/kpfonts\ot1jkptt.fd
+File: ot1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for OT1/jkptt.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[36]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[38])
+\openout2 = `Zakljucak.aux'.
+
+ (Zakljucak.tex
+Poglavlje 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[39
+
+
+
+
 ])
 \openout2 = `Literatura.aux'.
 
- (./Literatura.tex
+ (Literatura.tex
 Overfull \hbox (8.89293pt too wide) in paragraph at lines 12--13
 []\OT1/jkp/m/n/12 Programsko in[]zenjerstvo, FER ZE-MRIS, [][]$\OT1/jkptt/m/n/1
 2 http : / / www . fer . hr / predmet / proinz$[][] 
@@ -1993,12 +2102,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[36
+[40
 
 
 
 
-] (./PROGI_ProjektnaDokumentacija.lof)
+] (PROGI_ProjektnaDokumentacija.lof)
 \tf@lof=\write5
 \openout5 = `PROGI_ProjektnaDokumentacija.lof'.
 
@@ -2011,14 +2120,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[37
+[41
 
 
 
 ]
 \openout2 = `Dodatak.aux'.
 
- (./Dodatak.tex
+ (Dodatak.tex
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
@@ -2031,7 +2140,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[38
+[42
 
 
 ]
@@ -2055,7 +2164,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[39]
+[43]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2064,7 +2173,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[40]
+[44]
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
@@ -2078,12 +2187,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[41] 
+[45] 
 enddocument/afterlastpage: lastpage setting LastPage.
-(./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
-(./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
-(./Arhitektura.aux) (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux)
-(./Dodatak.aux))
+(PROGI_ProjektnaDokumentacija.aux (Dnevnik_promjena_dokumentacije.aux)
+(Opis_projektnog_zadatka.aux) (Specifikacija_programske_potpore.aux)
+(Arhitektura.aux) (Implementacija.aux) (Zakljucak.aux) (Literatura.aux)
+(Dodatak.aux))
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-23>
@@ -2097,27 +2206,27 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17752 strings out of 474398
- 312482 string characters out of 5754206
+ 17802 strings out of 474718
+ 319315 string characters out of 5748456
  2063036 words of memory out of 5000000
- 39335 multiletter control sequences out of 15000+600000
+ 39346 multiletter control sequences out of 15000+600000
  626735 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,13n,115p,906b,1201s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,13n,115p,908b,1209s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
-<c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbit8a.pfb><c:/texlive
-/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb><c:/texlive/2023/texmf-
-dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
-e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
-pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkptt
-mn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (42 pages, 905239 bytes).
+<C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/public/kpfonts/jkpbit
+8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/public/kpfonts
+/jkpbn8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/public/k
+pfonts/jkpmi.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/kpfonts/jkpmit8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/kpfonts/jkpmn8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fon
+ts/type1/public/kpfonts/jkpttmn8a.pfb>
+Output written on PROGI_ProjektnaDokumentacija.pdf (46 pages, 1472712 bytes).
 PDF statistics:
- 536 PDF objects out of 1000 (max. 8388607)
- 464 compressed objects within 5 object streams
- 151 named destinations out of 1000 (max. 500000)
- 244 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 568 PDF objects out of 1000 (max. 8388607)
+ 159 named destinations out of 1000 (max. 500000)
+ 264 words of extra memory for PDF output out of 10000 (max. 10000000)
 
