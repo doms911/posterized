@@ -29,7 +29,7 @@ function Login() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="lozinka">Lozinka:</label>
+                    <label htmlFor="lozinka">Password:</label>
                     <input
                         type="password"
                         id="lozinka"
