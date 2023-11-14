@@ -42,6 +42,7 @@
                             onChange={(event) => {
                                 setIme(event.target.value);
                             }}
+                            required
                         />
                     </div>
                     <div>
@@ -52,6 +53,7 @@
                             onChange={(event) => {
                                 setPrezime(event.target.value);
                             }}
+                            required
                         />
                     </div>
                     <div>
@@ -62,6 +64,7 @@
                             onChange={(event) => {
                                 setEmail(event.target.value);
                             }}
+                            required
                         />
                     </div>
                     <div>
@@ -72,6 +75,7 @@
                             onChange={(event) => {
                                 setLozinka(event.target.value);
                             }}
+                            required
                         />
                     </div>
                     <button type="submit">Register</button>
