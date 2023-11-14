@@ -1,5 +1,6 @@
     import React, { useState } from 'react';
     import axios from 'axios';
+    import { Link } from 'react-router-dom';
     
     function Register() {
         const [ime, setIme] = useState('');
@@ -22,6 +23,7 @@
                             'Content-Type': 'application/json',
                         },
                     });
+                    alert("Registracija uspješna");
                 } catch(err) {
                     console.error(err);
                     if(err.response.data.message) {
@@ -79,6 +81,9 @@
                         />
                     </div>
                     <button type="submit">Register</button>
+                    <Link to="/login">
+                        <div>Login</div>
+                    </Link>
                 </form>
     
             </div>
