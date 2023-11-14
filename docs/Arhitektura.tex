@@ -189,10 +189,6 @@ Razred Rad predstavlja rad (poster i/ili pptx) kojim se autor predstavlja na kon
 Razred PrisutanNa omogućuje da pratimo tko je na konferenciji te da li je ta osoba glasala za neki rad.
 Razred Fotografija predstavlja fotografije konferencije koje administrator stavlja u aplikaciju tijekom ili nakon konferencije.
 Razred Pokrovitelj predstavlja sponzore konferencije. 
-			Na slikama 4.5, 4.6, 4.7 je prikazan glavni dijagram u čijem središtu se nalazi JPARepository o kojem ovise ostala sučelja koja su specifična za svaki objekt. Ova sučelja nam omogućuju da izbjegnemo pisanje složenih SQL upita i umjesto toga koristimo generičke metode za izvođenje uobičajenih operacija s bazom podataka.
-U dijagramu su i servisi u kojima su funkcije za obradu podataka. Po potrebi zovu repozitorijeve funkcije kako bi došli do baze podataka.
-Kontroleri nam služe za komunikaciju s frontendom. 
-U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije. WebSecurityBasic je zadužen za zaštitu cijele aplikacije.
 
 			\begin{figure}[H]
 				\includegraphics[scale=0.4]{slike/dto_klase.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
@@ -200,27 +196,34 @@ U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije
 				\caption{Dijagram razreda - DTO}
 				\label{fig:promjena9}
 			\end{figure}
-			\eject
+			
+
+			Na slikama 4.5, 4.6, 4.7 je prikazan glavni dijagram u čijem središtu se nalazi JPARepository o kojem ovise ostala sučelja koja su specifična za svaki objekt. Ova sučelja nam omogućuju da izbjegnemo pisanje složenih SQL upita i umjesto toga koristimo generičke metode za izvođenje uobičajenih operacija s bazom podataka.
+U dijagramu su i servisi u kojima su funkcije za obradu podataka. Po potrebi zovu repozitorijeve funkcije kako bi došli do baze podataka.
+Kontroleri nam služe za komunikaciju s frontendom. 
+U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije. WebSecurityBasic je zadužen za zaštitu cijele aplikacije.
+
+			
 
 			\begin{figure}[H]
 				\includegraphics[scale=0.4]{slike/glavni_1.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda - glavni dijagram 1.dio}
-				\label{fig:promjena9}
+				\label{fig:promjena9.1}
 			\end{figure}
 			
 			\begin{figure}[H]
 				\includegraphics[scale=0.4]{slike/glavni_2.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda - glavni dijagram 2.dio}
-				\label{fig:promjena9}
+				\label{fig:promjena9.2}
 			\end{figure}
 			
 			\begin{figure}[H]
 				\includegraphics[scale=0.5]{slike/glavni_3.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda - glavni dijagram 3.dio}
-				\label{fig:promjena9}
+				\label{fig:promjena9.3}
 			\end{figure}
 			\eject
 

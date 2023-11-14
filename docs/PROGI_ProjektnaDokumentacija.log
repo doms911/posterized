@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.12)  14 NOV 2023 11:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.12)  14 NOV 2023 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1853,7 +1853,7 @@ l.177 			\eject
 <slike/dto_klase.png, id=363, 994.71625pt x 629.85312pt>
 File: slike/dto_klase.png Graphic file (type png)
 <use slike/dto_klase.png>
-Package pdftex.def Info: slike/dto_klase.png  used on input line 198.
+Package pdftex.def Info: slike/dto_klase.png  used on input line 194.
 (pdftex.def)             Requested size: 397.87946pt x 251.93678pt.
 
 
@@ -1864,41 +1864,32 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[27]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[28
+[27
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.4}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.203 			\eject
-                <./slike/dto_klase.png>]
-<slike/glavni_1.png, id=376, 1109.14375pt x 597.73312pt>
+l.205 
+       <./slike/dto_klase.png>]
+<slike/glavni_1.png, id=371, 1098.60437pt x 597.73312pt>
 File: slike/glavni_1.png Graphic file (type png)
 <use slike/glavni_1.png>
-Package pdftex.def Info: slike/glavni_1.png  used on input line 206.
-(pdftex.def)             Requested size: 443.64964pt x 239.089pt.
+Package pdftex.def Info: slike/glavni_1.png  used on input line 209.
+(pdftex.def)             Requested size: 439.43396pt x 239.089pt.
 
-Overfull \hbox (8.03885pt too wide) in paragraph at lines 206--208
+Overfull \hbox (3.82317pt too wide) in paragraph at lines 209--211
  [][][] 
  []
 
-<slike/glavni_2.png, id=377, 1084.05pt x 578.66188pt>
+<slike/glavni_2.png, id=372, 1084.05pt x 578.66188pt>
 File: slike/glavni_2.png Graphic file (type png)
 <use slike/glavni_2.png>
-Package pdftex.def Info: slike/glavni_2.png  used on input line 213.
+Package pdftex.def Info: slike/glavni_2.png  used on input line 216.
 (pdftex.def)             Requested size: 433.61232pt x 231.46065pt.
-<slike/glavni_3.png, id=378, 604.2575pt x 480.79625pt>
+<slike/glavni_3.png, id=373, 604.2575pt x 480.79625pt>
 File: slike/glavni_3.png Graphic file (type png)
 <use slike/glavni_3.png>
-Package pdftex.def Info: slike/glavni_3.png  used on input line 220.
+Package pdftex.def Info: slike/glavni_3.png  used on input line 223.
 (pdftex.def)             Requested size: 302.128pt x 240.39752pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1908,18 +1899,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[29
+[28
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.5}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.225 			\eject
+l.228 			\eject
                
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.6}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.225 			\eject
+l.228 			\eject
                 <./slike/glavni_1.png> <./slike/glavni_2.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1929,14 +1920,27 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[30
+[29
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4.7}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.225 			\eject
+l.228 			\eject
                 <./slike/glavni_3.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 229--230
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
 
  []
 
@@ -1949,7 +1953,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
+Underfull \hbox (badness 10000) in paragraph at lines 252--253
 
  []
 
@@ -1962,20 +1966,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
-
- []
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 256--257
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
@@ -1988,7 +1979,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[34]
+[33]
 \openout2 = `Implementacija.aux'.
 
  (Implementacija.tex
@@ -2006,7 +1997,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[35
+[34
 
 
 
@@ -2033,7 +2024,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[36]
+[35]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2042,7 +2033,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[37]
+[36]
 Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
@@ -2055,7 +2046,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[38])
+[37])
 \openout2 = `Zakljucak.aux'.
 
  (Zakljucak.tex
@@ -2073,7 +2064,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[39
+[38
 
 
 
@@ -2102,7 +2093,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[40
+[39
 
 
 
@@ -2120,7 +2111,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[41
+[40
 
 
 
@@ -2140,7 +2131,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[42
+[41
 
 
 ]
@@ -2164,7 +2155,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[43]
+[42]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2173,7 +2164,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[44]
+[43]
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
@@ -2187,7 +2178,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[45] 
+[44] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (PROGI_ProjektnaDokumentacija.aux (Dnevnik_promjena_dokumentacije.aux)
 (Opis_projektnog_zadatka.aux) (Specifikacija_programske_potpore.aux)
@@ -2206,16 +2197,20 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17802 strings out of 474718
- 319315 string characters out of 5748456
+ 17805 strings out of 474718
+ 319366 string characters out of 5748456
  2063036 words of memory out of 5000000
- 39346 multiletter control sequences out of 15000+600000
+ 39349 multiletter control sequences out of 15000+600000
  626735 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,115p,908b,1209s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
+
+
+pdfTeX warning (dest): name{page.45} has been referenced but does not exist, re
+placed by a fixed one
 
 <C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/public/kpfonts/jkpbit
 8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/public/kpfonts
@@ -2224,9 +2219,9 @@ pfonts/jkpmi.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/kpfonts/jkpmit8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/kpfonts/jkpmn8a.pfb><C:/Users/lanab/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (46 pages, 1472712 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (45 pages, 1469232 bytes).
 PDF statistics:
- 568 PDF objects out of 1000 (max. 8388607)
+ 564 PDF objects out of 1000 (max. 8388607)
  159 named destinations out of 1000 (max. 500000)
  264 words of extra memory for PDF output out of 10000 (max. 10000000)
 
