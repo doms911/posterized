@@ -9,6 +9,7 @@ import org.hibernate.annotations.Check;
 
 
 @Entity
+@Table (name = "osoba")
 public class Osoba {
     @Id
     @GeneratedValue
