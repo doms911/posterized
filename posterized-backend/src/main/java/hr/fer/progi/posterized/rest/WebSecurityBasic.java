@@ -29,7 +29,7 @@ import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-@Profile("basic-security")
+//@Profile("basic-security")
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = false)
 public class WebSecurityBasic {
     @Bean
