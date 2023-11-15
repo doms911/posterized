@@ -1,7 +1,10 @@
 package hr.fer.progi.posterized.domain;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -9,7 +12,6 @@ import org.hibernate.annotations.Check;
 
 
 @Entity
-@Table (name = "osoba")
 public class Osoba {
     @Id
     @GeneratedValue

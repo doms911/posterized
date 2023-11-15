@@ -3,7 +3,6 @@ package hr.fer.progi.posterized.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "rad")
 public class Rad {
     @Id @GeneratedValue
     private Long id;
