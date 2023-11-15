@@ -6,4 +6,5 @@ import java.util.List;
 public interface AdminKorisnikService {
     List<Osoba> listAll();
     Osoba createAdminKorisnik(Osoba osoba);
+    Osoba findByEmail(String email);
 }

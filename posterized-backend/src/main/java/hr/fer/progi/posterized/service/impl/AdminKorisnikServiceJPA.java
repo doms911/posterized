@@ -25,6 +25,10 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         svi.addAll(admini);
         return svi;
     }
+    @Override
+    public Osoba findByEmail(String email) {
+        return osobaRepo.findByEmail(email);
+    }
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
     @Autowired
     private PasswordEncoder pswdEncoder;
