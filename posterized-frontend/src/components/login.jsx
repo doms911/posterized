@@ -21,6 +21,7 @@ function Login() {
             alert("Pogrešna lozinka")
             } else {
             alert("Prijava uspješna");
+            window.location.replace("/");
             }
       });
     }

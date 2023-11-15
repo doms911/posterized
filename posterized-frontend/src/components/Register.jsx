@@ -1,6 +1,7 @@
     import React, { useState } from 'react';
     import axios from 'axios';
     import { Link } from 'react-router-dom';
+    import { Navigate } from "react-router-dom";
     
     function Register() {
         const [ime, setIme] = useState('');
@@ -24,6 +25,7 @@
                         },
                     });
                     alert("Registracija uspješna");
+                    window.location.replace("/");
                 } catch(err) {
                     console.error(err);
                     if(err.response.data.message) {
@@ -84,6 +86,7 @@
                     <Link to="/login">
                         <div>Login</div>
                     </Link>
+                    
                 </form>
     
             </div>
