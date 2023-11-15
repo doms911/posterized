@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2020: true, amd: true, "node": true }, // Add "amd" to the "env" section
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -17,4 +17,4 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+};
