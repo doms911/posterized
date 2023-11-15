@@ -1,25 +1,31 @@
-// Where your buttons are located
+// HomePage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+const HomePage = (props) => {
+    const isLoggedIn = props.isLoggedIn;
+    const onLogout = props.onLogout;
 
-    function logout() {
-        fetch("http://localhost:8080/logout").then(() => {
-          logout();
-        });
-    }
-    
+    const username = localStorage.getItem('username'); // Assuming you store the username in localStorage
+
     return (
         <div>
             <h1>Welcome to the Homepage</h1>
-            <Link to="/Register">
-                <button>Register</button>
-            </Link>
-            <Link to="/login">
-                <button>Login</button>
-            </Link>
-            <button onClick={logout}>Logout</button>
+            {isLoggedIn ? (
+                <div>
+                    <p>Pozdrav, {username}! Ulogirani ste u sustav.</p>
+                    <button onClick={onLogout}>Logout</button>
+                </div>
+            ) : (
+                <div>
+                    <Link to="/register">
+                        <button>Register</button>
+                    </Link>
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
+                </div>
+            )}
         </div>
     );
 };
