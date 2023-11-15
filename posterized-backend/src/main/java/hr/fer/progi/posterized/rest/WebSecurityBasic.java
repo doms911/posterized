@@ -29,7 +29,6 @@ import java.util.Arrays;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-//@Profile("basic-security")
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = false)
 public class WebSecurityBasic {
     @Bean
@@ -66,6 +65,11 @@ public class WebSecurityBasic {
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     }, matcher);
         });
+        http.logout(configurer -> configurer
+                .logoutUrl("/logout")
+                .logoutSuccessHandler((request, response, authentication) ->
+                        response.setStatus(HttpStatus.NO_CONTENT.value())));
+        http.csrf(AbstractHttpConfigurer::disable);
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
@@ -103,7 +107,6 @@ public class WebSecurityBasic {
     }**/
 
     @Bean
-    @Profile({ "basic-security", "form-security" })
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain h2ConsoleSecurityFilterChain(HttpSecurity http) throws Exception {
         http.securityMatcher(PathRequest.toH2Console());
