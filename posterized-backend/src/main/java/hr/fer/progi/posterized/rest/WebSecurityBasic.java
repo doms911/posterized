@@ -74,38 +74,6 @@ public class WebSecurityBasic {
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
-
-    /**@Bean
-    @Profile("form-security")
-    public SecurityFilterChain spaFilterChain(HttpSecurity http) throws Exception {
-        http.cors(withDefaults());
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/registracija")).permitAll()
-                .anyRequest().authenticated());
-        http.formLogin(configurer -> {
-                    configurer.successHandler((request, response, authentication) ->
-                                    response.setStatus(HttpStatus.NO_CONTENT.value())
-                            )
-                            .failureHandler(new SimpleUrlAuthenticationFailureHandler());
-                }
-        );
-        http.exceptionHandling(configurer -> {
-            final RequestMatcher matcher = new NegatedRequestMatcher(
-                    new MediaTypeRequestMatcher(MediaType.TEXT_HTML));
-            configurer
-                    .defaultAuthenticationEntryPointFor((request, response, authException) -> {
-                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    }, matcher);
-        });
-        http.logout(configurer -> configurer
-                .logoutUrl("/logout")
-                .logoutSuccessHandler((request, response, authentication) ->
-                        response.setStatus(HttpStatus.NO_CONTENT.value())));
-        http.csrf(AbstractHttpConfigurer::disable);
-        return http.build();
-    }**/
-
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain h2ConsoleSecurityFilterChain(HttpSecurity http) throws Exception {

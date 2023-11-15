@@ -1,7 +1,10 @@
-
+// Login.jsx
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 
-function Login() {
+function Login(props) {
+    const onLogin = props.onLogin;
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -9,21 +12,27 @@ function Login() {
         e.preventDefault();
         const body = `username=${username}&password=${password}`;
         const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: body
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: body,
         };
-        fetch("http://localhost:8080/login", options)
-        .then(response => {
-            if (response.status === 401) {
-            alert("Pogrešna lozinka")
-            } else {
-            alert("Prijava uspješna");
-            window.location.replace("/");
-            }
-      });
+        fetch('http://localhost:8080/login', options)
+            .then((response) => {
+                if (response.status === 401) {
+                    alert('Pogrešna lozinka');
+                } else {
+                    alert('Prijava uspješna');
+                    Cookies.set('user', 'authenticated', { expires: 7 }); // Set cookie to expire in 7 days
+                    localStorage.setItem('username', username);
+                    onLogin();
+                    window.location.replace('/');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     return (
