@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
 
     function logout() {
-        fetch("/api/logout").then(() => {
-          props.onLogout();
+        fetch("http://localhost:8080/logout").then(() => {
+          logout();
         });
     }
     
