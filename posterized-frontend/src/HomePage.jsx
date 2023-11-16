@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 const HomePage = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const onLogout = props.onLogout;
-
     const username = localStorage.getItem('username'); // Assuming you store the username in localStorage
 
     return (

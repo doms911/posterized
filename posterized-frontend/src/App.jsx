@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './components/Register.jsx';
-import Login from './components/Login.jsx';
+import Login from './components/login.jsx';
 import HomePage from './HomePage.jsx';
 import Cookies from 'js-cookie';
 
@@ -21,8 +21,20 @@ const App = () => {
     };
 
     const handleLogout = () => {
-        Cookies.remove('user');
-        setIsLoggedIn(false);
+        fetch('http://localhost:8080/logout', {
+            method: 'POST',
+            credentials: 'include', 
+        })
+            .then(response => {
+                if (response.ok) {
+                    localStorage.removeItem('username');
+                    Cookies.remove('user');
+                    setIsLoggedIn(false);
+                }
+            })
+            .catch(error => {
+                console.error('Logout error:', error);
+            });
     };
 
     return (

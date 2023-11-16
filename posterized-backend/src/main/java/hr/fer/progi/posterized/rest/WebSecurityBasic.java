@@ -54,7 +54,7 @@ public class WebSecurityBasic {
                     configurer.successHandler((request, response, authentication) ->
                                     response.setStatus(HttpStatus.NO_CONTENT.value())
                             )
-                            .failureHandler(new SimpleUrlAuthenticationFailureHandler());
+                            .failureHandler(new CustomAuthenticationFailureHandler());
                 }
         );
         http.exceptionHandling(configurer -> {
