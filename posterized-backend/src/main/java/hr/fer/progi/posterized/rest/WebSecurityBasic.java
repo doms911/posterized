@@ -55,8 +55,9 @@ public class WebSecurityBasic {
                                     response.setStatus(HttpStatus.NO_CONTENT.value())
                             )
                             .failureHandler(new SimpleUrlAuthenticationFailureHandler());
-                }
-        );} /**@Bean
+                });
+        return http.build();
+        } /**@Bean
         http.exceptionHandling(configurer -> {
             final RequestMatcher matcher = new NegatedRequestMatcher(
                     new MediaTypeRequestMatcher(MediaType.TEXT_HTML));
