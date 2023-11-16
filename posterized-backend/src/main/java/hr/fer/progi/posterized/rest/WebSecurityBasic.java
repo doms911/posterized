@@ -31,7 +31,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = false)
 public class WebSecurityBasic {
-    @Bean
+    /**@Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
@@ -82,5 +82,5 @@ public class WebSecurityBasic {
         http.csrf(AbstractHttpConfigurer::disable);
         http.headers((headers) -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         return http.build();
-    }
+    }**/
 }
