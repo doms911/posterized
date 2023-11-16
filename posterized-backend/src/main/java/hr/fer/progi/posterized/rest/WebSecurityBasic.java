@@ -35,7 +35,6 @@ public class WebSecurityBasic {
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("https://posterized.onrender.com");
-        corsConfiguration.addAllowedOrigin("https://posterized-be.onrender.com");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
