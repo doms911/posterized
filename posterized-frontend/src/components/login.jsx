@@ -18,7 +18,7 @@ function Login(props) {
             },
             body: body,
         };
-        fetch('http://localhost:8080/login', options)
+        fetch('https://posterized-be.onrender.com/login', options)
             .then((response) => {
                 if (response.status === 401) {
                     alert('Pogrešna lozinka');
