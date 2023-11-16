@@ -34,7 +34,6 @@ public class WebSecurityBasic {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-
         corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
@@ -43,7 +42,7 @@ public class WebSecurityBasic {
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
     }
-    /**@Bean
+
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
         http.addFilterBefore(corsFilter(), CorsFilter.class);
@@ -57,7 +56,7 @@ public class WebSecurityBasic {
                             )
                             .failureHandler(new SimpleUrlAuthenticationFailureHandler());
                 }
-        );
+        );} /**@Bean
         http.exceptionHandling(configurer -> {
             final RequestMatcher matcher = new NegatedRequestMatcher(
                     new MediaTypeRequestMatcher(MediaType.TEXT_HTML));
