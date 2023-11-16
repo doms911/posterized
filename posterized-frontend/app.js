@@ -19,15 +19,8 @@ app.use(
     createProxyMiddleware({
         target: API_BASE_URL,
         changeOrigin: true,
-        onProxyRes: (proxyRes, req, res) => {
-   
-      
-            // Dodajte console.log kako biste vidjeli kada se koristi proxy
-            console.log('Proxy je korišten:', req.path);
-          }
     })
 );
-console.log(API_BASE_URL);
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.listen(PORT, HOST, () => {
