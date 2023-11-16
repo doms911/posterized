@@ -14,7 +14,7 @@ const { API_BASE_URL } = process.env;
 app.use(
     "/api",
     createProxyMiddleware({
-        target: 'https://posterized-be.onrender.com/',
+        target: API_BASE_URL,
         changeOrigin: true,
     })
 );
