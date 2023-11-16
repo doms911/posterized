@@ -12,7 +12,7 @@
                 event.preventDefault();
                 try{
                     console.log("Submitting:", ime, prezime, email, lozinka);
-                    await  axios.post("https://posterized-be.onrender.com/api/registracija", {
+                    await  axios.post("https://posterized-be.onrender.com/registracija", {
                         ime: ime,
                         prezime: prezime,
                         email: email,
