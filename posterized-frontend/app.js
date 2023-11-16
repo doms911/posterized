@@ -18,7 +18,7 @@ app.use(
         changeOrigin: true,
     })
 );
-
+console.log(API_BASE_URL);
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.listen(PORT, HOST, () => {
