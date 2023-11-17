@@ -16,7 +16,7 @@
 						\caption{Organizacija aplikacije}
 						\label{fig:promjene5}
 					\end{figure}	
-	Za izradu naše aplikacije korišten je Java Spring Boot okvir koji koristi MVC \textit{(engl. Model-View-Controller)} oblikovni obrazac u kojem je poslužitelj organiziran u tri dijela u cilju razdvajanja nadležnosti. Aplikacija je podijeljena na tri komponente. \textbf {Kontroler} prima zahtjeve koje prosljeđuje modelu te upravlja modelom i pogledom. \textbf {Model} je zadužen za obradu i dohvat podataka te komunicira s bazom podataka. \textbf {Pogled} prezentira dostavljene podatke.
+	Za izradu naše aplikacije korišten je Java Spring Boot okvir koji koristi MVC \textit{(engl. Model-View-Controller)} oblikovni obrazac u kojem je poslužitelj organiziran u tri dijela u cilju razdvajanja nadležnosti. \textbf {Kontroler} prima zahtjeve koje prosljeđuje modelu te upravlja modelom i pogledom. \textbf {Model} je zadužen za obradu i dohvat podataka te komunicira s bazom podataka. \textbf {Pogled} prezentira dostavljene podatke.
 	
 		
 
@@ -36,7 +36,7 @@
 		\item Pokrovitelj\_na	
 	\end{itemize}
 			\subsection{Opis tablica}
-			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi s \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor".
+			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor".
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -55,7 +55,7 @@
 					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednost "admin", "korisnik" i "autor". Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednosti "admin", "korisnik" ili "autor" (u slučaju da autor postane i korisnik, njegova će uloga biti korisnik). Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none

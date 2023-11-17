@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.26)  15 NOV 2023 17:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.1)  17 NOV 2023 20:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -25,7 +25,7 @@ File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \bibindent=\dimen140
 )
 (c:/texlive/2023/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2023/09/29 v3.95 The Babel package
+Package: babel 2023/10/25 v3.96 The Babel package
 \babel@savecnt=\count195
 \U@D=\dimen141
 \l@unhyphenated=\language89
@@ -217,7 +217,7 @@ th.
 \MDodotkern=\muskip19
 )
 (c:/texlive/2023/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2023/10/17 v2.15 Sectioning titles
+Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box54
 \beforetitleunit=\skip53
 \aftertitleunit=\skip54
@@ -799,7 +799,7 @@ LaTeX Font Info:    Redeclaring math symbol \n@tch@r on input line 1601.
 LaTeX Info: Redefining \not on input line 1603.
 )
 (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-10-21 v7.01c Hypertext links for LaTeX
+Package: hyperref 2023-10-27 v7.01d Hypertext links for LaTeX
 
 (c:/texlive/2023/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
@@ -852,7 +852,7 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 \Hy@pagecounter=\count313
 
 (c:/texlive/2023/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-10-21 v7.01c Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-10-27 v7.01d Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
@@ -862,7 +862,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 \Hy@SavedSpaceFactor=\count314
 
 (c:/texlive/2023/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-10-21 v7.01c Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-10-27 v7.01d Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -911,7 +911,7 @@ package with kernel methods
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (c:/texlive/2023/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2023-10-21 v7.01c Hyperref driver for pdfTeX
+File: hpdftex.def 2023-10-27 v7.01d Hyperref driver for pdfTeX
 
 (c:/texlive/2023/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
@@ -1796,14 +1796,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=358, 813.53937pt x 269.005pt>
+<slike/dijagram baze podataka.PNG, id=358, 844.15375pt x 336.25626pt>
 File: slike/dijagram baze podataka.PNG Graphic file (type png)
 <use slike/dijagram baze podataka.PNG>
 Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 1
 72.
-(pdftex.def)             Requested size: 447.44803pt x 147.9532pt.
+(pdftex.def)             Requested size: 464.286pt x 184.94151pt.
 
-Overfull \hbox (11.83723pt too wide) in paragraph at lines 172--174
+Overfull \hbox (28.6752pt too wide) in paragraph at lines 172--174
  [][] 
  []
 
@@ -2169,10 +2169,10 @@ anged.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17785 strings out of 474397
- 313082 string characters out of 5754184
+ 17791 strings out of 474398
+ 313312 string characters out of 5754206
  2063036 words of memory out of 5000000
- 39362 multiletter control sequences out of 15000+600000
+ 39367 multiletter control sequences out of 15000+600000
  626735 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,115p,906b,1209s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2186,7 +2186,7 @@ dist/fonts/type1/public/kpfonts/jkpmi.pfb><c:/texlive/2023/texmf-dist/fonts/typ
 e1/public/kpfonts/jkpmit8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/k
 pfonts/jkpmn8a.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkptt
 mn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (45 pages, 1721565 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (45 pages, 1723944 bytes).
 PDF statistics:
  568 PDF objects out of 1000 (max. 8388607)
  486 compressed objects within 5 object streams
