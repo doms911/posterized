@@ -40,7 +40,7 @@
                     <div>
                         <label>Ime:</label>
                         <input
-                            type="ime"
+                            type="text"
                             value={ime}
                             onChange={(event) => {
                                 setIme(event.target.value);
@@ -51,7 +51,7 @@
                     <div>
                         <label>Prezime:</label>
                         <input
-                            type="prezime"
+                            type="text"
                             value={prezime}
                             onChange={(event) => {
                                 setPrezime(event.target.value);
@@ -73,7 +73,7 @@
                     <div>
                         <label>Password:</label>
                         <input
-                            type="lozinka"
+                            type="password"
                             value={lozinka}
                             onChange={(event) => {
                                 setLozinka(event.target.value);
