@@ -56,8 +56,7 @@ public class WebSecurityBasic {
                             )
                             .failureHandler(new SimpleUrlAuthenticationFailureHandler());
                 });
-        return http.build();
-        } /**
+
         http.exceptionHandling(configurer -> {
             final RequestMatcher matcher = new NegatedRequestMatcher(
                     new MediaTypeRequestMatcher(MediaType.TEXT_HTML));
@@ -74,7 +73,7 @@ public class WebSecurityBasic {
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
-    }
+    }/**
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain h2ConsoleSecurityFilterChain(HttpSecurity http) throws Exception {
