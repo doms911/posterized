@@ -48,8 +48,8 @@ public class WebSecurityBasic {
         http.addFilterBefore(corsFilter(), CorsFilter.class);
         http.cors(withDefaults());
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/registracija")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/login")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/registracija")).permitAll()
                 .anyRequest().authenticated());
         http.formLogin(configurer -> {
                     configurer.successHandler((request, response, authentication) ->
