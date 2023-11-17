@@ -46,6 +46,7 @@ public class WebSecurityBasic {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
         http.addFilterBefore(corsFilter(), CorsFilter.class);
+        http.cors(withDefaults());
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/registracija")).permitAll()
