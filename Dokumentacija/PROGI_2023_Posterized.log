@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  17 NOV 2023 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  17 NOV 2023 23:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PROGI_ProjektnaDokumentacija.tex
-(./PROGI_ProjektnaDokumentacija.tex
+**PROGI_2023_Posterized.tex
+(./PROGI_2023_Posterized.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22>
 (/usr/local/texlive/2023/texmf-dist/tex/latex/base/report.cls
@@ -964,14 +964,14 @@ LaTeX Font Info:    Trying to load font information for OT1+jkp on input line 8
 (/usr/local/texlive/2023/texmf-dist/tex/latex/kpfonts/ot1jkp.fd
 File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
 )
-(./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
+(./PROGI_2023_Posterized.aux (./Dnevnik_promjena_dokumentacije.aux)
 (./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
 ) (./Arhitektura.aux) (./Implementacija.aux) (./Zakljucak.aux)
 (./Literatura.aux) (./Dodatak.aux))
-\openout1 = `PROGI_ProjektnaDokumentacija.aux'.
+\openout1 = `PROGI_2023_Posterized.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 85.
 LaTeX Font Info:    Trying to load font information for OML+jkp on input line 8
@@ -1073,16 +1073,15 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 85.
-(./PROGI_ProjektnaDokumentacija.out) (./PROGI_ProjektnaDokumentacija.out)
+(./PROGI_2023_Posterized.out) (./PROGI_2023_Posterized.out)
 \@outlinefile=\write3
-\openout3 = `PROGI_ProjektnaDokumentacija.out'.
+\openout3 = `PROGI_2023_Posterized.out'.
 
-
-[1
+ [1
 
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
-al/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-(./PROGI_ProjektnaDokumentacija.toc
+al/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./PROGI_2023_Posteriz
+ed.toc
 LaTeX Font Info:    Trying to load font information for U+jkpsya on input line 
 5.
 
@@ -1131,7 +1130,7 @@ l.28 ...: Prikaz aktivnosti grupe}{40}{chapter*.5}
 
 ])
 \tf@toc=\write4
-\openout4 = `PROGI_ProjektnaDokumentacija.toc'.
+\openout4 = `PROGI_2023_Posterized.toc'.
 
 
 
@@ -1422,17 +1421,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [12]
-<slike/UC_dijagram_administrator.JPG, id=267, 956.57375pt x 936.49875pt>
-File: slike/UC_dijagram_administrator.JPG Graphic file (type jpg)
-<use slike/UC_dijagram_administrator.JPG>
-Package pdftex.def Info: slike/UC_dijagram_administrator.JPG  used on input lin
-e 424.
+<dijagrami/UC_dijagram_administrator.JPG, id=267, 956.57375pt x 936.49875pt>
+File: dijagrami/UC_dijagram_administrator.JPG Graphic file (type jpg)
+<use dijagrami/UC_dijagram_administrator.JPG>
+Package pdftex.def Info: dijagrami/UC_dijagram_administrator.JPG  used on input
+ line 424.
 (pdftex.def)             Requested size: 430.45421pt x 421.42055pt.
-<slike/UC_dijagram_korisnik.JPG, id=268, 1494.58376pt x 1347.0325pt>
-File: slike/UC_dijagram_korisnik.JPG Graphic file (type jpg)
-<use slike/UC_dijagram_korisnik.JPG>
-Package pdftex.def Info: slike/UC_dijagram_korisnik.JPG  used on input line 430
-.
+<dijagrami/UC_dijagram_korisnik.JPG, id=268, 1494.58376pt x 1347.0325pt>
+File: dijagrami/UC_dijagram_korisnik.JPG Graphic file (type jpg)
+<use dijagrami/UC_dijagram_korisnik.JPG>
+Package pdftex.def Info: dijagrami/UC_dijagram_korisnik.JPG  used on input line
+ 430.
 (pdftex.def)             Requested size: 448.37859pt x 404.11287pt.
 
 Overfull \hbox (12.76779pt too wide) in paragraph at lines 430--432
@@ -1462,7 +1461,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.435 				\eject
-                		 <./slike/UC_dijagram_administrator.JPG>]
+                		 <./dijagrami/UC_dijagram_administrator.JPG>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1477,7 +1476,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.435 				\eject
-                		 <./slike/UC_dijagram_korisnik.JPG>]
+                		 <./dijagrami/UC_dijagram_korisnik.JPG>]
 Overfull \hbox (1.05362pt too wide) in paragraph at lines 442--443
 []\OT1/jkp/m/n/12 Za vri-jeme su-dje-lo-va-nja na kon-fe-ren-ciji ko-ris-nik mo
 []ze pre-gle-da-vati sadr[]zaj kon-
@@ -1492,11 +1491,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [16]
-<slike/koristenje_aplikacije.JPG, id=297, 1425.325pt x 2352.79pt>
-File: slike/koristenje_aplikacije.JPG Graphic file (type jpg)
-<use slike/koristenje_aplikacije.JPG>
-Package pdftex.def Info: slike/koristenje_aplikacije.JPG  used on input line 44
-8.
+<dijagrami/koristenje_aplikacije.JPG, id=297, 1425.325pt x 2352.79pt>
+File: dijagrami/koristenje_aplikacije.JPG Graphic file (type jpg)
+<use dijagrami/koristenje_aplikacije.JPG>
+Package pdftex.def Info: dijagrami/koristenje_aplikacije.JPG  used on input lin
+e 448.
 (pdftex.def)             Requested size: 399.08829pt x 658.77672pt.
 
 Overfull \vbox (15.0505pt too high) has occurred while \output is active []
@@ -1516,11 +1515,11 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.453 
-       <./slike/koristenje_aplikacije.JPG>]
-<slike/sekv2.png, id=304, 1333.98375pt x 1609.51312pt>
-File: slike/sekv2.png Graphic file (type png)
-<use slike/sekv2.png>
-Package pdftex.def Info: slike/sekv2.png  used on input line 462.
+       <./dijagrami/koristenje_aplikacije.JPG>]
+<dijagrami/sekv2.png, id=304, 1333.98375pt x 1609.51312pt>
+File: dijagrami/sekv2.png Graphic file (type png)
+<use dijagrami/sekv2.png>
+Package pdftex.def Info: dijagrami/sekv2.png  used on input line 462.
 (pdftex.def)             Requested size: 400.19821pt x 482.85767pt.
 
 
@@ -1537,7 +1536,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.467 				\eject
-                 <./slike/sekv2.png>])
+                 <./dijagrami/sekv2.png>])
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1716,11 +1715,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 > Step: execute table commands.
 > Step: calculate cell and line sizes.
 > Step: build the whole table.
-<slike/dijagram baze podataka.PNG, id=351, 844.15375pt x 336.25626pt>
-File: slike/dijagram baze podataka.PNG Graphic file (type png)
-<use slike/dijagram baze podataka.PNG>
-Package pdftex.def Info: slike/dijagram baze podataka.PNG  used on input line 1
-72.
+<dijagrami/dijagram baze podataka.PNG, id=351, 844.15375pt x 336.25626pt>
+File: dijagrami/dijagram baze podataka.PNG Graphic file (type png)
+<use dijagrami/dijagram baze podataka.PNG>
+Package pdftex.def Info: dijagrami/dijagram baze podataka.PNG  used on input li
+ne 172.
 (pdftex.def)             Requested size: 464.286pt x 184.94151pt.
 
 Overfull \hbox (28.6752pt too wide) in paragraph at lines 172--174
@@ -1741,11 +1740,11 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.177 			\eject
-                <./slike/dijagram baze podataka.PNG>]
-<slike/dto_klase.png, id=359, 994.71625pt x 629.85312pt>
-File: slike/dto_klase.png Graphic file (type png)
-<use slike/dto_klase.png>
-Package pdftex.def Info: slike/dto_klase.png  used on input line 194.
+                <./dijagrami/dijagram baze podataka.PNG>]
+<dijagrami/dto_klase.png, id=359, 994.71625pt x 629.85312pt>
+File: dijagrami/dto_klase.png Graphic file (type png)
+<use dijagrami/dto_klase.png>
+Package pdftex.def Info: dijagrami/dto_klase.png  used on input line 194.
 (pdftex.def)             Requested size: 397.87946pt x 251.93678pt.
 
 
@@ -1762,26 +1761,26 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.205 
-       <./slike/dto_klase.png>]
-<slike/glavni_1.JPG, id=367, 2011.515pt x 1093.83656pt>
-File: slike/glavni_1.JPG Graphic file (type jpg)
-<use slike/glavni_1.JPG>
-Package pdftex.def Info: slike/glavni_1.JPG  used on input line 209.
+       <./dijagrami/dto_klase.png>]
+<dijagrami/glavni_1.JPG, id=367, 2011.515pt x 1093.83656pt>
+File: dijagrami/glavni_1.JPG Graphic file (type jpg)
+<use dijagrami/glavni_1.JPG>
+Package pdftex.def Info: dijagrami/glavni_1.JPG  used on input line 209.
 (pdftex.def)             Requested size: 462.63872pt x 251.57712pt.
 
 Overfull \hbox (27.02792pt too wide) in paragraph at lines 209--211
  [][][] 
  []
 
-<slike/glavni_2.png, id=368, 1084.05pt x 578.66188pt>
-File: slike/glavni_2.png Graphic file (type png)
-<use slike/glavni_2.png>
-Package pdftex.def Info: slike/glavni_2.png  used on input line 216.
+<dijagrami/glavni_2.png, id=368, 1084.05pt x 578.66188pt>
+File: dijagrami/glavni_2.png Graphic file (type png)
+<use dijagrami/glavni_2.png>
+Package pdftex.def Info: dijagrami/glavni_2.png  used on input line 216.
 (pdftex.def)             Requested size: 433.61232pt x 231.46065pt.
-<slike/glavni_3.png, id=369, 604.2575pt x 480.79625pt>
-File: slike/glavni_3.png Graphic file (type png)
-<use slike/glavni_3.png>
-Package pdftex.def Info: slike/glavni_3.png  used on input line 223.
+<dijagrami/glavni_3.png, id=369, 604.2575pt x 480.79625pt>
+File: dijagrami/glavni_3.png Graphic file (type png)
+<use dijagrami/glavni_3.png>
+Package pdftex.def Info: dijagrami/glavni_3.png  used on input line 223.
 (pdftex.def)             Requested size: 302.128pt x 240.39752pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1803,7 +1802,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.228 			\eject
-                <./slike/glavni_1.JPG> <./slike/glavni_2.png>]
+                <./dijagrami/glavni_1.JPG> <./dijagrami/glavni_2.png>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1818,7 +1817,7 @@ has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
 l.228 			\eject
-                <./slike/glavni_3.png>]
+                <./dijagrami/glavni_3.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 232--233
 
  []
@@ -1996,9 +1995,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-] (./PROGI_ProjektnaDokumentacija.lof)
+] (./PROGI_2023_Posterized.lof)
 \tf@lof=\write5
-\openout5 = `PROGI_ProjektnaDokumentacija.lof'.
+\openout5 = `PROGI_2023_Posterized.lof'.
 
 
 
@@ -2108,25 +2107,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [44] 
 enddocument/afterlastpage: lastpage setting LastPage.
-(./PROGI_ProjektnaDokumentacija.aux (./Dnevnik_promjena_dokumentacije.aux)
+(./PROGI_2023_Posterized.aux (./Dnevnik_promjena_dokumentacije.aux)
 (./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
 (./Arhitektura.aux) (./Implementacija.aux) (./Zakljucak.aux) (./Literatura.aux)
 (./Dodatak.aux))
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `PROGI_ProjektnaDokumentacija.out' has not ch
-anged.
+Package rerunfilecheck Info: File `PROGI_2023_Posterized.out' has not changed.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 17916 strings out of 476025
- 321250 string characters out of 5790016
+ 17917 strings out of 476025
+ 321301 string characters out of 5790016
  2011388 words of memory out of 5000000
  37838 multiletter control sequences out of 15000+600000
  577233 words of font info for 170 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 86i,13n,116p,906b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 86i,13n,116p,899b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
@@ -2136,7 +2134,7 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/loca
 l/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (45 pages, 1721821 bytes).
+Output written on PROGI_2023_Posterized.pdf (45 pages, 1721821 bytes).
 PDF statistics:
  576 PDF objects out of 1000 (max. 8388607)
  496 compressed objects within 5 object streams
