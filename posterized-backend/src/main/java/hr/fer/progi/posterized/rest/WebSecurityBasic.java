@@ -69,7 +69,6 @@ public class WebSecurityBasic {
                 .logoutUrl("/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.NO_CONTENT.value())));
-        http.csrf(AbstractHttpConfigurer::disable);
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

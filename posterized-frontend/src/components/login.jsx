@@ -18,7 +18,7 @@ function Login(props) {
             },
             body: body,
         };
-        fetch('/login', options)
+        fetch('api/login', options)
             .then((response) => {
                 if (response.status === 401) {
                     alert('Pogrešna lozinka');
