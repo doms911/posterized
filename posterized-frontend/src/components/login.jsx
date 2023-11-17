@@ -43,7 +43,7 @@ function Login(props) {
                 <div>
                     <label>Email:</label>
                     <input
-                        type="username"
+                        type="email"
                         id="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}

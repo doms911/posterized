@@ -22,7 +22,7 @@ const App = () => {
     };
 
     const handleLogout = () => {
-        fetch("/api/logout", {
+        fetch("/api/radovi", {
             method: 'POST',
             credentials: 'include', 
         })
