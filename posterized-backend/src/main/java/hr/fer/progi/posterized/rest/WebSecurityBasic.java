@@ -55,7 +55,7 @@ public class WebSecurityBasic {
                     configurer.successHandler((request, response, authentication) ->
                                     response.setStatus(HttpStatus.NO_CONTENT.value())
                             )
-                            .failureHandler(new SimpleUrlAuthenticationFailureHandler());
+                            .failureHandler(new CustomAuthenticationFailureHandler());
                 });
 
         http.exceptionHandling(configurer -> {
@@ -67,7 +67,7 @@ public class WebSecurityBasic {
                     }, matcher);
         });
         http.logout(configurer -> configurer
-                .logoutUrl("/logout")
+                .logoutUrl("/api/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.NO_CONTENT.value())));
         http.httpBasic(withDefaults());
