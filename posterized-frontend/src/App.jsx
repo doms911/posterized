@@ -22,8 +22,20 @@ const App = () => {
     };
 
     const handleLogout = () => {
-        Cookies.remove('user');
-        setIsLoggedIn(false);
+        fetch('/api/logout', {
+            method: 'POST',
+            credentials: 'include', 
+        })
+            .then(response => {
+                if (response.ok) {
+                    localStorage.removeItem('username');
+                    Cookies.remove('user');
+                    setIsLoggedIn(false);
+                }
+            })
+            .catch(error => {
+                console.error('Logout error:', error);
+            });
     };
 
     return (

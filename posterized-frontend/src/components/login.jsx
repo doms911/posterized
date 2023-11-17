@@ -13,6 +13,7 @@ function Login(props) {
         const body = `username=${username}&password=${password}`;
         const options = {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
@@ -24,7 +25,7 @@ function Login(props) {
                     alert('Pogrešna lozinka');
                 } else {
                     alert('Prijava uspješna');
-                    Cookies.set('user', 'authenticated', { expires: 7 }); // Set cookie to expire in 7 days
+                    Cookies.set('user', 'authenticated'); // Set cookie to expire in 7 days
                     localStorage.setItem('username', username);
                     onLogin();
                     window.location.replace('/');
