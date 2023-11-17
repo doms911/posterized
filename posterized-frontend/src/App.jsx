@@ -22,7 +22,7 @@ const App = () => {
     };
 
     const handleLogout = () => {
-        fetch('/api/logout', {
+        fetch("https://posterized-be.onrender.com/api/logout", {
             method: 'POST',
             credentials: 'include', 
         })
