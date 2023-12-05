@@ -1,0 +1,40 @@
+.Header {
+    position: fixed;
+    top:0;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background: slategray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Header a {
+    color: black;
+    padding: 5px 10px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.Header button {
+    background: none;
+    border: 2px solid #aaa;
+    padding: 5px 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Header button:hover {
+    background-color: #aaa;
+}
+
+.Header button:disabled {
+    color: #ddd;
+}
+
+.LoggedIn {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
