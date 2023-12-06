@@ -4,29 +4,29 @@
     width: 100%;
     padding-top: 20px;
     padding-bottom: 15px;
-    background: slategray;
+    background: black;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .Header a {
-    color: black;
+    color: white;
     padding: 5px 10px;
     margin: 0 10px;
     text-decoration: none;
 }
 
 .Header button {
-    background: none;
-    border: 2px solid #aaa;
+    background: white;
+    color: black;
     padding: 5px 15px;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .Header button:hover {
-    background-color: #aaa;
+    background-color: #e0e0e0;
 }
 
 .Header button:disabled {
