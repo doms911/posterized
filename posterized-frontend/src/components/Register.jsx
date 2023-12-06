@@ -1,6 +1,7 @@
     import React, { useState } from 'react';
     import axios from 'axios';
     import { Link } from 'react-router-dom';
+    import './styles.css';
     
     function Register() {
         const [ime, setIme] = useState('');
@@ -34,7 +35,7 @@
         }
     
         return (
-            <div>
+            <div className="container">
                 <h2>Register Page</h2>
                 <form onSubmit={save}>
                     <div>

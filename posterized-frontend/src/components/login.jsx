@@ -1,6 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import './styles.css';
 
 function Login(props) {
     const onLogin = props.onLogin;
@@ -37,7 +38,7 @@ function Login(props) {
     }
 
     return (
-        <div>
+        <div className="container">
             <h2>Login Page</h2>
             <form onSubmit={authenticate}>
                 <div>
