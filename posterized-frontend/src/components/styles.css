@@ -1,7 +1,6 @@
 
 
 
-/* Ensuring the body takes the full viewport height and centers its children */
 body {
   display: flex;
   justify-content: center;
@@ -11,7 +10,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* Styling the main container (assuming it wraps the login form) */
 .container {
   display: flex;
   flex-direction: column;
@@ -22,13 +20,12 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Styling the form elements - you may need to adjust these styles based on your JSX structure */
 input[type="text"], input[type="password"] {
   margin-bottom: 10px;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 80%; /* Adjust width as needed */
+  width: 80%; 
 }
 
 button {
