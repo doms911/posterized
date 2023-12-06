@@ -28,7 +28,7 @@ public class KorisnikUserDetailsService implements UserDetailsService {
                     adminLozinkaHash,
                     commaSeparatedStringToAuthorityList("ROLE_ADMIN")
             );}
-        Osoba korisnik = akService.findByEmail(username);
+        Osoba korisnik = akService.findByEmail(username.toLowerCase());
         if (korisnik != null) {
             return new User(
                     korisnik.getEmail(),

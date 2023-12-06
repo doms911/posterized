@@ -26,7 +26,7 @@ function Login(props) {
                 } else {
                     alert('Prijava uspješna');
                     Cookies.set('user', 'authenticated'); // Set cookie to expire in 7 days
-                    localStorage.setItem('username', username);
+                    localStorage.setItem('username', username.toLowerCase());
                     onLogin();
                     window.location.replace('/');
                 }
