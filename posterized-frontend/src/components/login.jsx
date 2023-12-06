@@ -10,7 +10,7 @@ function Login(props) {
 
     async function authenticate(e) {
         e.preventDefault();
-        const body = `username=${username}&password=${password}`;
+        const body = `username=${username.toLowerCase()}&password=${password}`;
         const options = {
             method: 'POST',
             credentials: 'include',
