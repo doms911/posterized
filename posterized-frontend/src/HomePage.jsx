@@ -7,9 +7,12 @@ const HomePage = (props) => {
     const onLogout = props.onLogout;
 
     return (
-        <div>
-            <h1>Welcome to the Homepage</h1>
+        <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
+            <main className="main-content">
+                <h1>Welcome to the Homepage</h1>
+                {/* Rest of the main content */}
+            </main>
         </div>
     );
 };

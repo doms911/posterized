@@ -1,6 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import './login.css';
 
 function Login(props) {
     const onLogin = props.onLogin;
@@ -37,34 +38,39 @@ function Login(props) {
     }
 
     return (
-        <div>
-            <h2>Login Page</h2>
-            <form onSubmit={authenticate}>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
+        <div className="centered-wrapper">
+            <div className="container">
+                    <h2>Log in</h2>
+                    <form onSubmit={authenticate}>
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                type="text"
+                                id="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <a href="">Forgot your password?</a>
+                        </div>
+                        <div>
+                            <button name="prijava" type="submit">Prijavi se</button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <button type="submit">Prijavi se</button>
-                </div>
-            </form>
-        </div>
+            </div>
     );
 }
 

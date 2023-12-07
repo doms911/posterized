@@ -1,7 +1,8 @@
     import React, { useState } from 'react';
     import axios from 'axios';
     import { Link } from 'react-router-dom';
-    
+    import './Register.css';
+
     function Register() {
         const [ime, setIme] = useState('');
         const [prezime, setPrezime] = useState('');
@@ -34,60 +35,61 @@
         }
     
         return (
-            <div>
-                <h2>Register Page</h2>
-                <form onSubmit={save}>
-                    <div>
-                        <label>Ime:</label>
-                        <input
-                            type="text"
-                            value={ime}
-                            onChange={(event) => {
-                                setIme(event.target.value);
-                            }}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Prezime:</label>
-                        <input
-                            type="text"
-                            value={prezime}
-                            onChange={(event) => {
-                                setPrezime(event.target.value);
-                            }}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Email:</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(event) => {
-                                setEmail(event.target.value);
-                            }}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label>Password:</label>
-                        <input
-                            type="password"
-                            value={lozinka}
-                            onChange={(event) => {
-                                setLozinka(event.target.value);
-                            }}
-                            required
-                        />
-                    </div>
-                    <button type="submit">Register</button>
-                    <Link to="/login">
-                        <div>Login</div>
-                    </Link>
-                    
-                </form>
-    
+            <div className="centered-wrapper">
+                <div className="register-container">
+                    <h2>Create a new account</h2>
+                    <form onSubmit={save}>
+                        <div>
+                            <label>Ime:</label>
+                            <input
+                                type="text"
+                                value={ime}
+                                onChange={(event) => {
+                                    setIme(event.target.value);
+                                }}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Prezime:</label>
+                            <input
+                                type="text"
+                                value={prezime}
+                                onChange={(event) => {
+                                    setPrezime(event.target.value);
+                                }}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(event) => {
+                                    setEmail(event.target.value);
+                                }}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Password:</label>
+                            <input
+                                type="password"
+                                value={lozinka}
+                                onChange={(event) => {
+                                    setLozinka(event.target.value);
+                                }}
+                                required
+                            />
+                        </div>
+                        <Link to="/login">
+                            <div>Log in</div>
+                        </Link>
+                        <button type="submit">Register</button>
+                    </form>
+
+                </div>
             </div>
         );
     }
