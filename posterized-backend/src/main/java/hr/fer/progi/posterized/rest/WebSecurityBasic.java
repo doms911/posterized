@@ -35,6 +35,7 @@ public class WebSecurityBasic {
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOrigin("https://posterized.onrender.com");
+        corsConfiguration.addAllowedOrigin("http://localhost:3000");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
@@ -73,13 +74,14 @@ public class WebSecurityBasic {
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
-    }/**
+    }
     @Bean
+    @Profile("dev")
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain h2ConsoleSecurityFilterChain(HttpSecurity http) throws Exception {
         http.securityMatcher(PathRequest.toH2Console());
         http.csrf(AbstractHttpConfigurer::disable);
         http.headers((headers) -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         return http.build();
-    }**/
+    }
 }
