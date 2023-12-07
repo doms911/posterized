@@ -22,13 +22,13 @@ public class KorisnikUserDetailsService implements UserDetailsService {
     private AdminKorisnikService akService;
     @Override
     public UserDetails loadUserByUsername(String username) {
-        Osoba korisnik = akService.findByEmail(username);
         if ("admin".equals(username)) {
             return new User(
                     username,
                     adminLozinkaHash,
                     commaSeparatedStringToAuthorityList("ROLE_ADMIN")
             );}
+        Osoba korisnik = akService.findByEmail(username.toLowerCase());
         if (korisnik != null) {
             return new User(
                     korisnik.getEmail(),

@@ -18,4 +18,3 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         }
     }
-

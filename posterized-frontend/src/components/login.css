@@ -1,0 +1,46 @@
+.centered-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a width and max-width if needed */
+    width: 80%; /* This can be adjusted as per your design */
+    max-width: 600px; /* This can be adjusted as per your design */
+    margin: 0 auto; /* This will take effect if flex properties are not enough */
+}
+
+input[type="text"], input[type="password"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 80%;
+}
+
+button[name="prijava"] {
+    background-color: black; /* Green background */
+    color: white; /* White text */
+    margin-top: 20px;
+}
+
+/* Hover state of the button */
+button[name="prijava"]:hover {
+    background-color: white;
+    border-color: black;
+    color: black;
+}
+
+/* Focus state of the button, if you want to change it as well */
+button[name="prijava"]:focus {
+    border-color: black; /* Green border, for example */
+}

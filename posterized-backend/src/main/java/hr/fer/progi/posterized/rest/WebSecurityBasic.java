@@ -34,7 +34,8 @@ public class WebSecurityBasic {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://localhost:5173");
+        corsConfiguration.addAllowedOrigin("https://posterized.onrender.com");
+        corsConfiguration.addAllowedOrigin("http://localhost:3000");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
@@ -46,6 +47,7 @@ public class WebSecurityBasic {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
         http.addFilterBefore(corsFilter(), CorsFilter.class);
+        http.cors(withDefaults());
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/registracija")).permitAll()
@@ -55,8 +57,9 @@ public class WebSecurityBasic {
                                     response.setStatus(HttpStatus.NO_CONTENT.value())
                             )
                             .failureHandler(new CustomAuthenticationFailureHandler());
-                }
-        );
+
+                });
+
         http.exceptionHandling(configurer -> {
             final RequestMatcher matcher = new NegatedRequestMatcher(
                     new MediaTypeRequestMatcher(MediaType.TEXT_HTML));
@@ -69,12 +72,12 @@ public class WebSecurityBasic {
                 .logoutUrl("/logout")
                 .logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.NO_CONTENT.value())));
-        http.csrf(AbstractHttpConfigurer::disable);
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
     @Bean
+    @Profile("dev")
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain h2ConsoleSecurityFilterChain(HttpSecurity http) throws Exception {
         http.securityMatcher(PathRequest.toH2Console());
