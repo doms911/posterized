@@ -31,6 +31,9 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public Konferencija createKonferencija(Integer pin) {
         Assert.notNull(pin, "Pin must be given.");
+        if (konferencijaRepo.countByPin(pin) > 0){
+            Assert.hasText("","Konferencija already exists.");
+        }
         Konferencija konferencija = new Konferencija();
         konferencija.setPin(pin);
         return konferencijaRepo.save(konferencija);

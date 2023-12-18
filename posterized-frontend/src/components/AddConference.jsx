@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './login.css';
 
-function ConferenceInput(props) {
+function AddConference() {
 
     const [pin, setPin] = useState('');
     const [adminEmail, setAdminEmail] = useState('');
@@ -68,4 +68,4 @@ function ConferenceInput(props) {
     );
 }
 
-export default ConferenceInput;
+export default AddConference;

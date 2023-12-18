@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/newConference")
+@RequestMapping("/addConference")
 public class KonferencijaController {
     @Autowired
     private KonferencijaService kService;
 
     @PostMapping("")
-    public Konferencija createKonferencija(@RequestBody Integer pin){
-        return kService.createKonferencija(pin);
+    public Konferencija createKonferencija(@RequestParam("pin") String pin){
+        return kService.createKonferencija(Integer.valueOf(pin));
     }
 }

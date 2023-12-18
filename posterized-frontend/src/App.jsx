@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Register from './components/Register.jsx';
 import Login from './components/login.jsx';
 import HomePage from './HomePage.jsx';
+import AddConference from './components/AddConference.jsx';
 import Cookies from 'js-cookie';
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
                 />
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
+                {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
             </Routes>
         </Router>
     );
