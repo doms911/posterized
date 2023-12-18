@@ -5,15 +5,13 @@ import './login.css';
 function ConferenceInput(props) {
 
     const [videoURL, setVideoURL] = useState('');
-    const [pin, setPin] = useState(0);
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [idAdmin, setIdAdmin] = useState('');
     const [pbr, setPbr] = useState(0);
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const body = `videoURL=${videoURL.toLowerCase()}&pin=${pin}&startTime=${startTime}&endTime=${endTime}&idAdmin=${idAdmin}&pbr=${pbr}`;
+        const body = `videoURL=${videoURL.toLowerCase()}&startTime=${startTime}&endTime=${endTime}&pbr=${pbr}`;
         const options = {
             credentials: 'include',
             method: 'POST',
@@ -23,12 +21,12 @@ function ConferenceInput(props) {
             },
             body: body,
         };
-        fetch('/api/newConference', options)
+        fetch('/api/conferenceInput', options)
             .then((response) => {
                 if (response.status === 401) {
-                    alert('Dogodila se greška. Konferencija nije kreirana.');
+                    alert('Dogodila se greška. Podaci nisu uneseni.');
                 } else {
-                    alert('Konferencija uspješno kreirana');
+                    alert('Podaci uspješno dodani');
                     window.location.replace('/');
                 }
             })
@@ -40,7 +38,7 @@ function ConferenceInput(props) {
     return (
         <div className="centered-wrapper">
             <div className="container">
-                    <h2>Nova konferencija</h2>
+                    <h2>Unos podataka o konferenciji</h2>
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label>Video URL:</label>
@@ -49,16 +47,6 @@ function ConferenceInput(props) {
                                 id="videoURL"
                                 value={videoURL}
                                 onChange={(e) => setVideoURL(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label>Pin:</label>
-                            <input
-                                type="number"
-                                id="pin"
-                                value={pin}
-                                onChange={(e) => setPin(e.target.value)}
                                 required
                             />
                         </div>
@@ -79,16 +67,6 @@ function ConferenceInput(props) {
                                 id="endTime"
                                 value={endTime}
                                 onChange={(e) => setEndTime(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label>Id admina:</label>
-                            <input
-                                type="number"
-                                id="idAdmin"
-                                value={idAdmin}
-                                onChange={(e) => setIdAdmin(e.target.value)}
                                 required
                             />
                         </div>
