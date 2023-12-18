@@ -7,15 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @RestController
-@RequestMapping("/newConference")
-public class KonferencijaController {
+@RequestMapping("/pin")
+public class PinController {
     @Autowired
     private KonferencijaService kService;
 
     @PostMapping("")
-    public Konferencija createKonferencija(@RequestBody Integer pin){
-        return kService.createKonferencija(pin);
+    public Konferencija provjeriPin(@RequestBody Integer pin){
+        return kService.provjeriPin(pin);
     }
 }

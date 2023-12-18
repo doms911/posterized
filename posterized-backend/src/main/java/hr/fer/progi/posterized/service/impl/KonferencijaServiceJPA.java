@@ -16,7 +16,6 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Autowired
     private KonferencijaRepository konferencijaRepo;
 
-
     @Override
     public List<Konferencija> listAll(){
         return konferencijaRepo.findAll();
@@ -34,7 +33,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Assert.notNull(pin, "Pin must be given.");
         Konferencija konferencija = new Konferencija();
         konferencija.setPin(pin);
-        return konferencija;
+        return konferencijaRepo.save(konferencija);
     }
 
     @Override
