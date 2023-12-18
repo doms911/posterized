@@ -76,4 +76,16 @@ public class Osoba {
     public void setLozinka(String lozinka) {
         this.lozinka = lozinka;
     }
+
+    @Override
+    public String toString() {
+        return "Osoba{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", lozinka='" + lozinka + '\'' +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", uloga='" + uloga + '\'' +
+                '}';
+    }
 }

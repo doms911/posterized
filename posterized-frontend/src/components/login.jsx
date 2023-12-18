@@ -5,7 +5,8 @@ import './login.css';
 
 function Login(props) {
     const onLogin = props.onLogin;
-
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -23,12 +24,20 @@ function Login(props) {
         };
         fetch('/api/login', options)
             .then((response) => {
+                var stariDiv = document.getElementsByClassName('alert-container');
+                if (stariDiv && stariDiv.parentNode) {
+                    stariDiv.parentNode.removeChild(stariDiv);
+                }
                 if (response.status === 401) {
-                    alert('Pogrešna lozinka');
+                    response.json().then((data) => {
+                        setShowAlert(true);
+                        setAlertMessage(data.message);
+                    });
                 } else {
-                    alert('Prijava uspješna');
-                    Cookies.set('user', 'authenticated'); // Set cookie to expire in 7 days
+                    Cookies.set('user', 'authenticated'); 
                     localStorage.setItem('username', username.toLowerCase());
+                    localStorage.setItem('name', response.headers.get('X-Name'));
+                    alert('Prijava uspješna');
                     onLogin();
                     window.location.replace('/');
                 }
@@ -42,6 +51,11 @@ function Login(props) {
         <div className="centered-wrapper">
             <div className="container">
                     <h2>Log in</h2>
+                    {showAlert && (
+                        <div className="alert-container">
+                            {alertMessage}
+                        </div>
+                    )}
                     <form onSubmit={authenticate}>
                         <div>
                             <label>Email:</label>

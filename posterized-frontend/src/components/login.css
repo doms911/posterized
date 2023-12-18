@@ -44,3 +44,14 @@ button[name="prijava"]:hover {
 button[name="prijava"]:focus {
     border-color: black; /* Green border, for example */
 }
+
+.alert-container {
+    display: flex;
+    background-color: rgb(250, 151, 151);
+    color: rgb(116, 26, 26);
+    padding: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}  

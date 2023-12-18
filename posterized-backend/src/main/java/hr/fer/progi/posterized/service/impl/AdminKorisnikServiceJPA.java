@@ -1,8 +1,10 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.OsobaRepository;
+import hr.fer.progi.posterized.dao.PasswordTokenRepository;
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.AdminKorisnikService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,7 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         return osobaRepo.findByEmail(email);
     }
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
+    private static final String LOZINKA_FORMAT= "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
     @Autowired
     private PasswordEncoder pswdEncoder;
     @Override
@@ -48,6 +51,10 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         }
         String lozinka = osoba.getLozinka();
         Assert.hasText(lozinka, "Lozinka must be given");
+        Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
+                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
+                        "letter and at least 8 characters in length "
+        );
         String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
         osoba.setLozinka(kodiranaLozinka);
         String ime = osoba.getIme();
@@ -55,5 +62,17 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         String prezime = osoba.getPrezime();
         Assert.hasText(prezime, "Prezime must be given");
         return osobaRepo.save(osoba);
+    }
+
+    @Override
+    @Transactional
+    public void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token){
+        Assert.hasText(lozinka, "Lozinka must be given");
+        Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
+                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
+                        "letter and at least 8 characters in length "
+        );
+        osoba.setLozinka(pswdEncoder.encode(lozinka));
+        osobaRepo.save(osoba);
     }
 }

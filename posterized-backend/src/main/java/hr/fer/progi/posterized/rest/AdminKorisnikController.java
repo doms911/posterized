@@ -15,7 +15,6 @@ public class AdminKorisnikController {
     private AdminKorisnikService akService;
     @PostMapping("")
     public Osoba createAdminKorisnik(@RequestBody Osoba osoba) {
-        System.out.println("doslo");
         return akService.createAdminKorisnik(osoba);
     }
 }

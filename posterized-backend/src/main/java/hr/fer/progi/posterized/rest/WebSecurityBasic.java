@@ -1,6 +1,8 @@
 package hr.fer.progi.posterized.rest;
 
+import hr.fer.progi.posterized.service.AdminKorisnikService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,18 +15,19 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Arrays;
+
+import java.util.Objects;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -43,6 +46,8 @@ public class WebSecurityBasic {
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
     }
+    @Autowired
+    private AdminKorisnikService akService;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
@@ -51,14 +56,23 @@ public class WebSecurityBasic {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(new AntPathRequestMatcher("/login")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/registracija")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/reset/**")).permitAll()
                 .anyRequest().authenticated());
         http.formLogin(configurer -> {
-                    configurer.successHandler((request, response, authentication) ->
-                                    response.setStatus(HttpStatus.NO_CONTENT.value())
-                            )
-                            .failureHandler(new CustomAuthenticationFailureHandler());
-
-                });
+            configurer.successHandler((request, response, authentication) -> {
+                        response.setStatus(HttpStatus.NO_CONTENT.value());
+                        String email = ((UserDetails) authentication.getPrincipal()).getUsername();
+                        String ime;
+                        GrantedAuthority uloga;
+                        if(Objects.equals(email, "admin")) ime = email;
+                        else {
+                            ime = akService.findByEmail(email.toLowerCase()).getIme();}
+                        uloga = ((UserDetails) authentication.getPrincipal()).getAuthorities().stream().findFirst().orElse(null);
+                        response.addHeader("X-Name", ime);
+                        response.addHeader("X-Role", uloga.getAuthority());
+                    })
+                    .failureHandler(new CustomAuthenticationFailureHandler());
+        });
 
         http.exceptionHandling(configurer -> {
             final RequestMatcher matcher = new NegatedRequestMatcher(
