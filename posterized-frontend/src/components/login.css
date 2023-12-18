@@ -19,29 +19,29 @@
     margin: 0 auto; /* This will take effect if flex properties are not enough */
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="number"], input[type="datetime-local"], input[type="email"] {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 80%;
+    width: 90%;
 }
 
-button[name="prijava"] {
+button[name="prijava"], button[name="dodaj"] {
     background-color: black; /* Green background */
     color: white; /* White text */
     margin-top: 20px;
 }
 
 /* Hover state of the button */
-button[name="prijava"]:hover {
+button[name="prijava"], button[name="dodaj"]:hover {
     background-color: white;
     border-color: black;
     color: black;
 }
 
 /* Focus state of the button, if you want to change it as well */
-button[name="prijava"]:focus {
+button[name="prijava"], button[name="dodaj"]:focus {
     border-color: black; /* Green border, for example */
 }
 
