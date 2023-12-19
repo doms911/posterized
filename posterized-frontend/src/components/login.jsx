@@ -78,7 +78,7 @@ function Login(props) {
                             />
                         </div>
                         <div>
-                            <a href="">Forgot your password?</a>
+                            <a href="/forgot-password">Forgot your password?</a>
                         </div>
                         <div>
                             <button name="prijava" type="submit">Prijavi se</button>

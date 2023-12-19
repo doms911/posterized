@@ -7,6 +7,8 @@ import Login from './components/login.jsx';
 import HomePage from './HomePage.jsx';
 import AddConference from './components/AddConference.jsx';
 import Cookies from 'js-cookie';
+import ForgotPassword from './components/ForgotPassword.jsx';
+
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,6 +43,7 @@ const App = () => {
     };
 
     return (
+        
         <Router>
             <Routes>
                 <Route
@@ -50,9 +53,11 @@ const App = () => {
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
                 {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
+                {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
             </Routes>
         </Router>
     );
 };
+
 
 export default App;
