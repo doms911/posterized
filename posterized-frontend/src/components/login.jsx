@@ -16,7 +16,6 @@ function Login(props) {
         const options = {
             credentials: 'include',
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
