@@ -8,6 +8,7 @@ import HomePage from './HomePage.jsx';
 import AddConference from './components/AddConference.jsx';
 import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
+import VideoStream from './components/videoStream.jsx';
 
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
                 {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
                 {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
+                {isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
             </Routes>
         </Router>
     );

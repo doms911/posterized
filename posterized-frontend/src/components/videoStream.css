@@ -1,0 +1,33 @@
+.video-stream-container {
+    max-width: 760px; /* Širina kontejnera malo veća od video playera */
+    margin: 0 auto; /* Centriranje kontejnera */
+    padding: 20px; /* Unutarnji razmak */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sjenčanje za bolji izgled */
+    border-radius: 8px; /* Zaobljeni uglovi */
+    background-color: #f8f8f8; /* Svijetla pozadinska boja */
+    text-align: center; /* Centriranje naslova */
+}
+
+.video-stream-container h2 {
+    font-size: 24px; /* Velika slova za naslov */
+    color: #333; /* Tamnija boja teksta */
+    margin-bottom: 20px; /* Razmak ispod naslova */
+}
+
+video {
+    max-width: 100%; /* Osigurava da video ne prelazi širinu kontejnera */
+    height: auto; /* Automatska visina za održavanje omjera */
+    border-radius: 4px; /* Zaobljeni uglovi za video */
+}
+
+/* Opcionalno: Dodajte dodatne stilove za responsive dizajn */
+@media (max-width: 768px) {
+    .video-stream-container {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    video {
+        width: 100%;
+    }
+}
