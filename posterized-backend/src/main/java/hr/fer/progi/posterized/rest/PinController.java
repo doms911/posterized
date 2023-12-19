@@ -14,7 +14,7 @@ public class PinController {
     private KonferencijaService kService;
 
     @PostMapping("")
-    public Konferencija provjeriPin(@RequestBody Integer pin){
+    public Konferencija provjeriPin(@RequestParam("pin") Integer pin){
         return kService.provjeriPin(pin);
     }
 }

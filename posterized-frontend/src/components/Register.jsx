@@ -1,106 +1,109 @@
-    import React, { useState } from 'react';
-    import axios from 'axios';
-    import { Link } from 'react-router-dom';
-    import './Register.css';
 
-    function Register() {
-        const [ime, setIme] = useState('');
-        const [prezime, setPrezime] = useState('');
-        const [email, setEmail] = useState('');
-        const [lozinka, setLozinka] = useState('');
-        const [showAlert, setShowAlert] = useState(false);
-        const [alertMessage, setAlertMessage] = useState('');
-    
-            async function save(event) {
-                event.preventDefault();
-                var stariDiv = document.getElementsByClassName('alert-container1');
-                if (stariDiv && stariDiv.parentNode) {
-                    stariDiv.parentNode.removeChild(stariDiv);
-                }
-                try{
-                    console.log("Submitting:", ime, prezime, email, lozinka);
-                    await  axios.post("/api/registracija", {
-                        ime: ime,
-                        prezime: prezime,
-                        email: email,
-                        lozinka: lozinka,
-                        uloga: "korisnik"
-                    }, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                    });
-                    alert("Registracija uspješna");
-                    window.location.replace("/");
-                } catch(err) {
-                    setShowAlert(true);
-                    setAlertMessage(err.response.data.message);
-                }
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './Register.css';
+import ReCAPTCHA from 'react-google-recaptcha';
+import {useState} from "react";
+
+function Register() {
+    const [ime, setIme] = useState('');
+    const [prezime, setPrezime] = useState('');
+    const [email, setEmail] = useState('');
+    const [lozinka, setLozinka] = useState('');
+
+    const [recaptchaValue, setRecaptchaValue] = useState(null);
+
+    async function save(event) {
+        event.preventDefault();
+        if (!recaptchaValue) {
+            alert('Please complete the reCAPTCHA.');
+            return;
         }
-    
-        return (
-            <div className="centered-wrapper">
-                <div className="register-container">
-                    <h2>Create a new account</h2>
-                    {showAlert && (
-                        <div className="alert-container">
-                            {alertMessage}
-                        </div>
-                    )}
-                    <form onSubmit={save}>
-                        <div>
-                            <label>Ime:</label>
-                            <input
-                                type="text"
-                                value={ime}
-                                onChange={(event) => {
-                                    setIme(event.target.value);
-                                }}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label>Prezime:</label>
-                            <input
-                                type="text"
-                                value={prezime}
-                                onChange={(event) => {
-                                    setPrezime(event.target.value);
-                                }}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label>Email:</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(event) => {
-                                    setEmail(event.target.value);
-                                }}
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input
-                                type="password"
-                                value={lozinka}
-                                onChange={(event) => {
-                                    setLozinka(event.target.value);
-                                }}
-                                required
-                            />
-                        </div>
-                        <Link to="/login">
-                            <div>Log in</div>
-                        </Link>
-                        <button type="submit">Register</button>
-                    </form>
 
-                </div>
-            </div>
-        );
+        try {
+            console.log("Submitting:", ime, prezime, email, lozinka);
+            await axios.post("/api/registracija", {
+                ime: ime,
+                prezime: prezime,
+                email: email,
+                lozinka: lozinka,
+                uloga: "korisnik"
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            alert("Registracija uspješna");
+            window.location.replace("/");
+        } catch (err) {
+            console.error(err);
+            if (err.response.data.message) {
+                alert(err.response.data.message)
+            } else alert("An error occurred. Please check the console for details.");
+        }
     }
-    
-    export default Register;
+
+    return (
+        <div className="centered-wrapper">
+            <div className="register-container">
+                <h2>Create a new account</h2>
+                <form onSubmit={save}>
+                    <div className="form-group">
+                        <label htmlFor="ime">Ime:</label>
+                        <input
+                            type="text"
+                            id="ime"
+                            value={ime}
+                            onChange={(event) => setIme(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="prezime">Prezime:</label>
+                        <input
+                            type="text"
+                            id="prezime"
+                            value={prezime}
+                            onChange={(event) => setPrezime(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="lozinka">Password:</label>
+                        <input
+                            type="password"
+                            id="lozinka"
+                            value={lozinka}
+                            onChange={(event) => setLozinka(event.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ReCAPTCHA
+                            sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"
+                            onChange={(value) => setRecaptchaValue(value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <Link to="/login">Already have an account? Log in</Link>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}
+export default Register;
+

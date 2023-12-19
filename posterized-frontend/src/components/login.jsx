@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import './login.css';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login(props) {
     const onLogin = props.onLogin;
@@ -9,9 +10,16 @@ function Login(props) {
     const [alertMessage, setAlertMessage] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [recaptchaValue, setRecaptchaValue] = useState(null);
 
     async function authenticate(e) {
         e.preventDefault();
+
+        if (!recaptchaValue) {
+            alert('Please complete the reCAPTCHA.');
+            return;
+        }
+
         const body = `username=${username.toLowerCase()}&password=${password}`;
         const options = {
             credentials: 'include',
@@ -79,6 +87,10 @@ function Login(props) {
                         <div>
                             <a href="/forgot-password">Forgot your password?</a>
                         </div>
+                        <ReCAPTCHA
+                            sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"
+                            onChange={(value) => setRecaptchaValue(value)}
+                        />
                         <div>
                             <button name="prijava" type="submit">Prijavi se</button>
                         </div>
