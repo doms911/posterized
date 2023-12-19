@@ -26,7 +26,7 @@ public class PasswordTokenController {
     @Autowired
     private Environment env;
 
-    @PostMapping("/resetPassword")
+    @PostMapping("/resetLozinka")
     public Map<String, String> resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) {
         userEmail = userEmail.toLowerCase();
         Osoba osoba = akService.findByEmail(userEmail);
