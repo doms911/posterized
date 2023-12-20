@@ -10,6 +10,8 @@ function Register() {
     const [prezime, setPrezime] = useState('');
     const [email, setEmail] = useState('');
     const [lozinka, setLozinka] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const [recaptchaValue, setRecaptchaValue] = useState(null);
 
@@ -19,7 +21,10 @@ function Register() {
             alert('Please complete the reCAPTCHA.');
             return;
         }
-
+        var stariDiv = document.getElementsByClassName('alert-container1');
+        if (stariDiv && stariDiv.parentNode) {
+            stariDiv.parentNode.removeChild(stariDiv);
+        }
         try {
             console.log("Submitting:", ime, prezime, email, lozinka);
             await axios.post("/api/registracija", {
@@ -36,10 +41,8 @@ function Register() {
             alert("Registracija uspješna");
             window.location.replace("/");
         } catch (err) {
-            console.error(err);
-            if (err.response.data.message) {
-                alert(err.response.data.message)
-            } else alert("An error occurred. Please check the console for details.");
+            setShowAlert(true);
+            setAlertMessage(err.response.data.message);
         }
     }
 
@@ -47,6 +50,11 @@ function Register() {
         <div className="centered-wrapper">
             <div className="register-container">
                 <h2>Create a new account</h2>
+                {showAlert && (
+                        <div className="alert-container">
+                            {alertMessage}
+                        </div>
+                    )}
                 <form onSubmit={save}>
                     <div className="form-group">
                         <label htmlFor="ime">Ime:</label>
