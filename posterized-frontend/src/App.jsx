@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
 import VideoStream from './components/videoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
+import SuperAdmin from './components/superadmin.jsx';
 
 
 const App = () => {
@@ -58,6 +59,8 @@ const App = () => {
                 {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
                 {isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
+                {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
+
             </Routes>
         </Router>
     );
