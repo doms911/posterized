@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './ForgotPassword.css';
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            // Ovdje dodajte endpoint vašeg API-a za resetiranje lozinke
-            const response = await axios.post('/api/reset-password', { email });
-            setMessage('Ako e-mail postoji u našem sustavu, poslat ćemo vam upute za resetiranje lozinke.');
-        } catch (error) {
-            console.error('Došlo je do greške:', error);
-            setMessage('Došlo je do greške. Molimo pokušajte ponovno.');
-        }
+
+        const body = `email=${encodeURIComponent(email)}`;
+        const options = {
+            method: 'POST',
+            headers: {         'Content-Type': 'application/x-www-form-urlencoded',
+        },
+            body: body,
+        };
+
+        fetch('/api/reset/resetLozinka', options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                setMessage('Ako e-mail postoji u našem sustavu, poslat ćemo vam upute za resetiranje lozinke.');
+            })
+            .catch(error => {
+                console.error('Došlo je do greške:', error);
+                setMessage('Došlo je do greške. Molimo pokušajte ponovno.');
+            });
     };
 
     return (
