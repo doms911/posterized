@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
 
+
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "konferencija")
@@ -21,6 +23,27 @@ public class Konferencija {
 
     private Timestamp vrijemePocetka;
     private Timestamp vrijemeKraja;
+
+    public Osoba getAdminKonf() {
+        return adminKonf;
+    }
+
+    public void setAdminKonf(Osoba adminKonf) {
+        this.adminKonf = adminKonf;
+    }
+
+    public Mjesto getMjesto() {
+        return mjesto;
+    }
+
+    public void setMjesto(Mjesto mjesto) {
+        this.mjesto = mjesto;
+    }
+
+    @ManyToOne
+    private Osoba adminKonf;
+    @ManyToOne
+    private Mjesto mjesto;
 
     public Long getId() {
         return id;

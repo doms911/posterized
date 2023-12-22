@@ -1,6 +1,7 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.KonferencijaRepository;
+import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Konferencija;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,14 @@ import org.springframework.util.Assert;
 import java.sql.Timestamp;
 import java.util.List;
 
+
 @Service
 public class KonferencijaServiceJPA implements KonferencijaService {
 
     @Autowired
     private KonferencijaRepository konferencijaRepo;
+    private OsobaRepository osobaRepo;
+    private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
 
     @Override
     public List<Konferencija> listAll(){
@@ -29,13 +33,21 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public Konferencija createKonferencija(Integer pin) {
+    public Konferencija createKonferencija(Integer pin, String email) {
         Assert.notNull(pin, "Pin must be given.");
         if (konferencijaRepo.countByPin(pin) > 0){
             Assert.hasText("","Konferencija already exists.");
         }
         Konferencija konferencija = new Konferencija();
+        Assert.hasText(email, "Email must be given");
+        Assert.isTrue(email.matches(EMAIL_FORMAT),
+                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+        );
+        /*if (osobaRepo.countByEmail(email) == 0) {
+            Assert.hasText("", "Osoba with email " + email + " does not exists");
+        }*/
         konferencija.setPin(pin);
+        konferencija.setAdminKonf(osobaRepo.findByEmail(email));
         return konferencijaRepo.save(konferencija);
     }
 
