@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './changePassword.css';
-
 
 function ChangePassword() {
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
-    const { id, token } = useParams(); // Extract id and token from URL params
+    const location = useLocation();
     const navigate = useNavigate();
 
-    // Function to check token validity
-    useEffect(() => {  //koristi se zato da se ne ucita body prije provjere tokena
+    // Izvlačenje tokena iz URL-a
+    const searchParams = new URLSearchParams(location.search);
+    const token = searchParams.get('token');
+
+    useEffect(() => {
+        // Provjera valjanosti tokena
         fetch('/api/reset/promijeniLozinku', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `token=${token}`
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Greška u zahtjevu: ' + response.statusText);
+            }
+            if(response.status === 204 || response.status === 205 || response.bodyUsed === false) {
+                //setMessage('Token je provjeren i valjan.');
+                return null;
+            }
+            return response.json();
+        })
         .then(data => {
-            if (data.error) {
+            if (data && data.error) {
                 setMessage(data.error);
             }
         })
@@ -27,20 +39,25 @@ function ChangePassword() {
         });
     }, [token]);
 
-    // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Slanje nove lozinke i tokena
         fetch('/api/reset/spremiLozinku', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `token=${token}&password=${newPassword}`
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Greška u zahtjevu: ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
-            if (data.success) {
+            if (data && data.success) {
                 setMessage('Vaša lozinka je uspješno promijenjena.');
-                navigate('/'); // Redirect to home or other page
-            } else {
+                navigate('/'); // Redirect na početnu stranicu
+            } else if (data && data.error) {
                 setMessage(data.error);
             }
         })
