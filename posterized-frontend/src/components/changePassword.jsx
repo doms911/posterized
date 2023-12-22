@@ -45,7 +45,7 @@ function ChangePassword() {
         fetch('/api/reset/spremiLozinku', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `token=${token}&password=${newPassword}`
+            body: `token=${token}&lozinka=${newPassword}` 
         })
         .then(response => {
             if (!response.ok) {
