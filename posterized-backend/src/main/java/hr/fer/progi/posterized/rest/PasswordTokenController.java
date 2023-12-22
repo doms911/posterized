@@ -37,14 +37,13 @@ public class PasswordTokenController {
         }
         String token = UUID.randomUUID().toString();
         passService.createPasswordResetToken(osoba, token);
-        mailSender.send(napraviEmail("http://" + request.getServerName() + ":" +
-                request.getServerPort() + request.getContextPath(), token, osoba));
+        mailSender.send(napraviEmail("http://localhost:3000", token, osoba));
         response.put("message", "Reset Password");
         return response;
     }
 
     private SimpleMailMessage napraviEmail(String contextPath, String token, Osoba osoba) {
-        final String url = contextPath + "/reset/changePassword?id=" + osoba.getId() + "&token=" + token;
+        final String url = contextPath + "/changePassword?id=" + osoba.getId() + "&token=" + token;
         final String message = "Reset Password";
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(osoba.getEmail());
