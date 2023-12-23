@@ -83,10 +83,12 @@ function Login(props) {
                         <div>
                             <a href="/forgot-password">Forgot your password?</a>
                         </div>
+                        {/*                   
                         <ReCAPTCHA
                             sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"
                             onChange={(value) => setRecaptchaValue(value)}
                         />
+                        */}
                         <div>
                             <button name="prijava" type="submit">Prijavi se</button>
                         </div>

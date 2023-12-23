@@ -93,10 +93,12 @@ function Register() {
                         />
                     </div>
                     <div className="form-group">
+                        {/* 
                         <ReCAPTCHA
                             sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"
                             onChange={(value) => setRecaptchaValue(value)}
                         />
+                        */}
                     </div>
                     <div className="form-group">
                         <Link to="/login">Already have an account? Log in</Link>
