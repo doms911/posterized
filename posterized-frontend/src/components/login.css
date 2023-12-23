@@ -46,7 +46,7 @@ button[name="prijava"], button[name="dodaj"]:focus {
 }
 
 .alert-container {
-    display: flex;
+    display: block;
     background-color: rgb(250, 151, 151);
     color: rgb(116, 26, 26);
     padding: 10px;
@@ -54,4 +54,5 @@ button[name="prijava"], button[name="dodaj"]:focus {
     padding-left: 30px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }  

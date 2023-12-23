@@ -10,8 +10,6 @@ function Register() {
     const [prezime, setPrezime] = useState('');
     const [email, setEmail] = useState('');
     const [lozinka, setLozinka] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState('');
 
     const [recaptchaValue, setRecaptchaValue] = useState(null);
 
@@ -21,9 +19,9 @@ function Register() {
             alert('Please complete the reCAPTCHA.');
             return;
         }
-        var stariDiv = document.getElementsByClassName('alert-container1');
-        if (stariDiv && stariDiv.parentNode) {
-            stariDiv.parentNode.removeChild(stariDiv);
+        var stariDiv = document.getElementsByClassName('alert-container')[0];
+        if (stariDiv && stariDiv.parentElement) {
+            stariDiv.parentElement.removeChild(stariDiv);
         }
         try {
             console.log("Submitting:", ime, prezime, email, lozinka);
@@ -41,8 +39,11 @@ function Register() {
             alert("Registracija uspješna");
             window.location.replace("/");
         } catch (err) {
-            setShowAlert(true);
-            setAlertMessage(err.response.data.message);
+            var noviDiv = document.createElement('div');
+            noviDiv.className = 'alert-container';
+            noviDiv.textContent = err.response.data.message;
+            var udiv = document.getElementsByClassName('register-container')[0];
+            udiv.insertBefore(noviDiv, document.getElementById("moj"));
         }
     }
 
@@ -50,12 +51,7 @@ function Register() {
         <div className="centered-wrapper">
             <div className="register-container">
                 <h2>Create a new account</h2>
-                {showAlert && (
-                        <div className="alert-container">
-                            {alertMessage}
-                        </div>
-                    )}
-                <form onSubmit={save}>
+                <form onSubmit={save} id="moj">
                     <div className="form-group">
                         <label htmlFor="ime">Ime:</label>
                         <input

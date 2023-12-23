@@ -6,8 +6,6 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 function Login(props) {
     const onLogin = props.onLogin;
-    const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [recaptchaValue, setRecaptchaValue] = useState(null);
@@ -31,14 +29,17 @@ function Login(props) {
         };
         fetch('/api/login', options)
             .then((response) => {
-                var stariDiv = document.getElementsByClassName('alert-container');
-                if (stariDiv && stariDiv.parentNode) {
-                    stariDiv.parentNode.removeChild(stariDiv);
+                var stariDiv = document.getElementsByClassName('alert-container')[0];
+                if (stariDiv && stariDiv.parentElement) {
+                    stariDiv.parentElement.removeChild(stariDiv);
                 }
                 if (response.status === 401) {
                     response.json().then((data) => {
-                        setShowAlert(true);
-                        setAlertMessage(data.message);
+                        var noviDiv = document.createElement('div');
+                        noviDiv.className = 'alert-container';
+                        noviDiv.textContent = data.message;
+                        var udiv = document.getElementsByClassName('container')[0];
+                        udiv.insertBefore(noviDiv, document.getElementById("moj"));
                     });
                 } else {
                     Cookies.set('user', 'authenticated'); 
@@ -58,13 +59,8 @@ function Login(props) {
         <div className="centered-wrapper">
             <div className="container">
                     <h2>Log in</h2>
-                    {showAlert && (
-                        <div className="alert-container">
-                            {alertMessage}
-                        </div>
-                    )}
-                    <form onSubmit={authenticate}>
-                        <div>
+                    <form onSubmit={authenticate} id="moj">
+                        <div >
                             <label>Email:</label>
                             <input
                                 type="text"
