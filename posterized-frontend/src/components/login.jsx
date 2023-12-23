@@ -13,10 +13,10 @@ function Login(props) {
     async function authenticate(e) {
         e.preventDefault();
 
-        /*if (!recaptchaValue) {
+        if (!recaptchaValue) {
             alert('Please complete the reCAPTCHA.');
             return;
-        }*/
+        }
 
         const body = `username=${username.toLowerCase()}&password=${password}`;
         const options = {
@@ -83,12 +83,12 @@ function Login(props) {
                         <div>
                             <a href="/forgot-password">Forgot your password?</a>
                         </div>
-                        {/*                   
+                        {                   
                         <ReCAPTCHA
                             sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"
                             onChange={(value) => setRecaptchaValue(value)}
                         />
-                        */}
+                        }
                         <div>
                             <button name="prijava" type="submit">Prijavi se</button>
                         </div>
