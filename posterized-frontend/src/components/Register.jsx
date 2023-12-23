@@ -15,10 +15,10 @@ function Register() {
 
     async function save(event) {
         event.preventDefault();
-        if (!recaptchaValue) {
+        /*if (!recaptchaValue) {
             alert('Please complete the reCAPTCHA.');
             return;
-        }
+        }*/
         var stariDiv = document.getElementsByClassName('alert-container')[0];
         if (stariDiv && stariDiv.parentElement) {
             stariDiv.parentElement.removeChild(stariDiv);

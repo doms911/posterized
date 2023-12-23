@@ -13,10 +13,10 @@ function Login(props) {
     async function authenticate(e) {
         e.preventDefault();
 
-        if (!recaptchaValue) {
+        /*if (!recaptchaValue) {
             alert('Please complete the reCAPTCHA.');
             return;
-        }
+        }*/
 
         const body = `username=${username.toLowerCase()}&password=${password}`;
         const options = {
