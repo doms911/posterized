@@ -8,27 +8,35 @@ function ForgotPassword() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const body = `email=${encodeURIComponent(email)}`;
+        const body = `email=${email.toLowerCase()}`;
         const options = {
             method: 'POST',
-            headers: {         'Content-Type': 'application/x-www-form-urlencoded',
-        },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
             body: body,
         };
-
         fetch('/api/reset/resetLozinka', options)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+            .then((response) => { //front je uspio poslat zahtjev backendu
+                var stariDiv = document.getElementsByClassName('alert-container')[0]; //u slucaju da je osoba vec fulala izbrisi stari div
+                if (stariDiv && stariDiv.parentElement) {
+                    stariDiv.parentElement.removeChild(stariDiv);
                 }
-                return response.json();
+                if(message)setMessage(''); //ako je za prosli zahtjev bila postavljena poruka kad je bilo uspjesno sad i nju izbrisi, ovo mozda inaca nece trebat ak nema ispisa za uspjesno
+                if (response.status === 400) {  //ako je doslo do greske
+                    response.json().then((data) => { //otpakiraj backendov odgovor i izvuci data
+                        var noviDiv = document.createElement('div'); //ubaci div za tekst greske
+                        noviDiv.className = 'alert-container';
+                        noviDiv.textContent = data.message;//iz data izvuci poruku
+                        var udiv = document.getElementsByClassName('form-group')[0]; //ovo prilagoditi ovom htmlu dole za svaku stranicu ce bit drukcije
+                        udiv.insertBefore(noviDiv, udiv.firstElementChild);
+                    });
+                } else { //ako nije doslo do greske
+                    setMessage("An email with instructions has been successfully sent to you."); //ovo pokrece crtanje diva u liniji 60
+                }
             })
-            .then(data => {
-                setMessage('Ako e-mail postoji u našem sustavu, poslat ćemo vam upute za resetiranje lozinke.');
-            })
-            .catch(error => {
-                console.error('Došlo je do greške:', error);
-                setMessage('Došlo je do greške. Molimo pokušajte ponovno.');
+            .catch((error) => { //ako front uopce nije uspio poslat zahtjev backendu
+                console.error('Error:', error);
             });
     };
 

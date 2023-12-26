@@ -57,7 +57,7 @@ const App = () => {
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
                 {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
                 {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
-                {isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
+                {!isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
 

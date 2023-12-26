@@ -2,8 +2,8 @@ import React from 'react';
 import "./videoStream.css"
 
 function videoStream() {
-    // Ovdje možete postaviti URL vašeg video izvora
-    const videoSrc = 'your_video_source_url_here';
+    //hardcodiran url, mijenjat kad dode backend
+    const videoSrc = 'neki url';
 
     return (
         <div className="video-stream-container">

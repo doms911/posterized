@@ -1,51 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './changePassword.css';
-
 
 function ChangePassword() {
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
-    const { id, token } = useParams(); // Extract id and token from URL params
-    const navigate = useNavigate();
+    const location = useLocation();
+    const [dozvola, setDozvola] = useState(false);
 
-    // Function to check token validity
-    useEffect(() => {  //koristi se zato da se ne ucita body prije provjere tokena
+    // Izvlačenje tokena iz URL-a
+    const searchParams = new URLSearchParams(location.search);
+    const token = searchParams.get('token');
+
+    useEffect(() => {
+        // Provjera valjanosti tokena
         fetch('/api/reset/promijeniLozinku', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `token=${token}`
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                setMessage(data.error);
+        .then(response => {
+            var stariDiv = document.getElementsByClassName('alert-container')[0]; //u slucaju da je osoba vec fulala izbrisi stari div
+            if (stariDiv && stariDiv.parentElement) {
+                stariDiv.parentElement.removeChild(stariDiv);
             }
-        })
+            if (response.status === 400) {  //ako je doslo do greske
+                response.json().then((data) => { //otpakiraj backendov odgovor i izvuci data
+                    var noviDiv = document.createElement('div'); //ubaci div s tekstom greske
+                    noviDiv.className = 'alert-container';
+                    noviDiv.textContent = data.message;
+                    var udiv = document.getElementsByClassName('change-password-form')[0]; //ovo prilagoditi ovom htmlu dole za svaku stranicu ce bit drukcije
+                    udiv.insertBefore(noviDiv, udiv.firstElementChild);
+                    setDozvola(false); //onemoguci slanje ovog zahtjeva ispod
+                });
+            }else{
+                setDozvola(true);
+            }})
         .catch(error => {
-            setMessage('Došlo je do greške.');
+            console.error('Error:', error);
         });
-    }, [token]);
+    }, []);
 
-    // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(!dozvola) return;
+        // Slanje nove lozinke i tokena
         fetch('/api/reset/spremiLozinku', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `token=${token}&password=${newPassword}`
+            body: `token=${token}&lozinka=${newPassword}` 
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                setMessage('Vaša lozinka je uspješno promijenjena.');
-                navigate('/'); // Redirect to home or other page
-            } else {
-                setMessage(data.error);
+        .then((response) => { //front je uspio poslat zahtjev backendu
+            var stariDiv = document.getElementsByClassName('alert-container')[0]; //u slucaju da je osoba vec fulala izbrisi stari div
+            if (stariDiv && stariDiv.parentElement) {
+                stariDiv.parentElement.removeChild(stariDiv);
+            }
+            if(message)setMessage(''); //ako je za prosli zahtjev bila postavljena poruka kad je bilo uspjesno sad i nju izbrisi, ovo mozda inaca nece trebat ak nema ispisa za uspjesno
+            if (response.status === 400) {  //ako je doslo do greske
+                response.json().then((data) => { //otpakiraj backendov odgovor i izvuci data
+                    var noviDiv = document.createElement('div'); //ubaci div za tekst greske
+                    noviDiv.className = 'alert-container';
+                    noviDiv.textContent = data.message; //iz data izvuci poruku
+                    var udiv = document.getElementsByClassName('change-password-form')[0]; //ovo prilagoditi ovom htmlu dole za svaku stranicu ce bit drukcije
+                    udiv.insertBefore(noviDiv, udiv.firstElementChild);
+                });
+            } else { //ako nije doslo do greske
+                setMessage("You have successfully changed your password."); //ovo pokrece crtanje diva u liniji 80
+                window.location.replace('/');
             }
         })
-        .catch(error => {
-            setMessage('Došlo je do greške pri promjeni lozinke.');
+        .catch((error) => { //ako front uopce nije uspio poslat zahtjev backendu
+            console.error('Error:', error);
         });
     };
 
