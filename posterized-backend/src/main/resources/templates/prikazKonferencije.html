@@ -29,30 +29,53 @@
         }
     </style>
     <script>
-        
-        function dohvatiKonferencije(){
+        window.onload = function () {
+            // Pozovite funkciju kada se stranica učita
+            dohvatiKonferencije();
+        };
+
+        function dohvatiKonferencije() {
             fetch('/api/konferencija/prikaziSve', {
-                method: 'GET'})
-                .then(konferencije => setKonferencije(konferencije))
+                method: 'GET'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Ovde radite s podacima i prikazujete ih na stranici
+                    console.log(data);
+
+                    // Primer kako možete prikazati podatke u HTML-u
+                    data.forEach(konferencija => {
+                        const conferenceDiv = document.createElement('div');
+                        conferenceDiv.className = 'conference';
+
+                        const h2 = document.createElement('h2');
+                        h2.innerText = konferencija.pin;
+
+                        const dateP = document.createElement('p');
+                        dateP.innerText = 'Date: January 1, 2023';
+
+                        const locationP = document.createElement('p');
+                        locationP.innerText = 'Location: City, Country';
+
+                        const descriptionP = document.createElement('p');
+                        descriptionP.innerText = 'Description: ' + konferencija.description;
+
+                        conferenceDiv.appendChild(h2);
+                        conferenceDiv.appendChild(dateP);
+                        conferenceDiv.appendChild(locationP);
+                        conferenceDiv.appendChild(descriptionP);
+
+                        document.body.appendChild(conferenceDiv);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
         }
     </script>
 </head>
 
 <body>
 
-    <h1>My Conferences</h1>
-    <% konferencije.map(konferencija => ( %>
-    <div class="conference">
-        <h2><%= konferencija.pin %></h2>
-        <p>Date: January 1, 2023</p>
-        <p>Location: City, Country</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget erat in enim dictum sodales.
-            ...</p>
-        <!-- Add more details as needed -->
-    
-    </div>
-    <% )) %>
-
+<h1>My Conferences</h1>
 
 </body>
 
