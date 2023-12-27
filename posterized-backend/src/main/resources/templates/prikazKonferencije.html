@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Conferences</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+
+        .conference {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .conference h2 {
+            margin-top: 0;
+        }
+
+        .conference p {
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        
+        function dohvatiKonferencije(){
+            fetch('/api/prikazKonferencije', {
+                method: 'GET'})
+                .then(konferencije => setKonferencije(konferencije))
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1>My Conferences</h1>
+    {konferencije.map(konferencija => (
+    <div class="conference">
+        <h2>{pin}</h2>
+        <p>Date: January 1, 2023</p>
+        <p>Location: City, Country</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget erat in enim dictum sodales.
+            ...</p>
+        <!-- Add more details as needed -->
+    
+    </div>
+    ))}
+
+
+</body>
+
+</html>
