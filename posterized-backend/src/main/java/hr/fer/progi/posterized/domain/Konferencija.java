@@ -18,6 +18,8 @@ public class Konferencija {
 
     private String urlVideo;
 
+    private String naziv;
+
     @Column(unique = true)
     private Integer pin;
 
@@ -83,6 +85,13 @@ public class Konferencija {
 
     public void setVrijemeKraja(Timestamp vrijemeKraja) {
         this.vrijemeKraja = vrijemeKraja;
+    }
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
     }
 
 }

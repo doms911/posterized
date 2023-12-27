@@ -9,7 +9,7 @@ import java.util.List;
 public interface KonferencijaService {
     List<Konferencija> listAll();
     public Konferencija provjeriPin(Integer pin);
-    public Konferencija createKonferencija(Integer pin, String email);
+    public Konferencija createKonferencija(Integer pin, String email, String naziv);
     public boolean zapocniKonferencija(Integer pin);
     public boolean zavrsiKonferencija(Integer pin);
 

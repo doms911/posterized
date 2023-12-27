@@ -7,4 +7,5 @@ public interface KonferencijaRepository extends JpaRepository<Konferencija,Long>
     public Konferencija findByPin(Integer pin);
 
     public int countByPin(Integer pin);
+    public int countByNaziv(String naziv);
 }

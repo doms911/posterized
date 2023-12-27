@@ -21,7 +21,7 @@ function ConferenceInput(props) {
             },
             body: body,
         };
-        fetch('/api/conferenceInput', options)
+        fetch('/api/konferencija/nadopuniKonf', options)
             .then((response) => {
                 if (response.status === 401) {
                     alert('Dogodila se greška. Podaci nisu uneseni.');
