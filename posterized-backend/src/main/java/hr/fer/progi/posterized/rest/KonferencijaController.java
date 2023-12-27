@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @RestController
+//@Controller
 @RequestMapping("/konferencija")
 
 public class KonferencijaController {
@@ -28,14 +29,18 @@ public class KonferencijaController {
         return kService.provjeriPin(pin);
     }
 
-    @GetMapping("")
-    public String prikazKonf() {
-        return "prikazKonferencije";
+    @GetMapping("/prikaziSve")
+    public List<Konferencija> prikazKonf() {
+        return kService.listAll();
     }
+
+    /*@GetMapping("")
+    public String prikaziKonf(){
+        return "prikazKonferencije";
+    }*/
 
     @PostMapping("/nadopuniKonf")
     public Konferencija updateKonferencija(@RequestParam("pin") Integer pin){
         return kService.provjeriPin(pin);
-
     }
 }

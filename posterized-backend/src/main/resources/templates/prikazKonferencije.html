@@ -31,7 +31,7 @@
     <script>
         
         function dohvatiKonferencije(){
-            fetch('/api/prikazKonferencije', {
+            fetch('/api/konferencija/prikaziSve', {
                 method: 'GET'})
                 .then(konferencije => setKonferencije(konferencije))
         }
@@ -41,9 +41,9 @@
 <body>
 
     <h1>My Conferences</h1>
-    {konferencije.map(konferencija => (
+    <% konferencije.map(konferencija => ( %>
     <div class="conference">
-        <h2>{pin}</h2>
+        <h2><%= konferencija.pin %></h2>
         <p>Date: January 1, 2023</p>
         <p>Location: City, Country</p>
         <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget erat in enim dictum sodales.
@@ -51,7 +51,7 @@
         <!-- Add more details as needed -->
     
     </div>
-    ))}
+    <% )) %>
 
 
 </body>

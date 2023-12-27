@@ -62,7 +62,7 @@ const App = () => {
                 {!isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
-
+                
             </Routes>
         </Router>
     );
