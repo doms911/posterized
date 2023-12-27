@@ -24,6 +24,11 @@ public class Konferencija {
     private Timestamp vrijemePocetka;
     private Timestamp vrijemeKraja;
 
+    @ManyToOne
+    private Osoba adminKonf;
+    @ManyToOne
+    private Mjesto mjesto;
+
     public Osoba getAdminKonf() {
         return adminKonf;
     }
@@ -39,11 +44,6 @@ public class Konferencija {
     public void setMjesto(Mjesto mjesto) {
         this.mjesto = mjesto;
     }
-
-    @ManyToOne
-    private Osoba adminKonf;
-    @ManyToOne
-    private Mjesto mjesto;
 
     public Long getId() {
         return id;
