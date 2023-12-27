@@ -3,6 +3,7 @@ package hr.fer.progi.posterized.service.impl;
 import hr.fer.progi.posterized.dao.KonferencijaRepository;
 import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Konferencija;
+import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     public List<Konferencija> listAll(){
         return konferencijaRepo.findAll();
     }
+
+    @Override
+    public List<Konferencija> prikazAdmin(String email){
+        Osoba osoba = osobaRepo.findByEmail(email);
+        return konferencijaRepo.findAllByAdminKonf_id(osoba.getId());
+    };
     @Override
     public Konferencija provjeriPin(Integer pin) {
         if (konferencijaRepo.countByPin(pin) == 0){

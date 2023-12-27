@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface KonferencijaService {
     List<Konferencija> listAll();
+    List<Konferencija> prikazAdmin(String email);
     public Konferencija provjeriPin(Integer pin);
     public Konferencija createKonferencija(Integer pin, String email, String naziv);
     public boolean zapocniKonferencija(Integer pin);

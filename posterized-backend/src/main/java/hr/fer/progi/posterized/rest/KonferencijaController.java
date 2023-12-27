@@ -2,6 +2,9 @@ package hr.fer.progi.posterized.rest;
 
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.KonferencijaService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +51,20 @@ public class KonferencijaController {
 
             rezultat.add(konferencijaMapa);
         }
-
         return rezultat;
     }
 
+    @GetMapping("/prikaziAdminu")
+    public List<String> prikaz(@AuthenticationPrincipal User user) {
+        String email = user.getUsername();
+        List<Konferencija> konferencije = kService.prikazAdmin(email);
+        List<String> rezultat = new ArrayList<>();
+
+        for (Konferencija konferencija : konferencije) {
+            rezultat.add(konferencija.getNaziv());
+        }
+        return rezultat;
+    }
     /*@GetMapping("")
     public String prikaziKonf(){
         return "prikazKonferencije";
