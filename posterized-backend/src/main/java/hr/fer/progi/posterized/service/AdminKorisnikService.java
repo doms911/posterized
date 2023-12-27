@@ -8,4 +8,5 @@ public interface AdminKorisnikService {
     Osoba createAdminKorisnik(Osoba osoba);
     Osoba findByEmail(String email);
     void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token);
+    void saljiMail(Osoba osoba, String lozinka);
 }

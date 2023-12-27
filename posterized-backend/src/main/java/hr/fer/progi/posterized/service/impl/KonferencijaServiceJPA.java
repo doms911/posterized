@@ -17,6 +17,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
     @Autowired
     private KonferencijaRepository konferencijaRepo;
+    @Autowired
     private OsobaRepository osobaRepo;
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
 

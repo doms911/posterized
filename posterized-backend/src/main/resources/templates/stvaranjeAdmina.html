@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registracija</title>
+</head>
+<body>
+
+<h2>Registracija</h2>
+
+<form id="registracijaForma">
+    <!-- Ime -->
+    <label for="ime">Ime:</label>
+    <input type="text" id="ime" name="ime" required>
+
+    <!-- Prezime -->
+    <label for="prezime">Prezime:</label>
+    <input type="text" id="prezime" name="prezime" required>
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <!-- Lozinka -->
+    <label for="lozinka">Lozinka:</label>
+    <input type="password" id="lozinka" name="lozinka" required>
+
+    <!-- Hidden polje za ulogu -->
+    <input type="hidden" id="uloga" name="uloga" value="admin">
+
+    <!-- Dugme za slanje forme -->
+    <button type="button" onclick="posaljiPodatke()">Registruj se</button>
+</form>
+
+<script>
+    function posaljiPodatke() {
+        var forma = document.getElementById('registracijaForma');
+        var podaci = new FormData(forma);
+
+        fetch('/api/stvoriAdmina', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(podaci)),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            // Obrada odgovora ako je potrebno
+            console.log(response);
+        }).catch(error => {
+            // Obrada greške ako je potrebno
+            console.error(error);
+        });
+    }
+</script>
+
+</body>
+</html>

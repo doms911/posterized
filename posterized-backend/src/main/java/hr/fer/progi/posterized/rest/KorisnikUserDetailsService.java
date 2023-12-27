@@ -16,24 +16,24 @@ import static org.springframework.security.core.authority.AuthorityUtils.commaSe
 @Service
 public class KorisnikUserDetailsService implements UserDetailsService {
     @Value("${hr.fer.progi.posterized.admin.password}")
-    private String adminLozinkaHash;
+    private String superadminLozinkaHash;
 
     @Autowired
     private AdminKorisnikService akService;
     @Override
     public UserDetails loadUserByUsername(String username) {
-        if ("admin".equals(username)) {
+        if ("superadmin".equals(username)) {
             return new User(
                     username,
-                    adminLozinkaHash,
-                    commaSeparatedStringToAuthorityList("ROLE_ADMIN")
+                    superadminLozinkaHash,
+                    commaSeparatedStringToAuthorityList("superadmin")
             );}
         Osoba korisnik = akService.findByEmail(username.toLowerCase());
         if (korisnik != null) {
             return new User(
                     korisnik.getEmail(),
                     korisnik.getLozinka(),
-                    commaSeparatedStringToAuthorityList("ROLE_USER")
+                    commaSeparatedStringToAuthorityList(korisnik.getUloga())
             );
         } else {
             throw new UsernameNotFoundException("No user " + username);

@@ -6,11 +6,9 @@ import hr.fer.progi.posterized.domain.Osoba;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/registracija")
-public class AdminKorisnikController {
+public class KorisnikController {
     @Autowired
     private AdminKorisnikService akService;
     @PostMapping("")

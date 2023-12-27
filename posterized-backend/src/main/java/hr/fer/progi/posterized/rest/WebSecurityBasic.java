@@ -64,7 +64,7 @@ public class WebSecurityBasic {
                         String email = ((UserDetails) authentication.getPrincipal()).getUsername();
                         String ime;
                         GrantedAuthority uloga;
-                        if(Objects.equals(email, "admin")) ime = email;
+                        if(Objects.equals(email, "superadmin")) ime = email;
                         else {
                             ime = akService.findByEmail(email.toLowerCase()).getIme();}
                         uloga = ((UserDetails) authentication.getPrincipal()).getAuthorities().stream().findFirst().orElse(null);

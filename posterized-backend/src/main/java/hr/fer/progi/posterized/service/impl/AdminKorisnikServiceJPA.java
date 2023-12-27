@@ -6,6 +6,9 @@ import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.AdminKorisnikService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -63,7 +66,21 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         Assert.hasText(prezime, "Prezime must be given");
         return osobaRepo.save(osoba);
     }
-
+    @Autowired
+    private Environment env;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Override
+    public void saljiMail(Osoba osoba, String lozinka){
+        final String url = "http://localhost:3000" + "/forgot-password";
+        final String message = "Your current password is:" + lozinka + ", if you want to change it: ";
+        final SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(osoba.getEmail());
+        email.setSubject("Your Account");
+        email.setText(message + " \r\n" + url);
+        email.setFrom(env.getProperty("support.email"));
+        mailSender.send(email);
+    }
     @Override
     @Transactional
     public void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token){
