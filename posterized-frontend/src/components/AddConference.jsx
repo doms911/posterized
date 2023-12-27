@@ -20,7 +20,7 @@ function AddConference() {
             },
             body: body,
         };
-        fetch('/api/addConference', options)
+        fetch('/api/konferencija/stvoriKonf', options)
             .then((response) => {
                 if (response.status === 401) {
                     alert('Dogodila se greška. Konferencija nije kreirana.');

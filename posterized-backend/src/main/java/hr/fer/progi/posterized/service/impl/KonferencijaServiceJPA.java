@@ -34,20 +34,25 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public Konferencija createKonferencija(Integer pin, String email) {
+    public Konferencija createKonferencija(Integer pin, String email, String naziv) {
         Assert.notNull(pin, "Pin must be given.");
         if (konferencijaRepo.countByPin(pin) > 0){
             Assert.hasText("","Konferencija already exists.");
         }
         Konferencija konferencija = new Konferencija();
+        Assert.hasText(naziv, "Naziv must be given");
+        if (konferencijaRepo.countByNaziv(naziv) > 0){
+            Assert.hasText("","Naziv already exists.");
+        }
         Assert.hasText(email, "Email must be given");
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
         );
-        /*if (osobaRepo.countByEmail(email) == 0) {
+        if (osobaRepo.countByEmail(email) == 0) {
             Assert.hasText("", "Osoba with email " + email + " does not exists");
-        }*/
+        }
         konferencija.setPin(pin);
+        konferencija.setNaziv(naziv);
         konferencija.setAdminKonf(osobaRepo.findByEmail(email));
         return konferencijaRepo.save(konferencija);
     }
