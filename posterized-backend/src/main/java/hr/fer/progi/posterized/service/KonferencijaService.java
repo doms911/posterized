@@ -12,6 +12,7 @@ public interface KonferencijaService {
     List<Konferencija> prikazAdmin(String email);
     Konferencija provjeriPin(Integer pin);
     Konferencija createKonferencija(Integer pin, String email, String naziv);
+    void izbrisiKonf(String admin, String naziv);
     boolean zapocniKonferencija(Integer pin);
     boolean zavrsiKonferencija(Integer pin);
     void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, List<String> sponzori);

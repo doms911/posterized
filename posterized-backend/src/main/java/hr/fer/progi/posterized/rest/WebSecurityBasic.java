@@ -83,9 +83,10 @@ public class WebSecurityBasic {
                     }, matcher);
         });
         http.logout(configurer -> configurer
-                .logoutUrl("/logout")
-                .logoutSuccessHandler((request, response, authentication) ->
-                        response.setStatus(HttpStatus.NO_CONTENT.value())));
+                .logoutUrl("/logout").deleteCookies("JSESSIONID").invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessHandler((request, response, authentication) ->{
+                        response.setStatus(HttpStatus.NO_CONTENT.value());}));
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

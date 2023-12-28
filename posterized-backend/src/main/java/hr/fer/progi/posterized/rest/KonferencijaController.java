@@ -112,4 +112,9 @@ public class KonferencijaController {
         List<String> sponzori = Arrays.asList(sponzoriString.split(","));
         kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, sponzori);
     }
+
+    @GetMapping("/izbrisiKonf/{naziv}")
+    public void izbrisiKonferencija (@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user){
+        kService.izbrisiKonf(user.getUsername(), nazivKonf);
+    }
 }

@@ -9,6 +9,7 @@ import hr.fer.progi.posterized.service.AdminKorisnikService;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import hr.fer.progi.posterized.service.MjestoService;
 import hr.fer.progi.posterized.service.PokroviteljService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -141,5 +142,16 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
         if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
         konferencijaRepo.save(novaKonferencija);
+    }
+    @Override
+    @Transactional
+    public void izbrisiKonf(String admin, String naziv){
+        Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
+        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        for (Pokrovitelj pokr : pokrService.listAll()){
+            pokr.getKonferencije().remove(konf);
+        }
+        konferencijaRepo.deleteByNazivIgnoreCase(naziv);
     }
 }

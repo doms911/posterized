@@ -16,4 +16,6 @@ public interface KonferencijaRepository extends JpaRepository<Konferencija,Long>
     int countByNaziv(String naziv);
     @Query("SELECT COUNT(p) FROM Pokrovitelj p WHERE LOWER(p.naziv) = LOWER(:naziv)")
     long countByNazivCaseInsensitive(@Param("naziv") String naziv);
+
+    List<Konferencija> deleteByNazivIgnoreCase(String naziv);
 }
