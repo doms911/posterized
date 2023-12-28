@@ -33,6 +33,17 @@ public class MjestoServiceJPA implements MjestoService {
         mjesto.setNaziv(naziv);
 
         return mjestoRepo.save(mjesto);
+    }
 
+    @Override
+    public Mjesto findByPbr(Integer pbr) {
+        return mjestoRepo.findByPbr(pbr);
+    }
+
+    @Override
+    public Mjesto update(String naziv, Integer pbr){
+        Mjesto mj = mjestoRepo.findByPbr(pbr);
+        mj.setNaziv(naziv);
+        return mjestoRepo.save(mj);
     }
 }

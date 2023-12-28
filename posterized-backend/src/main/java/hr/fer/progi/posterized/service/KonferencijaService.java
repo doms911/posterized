@@ -5,14 +5,14 @@ import hr.fer.progi.posterized.domain.Osoba;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
 
 public interface KonferencijaService {
     List<Konferencija> listAll();
     List<Konferencija> prikazAdmin(String email);
-    public Konferencija provjeriPin(Integer pin);
-    public Konferencija createKonferencija(Integer pin, String email, String naziv);
-    public boolean zapocniKonferencija(Integer pin);
-    public boolean zavrsiKonferencija(Integer pin);
-
-    public Konferencija updateKonferencija(String urlVideo, Integer pin, Timestamp vrijemePocetka, Timestamp vrijemeKraja, Integer pbr, String mjesto);
+    Konferencija provjeriPin(Integer pin);
+    Konferencija createKonferencija(Integer pin, String email, String naziv);
+    boolean zapocniKonferencija(Integer pin);
+    boolean zavrsiKonferencija(Integer pin);
+    void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, List<String> sponzori);
 }

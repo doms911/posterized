@@ -1,10 +1,14 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.KonferencijaRepository;
-import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Konferencija;
+import hr.fer.progi.posterized.domain.Mjesto;
 import hr.fer.progi.posterized.domain.Osoba;
+import hr.fer.progi.posterized.domain.Pokrovitelj;
+import hr.fer.progi.posterized.service.AdminKorisnikService;
 import hr.fer.progi.posterized.service.KonferencijaService;
+import hr.fer.progi.posterized.service.MjestoService;
+import hr.fer.progi.posterized.service.PokroviteljService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -19,7 +23,11 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Autowired
     private KonferencijaRepository konferencijaRepo;
     @Autowired
-    private OsobaRepository osobaRepo;
+    private AdminKorisnikService akService;
+    @Autowired
+    private MjestoService mjService;
+    @Autowired
+    private PokroviteljService pokrService;
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
 
     @Override
@@ -29,7 +37,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
     @Override
     public List<Konferencija> prikazAdmin(String email){
-        Osoba osoba = osobaRepo.findByEmail(email);
+        Osoba osoba = akService.findByEmail(email);
         return konferencijaRepo.findAllByAdminKonf_id(osoba.getId());
     };
     @Override
@@ -48,19 +56,19 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         }
         Konferencija konferencija = new Konferencija();
         Assert.hasText(naziv, "Naziv must be given");
-        if (konferencijaRepo.countByNaziv(naziv) > 0){
+        if (konferencijaRepo.countByNazivCaseInsensitive(naziv) > 0){
             Assert.hasText("","Naziv already exists.");
         }
         Assert.hasText(email, "Email must be given");
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
         );
-        if (osobaRepo.countByEmail(email) == 0) {
+        if (akService.countByEmail(email) == 0) {
             Assert.hasText("", "Osoba with email " + email + " does not exists");
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
-        konferencija.setAdminKonf(osobaRepo.findByEmail(email));
+        konferencija.setAdminKonf(akService.findByEmail(email));
         return konferencijaRepo.save(konferencija);
     }
 
@@ -75,12 +83,63 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public Konferencija updateKonferencija(String urlVideo, Integer pin, Timestamp vrijemePocetka, Timestamp vrijemeKraja, Integer pbr, String mjesto) {
-        Konferencija novaKonferencija;
-        novaKonferencija = konferencijaRepo.findByPin(pin);
-        novaKonferencija.setUrlVideo(urlVideo);
-        novaKonferencija.setVrijemeKraja(vrijemeKraja);
-        novaKonferencija.setVrijemePocetka(vrijemePocetka);
-        return novaKonferencija;
+    public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, List<String> sponzori) {
+        Konferencija novaKonferencija = konferencijaRepo.findByNazivIgnoreCase(naziv);
+        if(novaKonferencija == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(!novaKonferencija.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        Timestamp vrijemePocetkaT = null, vrijemeKrajaT = null;
+        if(!vrijemePocetka.isEmpty()) {
+            vrijemePocetkaT = Timestamp.valueOf(vrijemePocetka.replace("T", " ") + ":00");
+        } else {
+            if(novaKonferencija.getVrijemePocetka() == null)
+            Assert.hasText("", "VrijemePocetka must be given");
+        }
+        if(!vrijemeKraja.isEmpty()) {
+            vrijemeKrajaT = Timestamp.valueOf(vrijemeKraja.replace("T", " ") + ":00");
+        } else {
+            if(novaKonferencija.getVrijemeKraja() == null)
+                Assert.hasText("", "VrijemeKraja must be given");
+        }
+        if (!vrijemePocetka.isEmpty() && !vrijemeKraja.isEmpty() && vrijemePocetkaT.after(vrijemeKrajaT)) {
+            Assert.hasText("","The end of the conference must be after the start of the conference.");
+        } else if (vrijemePocetka.isEmpty() && !vrijemeKraja.isEmpty() && novaKonferencija.getVrijemePocetka().after(vrijemeKrajaT)){
+            Assert.hasText("","The end of the conference must be after the start of the conference.");
+        } else if (!vrijemePocetka.isEmpty() && vrijemeKraja.isEmpty() && vrijemePocetkaT.after(novaKonferencija.getVrijemeKraja())){
+            Assert.hasText("","The end of the conference must be after the start of the conference.");
+        }
+
+        if(urlVideo.isEmpty() && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "UrlVideo must be given");
+
+        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto must be given");
+
+        if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
+            Assert.hasText("", "Pbr and mjesto must be changed together");
+
+        Mjesto mjesto=null;
+        if(!pbr.isEmpty() ) mjesto = mjService.findByPbr(Integer.valueOf(pbr));
+        if(mjesto != null) {
+            mjService.update(mjestoNaziv, Integer.valueOf(pbr));
+            novaKonferencija.setMjesto(mjesto);
+        } else{
+            novaKonferencija.setMjesto(mjService.createMjesto(Integer.valueOf(pbr), mjestoNaziv));
+        }
+
+        if(!sponzori.isEmpty() && !(sponzori.size() == 1 && sponzori.get(0).isEmpty())){
+            for (Pokrovitelj pokrovitelj : novaKonferencija.getPokrovitelji()){
+                pokrovitelj.getKonferencije().remove(novaKonferencija);
+            }
+            novaKonferencija.getPokrovitelji().clear();
+            for (String sponzor : sponzori){
+                Pokrovitelj pokr = pokrService.findByNazivIgnoreCase(sponzor);
+                if(pokr != null){
+                    pokr.getKonferencije().add(novaKonferencija);
+                    novaKonferencija.getPokrovitelji().add(pokr);
+                }
+            }
+        }
+        if(!urlVideo.isEmpty()){novaKonferencija.setUrlVideo(urlVideo);}
+        if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
+        if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
+        konferencijaRepo.save(novaKonferencija);
     }
 }

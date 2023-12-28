@@ -27,9 +27,18 @@ public class Konferencija {
     private Timestamp vrijemeKraja;
 
     @ManyToOne
+    @JoinColumn(name = "adminKonf_id")
     private Osoba adminKonf;
     @ManyToOne
+    @JoinColumn(name = "pbr")
     private Mjesto mjesto;
+    @ManyToMany
+    @JoinTable(
+            name = "pokrovitelj_na",
+            joinColumns = @JoinColumn(name = "konferencija_id"),
+            inverseJoinColumns = @JoinColumn(name = "pokrovitelj_id"))
+    Set<Pokrovitelj> pokrovitelji;
+
 
     public Osoba getAdminKonf() {
         return adminKonf;
@@ -94,4 +103,11 @@ public class Konferencija {
         this.naziv = naziv;
     }
 
+    public Set<Pokrovitelj> getPokrovitelji() {
+        return pokrovitelji;
+    }
+
+    public void setPokrovitelji(Set<Pokrovitelj> pokrovitelji) {
+        this.pokrovitelji = pokrovitelji;
+    }
 }

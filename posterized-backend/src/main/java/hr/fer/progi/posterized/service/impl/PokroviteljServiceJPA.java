@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class PokroviteljServiceJPA implements PokroviteljService {
@@ -24,11 +25,22 @@ public class PokroviteljServiceJPA implements PokroviteljService {
         String url = pokrovitelj.getUrl();
         Assert.hasText(url, "Url must be given");
         if(logo.isEmpty()) Assert.hasText("", "Logo must be given");
-        if (pokroviteljRepo.countByNaziv(pokrovitelj.getNaziv()) > 0) {
+        if (pokroviteljRepo.countByNazivCaseInsensitive(pokrovitelj.getNaziv()) > 0) {
             Assert.hasText("", "Pokrovitelj with naziv " + pokrovitelj.getNaziv() + " already exists");
+        }
+        if (pokroviteljRepo.countByUrl(pokrovitelj.getUrl()) > 0) {
+            Assert.hasText("", "Pokrovitelj with url " + pokrovitelj.getNaziv() + " already exists");
         }
         Slika slika = new Slika();
         pokrovitelj.setUrlSlike(slika.upload(logo, naziv, "pokrovitelji"));
         return pokroviteljRepo.save(pokrovitelj);
     }
+
+    @Override
+    public List<Pokrovitelj> listAll(){
+        return pokroviteljRepo.findAll();
+    }
+
+    @Override
+    public Pokrovitelj findByNazivIgnoreCase(String naziv){return pokroviteljRepo.findByNazivIgnoreCase(naziv);}
 }

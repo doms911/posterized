@@ -1,19 +1,19 @@
 package hr.fer.progi.posterized.rest;
 
+import hr.fer.progi.posterized.domain.Mjesto;
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 @RestController
@@ -42,7 +42,7 @@ public class KonferencijaController {
         for (Konferencija konferencija : konferencije) {
             Map<String, String> konferencijaMapa = new HashMap<>();
             konferencijaMapa.put("naziv", konferencija.getNaziv());
-            konferencijaMapa.put("pin", konferencija.getPin().toString());
+            konferencijaMapa.put("pin", String.valueOf(konferencija.getPin()));
 
             Osoba admin = konferencija.getAdminKonf();
             konferencijaMapa.put("adminIme", admin.getIme());
@@ -54,8 +54,8 @@ public class KonferencijaController {
         return rezultat;
     }
 
-    @GetMapping("/prikaziAdminu")
-    public List<String> prikaz(@AuthenticationPrincipal User user) {
+    @GetMapping("/prikaziAdminuNazive")
+    public List<String> prikaz1(@AuthenticationPrincipal User user) {
         String email = user.getUsername();
         List<Konferencija> konferencije = kService.prikazAdmin(email);
         List<String> rezultat = new ArrayList<>();
@@ -65,13 +65,51 @@ public class KonferencijaController {
         }
         return rezultat;
     }
+    @GetMapping("/prikaziAdminuKonf/{naziv}")
+    public List<Map<String, String>> prikaz2(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+        String email = user.getUsername();
+        List<Konferencija> konferencije = kService.prikazAdmin(email);
+        List<Map<String, String>> rezultat = new ArrayList<>();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (Konferencija konferencija : konferencije) {
+            Map<String, String> konferencijaMapa = new HashMap<>();
+            konferencijaMapa.put("naziv", konferencija.getNaziv());
+            konferencijaMapa.put("urlVideo", konferencija.getUrlVideo());
+            Timestamp vrijemePocetka = konferencija.getVrijemePocetka();
+            Timestamp vrijemeKraja = konferencija.getVrijemeKraja();
+            if (vrijemePocetka != null){
+                konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
+            } else konferencijaMapa.put("vrijemePocetka", null);
+            if (vrijemeKraja != null){
+                konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
+            } else konferencijaMapa.put("vrijemeKraja", null);
+
+            Mjesto mjesto = konferencija.getMjesto();
+            if (mjesto != null) {
+                konferencijaMapa.put("mjesto", mjesto.getNaziv());
+                konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
+            } else {
+                konferencijaMapa.put("mjesto", null);
+                konferencijaMapa.put("pbr", null);
+            }
+            rezultat.add(konferencijaMapa);
+        }
+        return rezultat;
+    }
     /*@GetMapping("")
     public String prikaziKonf(){
         return "prikazKonferencije";
     }*/
 
-    @PostMapping("/nadopuniKonf")
-    public Konferencija updateKonferencija(@RequestParam("pin") Integer pin){
-        return kService.provjeriPin(pin);
+    @PostMapping("/nadopuniKonf/{naziv}")
+    public void updateKonferencija(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
+                                           @RequestParam("urlVideo") String urlVideo,
+                                           @RequestParam("vrijemePocetka") String vrijemePocetka,
+                                           @RequestParam("vrijemeKraja") String vrijemeKraja,
+                                           @RequestParam("mjesto") String mjesto, @RequestParam("pbr") String pbr,
+                                           @RequestParam("sponzori") String sponzoriString){
+        List<String> sponzori = Arrays.asList(sponzoriString.split(","));
+        kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, sponzori);
     }
 }

@@ -7,6 +7,7 @@ public interface AdminKorisnikService {
     List<Osoba> listAll();
     Osoba createAdminKorisnik(Osoba osoba);
     Osoba findByEmail(String email);
+    Integer countByEmail(String email);
     void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token);
     void saljiMail(Osoba osoba, String lozinka);
 }

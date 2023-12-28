@@ -1,9 +1,8 @@
 package hr.fer.progi.posterized.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 @Table(name="pokrovitelj")
@@ -15,6 +14,9 @@ public class Pokrovitelj {
     private String url;
     private String naziv;
     private String urlSlike;
+
+    @ManyToMany(mappedBy = "pokrovitelji")
+    Set<Konferencija> konferencije;
 
     public Long getId() {
         return id;
@@ -46,5 +48,13 @@ public class Pokrovitelj {
 
     public void setUrlSlike(String urlSlike) {
         this.urlSlike = urlSlike;
+    }
+
+    public Set<Konferencija> getKonferencije() {
+        return konferencije;
+    }
+
+    public void setKonferencije(Set<Konferencija> konferencije) {
+        this.konferencije = konferencije;
     }
 }

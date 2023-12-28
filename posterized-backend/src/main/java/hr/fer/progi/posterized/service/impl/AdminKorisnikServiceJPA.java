@@ -34,6 +34,11 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
     public Osoba findByEmail(String email) {
         return osobaRepo.findByEmail(email);
     }
+
+    @Override
+    public Integer countByEmail(String email) {
+        return osobaRepo.countByEmail(email);
+    }
     private static final String EMAIL_FORMAT = "(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+";
     private static final String LOZINKA_FORMAT= "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
     @Autowired

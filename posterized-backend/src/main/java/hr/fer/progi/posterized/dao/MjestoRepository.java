@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MjestoRepository extends JpaRepository<Mjesto,Long> {
 
-    public Mjesto findByPbr(Integer pbr);
-    public int countByPbr(Integer pbr);
+    Mjesto findByPbr(Integer pbr);
+    int countByPbr(Integer pbr);
 
 }
