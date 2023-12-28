@@ -17,11 +17,11 @@ public class PokroviteljController {
     @Autowired
     private PokroviteljService pokrService;
     @PostMapping("")
-    public Pokrovitelj createPokrovitelj (@RequestParam("url") String url,@RequestParam("naziv") String naziv, @RequestParam("slika") MultipartFile slika) throws IOException {
+    public Pokrovitelj createPokrovitelj (@RequestParam("url") String url,@RequestParam("naziv") String naziv, @RequestParam("logo") MultipartFile logo) throws IOException {
         Pokrovitelj pokrovitelj = new Pokrovitelj();
         pokrovitelj.setUrl(url);
         pokrovitelj.setNaziv(naziv);
-        return pokrService.createPokrovitelj(pokrovitelj, slika);
+        return pokrService.createPokrovitelj(pokrovitelj, logo);
     }
 
     /*@GetMapping("")

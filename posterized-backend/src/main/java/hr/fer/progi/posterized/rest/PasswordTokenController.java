@@ -37,7 +37,7 @@ public class PasswordTokenController {
         }
         String token = UUID.randomUUID().toString();
         passService.createPasswordResetToken(osoba, token);
-        mailSender.send(napraviEmail("http://localhost:3000", token, osoba));
+        mailSender.send(napraviEmail(env.getProperty("send.email.link"), token, osoba));
         response.put("message", "Reset Password");
         return response;
     }

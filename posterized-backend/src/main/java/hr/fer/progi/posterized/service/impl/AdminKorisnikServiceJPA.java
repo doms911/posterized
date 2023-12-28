@@ -72,7 +72,7 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
     private JavaMailSender mailSender;
     @Override
     public void saljiMail(Osoba osoba, String lozinka){
-        final String url = "http://localhost:3000" + "/forgot-password";
+        final String url = env.getProperty("send.email.link") + "/forgot-password";
         final String message = "Your current password is:" + lozinka + ", if you want to change it: ";
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(osoba.getEmail());

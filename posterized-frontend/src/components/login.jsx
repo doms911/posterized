@@ -33,7 +33,7 @@ function Login(props) {
                 if (stariDiv && stariDiv.parentElement) {
                     stariDiv.parentElement.removeChild(stariDiv);
                 }
-                if (response.status === 401) {
+                if (response.status >= 300 && response.status < 600) {
                     response.json().then((data) => {
                         var noviDiv = document.createElement('div');
                         noviDiv.className = 'alert-container';
