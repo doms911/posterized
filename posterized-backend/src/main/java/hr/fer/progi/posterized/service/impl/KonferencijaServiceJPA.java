@@ -1,14 +1,8 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.KonferencijaRepository;
-import hr.fer.progi.posterized.domain.Konferencija;
-import hr.fer.progi.posterized.domain.Mjesto;
-import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.domain.Pokrovitelj;
-import hr.fer.progi.posterized.service.AdminKorisnikService;
-import hr.fer.progi.posterized.service.KonferencijaService;
-import hr.fer.progi.posterized.service.MjestoService;
-import hr.fer.progi.posterized.service.PokroviteljService;
+import hr.fer.progi.posterized.domain.*;
+import hr.fer.progi.posterized.service.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +14,6 @@ import java.util.List;
 
 @Service
 public class KonferencijaServiceJPA implements KonferencijaService {
-
     @Autowired
     private KonferencijaRepository konferencijaRepo;
     @Autowired
@@ -34,6 +27,11 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public List<Konferencija> listAll(){
         return konferencijaRepo.findAll();
+    }
+
+    @Override
+    public Konferencija findByNazivIgnoreCase(String naziv){
+        return konferencijaRepo.findByNazivIgnoreCase(naziv);
     }
 
     @Override
@@ -152,6 +150,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         for (Pokrovitelj pokr : pokrService.listAll()){
             pokr.getKonferencije().remove(konf);
         }
+        konf.getFotografije().clear();
         konferencijaRepo.deleteByNazivIgnoreCase(naziv);
     }
 }

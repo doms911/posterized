@@ -32,6 +32,9 @@ public class Konferencija {
     @ManyToOne
     @JoinColumn(name = "pbr")
     private Mjesto mjesto;
+    @OneToMany(mappedBy = "konferencija", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Fotografija> fotografije;
+
     @ManyToMany
     @JoinTable(
             name = "pokrovitelj_na",
@@ -109,5 +112,13 @@ public class Konferencija {
 
     public void setPokrovitelji(Set<Pokrovitelj> pokrovitelji) {
         this.pokrovitelji = pokrovitelji;
+    }
+
+    public Set<Fotografija> getFotografije() {
+        return fotografije;
+    }
+
+    public void setFotografije(Set<Fotografija> fotografije) {
+        this.fotografije = fotografije;
     }
 }
