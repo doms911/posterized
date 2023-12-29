@@ -117,4 +117,9 @@ public class KonferencijaController {
     public void izbrisiKonferencija (@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user){
         kService.izbrisiKonf(user.getUsername(), nazivKonf);
     }
+
+    @GetMapping("/dohvatiMjesto")
+    public String dohvatiMjesto(@RequestParam("pin") String pin){
+        return kService.dohvatiMjesto(Integer.valueOf(pin));
+    };
 }

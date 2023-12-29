@@ -4,12 +4,24 @@ import hr.fer.progi.posterized.dao.KonferencijaRepository;
 import hr.fer.progi.posterized.domain.*;
 import hr.fer.progi.posterized.service.*;
 import jakarta.transaction.Transactional;
+
+import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -45,6 +57,43 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             Assert.hasText("","Konferencija does not exist.");
         }
         return konferencijaRepo.findByPin(pin);
+    }
+
+    @Override
+    public String dohvatiMjesto(Integer pin){
+        if (konferencijaRepo.countByPin(pin) == 0){
+            Assert.hasText("","Konferencija does not exist.");
+        }
+        Konferencija konf = konferencijaRepo.findByPin(pin);
+        if (konf.getMjesto() == null){
+            Assert.hasText("","Place isn't set.");
+        }
+
+        String apiKey="6THFAJBEM3ED86RX799RZ3YTJ";
+        DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        StringBuilder vrijeme = new StringBuilder(dtf1.format(now));
+        vrijeme.append("T");
+        vrijeme.append(dtf2.format(now));
+
+        String apiEndPoint="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
+
+        StringBuilder requestBuilder=new StringBuilder(apiEndPoint);
+        requestBuilder.append(konf.getMjesto().getNaziv());
+        requestBuilder.append(",HR/");
+        requestBuilder.append(vrijeme);
+
+        URIBuilder builder = null;
+        try {
+            builder = new URIBuilder(requestBuilder.toString());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        builder.setParameter("key", apiKey);
+
+        return builder.toString();
     }
 
     @Override

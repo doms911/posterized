@@ -15,6 +15,8 @@ public interface KonferencijaService {
     void izbrisiKonf(String admin, String naziv);
     boolean zapocniKonferencija(Integer pin);
     boolean zavrsiKonferencija(Integer pin);
+
+    public String dohvatiMjesto(Integer pin);
     Konferencija findByNazivIgnoreCase(String naziv);
     void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, List<String> sponzori);
 }
