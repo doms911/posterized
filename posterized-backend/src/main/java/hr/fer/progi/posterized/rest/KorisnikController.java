@@ -12,7 +12,7 @@ public class KorisnikController {
     @Autowired
     private OsobaService akService;
     @PostMapping("")
-    public Osoba createAdminKorisnik(@RequestBody Osoba osoba) {
-        return akService.createAdminKorisnik(osoba);
+    public void createAdminKorisnik(@RequestBody Osoba osoba) {
+        akService.createAdminKorisnik(osoba);
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface OsobaService {
     List<Osoba> listAll();
-    Osoba createAdminKorisnik(Osoba osoba);
+    void createAdminKorisnik(Osoba osoba);
     Osoba findByEmail(String email);
     Integer countByEmail(String email);
     void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token);

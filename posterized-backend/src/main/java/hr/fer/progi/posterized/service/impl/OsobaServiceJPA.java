@@ -43,7 +43,7 @@ public class OsobaServiceJPA implements OsobaService {
     @Autowired
     private PasswordEncoder pswdEncoder;
     @Override
-    public Osoba createAdminKorisnik(Osoba osoba) {
+    public void createAdminKorisnik(Osoba osoba) {
         Assert.notNull(osoba, "Osoba object must be given");
         Assert.isNull(osoba.getId(),
                 "Osoba ID must be null, not" + osoba.getId()
@@ -53,9 +53,11 @@ public class OsobaServiceJPA implements OsobaService {
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
         );
-        if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
-            Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
-        }
+        String ime = osoba.getIme();
+        Assert.hasText(ime, "Ime must be given");
+        String prezime = osoba.getPrezime();
+        Assert.hasText(prezime, "Prezime must be given");
+
         String lozinka = osoba.getLozinka();
         Assert.hasText(lozinka, "Lozinka must be given");
         Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
@@ -63,12 +65,18 @@ public class OsobaServiceJPA implements OsobaService {
                         "letter and at least 8 characters in length "
         );
         String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
+
+        if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
+            Osoba osoba2 = osobaRepo.findByEmail(email);
+            if(osoba2.getUloga().equals("autor")) {
+                osoba2.setLozinka(kodiranaLozinka);
+                osoba2.setUloga("korisnik");
+                osobaRepo.save(osoba2);
+                return;
+            } else Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+        }
         osoba.setLozinka(kodiranaLozinka);
-        String ime = osoba.getIme();
-        Assert.hasText(ime, "Ime must be given");
-        String prezime = osoba.getPrezime();
-        Assert.hasText(prezime, "Prezime must be given");
-        return osobaRepo.save(osoba);
+        osobaRepo.save(osoba);
     }
 
     @Override
