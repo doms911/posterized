@@ -1,9 +1,8 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.OsobaRepository;
-import hr.fer.progi.posterized.dao.PasswordTokenRepository;
 import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.service.AdminKorisnikService;
+import hr.fer.progi.posterized.service.OsobaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AdminKorisnikServiceJPA implements AdminKorisnikService {
+public class OsobaServiceJPA implements OsobaService {
 
     @Autowired
     private OsobaRepository osobaRepo;
@@ -69,6 +68,23 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         Assert.hasText(ime, "Ime must be given");
         String prezime = osoba.getPrezime();
         Assert.hasText(prezime, "Prezime must be given");
+        return osobaRepo.save(osoba);
+    }
+
+    @Override
+    public Osoba createAutor(Osoba osoba) {
+        Assert.notNull(osoba, "Osoba object must be given");
+        Assert.isNull(osoba.getId(),
+                "Osoba ID must be null, not" + osoba.getId()
+        );
+        String email = osoba.getEmail();
+        Assert.hasText(email, "Email must be given");
+        Assert.isTrue(email.matches(EMAIL_FORMAT),
+                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+        );
+        if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
+            Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+        }
         return osobaRepo.save(osoba);
     }
     @Autowired

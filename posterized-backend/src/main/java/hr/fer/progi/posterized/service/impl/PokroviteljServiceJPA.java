@@ -2,7 +2,7 @@ package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.PokroviteljRepository;
 import hr.fer.progi.posterized.domain.Pokrovitelj;
-import hr.fer.progi.posterized.domain.Slika;
+import hr.fer.progi.posterized.domain.Media;
 import hr.fer.progi.posterized.service.PokroviteljService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class PokroviteljServiceJPA implements PokroviteljService {
         if (pokroviteljRepo.countByUrl(pokrovitelj.getUrl()) > 0) {
             Assert.hasText("", "Pokrovitelj with url " + pokrovitelj.getNaziv() + " already exists");
         }
-        Slika slika = new Slika();
+        Media slika = new Media();
         pokrovitelj.setUrlSlike(slika.upload(logo, naziv, "pokrovitelji"));
         return pokroviteljRepo.save(pokrovitelj);
     }

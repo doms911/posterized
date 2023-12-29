@@ -3,7 +3,7 @@ package hr.fer.progi.posterized.service.impl;
 import hr.fer.progi.posterized.dao.FotografijaRepository;
 import hr.fer.progi.posterized.domain.Fotografija;
 import hr.fer.progi.posterized.domain.Konferencija;
-import hr.fer.progi.posterized.domain.Slika;
+import hr.fer.progi.posterized.domain.Media;
 import hr.fer.progi.posterized.service.FotografijaService;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,10 @@ public class FotografijaServiceJPA implements FotografijaService {
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-        Slika objekt = new Slika();
+        Media objekt = new Media();
         for(MultipartFile slika: slike){
             String naziv = UUID.randomUUID().toString();
-            String url = objekt.upload(slika, naziv, nazivKonf);
+            String url = objekt.upload(slika, naziv, nazivKonf+"/fotografije");
             Fotografija foto = new Fotografija();
             foto.setKonferencija(konf);
             foto.setUrlSlike(url);
