@@ -1,8 +1,7 @@
 package hr.fer.progi.posterized.rest;
 
-import hr.fer.progi.posterized.dao.OsobaRepository;
 import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.service.AdminKorisnikService;
+import hr.fer.progi.posterized.service.OsobaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
@@ -19,7 +18,7 @@ public class KorisnikUserDetailsService implements UserDetailsService {
     private String superadminLozinkaHash;
 
     @Autowired
-    private AdminKorisnikService akService;
+    private OsobaService akService;
     @Override
     public UserDetails loadUserByUsername(String username) {
         if ("superadmin".equals(username)) {

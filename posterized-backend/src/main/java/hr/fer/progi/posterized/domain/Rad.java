@@ -7,28 +7,34 @@ import jakarta.persistence.*;
 public class Rad {
     @Id @GeneratedValue
     private Long id;
-
-    @Column(unique = true, nullable = false)
     private String naslov;
-
-    private String nazivPptx;
-    private String nazivPoster;
+    private String urlPptx;
+    private String urlPoster;
     private Integer ukupnoGlasova;
+    public Rad() {
+        this.ukupnoGlasova = 0;
+    }
+    @ManyToOne()
+    @JoinColumn(name = "konf_id")
+    private Konferencija konferencija;
 
-    public String getNazivPptx() {
-        return nazivPptx;
+    @ManyToOne()
+    @JoinColumn(name = "autor_id")
+    private Osoba autor;
+    public String getUrlPptx() {
+        return urlPptx;
     }
 
-    public void setNazivPptx(String nazivPptx) {
-        this.nazivPptx = nazivPptx;
+    public void setUrlPptx(String urlPptx) {
+        this.urlPptx = urlPptx;
     }
 
-    public String getNazivPoster() {
-        return nazivPoster;
+    public String getUrlPoster() {
+        return urlPoster;
     }
 
-    public void setNazivPoster(String nazivPoster) {
-        this.nazivPoster = nazivPoster;
+    public void setUrlPoster(String urlPoster) {
+        this.urlPoster = urlPoster;
     }
 
     public Integer getUkupnoGlasova() {
@@ -38,9 +44,6 @@ public class Rad {
     public void setUkupnoGlasova(Integer ukupnoGlasova) {
         this.ukupnoGlasova = ukupnoGlasova;
     }
-
-    @OneToOne
-    private Osoba autor;
 
     public Long getId() {
         return id;
@@ -58,11 +61,18 @@ public class Rad {
         this.naslov = naslov;
     }
 
+    public Konferencija getKonferencija() {
+        return konferencija;
+    }
+    public void setKonferencija(Konferencija konferencija) {
+        this.konferencija = konferencija;
+    }
+
     public Osoba getAutor() {
         return autor;
     }
 
     public void setAutor(Osoba osoba) {
-        this.autor = autor;
+        this.autor = osoba;
     }
 }

@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,14 +34,17 @@ public class Konferencija {
     @JoinColumn(name = "pbr")
     private Mjesto mjesto;
     @OneToMany(mappedBy = "konferencija", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Fotografija> fotografije;
+    private Set<Fotografija> fotografije = new HashSet<>();
+
+    @OneToMany(mappedBy = "konferencija", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Rad> radovi = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
             name = "pokrovitelj_na",
             joinColumns = @JoinColumn(name = "konferencija_id"),
             inverseJoinColumns = @JoinColumn(name = "pokrovitelj_id"))
-    Set<Pokrovitelj> pokrovitelji;
+    Set<Pokrovitelj> pokrovitelji = new HashSet<>();;
 
 
     public Osoba getAdminKonf() {
@@ -120,5 +124,30 @@ public class Konferencija {
 
     public void setFotografije(Set<Fotografija> fotografije) {
         this.fotografije = fotografije;
+    }
+
+    public Set<Rad> getRadovi() {
+        return radovi;
+    }
+
+    public void setRadovi(Set<Rad> radovi) {
+        this.radovi = radovi;
+    }
+
+    @Override
+    public String toString() {
+        return "Konferencija{" +
+                "id=" + id +
+                ", urlVideo='" + urlVideo + '\'' +
+                ", naziv='" + naziv + '\'' +
+                ", pin=" + pin +
+                ", vrijemePocetka=" + vrijemePocetka +
+                ", vrijemeKraja=" + vrijemeKraja +
+                ", adminKonf=" + adminKonf +
+                ", mjesto=" + mjesto +
+                ", fotografije=" + fotografije +
+                ", radovi=" + radovi +
+                ", pokrovitelji=" + pokrovitelji +
+                '}';
     }
 }

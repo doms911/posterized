@@ -3,6 +3,7 @@ package hr.fer.progi.posterized.domain;
 import com.google.auth.Credentials;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
@@ -18,7 +19,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-public class Slika {
+public class Media {
 
     public String upload(MultipartFile slika, String naziv, String folder){
         String URL="";
@@ -35,10 +36,20 @@ public class Slika {
         return URL;
     }
     public String uploadFile(File file, String fileName, String folder) throws IOException {
+        String contentType;
+        if (fileName.endsWith(".pdf")) {
+            contentType = "application/pdf";
+        } else if (fileName.endsWith(".pptx")) {
+            contentType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+        } else if (fileName.endsWith(".ppt")) {
+            contentType = "application/vnd.ms-powerpoint";
+        } else {
+            contentType = "media";
+        }
         String fullPath = folder + "/" + fileName;
 
         BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(contentType).build();
         InputStream inputStream = PokroviteljServiceJPA.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
         Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
@@ -54,5 +65,21 @@ public class Slika {
             fos.write(multipartFile.getBytes());
         }
         return tempFile;
+    }
+    public void deleteFolder(String folder) {
+        try {
+            InputStream inputStream = PokroviteljServiceJPA.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
+            Credentials credentials = GoogleCredentials.fromStream(inputStream);
+            Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+
+            Iterable<Blob> blobs = storage.list("posterized-8e1c4.appspot.com", Storage.BlobListOption.prefix(folder)).iterateAll();
+
+            for (Blob blob : blobs) {
+                blob.delete();
+            }
+            storage.delete("posterized-8e1c4.appspot.com", folder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

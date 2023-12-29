@@ -29,7 +29,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Autowired
     private KonferencijaRepository konferencijaRepo;
     @Autowired
-    private AdminKorisnikService akService;
+    private OsobaService oService;
     @Autowired
     private MjestoService mjService;
     @Autowired
@@ -48,7 +48,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
     @Override
     public List<Konferencija> prikazAdmin(String email){
-        Osoba osoba = akService.findByEmail(email);
+        Osoba osoba = oService.findByEmail(email);
         return konferencijaRepo.findAllByAdminKonf_id(osoba.getId());
     };
     @Override
@@ -111,12 +111,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
         );
-        if (akService.countByEmail(email) == 0) {
+        if (oService.countByEmail(email) == 0) {
             Assert.hasText("", "Osoba with email " + email + " does not exists");
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
-        konferencija.setAdminKonf(akService.findByEmail(email));
+        konferencija.setAdminKonf(oService.findByEmail(email));
         return konferencijaRepo.save(konferencija);
     }
 
@@ -200,6 +200,9 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             pokr.getKonferencije().remove(konf);
         }
         konf.getFotografije().clear();
+        konf.getRadovi().clear();
+        Media objekt = new Media();
+        objekt.deleteFolder(naziv);
         konferencijaRepo.deleteByNazivIgnoreCase(naziv);
     }
 }

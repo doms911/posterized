@@ -1,9 +1,8 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.OsobaRepository;
-import hr.fer.progi.posterized.dao.PasswordTokenRepository;
 import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.service.AdminKorisnikService;
+import hr.fer.progi.posterized.service.OsobaService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AdminKorisnikServiceJPA implements AdminKorisnikService {
+public class OsobaServiceJPA implements OsobaService {
 
     @Autowired
     private OsobaRepository osobaRepo;
@@ -44,7 +43,44 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
     @Autowired
     private PasswordEncoder pswdEncoder;
     @Override
-    public Osoba createAdminKorisnik(Osoba osoba) {
+    public void createAdminKorisnik(Osoba osoba) {
+        Assert.notNull(osoba, "Osoba object must be given");
+        Assert.isNull(osoba.getId(),
+                "Osoba ID must be null, not" + osoba.getId()
+        );
+        String email = osoba.getEmail();
+        Assert.hasText(email, "Email must be given");
+        Assert.isTrue(email.matches(EMAIL_FORMAT),
+                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+        );
+        String ime = osoba.getIme();
+        Assert.hasText(ime, "Ime must be given");
+        String prezime = osoba.getPrezime();
+        Assert.hasText(prezime, "Prezime must be given");
+
+        String lozinka = osoba.getLozinka();
+        Assert.hasText(lozinka, "Lozinka must be given");
+        Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
+                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
+                        "letter and at least 8 characters in length "
+        );
+        String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
+
+        if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
+            Osoba osoba2 = osobaRepo.findByEmail(email);
+            if(osoba2.getUloga().equals("autor")) {
+                osoba2.setLozinka(kodiranaLozinka);
+                osoba2.setUloga("korisnik");
+                osobaRepo.save(osoba2);
+                return;
+            } else Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+        }
+        osoba.setLozinka(kodiranaLozinka);
+        osobaRepo.save(osoba);
+    }
+
+    @Override
+    public Osoba createAutor(Osoba osoba) {
         Assert.notNull(osoba, "Osoba object must be given");
         Assert.isNull(osoba.getId(),
                 "Osoba ID must be null, not" + osoba.getId()
@@ -57,18 +93,6 @@ public class AdminKorisnikServiceJPA implements AdminKorisnikService {
         if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
             Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
         }
-        String lozinka = osoba.getLozinka();
-        Assert.hasText(lozinka, "Lozinka must be given");
-        Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
-                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
-                        "letter and at least 8 characters in length "
-        );
-        String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
-        osoba.setLozinka(kodiranaLozinka);
-        String ime = osoba.getIme();
-        Assert.hasText(ime, "Ime must be given");
-        String prezime = osoba.getPrezime();
-        Assert.hasText(prezime, "Prezime must be given");
         return osobaRepo.save(osoba);
     }
     @Autowired

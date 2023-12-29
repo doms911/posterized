@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma za unos podataka</title>
+</head>
+<body>
+
+<form action="/api/radovi" method="post" enctype="multipart/form-data">
+    <label for="ime">Prezime:</label>
+    <input type="text" id="ime" name="ime" required>
+    <!-- Ostala polja -->
+    <label for="prezime">Prezime:</label>
+    <input type="text" id="prezime" name="prezime" required>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+
+    <label for="naslov">Naslov:</label>
+    <input type="text" id="naslov" name="naslov" required>
+
+    <label for="poster">Poster:</label>
+    <input type="file" id="poster" name="poster" accept=".jpg, .jpeg, .png, .pdf" required>
+
+    <label for="pptx">PPTX:</label>
+    <input type="file" id="pptx" name="pptx" accept=".pptx" >
+
+    <label for="nazivKonf">Naziv konferencije:</label>
+    <input type="text" id="nazivKonf" name="nazivKonf" value="naziv">
+
+    <button type="submit">Pošalji</button>
+</form>
+
+</body>
+</html>

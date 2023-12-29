@@ -3,6 +3,7 @@ package hr.fer.progi.posterized.rest;
 import hr.fer.progi.posterized.domain.Mjesto;
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.service.KonferencijaService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ import java.util.*;
 public class KonferencijaController {
     @Autowired
     private KonferencijaService kService;
-
+    @Secured("superadmin")
     @PostMapping("/stvoriKonf")
     public Konferencija createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
                                            @RequestParam("naziv") String naziv){
@@ -33,7 +34,7 @@ public class KonferencijaController {
     public Konferencija provjeriPin(@RequestParam("pin") Integer pin){
         return kService.provjeriPin(pin);
     }
-
+    @Secured("superadmin")
     @GetMapping("/prikaziSve")
     public List<Map<String, String>> prikazKonf() {
         List<Konferencija> konferencije = kService.listAll();
@@ -53,7 +54,7 @@ public class KonferencijaController {
         }
         return rezultat;
     }
-
+    @Secured("admin")
     @GetMapping("/prikaziAdminuNazive")
     public List<String> prikaz1(@AuthenticationPrincipal User user) {
         String email = user.getUsername();
@@ -65,6 +66,7 @@ public class KonferencijaController {
         }
         return rezultat;
     }
+    @Secured("admin")
     @GetMapping("/prikaziAdminuKonf/{naziv}")
     public List<Map<String, String>> prikaz2(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
         String email = user.getUsername();
@@ -102,6 +104,7 @@ public class KonferencijaController {
         return "prikazKonferencije";
     }*/
 
+    @Secured("admin")
     @PostMapping("/nadopuniKonf/{naziv}")
     public void updateKonferencija(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
                                            @RequestParam("urlVideo") String urlVideo,
