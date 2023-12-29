@@ -20,11 +20,20 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 public class Media {
+    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public String upload(MultipartFile slika, String naziv, String folder){
         String URL="";
         try {
-            String fileName = slika.getOriginalFilename();
+            fileName = slika.getOriginalFilename();
             fileName = naziv.concat(fileName.substring(fileName.lastIndexOf(".")));
 
             File file = convertToFile(slika, fileName);
@@ -35,18 +44,18 @@ public class Media {
         }
         return URL;
     }
-    public String uploadFile(File file, String fileName, String folder) throws IOException {
+    public String uploadFile(File file, String name, String folder) throws IOException {
         String contentType;
-        if (fileName.endsWith(".pdf")) {
+        if (name.endsWith(".pdf")) {
             contentType = "application/pdf";
-        } else if (fileName.endsWith(".pptx")) {
+        } else if (name.endsWith(".pptx")) {
             contentType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
-        } else if (fileName.endsWith(".ppt")) {
+        } else if (name.endsWith(".ppt")) {
             contentType = "application/vnd.ms-powerpoint";
         } else {
             contentType = "media";
         }
-        String fullPath = folder + "/" + fileName;
+        String fullPath = folder + "/" + name;
 
         BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(contentType).build();
@@ -59,8 +68,8 @@ public class Media {
         return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath, StandardCharsets.UTF_8));
     }
 
-    public File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
-        File tempFile = new File(fileName);
+    public File convertToFile(MultipartFile multipartFile, String name) throws IOException {
+        File tempFile = new File(name);
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
             fos.write(multipartFile.getBytes());
         }
@@ -78,6 +87,24 @@ public class Media {
                 blob.delete();
             }
             storage.delete("posterized-8e1c4.appspot.com", folder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteFile(String name, String folder) {
+        try {
+            InputStream inputStream = PokroviteljServiceJPA.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
+            Credentials credentials = GoogleCredentials.fromStream(inputStream);
+            Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+
+            String fullPath = folder + "/" + name;
+            BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
+
+            Blob blob = storage.get(blobId);
+            if (blob != null) {
+                blob.delete();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

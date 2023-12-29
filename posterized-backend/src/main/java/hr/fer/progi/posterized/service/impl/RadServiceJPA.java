@@ -1,17 +1,15 @@
 package hr.fer.progi.posterized.service.impl;
 
 import hr.fer.progi.posterized.dao.RadRepository;
-import hr.fer.progi.posterized.domain.Konferencija;
-import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.domain.Rad;
+import hr.fer.progi.posterized.domain.*;
 import hr.fer.progi.posterized.service.OsobaService;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import hr.fer.progi.posterized.service.RadService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
-import hr.fer.progi.posterized.domain.Media;
 
 import java.util.List;
 import java.util.UUID;
@@ -59,9 +57,30 @@ public class RadServiceJPA implements RadService {
 
         Media objekt = new Media();
         rad.setUrlPoster(objekt.upload(poster, UUID.randomUUID().toString(), nazivKonf+"/posteri"));
-        if(!pptx.isEmpty())rad.setUrlPptx(objekt.upload(pptx, UUID.randomUUID().toString(), nazivKonf+"/pptx"));
+        rad.setNazivPoster(objekt.getFileName());
+        if(!pptx.isEmpty()){
+            rad.setUrlPptx(objekt.upload(pptx, UUID.randomUUID().toString(), nazivKonf+"/pptx"));
+            rad.setNazivPptx(objekt.getFileName());
+        }
         konf.getRadovi().add(rad);
         osoba.getRadovi().add(rad);
         radRepo.save(rad);
+    }
+
+    @Override
+    @Transactional
+    public void izbrisiRad(String admin, String naslov){
+        Rad rad = radRepo.findByNaslovIgnoreCase(naslov);
+        if(rad == null) Assert.hasText("","Rad with naslov " + naslov + " does not exists");
+        Konferencija konf = rad.getKonferencija();
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+
+        konf.getRadovi().remove(rad);
+        rad.getAutor().getRadovi().remove(rad);
+
+        Media objekt = new Media();
+        objekt.deleteFile(rad.getNazivPoster(), konf.getNaziv()+"/posteri");
+        if(rad.getUrlPptx() != null) objekt.deleteFile(rad.getNazivPptx(), konf.getNaziv()+"/pptx");
+        radRepo.deleteByNaslovIgnoreCase(naslov);
     }
 }

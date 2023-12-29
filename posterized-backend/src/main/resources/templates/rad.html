@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="/api/radovi" method="post" enctype="multipart/form-data">
+<form action="/api/radovi/napravi" method="post" enctype="multipart/form-data">
     <label for="ime">Prezime:</label>
     <input type="text" id="ime" name="ime" required>
     <!-- Ostala polja -->
@@ -31,6 +31,28 @@
 
     <button type="submit">Pošalji</button>
 </form>
+
+<button id="deleteButton">Izbriši</button>
+
+<script>
+    document.getElementById('deleteButton').addEventListener('click', function() {
+        // Slanje GET zahtjeva prema "/api"
+        fetch('/api/radovi/izbrisi/123')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Ovdje možete manipulirati podacima koji su vraćeni iz GET zahtjeva
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+</script>
 
 </body>
 </html>

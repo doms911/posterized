@@ -27,7 +27,7 @@ public class RadController {
         return "rad";
     }*/
 
-    @PostMapping("")
+    @PostMapping("/napravi")
     public void createRad( @AuthenticationPrincipal User user, @RequestParam("ime") String ime,
     @RequestParam("prezime") String prezime, @RequestParam("email") String email,
                           @RequestParam("naslov") String naslov, @RequestParam("poster") MultipartFile poster,
@@ -41,5 +41,10 @@ public class RadController {
         Rad rad = new Rad();
         rad.setNaslov(naslov);
         radService.createRad(user.getUsername(), autor, rad, poster, pptx, nazivKonf);
+    }
+
+    @GetMapping("/izbrisi/{naslov}")
+    public void izbrisiRad (@PathVariable("naslov") String naslov, @AuthenticationPrincipal User user){
+        radService.izbrisiRad(user.getUsername(), naslov);
     }
 }

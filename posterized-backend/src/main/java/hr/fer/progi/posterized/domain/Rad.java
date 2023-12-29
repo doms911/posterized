@@ -10,6 +10,8 @@ public class Rad {
     private String naslov;
     private String urlPptx;
     private String urlPoster;
+    private String nazivPptx;
+    private String nazivPoster;
     private Integer ukupnoGlasova;
     public Rad() {
         this.ukupnoGlasova = 0;
@@ -74,5 +76,21 @@ public class Rad {
 
     public void setAutor(Osoba osoba) {
         this.autor = osoba;
+    }
+
+    public String getNazivPptx() {
+        return nazivPptx;
+    }
+
+    public void setNazivPptx(String nazivPptx) {
+        this.nazivPptx = nazivPptx;
+    }
+
+    public String getNazivPoster() {
+        return nazivPoster;
+    }
+
+    public void setNazivPoster(String nazivPoster) {
+        this.nazivPoster = nazivPoster;
     }
 }

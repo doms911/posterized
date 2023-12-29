@@ -2,6 +2,7 @@ package hr.fer.progi.posterized.rest;
 
 import hr.fer.progi.posterized.domain.Mjesto;
 import hr.fer.progi.posterized.domain.Osoba;
+import hr.fer.progi.posterized.domain.Rad;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -75,27 +75,43 @@ public class KonferencijaController {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (Konferencija konferencija : konferencije) {
-            Map<String, String> konferencijaMapa = new HashMap<>();
-            konferencijaMapa.put("naziv", konferencija.getNaziv());
-            konferencijaMapa.put("urlVideo", konferencija.getUrlVideo());
-            Timestamp vrijemePocetka = konferencija.getVrijemePocetka();
-            Timestamp vrijemeKraja = konferencija.getVrijemeKraja();
-            if (vrijemePocetka != null){
-                konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
-            } else konferencijaMapa.put("vrijemePocetka", null);
-            if (vrijemeKraja != null){
-                konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
-            } else konferencijaMapa.put("vrijemeKraja", null);
+            if(konferencija.getNaziv().equalsIgnoreCase(nazivKonf)) {
+                Map<String, String> konferencijaMapa = new HashMap<>();
+                konferencijaMapa.put("naziv", konferencija.getNaziv());
+                konferencijaMapa.put("urlVideo", konferencija.getUrlVideo());
+                Timestamp vrijemePocetka = konferencija.getVrijemePocetka();
+                Timestamp vrijemeKraja = konferencija.getVrijemeKraja();
+                if (vrijemePocetka != null) {
+                    konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
+                } else konferencijaMapa.put("vrijemePocetka", null);
+                if (vrijemeKraja != null) {
+                    konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
+                } else konferencijaMapa.put("vrijemeKraja", null);
 
-            Mjesto mjesto = konferencija.getMjesto();
-            if (mjesto != null) {
-                konferencijaMapa.put("mjesto", mjesto.getNaziv());
-                konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
-            } else {
-                konferencijaMapa.put("mjesto", null);
-                konferencijaMapa.put("pbr", null);
+                Mjesto mjesto = konferencija.getMjesto();
+                if (mjesto != null) {
+                    konferencijaMapa.put("mjesto", mjesto.getNaziv());
+                    konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
+                } else {
+                    konferencijaMapa.put("mjesto", null);
+                    konferencijaMapa.put("pbr", null);
+                }
+                rezultat.add(konferencijaMapa);
+
+                for(Rad rad : konferencija.getRadovi()){
+                    Map<String, String> radMapa = new HashMap<>();
+                    radMapa.put("naslov", rad.getNaslov());
+                    radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+                    radMapa.put("urlPptx", rad.getUrlPptx());
+                    radMapa.put("urlPoster", rad.getUrlPoster());
+                    Osoba autor = rad.getAutor();
+                    radMapa.put("ime", autor.getIme());
+                    radMapa.put("prezime", autor.getPrezime());
+                    radMapa.put("mail", autor.getEmail());
+                    rezultat.add(radMapa);
+                }
+                return rezultat;
             }
-            rezultat.add(konferencijaMapa);
         }
         return rezultat;
     }
@@ -121,8 +137,8 @@ public class KonferencijaController {
         kService.izbrisiKonf(user.getUsername(), nazivKonf);
     }
 
-    @GetMapping("/dohvatiMjesto")
-    public String dohvatiMjesto(@RequestParam("pin") String pin){
+    @GetMapping("/dohvatiMjesto/{pin}")
+    public String dohvatiMjesto(@PathVariable("pin") String pin){
         return kService.dohvatiMjesto(Integer.valueOf(pin));
     };
 }
