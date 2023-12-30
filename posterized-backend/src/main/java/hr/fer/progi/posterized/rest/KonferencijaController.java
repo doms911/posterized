@@ -171,7 +171,19 @@ public class KonferencijaController {
     }
 
     @GetMapping("/pokrovitelji/{pin}")
-    public List<Pokrovitelj> dohvatiPokrovitelje(@PathVariable("pin") String pin){
-        return new ArrayList<>(kService.findByPin(Integer.valueOf(pin)).getPokrovitelji());
+    public List<Map<String, String>> dohvatiPokrovitelje(@PathVariable("pin") String pin){
+        if (kService.countByPin(Integer.valueOf(pin)) == 0){
+            Assert.hasText("","Konferencija does not exist.");
+        }
+        Konferencija konf = kService.findByPin(Integer.valueOf(pin));
+        List<Map<String, String>> rezultat = new ArrayList<>();
+        for(Pokrovitelj pokr : konf.getPokrovitelji()){
+            Map<String, String> pokrMapa = new HashMap<>();
+            pokrMapa.put("naziv", pokr.getNaziv());
+            pokrMapa.put("url", pokr.getUrl());
+            pokrMapa.put("urlSlike", pokr.getUrlSlike());
+            rezultat.add(pokrMapa);
+        }
+        return rezultat;
     }
 }

@@ -22,7 +22,7 @@ public class FotografijaController {
     }
 
     @GetMapping("/dohvatiSlike/{pin}")
-    public List<String> dohvatiVideo(@PathVariable("pin") String pin){
+    public List<String> dohvatiSlike(@PathVariable("pin") String pin){
         return fotoService.dohvatiSlike(Integer.valueOf(pin));
     };
 }

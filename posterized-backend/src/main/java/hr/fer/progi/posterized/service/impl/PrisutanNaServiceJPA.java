@@ -38,19 +38,21 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
             Assert.hasText("","Konferencija hasn't started yet");
 
-        Osoba osoba = oService.findByEmail(korisnik);
-        if(osoba == null) Assert.hasText("","Osoba does not exist.");
-        PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
-        kljuc.setKonfId(konf.getId());
-        kljuc.setKorisnikId(osoba.getId());
-        if(prisRepo.findById(kljuc).isEmpty()) {
-            Prisutan_na zapis = new Prisutan_na();
-            zapis.setId(kljuc);
-            zapis.setKorisnik(osoba);
-            zapis.setKonferencija(konf);
-            konf.getPrisutnost().add(zapis);
-            osoba.getPrisutnost().add(zapis);
-            prisRepo.save(zapis);
+        if(!korisnik.equals("superadmin")){
+            Osoba osoba = oService.findByEmail(korisnik);
+            if(osoba == null) Assert.hasText("","Osoba does not exist.");
+            PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
+            kljuc.setKonfId(konf.getId());
+            kljuc.setKorisnikId(osoba.getId());
+            if(!osoba.getEmail().equals(konf.getAdminKonf().getEmail()) && prisRepo.findById(kljuc).isEmpty()) {
+                Prisutan_na zapis = new Prisutan_na();
+                zapis.setId(kljuc);
+                zapis.setKorisnik(osoba);
+                zapis.setKonferencija(konf);
+                konf.getPrisutnost().add(zapis);
+                osoba.getPrisutnost().add(zapis);
+                prisRepo.save(zapis);
+            }
         }
         
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.rezultati(pin);
