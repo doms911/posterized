@@ -30,10 +30,7 @@ public class KonferencijaController {
                                            @RequestParam("naziv") String naziv){
         return kService.createKonferencija(Integer.valueOf(pin), email, naziv);
     }
-    @PostMapping("/pin")
-    public Konferencija provjeriPin(@RequestParam("pin") Integer pin){
-        return kService.provjeriPin(pin);
-    }
+
     @Secured("superadmin")
     @GetMapping("/prikaziSve")
     public List<Map<String, String>> prikazKonf() {
@@ -133,12 +130,16 @@ public class KonferencijaController {
     }
 
     @GetMapping("/izbrisiKonf/{naziv}")
-    public void izbrisiKonferencija (@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user){
-        kService.izbrisiKonf(user.getUsername(), nazivKonf);
+    public void izbrisiKonferencija (@PathVariable("naziv") String nazivKonf){
+        kService.izbrisiKonf(nazivKonf);
     }
 
     @GetMapping("/dohvatiMjesto/{pin}")
     public String dohvatiMjesto(@PathVariable("pin") String pin){
         return kService.dohvatiMjesto(Integer.valueOf(pin));
+    };
+    @GetMapping("/dohvatiVideo/{pin}")
+    public String dohvatiVideo(@PathVariable("pin") String pin){
+        return kService.dohvatiVideo(Integer.valueOf(pin));
     };
 }

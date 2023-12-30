@@ -33,12 +33,14 @@ public class Konferencija {
     @ManyToOne
     @JoinColumn(name = "pbr")
     private Mjesto mjesto;
-    @OneToMany(mappedBy = "konferencija", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "konferencija", orphanRemoval = true)
     private Set<Fotografija> fotografije = new HashSet<>();
 
-    @OneToMany(mappedBy = "konferencija", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "konferencija", orphanRemoval = true)
     private Set<Rad> radovi = new HashSet<>();
 
+    @OneToMany(mappedBy = "konferencija", orphanRemoval = true)
+    Set<Prisutan_na> prisutnost;
     @ManyToMany
     @JoinTable(
             name = "pokrovitelj_na",
@@ -134,20 +136,11 @@ public class Konferencija {
         this.radovi = radovi;
     }
 
-    @Override
-    public String toString() {
-        return "Konferencija{" +
-                "id=" + id +
-                ", urlVideo='" + urlVideo + '\'' +
-                ", naziv='" + naziv + '\'' +
-                ", pin=" + pin +
-                ", vrijemePocetka=" + vrijemePocetka +
-                ", vrijemeKraja=" + vrijemeKraja +
-                ", adminKonf=" + adminKonf +
-                ", mjesto=" + mjesto +
-                ", fotografije=" + fotografije +
-                ", radovi=" + radovi +
-                ", pokrovitelji=" + pokrovitelji +
-                '}';
+    public Set<Prisutan_na> getPrisutnost() {
+        return prisutnost;
+    }
+
+    public void setPrisutnost(Set<Prisutan_na> prisutnost) {
+        this.prisutnost = prisutnost;
     }
 }

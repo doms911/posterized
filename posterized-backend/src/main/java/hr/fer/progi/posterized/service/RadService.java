@@ -12,4 +12,5 @@ public interface RadService {
     void createRad(String user, Osoba autor, Rad rad, MultipartFile poster, MultipartFile pptx, String nazivKonf);
     @Transactional
     void izbrisiRad(String admin, String naziv);
+    Rad findByNaslovIgnoreCase(String naslov);
 }

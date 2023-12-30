@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -74,7 +75,8 @@ public class RadServiceJPA implements RadService {
         if(rad == null) Assert.hasText("","Rad with naslov " + naslov + " does not exists");
         Konferencija konf = rad.getKonferencija();
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-
+        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija has already started");
         konf.getRadovi().remove(rad);
         rad.getAutor().getRadovi().remove(rad);
 
@@ -83,4 +85,11 @@ public class RadServiceJPA implements RadService {
         if(rad.getUrlPptx() != null) objekt.deleteFile(rad.getNazivPptx(), konf.getNaziv()+"/pptx");
         radRepo.deleteByNaslovIgnoreCase(naslov);
     }
+
+    @Override
+    public Rad findByNaslovIgnoreCase(String naslov) {
+        return radRepo.findByNaslovIgnoreCase(naslov);
+    }
+
+
 }

@@ -10,16 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
@@ -42,6 +35,14 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
+    public int countByPin(Integer pin){
+        return konferencijaRepo.countByPin(pin);
+    }
+    @Override
+    public Konferencija findByPin(Integer pin){
+        return konferencijaRepo.findByPin(pin);
+    }
+    @Override
     public Konferencija findByNazivIgnoreCase(String naziv){
         return konferencijaRepo.findByNazivIgnoreCase(naziv);
     }
@@ -51,13 +52,6 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Osoba osoba = oService.findByEmail(email);
         return konferencijaRepo.findAllByAdminKonf_id(osoba.getId());
     };
-    @Override
-    public Konferencija provjeriPin(Integer pin) {
-        if (konferencijaRepo.countByPin(pin) == 0){
-            Assert.hasText("","Konferencija does not exist.");
-        }
-        return konferencijaRepo.findByPin(pin);
-    }
 
     @Override
     public String dohvatiMjesto(Integer pin){
@@ -192,17 +186,59 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
     @Override
     @Transactional
-    public void izbrisiKonf(String admin, String naziv){
+    public void izbrisiKonf(String naziv){
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija has already started");
         for (Pokrovitelj pokr : pokrService.listAll()){
             pokr.getKonferencije().remove(konf);
         }
         konf.getFotografije().clear();
         konf.getRadovi().clear();
+        konf.getPrisutnost().clear();
+
         Media objekt = new Media();
         objekt.deleteFolder(naziv);
         konferencijaRepo.deleteByNazivIgnoreCase(naziv);
+    }
+
+    @Override
+    public List<Map<String, String>> pobjednici(Integer pin){
+        Konferencija konf = konferencijaRepo.findByPin(pin);
+        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        Set<Rad> radovi = konf.getRadovi();
+        List<Rad> radoviList = new ArrayList<>(radovi);
+        radoviList.sort(Comparator.comparing(Rad::getUkupnoGlasova).reversed());
+        List<Integer> prveTri = radoviList.stream()
+                .map(Rad::getUkupnoGlasova)
+                .distinct()
+                .limit(3)
+                .toList();
+        List<Rad> radoviPobj = radoviList.stream()
+                .filter(rad -> prveTri.contains(rad.getUkupnoGlasova()))
+                .sorted(Comparator.comparing(Rad::getUkupnoGlasova).reversed())
+                .toList();
+        List<Map<String, String>> rez = new ArrayList<>();
+        Map<String, String> konferencijaMapa = new HashMap<>();
+        konferencijaMapa.put("naziv", konf.getNaziv());
+        konferencijaMapa.put("admin", konf.getAdminKonf().getEmail());
+        rez.add(konferencijaMapa);
+        for(Rad rad : radoviPobj){
+            Map<String, String> mapa = new HashMap<>();
+            mapa.put("naslov", rad.getNaslov());
+            mapa.put("urlPoster", rad.getUrlPoster());
+            mapa.put("urlPptx", rad.getUrlPptx());
+            mapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            rez.add(mapa);
+        }
+        return rez;
+    }
+
+    @Override
+    public String dohvatiVideo(Integer pin) {
+        Konferencija konf = konferencijaRepo.findByPin(pin);
+        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        return konf.getUrlVideo();
     }
 }

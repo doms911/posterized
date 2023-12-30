@@ -31,8 +31,10 @@ public class Osoba {
     @NotNull
     private String uloga;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Rad> radovi = new HashSet<>();;
+    @OneToMany(mappedBy = "autor", orphanRemoval = true)
+    private Set<Rad> radovi = new HashSet<>();
+    @OneToMany(mappedBy = "korisnik")
+    Set<Prisutan_na> prisutnost;
     public String getIme() {
         return ime;
     }
@@ -89,4 +91,11 @@ public class Osoba {
         this.radovi = radovi;
     }
 
+    public Set<Prisutan_na> getPrisutnost() {
+        return prisutnost;
+    }
+
+    public void setPrisutnost(Set<Prisutan_na> prisutnost) {
+        this.prisutnost = prisutnost;
+    }
 }
