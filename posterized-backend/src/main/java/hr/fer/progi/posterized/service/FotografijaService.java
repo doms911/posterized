@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface FotografijaService {
     void spremiSlike(String nazivKonf, String admin, List<MultipartFile> slike);
+    List<String> dohvatiSlike(Integer pin);
 }

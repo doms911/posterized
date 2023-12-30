@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,5 +36,17 @@ public class FotografijaServiceJPA implements FotografijaService {
             foto.setUrlSlike(url);
             fotoRepo.save(foto);
         }
+    }
+
+    @Override
+    public List<String> dohvatiSlike(Integer pin) {
+        Konferencija konf = konfService.findByPin(pin);
+        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        List<Fotografija> slike = fotoRepo.findAllByKonferencija(konf);
+        List<String> rez = new ArrayList<>();
+        for(Fotografija slika : slike){
+            rez.add(slika.getUrlSlike());
+        }
+        return rez;
     }
 }

@@ -20,4 +20,9 @@ public class FotografijaController {
         fotoService.spremiSlike(nazivKonf, user.getUsername(), slike);
 
     }
+
+    @GetMapping("/dohvatiSlike/{pin}")
+    public List<String> dohvatiVideo(@PathVariable("pin") String pin){
+        return fotoService.dohvatiSlike(Integer.valueOf(pin));
+    };
 }
