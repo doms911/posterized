@@ -120,16 +120,13 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         return konferencijaRepo.save(konferencija);
     }
 
-    @Override
-    public boolean zapocniKonferencija(Integer pin) {
-        return false;
-    }
 
     @Override
     public void zavrsiKonferencija(String admin, String naziv) {
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long currentTimeWithoutMillis = System.currentTimeMillis() / 1000 * 1000;
         Timestamp timestampWithoutMillis = new Timestamp(currentTimeWithoutMillis);
@@ -144,13 +141,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     public void saljiMail(String naziv){
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
 
-
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
         Date endDate = Date.from(endTime);
 
         int lastPlace = 1;
-        List<Map<String, String>> pobjednici = pobjednici(konf.getPin());
+        List<Map<String, String>> pobjednici = rezultati(konf.getPin());
         String poruka = "You are invited to the award ceremony for the conference " +
                 konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
                 ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
@@ -240,6 +236,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
         if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
+        novaKonferencija.setUredeno(true);
         konferencijaRepo.save(novaKonferencija);
     }
     @Override
@@ -262,27 +259,31 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public List<Map<String, String>> pobjednici(Integer pin){
+    public List<Map<String, String>> rezultati(Integer pin){
         Konferencija konf = konferencijaRepo.findByPin(pin);
         if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);
         radoviList.sort(Comparator.comparing(Rad::getUkupnoGlasova).reversed());
-        List<Integer> prveTri = radoviList.stream()
-                .map(Rad::getUkupnoGlasova)
-                .distinct()
-                .limit(3)
-                .toList();
-        List<Rad> radoviPobj = radoviList.stream()
-                .filter(rad -> prveTri.contains(rad.getUkupnoGlasova()))
-                .sorted(Comparator.comparing(Rad::getUkupnoGlasova).reversed())
-                .toList();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp vrijemePocetka = konf.getVrijemePocetka();
+        Timestamp vrijemeKraja = konf.getVrijemeKraja();
         List<Map<String, String>> rez = new ArrayList<>();
         Map<String, String> konferencijaMapa = new HashMap<>();
         konferencijaMapa.put("naziv", konf.getNaziv());
         konferencijaMapa.put("admin", konf.getAdminKonf().getEmail());
+        konferencijaMapa.put("adresa", konf.getAdresa());
+        konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
+        konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
+
+        Mjesto mjesto = konf.getMjesto();
+        konferencijaMapa.put("mjesto", mjesto.getNaziv());
+        konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
         rez.add(konferencijaMapa);
-        for(Rad rad : radoviPobj){
+
+        for(Rad rad : radoviList){
             Map<String, String> mapa = new HashMap<>();
             mapa.put("naslov", rad.getNaslov());
             mapa.put("urlPoster", rad.getUrlPoster());
@@ -297,6 +298,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     public String dohvatiVideo(Integer pin) {
         Konferencija konf = konferencijaRepo.findByPin(pin);
         if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija has already finished");
         return konf.getUrlVideo();
     }
 }

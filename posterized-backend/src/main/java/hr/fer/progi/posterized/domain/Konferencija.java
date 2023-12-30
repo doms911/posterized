@@ -27,6 +27,10 @@ public class Konferencija {
     private Timestamp vrijemePocetka;
     private Timestamp vrijemeKraja;
     private String adresa;
+    private Boolean uredeno;
+    public Konferencija() {
+        this.uredeno = false;
+    }
     @ManyToOne
     @JoinColumn(name = "adminKonf_id")
     private Osoba adminKonf;
@@ -46,7 +50,7 @@ public class Konferencija {
             name = "pokrovitelj_na",
             joinColumns = @JoinColumn(name = "konferencija_id"),
             inverseJoinColumns = @JoinColumn(name = "pokrovitelj_id"))
-    Set<Pokrovitelj> pokrovitelji = new HashSet<>();;
+    Set<Pokrovitelj> pokrovitelji = new HashSet<>();
 
 
     public Osoba getAdminKonf() {
@@ -150,5 +154,13 @@ public class Konferencija {
 
     public void setAdresa(String adresa) {
         this.adresa = adresa;
+    }
+
+    public Boolean getUredeno() {
+        return uredeno;
+    }
+
+    public void setUredeno(Boolean uredeno) {
+        this.uredeno = uredeno;
     }
 }

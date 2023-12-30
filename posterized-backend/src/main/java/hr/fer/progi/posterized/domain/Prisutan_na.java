@@ -17,7 +17,7 @@ public class Prisutan_na {
     @MapsId("korisnikId")
     @JoinColumn(name = "korisnik_id")
     private Osoba korisnik;
-    private boolean glasao;
+    private Boolean glasao;
 
     public Prisutan_na() {
         this.glasao = false;

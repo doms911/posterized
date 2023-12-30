@@ -7,6 +7,7 @@ import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,7 @@ public class KonferencijaController {
                 Map<String, String> konferencijaMapa = new HashMap<>();
                 konferencijaMapa.put("naziv", konferencija.getNaziv());
                 konferencijaMapa.put("urlVideo", konferencija.getUrlVideo());
+                konferencijaMapa.put("adresa", konferencija.getAdresa());
                 Timestamp vrijemePocetka = konferencija.getVrijemePocetka();
                 Timestamp vrijemeKraja = konferencija.getVrijemeKraja();
                 if (vrijemePocetka != null) {
@@ -150,5 +152,25 @@ public class KonferencijaController {
         String email = user.getUsername();
         kService.zavrsiKonferencija(email, nazivKonf);
         kService.saljiMail(nazivKonf);
+    }
+
+    @GetMapping("/dohvatiRadove/{pin}")
+    public List<Map<String, String>> prikaz3(@PathVariable("pin") String pin) {
+        if (kService.countByPin(Integer.valueOf(pin)) == 0){
+            Assert.hasText("","Konferencija does not exist.");
+        }
+        Konferencija konf = kService.findByPin(Integer.valueOf(pin));
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+
+        List<Map<String, String>> rezultat = new ArrayList<>();
+        for(Rad rad : konf.getRadovi()){
+            Map<String, String> radMapa = new HashMap<>();
+            radMapa.put("naslov", rad.getNaslov());
+            radMapa.put("urlPptx", rad.getUrlPptx());
+            radMapa.put("urlPoster", rad.getUrlPoster());
+            radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            rezultat.add(radMapa);
+        }
+        return rezultat;
     }
 }

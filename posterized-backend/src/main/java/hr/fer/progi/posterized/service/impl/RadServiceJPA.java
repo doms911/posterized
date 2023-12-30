@@ -35,6 +35,7 @@ public class RadServiceJPA implements RadService {
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
 
         Assert.notNull(autor, "Autor must be given");
         Assert.hasText(autor.getIme(), "Ime autora must be given");

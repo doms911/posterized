@@ -10,7 +10,6 @@ public interface KonferencijaService {
     List<Konferencija> prikazAdmin(String email);
     Konferencija createKonferencija(Integer pin, String email, String naziv);
     void izbrisiKonf(String naziv);
-    boolean zapocniKonferencija(Integer pin);
     void zavrsiKonferencija(String admin, String nazivKonf);
 
     String dohvatiMjesto(Integer pin);
@@ -23,5 +22,5 @@ public interface KonferencijaService {
     void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, String adresa, List<String> sponzori);
     int countByPin(Integer pin);
     Konferencija findByPin(Integer pin);
-    List<Map<String, String>> pobjednici(Integer pin);
+    List<Map<String, String>> rezultati(Integer pin);
 }

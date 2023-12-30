@@ -53,7 +53,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
             prisRepo.save(zapis);
         }
         
-        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.pobjednici(pin);
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.rezultati(pin);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<Map<String, String>> rezultat = new ArrayList<>();
@@ -61,30 +61,16 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         Map<String, String> konferencijaMapa = new HashMap<>();
         konferencijaMapa.put("naziv", konf.getNaziv());
         konferencijaMapa.put("admin", konf.getAdminKonf().getEmail());
+        konferencijaMapa.put("adresa", konf.getAdresa());
         Timestamp vrijemePocetka = konf.getVrijemePocetka();
         Timestamp vrijemeKraja = konf.getVrijemeKraja();
-        if (vrijemePocetka != null) {
-            konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
-        } else konferencijaMapa.put("vrijemePocetka", null);
-        if (vrijemeKraja != null) {
-            konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
-        } else konferencijaMapa.put("vrijemeKraja", null);
+        konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
+        konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
         Mjesto mjesto = konf.getMjesto();
-        if (mjesto != null) {
-            konferencijaMapa.put("mjesto", mjesto.getNaziv());
-            konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
-        } else {
-            konferencijaMapa.put("mjesto", null);
-            konferencijaMapa.put("pbr", null);
-        }
+        konferencijaMapa.put("mjesto", mjesto.getNaziv());
+        konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
+
         rezultat.add(konferencijaMapa);
-        for(Rad rad : konf.getRadovi()){
-            Map<String, String> radMapa = new HashMap<>();
-            radMapa.put("naslov", rad.getNaslov());
-            radMapa.put("urlPptx", rad.getUrlPptx());
-            radMapa.put("urlPoster", rad.getUrlPoster());
-            rezultat.add(radMapa);
-        }
         return rezultat;
     }
 
@@ -124,6 +110,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         Konferencija konf = kService.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
 
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
@@ -137,7 +124,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         message.append(". The awards have been won by the following winners:");
 
         int lastPlace = 1;
-        List<Map<String, String>> pobjednici = kService.pobjednici(konf.getPin());
+        List<Map<String, String>> pobjednici = kService.rezultati(konf.getPin());
         for (int i = 1; i < pobjednici.size(); i++) {
             Map<String, String> winner = pobjednici.get(i);
             String name = winner.get("naslov");
