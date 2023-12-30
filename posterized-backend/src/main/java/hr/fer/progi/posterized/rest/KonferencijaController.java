@@ -1,15 +1,12 @@
 package hr.fer.progi.posterized.rest;
 
-import hr.fer.progi.posterized.domain.Mjesto;
-import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.domain.Rad;
+import hr.fer.progi.posterized.domain.*;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
-import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -161,7 +158,6 @@ public class KonferencijaController {
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
         if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
-
         List<Map<String, String>> rezultat = new ArrayList<>();
         for(Rad rad : konf.getRadovi()){
             Map<String, String> radMapa = new HashMap<>();
@@ -172,5 +168,10 @@ public class KonferencijaController {
             rezultat.add(radMapa);
         }
         return rezultat;
+    }
+
+    @GetMapping("/pokrovitelji/{pin}")
+    public List<Pokrovitelj> dohvatiPokrovitelje(@PathVariable("pin") String pin){
+        return new ArrayList<>(kService.findByPin(Integer.valueOf(pin)).getPokrovitelji());
     }
 }
