@@ -7,11 +7,16 @@ import hr.fer.progi.posterized.service.OsobaService;
 import hr.fer.progi.posterized.service.PrisutanNaService;
 import hr.fer.progi.posterized.service.RadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Service
@@ -48,7 +53,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
             prisRepo.save(zapis);
         }
         
-        if(konf.getVrijemeKraja() == null || konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.pobjednici(pin);
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.pobjednici(pin);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<Map<String, String>> rezultat = new ArrayList<>();
@@ -94,17 +99,64 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         if(rad == null) Assert.hasText("","Rad with naslov " + naslov + " does not exists");
 
         Konferencija konf = rad.getKonferencija();
-        if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija hasn't started yet");
         Osoba osoba = oService.findByEmail(korisnik);
         PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
         kljuc.setKorisnikId(osoba.getId());
         kljuc.setKonfId(konf.getId());
         if(prisRepo.findById(kljuc).isEmpty()) Assert.hasText("","You do not have access to this conference.");
+        if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija has already finished");
         Prisutan_na pris = prisRepo.findById(kljuc).get();
         if(pris.isGlasao())Assert.hasText("","You have already voted.");
         pris.setGlasao(true);
         rad.setUkupnoGlasova(rad.getUkupnoGlasova() + 1);
         prisRepo.save(pris);
+    }
+
+    @Autowired
+    private Environment env;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Override
+    public void saljiMail(String admin, String naziv){
+        Konferencija konf = kService.findByNazivIgnoreCase(naziv);
+        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
+        Date endDate = Date.from(endTime);
+        String message1 = "You are invited to the award ceremony for the conference " +
+                konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
+                ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
+                dateFormat.format(endDate);
+
+        StringBuilder message = new StringBuilder(message1);
+        message.append(". The awards have been won by the following winners:");
+
+        int lastPlace = 1;
+        List<Map<String, String>> pobjednici = kService.pobjednici(konf.getPin());
+        for (int i = 1; i < pobjednici.size(); i++) {
+            Map<String, String> winner = pobjednici.get(i);
+            String name = winner.get("naslov");
+            String glasovi = winner.get("ukupnoGlasova");
+            if (i > 1 && (Integer.valueOf(pobjednici.get(i - 1).get("ukupnoGlasova")) > Integer.valueOf(glasovi))) {
+                lastPlace = i;
+                if(lastPlace>=4)break;
+            }
+            message.append("\n- ").append(lastPlace).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
+        }
+
+
+        for(Prisutan_na pris : prisRepo.findAllByKonferencija(konf)) {
+            final SimpleMailMessage email = new SimpleMailMessage();
+            email.setTo(pris.getKorisnik().getEmail());
+            email.setSubject("Invitation to award ceremony");
+            email.setText(message.toString());
+            email.setFrom(env.getProperty("support.email"));
+            mailSender.send(email);
+        }
     }
 }

@@ -7,11 +7,17 @@ import jakarta.transaction.Transactional;
 
 import org.apache.http.client.utils.URIBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -120,12 +126,61 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public boolean zavrsiKonferencija(Integer pin) {
-        return false;
+    public void zavrsiKonferencija(String admin, String naziv) {
+        Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
+        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long currentTimeWithoutMillis = System.currentTimeMillis() / 1000 * 1000;
+        Timestamp timestampWithoutMillis = new Timestamp(currentTimeWithoutMillis);
+        konf.setVrijemeKraja(timestampWithoutMillis);
+        konferencijaRepo.save(konf);
     }
-
+    @Autowired
+    private Environment env;
+    @Autowired
+    private JavaMailSender mailSender;
     @Override
-    public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, List<String> sponzori) {
+    public void saljiMail(String naziv){
+        Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
+
+
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
+        Date endDate = Date.from(endTime);
+
+        int lastPlace = 1;
+        List<Map<String, String>> pobjednici = pobjednici(konf.getPin());
+        String poruka = "You are invited to the award ceremony for the conference " +
+                konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
+                ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
+                dateFormat.format(endDate) + ".\n\n";
+        for (int i = 1; i < pobjednici.size(); i++) {
+            StringBuilder messageBuilder = new StringBuilder();
+            Map<String, String> winner = pobjednici.get(i);
+            String name = winner.get("naslov");
+            String glasovi = winner.get("ukupnoGlasova");
+            if (i > 1 && (Integer.valueOf(pobjednici.get(i - 1).get("ukupnoGlasova")) > Integer.valueOf(glasovi))) {
+                lastPlace = i;
+            }
+            messageBuilder.append("Your Rad '").append(name).append("' has won ").append(glasovi)
+                    .append(" votes and secured ").append(lastPlace).append(". place.\n");
+
+            Set<Rad> radovi = konf.getRadovi();
+            Rad rad = radovi.stream()
+                    .filter(rad2 -> rad2.getNaslov().equals(name))
+                    .findFirst()
+                    .orElse(null);
+            final SimpleMailMessage email = new SimpleMailMessage();
+            email.setTo(rad.getAutor().getEmail());
+            email.setSubject("Invitation to award ceremony and results");
+            email.setText(poruka + messageBuilder);
+            email.setFrom(env.getProperty("support.email"));
+            mailSender.send(email);
+        }
+    }
+    @Override
+    public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, String adresa, List<String> sponzori) {
         Konferencija novaKonferencija = konferencijaRepo.findByNazivIgnoreCase(naziv);
         if(novaKonferencija == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
         if(!novaKonferencija.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
@@ -151,6 +206,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         }
 
         if(urlVideo.isEmpty() && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "UrlVideo must be given");
+
+        if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa must be given");
 
         if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto must be given");
 
@@ -180,6 +237,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             }
         }
         if(!urlVideo.isEmpty()){novaKonferencija.setUrlVideo(urlVideo);}
+        if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
         if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
         konferencijaRepo.save(novaKonferencija);

@@ -124,9 +124,10 @@ public class KonferencijaController {
                                            @RequestParam("vrijemePocetka") String vrijemePocetka,
                                            @RequestParam("vrijemeKraja") String vrijemeKraja,
                                            @RequestParam("mjesto") String mjesto, @RequestParam("pbr") String pbr,
+                                            @RequestParam("adresa") String adresa,
                                            @RequestParam("sponzori") String sponzoriString){
         List<String> sponzori = Arrays.asList(sponzoriString.split(","));
-        kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, sponzori);
+        kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, adresa, sponzori);
     }
 
     @GetMapping("/izbrisiKonf/{naziv}")
@@ -142,4 +143,12 @@ public class KonferencijaController {
     public String dohvatiVideo(@PathVariable("pin") String pin){
         return kService.dohvatiVideo(Integer.valueOf(pin));
     };
+
+    @Secured("admin")
+    @GetMapping("/zavrsiKonf/{naziv}")
+    public void zavrsiKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+        String email = user.getUsername();
+        kService.zavrsiKonferencija(email, nazivKonf);
+        kService.saljiMail(nazivKonf);
+    }
 }

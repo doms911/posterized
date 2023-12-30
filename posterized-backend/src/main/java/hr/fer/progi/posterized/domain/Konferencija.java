@@ -26,7 +26,7 @@ public class Konferencija {
 
     private Timestamp vrijemePocetka;
     private Timestamp vrijemeKraja;
-
+    private String adresa;
     @ManyToOne
     @JoinColumn(name = "adminKonf_id")
     private Osoba adminKonf;
@@ -142,5 +142,13 @@ public class Konferencija {
 
     public void setPrisutnost(Set<Prisutan_na> prisutnost) {
         this.prisutnost = prisutnost;
+    }
+
+    public String getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
     }
 }

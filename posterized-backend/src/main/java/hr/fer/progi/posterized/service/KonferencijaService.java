@@ -11,13 +11,16 @@ public interface KonferencijaService {
     Konferencija createKonferencija(Integer pin, String email, String naziv);
     void izbrisiKonf(String naziv);
     boolean zapocniKonferencija(Integer pin);
-    boolean zavrsiKonferencija(Integer pin);
+    void zavrsiKonferencija(String admin, String nazivKonf);
 
     String dohvatiMjesto(Integer pin);
     String dohvatiVideo(Integer pin);
 
     Konferencija findByNazivIgnoreCase(String naziv);
-    void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, List<String> sponzori);
+
+    void saljiMail(String naziv);
+
+    void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, String adresa, List<String> sponzori);
     int countByPin(Integer pin);
     Konferencija findByPin(Integer pin);
     List<Map<String, String>> pobjednici(Integer pin);
