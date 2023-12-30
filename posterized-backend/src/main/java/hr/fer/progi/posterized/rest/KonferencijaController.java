@@ -1,14 +1,11 @@
 package hr.fer.progi.posterized.rest;
 
-import hr.fer.progi.posterized.domain.Mjesto;
-import hr.fer.progi.posterized.domain.Osoba;
-import hr.fer.progi.posterized.domain.Rad;
+import hr.fer.progi.posterized.domain.*;
 import hr.fer.progi.posterized.service.KonferencijaService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestMapping;
-import hr.fer.progi.posterized.domain.Konferencija;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -150,5 +147,10 @@ public class KonferencijaController {
         String email = user.getUsername();
         kService.zavrsiKonferencija(email, nazivKonf);
         kService.saljiMail(nazivKonf);
+    }
+
+    @GetMapping("/pokrovitelji/{pin}")
+    public List<Pokrovitelj> dohvatiPokrovitelje(@PathVariable("pin") String pin){
+        return new ArrayList<>(kService.findByPin(Integer.valueOf(pin)).getPokrovitelji());
     }
 }
