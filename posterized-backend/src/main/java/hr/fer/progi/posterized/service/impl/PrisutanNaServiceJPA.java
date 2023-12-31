@@ -54,12 +54,6 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
                 prisRepo.save(zapis);
             }
         }
-        
-        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
-            radService.plasman(konf.getNaziv());
-            return kService.rezultati(pin);
-        }
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<Map<String, String>> rezultat = new ArrayList<>();
 
@@ -74,8 +68,12 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         Mjesto mjesto = konf.getMjesto();
         konferencijaMapa.put("mjesto", mjesto.getNaziv());
         konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
-
         rezultat.add(konferencijaMapa);
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
+            radService.plasman(konf.getNaziv());
+            rezultat.addAll(kService.rezultati(pin));
+            return rezultat;
+        }
         return rezultat;
     }
 
@@ -129,7 +127,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         message.append(". The awards have been won by the following winners:");
 
         List<Map<String, String>> rezultati = kService.rezultati(konf.getPin());
-        for (int i = 1; i < rezultati.size(); i++) {
+        for (int i = 0; i < rezultati.size(); i++) {
             Map<String, String> winner = rezultati.get(i);
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");

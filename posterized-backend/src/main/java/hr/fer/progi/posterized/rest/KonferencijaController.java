@@ -124,8 +124,7 @@ public class KonferencijaController {
                                            @RequestParam("vrijemeKraja") String vrijemeKraja,
                                            @RequestParam("mjesto") String mjesto, @RequestParam("pbr") String pbr,
                                             @RequestParam("adresa") String adresa,
-                                           @RequestParam("sponzori") String sponzoriString){
-        List<String> sponzori = Arrays.asList(sponzoriString.split(","));
+                                   @RequestParam("sponzori") List<String> sponzori){
         kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, adresa, sponzori);
     }
 

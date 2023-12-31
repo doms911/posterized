@@ -150,7 +150,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
                 konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
                 ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
                 dateFormat.format(endDate) + ".\n\n";
-        for (int i = 1; i < rezultati.size(); i++) {
+        for (int i = 0; i < rezultati.size(); i++) {
             StringBuilder messageBuilder = new StringBuilder();
             Map<String, String> winner = rezultati.get(i);
             String name = winner.get("naslov");
@@ -207,13 +207,16 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
             Assert.hasText("", "Pbr and mjesto must be changed together");
 
-        Mjesto mjesto=null;
-        if(!pbr.isEmpty() ) mjesto = mjService.findByPbr(Integer.valueOf(pbr));
-        if(mjesto != null) {
-            mjService.update(mjestoNaziv, Integer.valueOf(pbr));
-            novaKonferencija.setMjesto(mjesto);
-        } else{
-            novaKonferencija.setMjesto(mjService.createMjesto(Integer.valueOf(pbr), mjestoNaziv));
+        Mjesto mjesto;
+        if(!pbr.isEmpty() ) {
+            mjesto = mjService.findByPbr(Integer.valueOf(pbr));
+
+            if (mjesto != null) {
+                mjService.update(mjestoNaziv, Integer.valueOf(pbr));
+                novaKonferencija.setMjesto(mjesto);
+            } else {
+                novaKonferencija.setMjesto(mjService.createMjesto(Integer.valueOf(pbr), mjestoNaziv));
+            }
         }
 
         if(!sponzori.isEmpty() && !(sponzori.size() == 1 && sponzori.get(0).isEmpty())){
@@ -228,7 +231,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
                     novaKonferencija.getPokrovitelji().add(pokr);
                 }
             }
-        }
+        } else if (sponzori.isEmpty())novaKonferencija.getPokrovitelji().clear();
+
         if(!urlVideo.isEmpty()){novaKonferencija.setUrlVideo(urlVideo);}
         if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
@@ -264,21 +268,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         List<Rad> radoviList = new ArrayList<>(radovi);
         radoviList.sort(Comparator.comparing(Rad::getPlasman));
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Timestamp vrijemePocetka = konf.getVrijemePocetka();
-        Timestamp vrijemeKraja = konf.getVrijemeKraja();
         List<Map<String, String>> rez = new ArrayList<>();
-        Map<String, String> konferencijaMapa = new HashMap<>();
-        konferencijaMapa.put("naziv", konf.getNaziv());
-        konferencijaMapa.put("admin", konf.getAdminKonf().getEmail());
-        konferencijaMapa.put("adresa", konf.getAdresa());
-        konferencijaMapa.put("vrijemePocetka", dateFormat.format(vrijemePocetka));
-        konferencijaMapa.put("vrijemeKraja", dateFormat.format(vrijemeKraja));
-
-        Mjesto mjesto = konf.getMjesto();
-        konferencijaMapa.put("mjesto", mjesto.getNaziv());
-        konferencijaMapa.put("pbr", String.valueOf(mjesto.getPbr()));
-        rez.add(konferencijaMapa);
 
         for(Rad rad : radoviList){
             Map<String, String> mapa = new HashMap<>();
