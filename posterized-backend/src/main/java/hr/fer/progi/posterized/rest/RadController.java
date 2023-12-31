@@ -47,4 +47,8 @@ public class RadController {
     public void izbrisiRad (@PathVariable("naslov") String naslov, @AuthenticationPrincipal User user){
         radService.izbrisiRad(user.getUsername(), naslov);
     }
+    @GetMapping("/plasman/{naziv}")
+    public void plasman (@PathVariable("naziv") String naziv){
+        radService.plasman(naziv);
+    }
 }

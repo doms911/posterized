@@ -12,8 +12,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class RadServiceJPA implements RadService {
@@ -36,6 +35,8 @@ public class RadServiceJPA implements RadService {
         if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
         if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
+            Assert.hasText("","Konferencija has already finished");
 
         Assert.notNull(autor, "Autor must be given");
         Assert.hasText(autor.getIme(), "Ime autora must be given");
@@ -53,6 +54,8 @@ public class RadServiceJPA implements RadService {
         Osoba osoba = oService.findByEmail(autor.getEmail());
         if(osoba == null) {
             osoba = oService.createAutor(autor);
+        } else if(konf.getRadovi().stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(autor.getEmail()))){
+            Assert.hasText("","You are already registered for this conference with one Rad.");
         }
         rad.setAutor(osoba);
         rad.setKonferencija(konf);
@@ -90,6 +93,28 @@ public class RadServiceJPA implements RadService {
     @Override
     public Rad findByNaslovIgnoreCase(String naslov) {
         return radRepo.findByNaslovIgnoreCase(naslov);
+    }
+
+    @Override
+    public void plasman(String naziv) {
+        Konferencija konf = konfService.findByNazivIgnoreCase(naziv);
+        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+
+        Set<Rad> radovi = konf.getRadovi();
+        List<Rad> radoviList = new ArrayList<>(radovi);
+        radoviList.sort(Comparator.comparing(Rad::getUkupnoGlasova).reversed());
+        int lastPlace = 1;
+        for (int i = 0; i < radoviList.size(); i++) {
+            Rad rad = radoviList.get(i);
+            Integer glasovi = rad.getUkupnoGlasova();
+            if (i > 0 && (radoviList.get(i - 1).getUkupnoGlasova() > glasovi)) {
+                lastPlace = i + 1;
+                rad.setPlasman(lastPlace);
+
+            } else rad.setPlasman(lastPlace);
+            radRepo.save(rad);
+        }
     }
 
 

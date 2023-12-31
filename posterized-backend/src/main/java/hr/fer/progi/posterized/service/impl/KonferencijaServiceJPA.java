@@ -145,22 +145,19 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
         Date endDate = Date.from(endTime);
 
-        int lastPlace = 1;
-        List<Map<String, String>> pobjednici = rezultati(konf.getPin());
+        List<Map<String, String>> rezultati = rezultati(konf.getPin());
         String poruka = "You are invited to the award ceremony for the conference " +
                 konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
                 ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
                 dateFormat.format(endDate) + ".\n\n";
-        for (int i = 1; i < pobjednici.size(); i++) {
+        for (int i = 1; i < rezultati.size(); i++) {
             StringBuilder messageBuilder = new StringBuilder();
-            Map<String, String> winner = pobjednici.get(i);
+            Map<String, String> winner = rezultati.get(i);
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");
-            if (i > 1 && (Integer.valueOf(pobjednici.get(i - 1).get("ukupnoGlasova")) > Integer.valueOf(glasovi))) {
-                lastPlace = i;
-            }
+            String plasman = winner.get("plasman");
             messageBuilder.append("Your Rad '").append(name).append("' has won ").append(glasovi)
-                    .append(" votes and secured ").append(lastPlace).append(". place.\n");
+                    .append(" votes and secured ").append(plasman).append(". place.\n");
 
             Set<Rad> radovi = konf.getRadovi();
             Rad rad = radovi.stream()
@@ -265,7 +262,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);
-        radoviList.sort(Comparator.comparing(Rad::getUkupnoGlasova).reversed());
+        radoviList.sort(Comparator.comparing(Rad::getPlasman));
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp vrijemePocetka = konf.getVrijemePocetka();
@@ -289,6 +286,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             mapa.put("urlPoster", rad.getUrlPoster());
             mapa.put("urlPptx", rad.getUrlPptx());
             mapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            mapa.put("plasman", String.valueOf(rad.getPlasman()));
             rez.add(mapa);
         }
         return rez;

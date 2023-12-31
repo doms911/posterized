@@ -55,7 +55,10 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
             }
         }
         
-        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) return kService.rezultati(pin);
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
+            radService.plasman(konf.getNaziv());
+            return kService.rezultati(pin);
+        }
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<Map<String, String>> rezultat = new ArrayList<>();
@@ -91,7 +94,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
         kljuc.setKorisnikId(osoba.getId());
         kljuc.setKonfId(konf.getId());
-        if(prisRepo.findById(kljuc).isEmpty()) Assert.hasText("","You do not have access to this conference.");
+        if(prisRepo.findById(kljuc).isEmpty()) Assert.hasText("","You can't vote on this conference.");
         if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
             Assert.hasText("","Konferencija hasn't started yet");
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
@@ -125,17 +128,14 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         StringBuilder message = new StringBuilder(message1);
         message.append(". The awards have been won by the following winners:");
 
-        int lastPlace = 1;
-        List<Map<String, String>> pobjednici = kService.rezultati(konf.getPin());
-        for (int i = 1; i < pobjednici.size(); i++) {
-            Map<String, String> winner = pobjednici.get(i);
+        List<Map<String, String>> rezultati = kService.rezultati(konf.getPin());
+        for (int i = 1; i < rezultati.size(); i++) {
+            Map<String, String> winner = rezultati.get(i);
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");
-            if (i > 1 && (Integer.valueOf(pobjednici.get(i - 1).get("ukupnoGlasova")) > Integer.valueOf(glasovi))) {
-                lastPlace = i;
-                if(lastPlace>=4)break;
-            }
-            message.append("\n- ").append(lastPlace).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
+            String plasman = winner.get("plasman");
+            if(Integer.valueOf(plasman) >=4)break;
+            message.append("\n- ").append(plasman).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
         }
 
 

@@ -13,4 +13,5 @@ public interface RadService {
     @Transactional
     void izbrisiRad(String admin, String naziv);
     Rad findByNaslovIgnoreCase(String naslov);
+    void plasman(String naziv);
 }

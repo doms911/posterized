@@ -13,6 +13,7 @@ public class Rad {
     private String nazivPptx;
     private String nazivPoster;
     private Integer ukupnoGlasova;
+    private Integer plasman;
     public Rad() {
         this.ukupnoGlasova = 0;
     }
@@ -92,5 +93,13 @@ public class Rad {
 
     public void setNazivPoster(String nazivPoster) {
         this.nazivPoster = nazivPoster;
+    }
+
+    public Integer getPlasman() {
+        return plasman;
+    }
+
+    public void setPlasman(Integer plasman) {
+        this.plasman = plasman;
     }
 }
