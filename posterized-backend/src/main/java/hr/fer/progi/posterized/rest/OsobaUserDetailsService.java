@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import static org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList;
 
 @Service
-public class KorisnikUserDetailsService implements UserDetailsService {
+public class OsobaUserDetailsService implements UserDetailsService {
     @Value("${hr.fer.progi.posterized.admin.password}")
     private String superadminLozinkaHash;
 
