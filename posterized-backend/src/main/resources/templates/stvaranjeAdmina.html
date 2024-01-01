@@ -38,7 +38,7 @@
         var forma = document.getElementById('registracijaForma');
         var podaci = new FormData(forma);
 
-        fetch('/api/stvoriAdmina', {
+        fetch('/api/registracija/admin', {
             method: 'POST',
             body: JSON.stringify(Object.fromEntries(podaci)),
             headers: {
