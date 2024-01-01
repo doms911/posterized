@@ -27,10 +27,6 @@ public class Konferencija {
     private Timestamp vrijemePocetka;
     private Timestamp vrijemeKraja;
     private String adresa;
-    private Boolean uredeno;
-    public Konferencija() {
-        this.uredeno = false;
-    }
     @ManyToOne
     @JoinColumn(name = "adminKonf_id")
     private Osoba adminKonf;
@@ -156,11 +152,4 @@ public class Konferencija {
         this.adresa = adresa;
     }
 
-    public Boolean getUredeno() {
-        return uredeno;
-    }
-
-    public void setUredeno(Boolean uredeno) {
-        this.uredeno = uredeno;
-    }
 }

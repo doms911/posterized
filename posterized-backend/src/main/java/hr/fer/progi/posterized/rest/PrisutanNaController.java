@@ -27,10 +27,4 @@ public class PrisutanNaController {
     public void glasaj (@PathVariable("naslov") String naslov, @AuthenticationPrincipal User user){
         prisService.glasaj(user.getUsername(), naslov);
     }
-    @Secured("admin")
-    @GetMapping("/zavrsiKonf/{naziv}")
-    public void zavrsiKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
-        String email = user.getUsername();
-        prisService.saljiMail(email, nazivKonf);
-    }
 }

@@ -11,5 +11,4 @@ public interface PrisutanNaService {
     List<Map<String, String>> provjeriPin(String korisnik, Integer pin);
     Optional<Prisutan_na> findByPrisutanNaKljuc(PrisutanNaKljuc kljuc);
     void glasaj(String korisnik, String naslov);
-    void saljiMail(String admin, String nazivKonf);
 }

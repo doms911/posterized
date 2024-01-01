@@ -156,14 +156,14 @@ public class KonferencijaController {
             Assert.hasText("","Konferencija does not exist.");
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
         List<Map<String, String>> rezultat = new ArrayList<>();
         for(Rad rad : konf.getRadovi()){
             Map<String, String> radMapa = new HashMap<>();
             radMapa.put("naslov", rad.getNaslov());
             radMapa.put("urlPptx", rad.getUrlPptx());
             radMapa.put("urlPoster", rad.getUrlPoster());
-            radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            //radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
             rezultat.add(radMapa);
         }
         return rezultat;

@@ -34,7 +34,6 @@ public class RadServiceJPA implements RadService {
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
             Assert.hasText("","Konferencija has already finished");
 
@@ -99,7 +98,7 @@ public class RadServiceJPA implements RadService {
     public void plasman(String naziv) {
         Konferencija konf = konfService.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
 
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);

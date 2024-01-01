@@ -71,7 +71,8 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         rezultat.add(konferencijaMapa);
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
             radService.plasman(konf.getNaziv());
-            rezultat.addAll(kService.rezultati(pin));
+            List<Map<String, String>> rezultati = kService.rezultati(pin);
+            if(rezultati != null)rezultat.addAll(rezultati);
             return rezultat;
         }
         return rezultat;
@@ -102,48 +103,5 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         pris.setGlasao(true);
         rad.setUkupnoGlasova(rad.getUkupnoGlasova() + 1);
         prisRepo.save(pris);
-    }
-
-    @Autowired
-    private Environment env;
-    @Autowired
-    private JavaMailSender mailSender;
-    @Override
-    public void saljiMail(String admin, String naziv){
-        Konferencija konf = kService.findByNazivIgnoreCase(naziv);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
-
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
-        Date endDate = Date.from(endTime);
-        String message1 = "You are invited to the award ceremony for the conference " +
-                konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
-                ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
-                dateFormat.format(endDate);
-
-        StringBuilder message = new StringBuilder(message1);
-        message.append(". The awards have been won by the following winners:");
-
-        List<Map<String, String>> rezultati = kService.rezultati(konf.getPin());
-        for (int i = 0; i < rezultati.size(); i++) {
-            Map<String, String> winner = rezultati.get(i);
-            String name = winner.get("naslov");
-            String glasovi = winner.get("ukupnoGlasova");
-            String plasman = winner.get("plasman");
-            if(Integer.valueOf(plasman) >=4)break;
-            message.append("\n- ").append(plasman).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
-        }
-
-
-        for(Prisutan_na pris : prisRepo.findAllByKonferencija(konf)) {
-            final SimpleMailMessage email = new SimpleMailMessage();
-            email.setTo(pris.getKorisnik().getEmail());
-            email.setSubject("Invitation to award ceremony");
-            email.setText(message.toString());
-            email.setFrom(env.getProperty("support.email"));
-            mailSender.send(email);
-        }
     }
 }

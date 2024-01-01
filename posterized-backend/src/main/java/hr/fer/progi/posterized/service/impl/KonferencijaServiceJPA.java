@@ -126,8 +126,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
         long currentTimeWithoutMillis = System.currentTimeMillis() / 1000 * 1000;
         Timestamp timestampWithoutMillis = new Timestamp(currentTimeWithoutMillis);
         konf.setVrijemeKraja(timestampWithoutMillis);
@@ -146,10 +145,25 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Date endDate = Date.from(endTime);
 
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
+        if(rezultati == null) return;
         String poruka = "You are invited to the award ceremony for the conference " +
                 konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
                 ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
-                dateFormat.format(endDate) + ".\n\n";
+                dateFormat.format(endDate);
+
+        StringBuilder message = new StringBuilder(poruka);
+        message.append(". The awards have been won by the following winners:");
+
+        for (int i = 0; i < rezultati.size(); i++) {
+            Map<String, String> winner = rezultati.get(i);
+            String name = winner.get("naslov");
+            String glasovi = winner.get("ukupnoGlasova");
+            String plasman = winner.get("plasman");
+            if(Integer.valueOf(plasman) >=4)break;
+            message.append("\n- ").append(plasman).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
+        }
+        message.append(".\n\n");
+        Set<Rad> radovi = konf.getRadovi();
         for (int i = 0; i < rezultati.size(); i++) {
             StringBuilder messageBuilder = new StringBuilder();
             Map<String, String> winner = rezultati.get(i);
@@ -159,7 +173,6 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             messageBuilder.append("Your Rad '").append(name).append("' has won ").append(glasovi)
                     .append(" votes and secured ").append(plasman).append(". place.\n");
 
-            Set<Rad> radovi = konf.getRadovi();
             Rad rad = radovi.stream()
                     .filter(rad2 -> rad2.getNaslov().equals(name))
                     .findFirst()
@@ -167,7 +180,18 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             final SimpleMailMessage email = new SimpleMailMessage();
             email.setTo(rad.getAutor().getEmail());
             email.setSubject("Invitation to award ceremony and results");
-            email.setText(poruka + messageBuilder);
+            email.setText(message.toString() + messageBuilder);
+            email.setFrom(env.getProperty("support.email"));
+            mailSender.send(email);
+        }
+
+        for(Prisutan_na pris : konf.getPrisutnost()) {
+            String korisnik = pris.getKorisnik().getEmail();
+            if(radovi.stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(korisnik)))continue;
+            final SimpleMailMessage email = new SimpleMailMessage();
+            email.setTo(korisnik);
+            email.setSubject("Invitation to award ceremony");
+            email.setText(message.toString());
             email.setFrom(env.getProperty("support.email"));
             mailSender.send(email);
         }
@@ -237,7 +261,6 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
         if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
-        novaKonferencija.setUredeno(true);
         konferencijaRepo.save(novaKonferencija);
     }
     @Override
@@ -263,9 +286,14 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     public List<Map<String, String>> rezultati(Integer pin){
         Konferencija konf = konferencijaRepo.findByPin(pin);
         if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
-        if(!konf.getUredeno())Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);
+        for (Rad rad : radoviList) {
+            if (rad.getPlasman() == null) {
+                return null;
+            }
+        }
         radoviList.sort(Comparator.comparing(Rad::getPlasman));
 
         List<Map<String, String>> rez = new ArrayList<>();
