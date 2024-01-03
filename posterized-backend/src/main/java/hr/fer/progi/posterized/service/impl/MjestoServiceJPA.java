@@ -23,10 +23,10 @@ public class MjestoServiceJPA implements MjestoService {
     @Override
     public Mjesto createMjesto(Integer pbr, String naziv) {
 
-        Assert.notNull(pbr,"Pbr must be given");
+        Assert.notNull(pbr,"Poštanski broj mora biti naveden.");
 
         if(mjestoRepo.countByPbr(pbr)>0){
-            Assert.hasText("","This place already exits");
+            Assert.hasText("","Zapis o ovom mjestu već postoji.");
         }
         Mjesto mjesto = new Mjesto();
         mjesto.setPbr(pbr);

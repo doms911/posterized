@@ -19,17 +19,17 @@ public class PokroviteljServiceJPA implements PokroviteljService {
 
     @Override
     public Pokrovitelj createPokrovitelj(Pokrovitelj pokrovitelj, MultipartFile logo) throws IOException {
-        Assert.notNull(pokrovitelj, "Pokrovitelj object must be given");
+        Assert.notNull(pokrovitelj, "Podaci o pokrovitelju moraju biti navedeni.");
         String naziv = pokrovitelj.getNaziv();
-        Assert.hasText(naziv, "Naziv must be given");
+        Assert.hasText(naziv, "Naziv mora biti naveden.");
         String url = pokrovitelj.getUrl();
-        Assert.hasText(url, "Url must be given");
-        if(logo.isEmpty()) Assert.hasText("", "Logo must be given");
+        Assert.hasText(url, "URL mora biti naveden.");
+        if(logo.isEmpty()) Assert.hasText("", "Logo mora biti učitan.");
         if (pokroviteljRepo.countByNazivCaseInsensitive(pokrovitelj.getNaziv()) > 0) {
-            Assert.hasText("", "Pokrovitelj with naziv " + pokrovitelj.getNaziv() + " already exists");
+            Assert.hasText("", "Pokrovitelj s nazivom " + pokrovitelj.getNaziv() + " već postoji.");
         }
         if (pokroviteljRepo.countByUrl(pokrovitelj.getUrl()) > 0) {
-            Assert.hasText("", "Pokrovitelj with url " + pokrovitelj.getNaziv() + " already exists");
+            Assert.hasText("", "Pokrovitelj s URL-om " + pokrovitelj.getNaziv() + " već postoji.");
         }
         Media slika = new Media();
         pokrovitelj.setUrlSlike(slika.upload(logo, naziv, "pokrovitelji"));

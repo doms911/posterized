@@ -32,22 +32,22 @@ public class PasswordTokenController {
         Osoba osoba = akService.findByEmail(userEmail);
         Map<String, String> response = new HashMap<>();
         if (osoba == null) {
-            String message = "No user " + userEmail;
+            String message = "Ne postoji korisnik " + userEmail;
             Assert.hasText("", message);
         }
         String token = UUID.randomUUID().toString();
         passService.createPasswordResetToken(osoba, token);
         mailSender.send(napraviEmail(env.getProperty("send.email.link"), token, osoba));
-        response.put("message", "Reset Password");
+        response.put("message", "Ponovno postavi lozinku");
         return response;
     }
 
     private SimpleMailMessage napraviEmail(String contextPath, String token, Osoba osoba) {
         final String url = contextPath + "/changePassword?id=" + osoba.getId() + "&token=" + token;
-        final String message = "Reset Password";
+        final String message = "Ponovno postavi lozinku";
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(osoba.getEmail());
-        email.setSubject("Reset Password");
+        email.setSubject("Ponovno postavljanje lozinke");
         email.setText(message + " \r\n" + url);
         email.setFrom(env.getProperty("support.email"));
         return email;
@@ -57,7 +57,7 @@ public class PasswordTokenController {
     public String provjeriToken(@RequestParam("token") String token) {
         String result = validatePasswordResetToken(token);
         if(result != null) {
-            String message = "Your password reset token is no valid.";
+            String message = "Token za ponovno postavljanje lozinke nije valjan.";
             Assert.hasText("", message);
         }
         return "";
@@ -79,13 +79,13 @@ public class PasswordTokenController {
         Map<String, String> response = new HashMap<>();
         String result = validatePasswordResetToken(token);
         if(result != null) {
-            Assert.hasText("", "Your password reset token is no valid.");
+            Assert.hasText("", "Token za ponovno postavljanje lozinke nije valjan.");
         }
         Optional<Osoba> osoba = passService.getOsobaByPasswordResetToken(token);
         if(osoba.isPresent()) {
             akService.promijeniOsobiLozinku(osoba.get(), lozinka, token);
             passService.deleteByToken(token);
-            response.put("message", "Password reset successfully");
+            response.put("message", "Lozinka je uspješno postavljena.");
         }
         return response;
     }

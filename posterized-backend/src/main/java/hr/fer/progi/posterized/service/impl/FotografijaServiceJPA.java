@@ -25,8 +25,8 @@ public class FotografijaServiceJPA implements FotografijaService {
     @Override
     public void spremiSlike(String nazivKonf, String admin, List<MultipartFile> slike){
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(konf == null) Assert.hasText("","Konferencija s nazivom " + nazivKonf + " ne postoji.");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         Media objekt = new Media();
         for(MultipartFile slika: slike){
             String naziv = UUID.randomUUID().toString();
@@ -41,7 +41,7 @@ public class FotografijaServiceJPA implements FotografijaService {
     @Override
     public List<String> dohvatiSlike(Integer pin) {
         Konferencija konf = konfService.findByPin(pin);
-        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        if(konf == null) Assert.hasText("","Konferencija s pinom " + pin + " ne postoji.");
         List<Fotografija> slike = fotoRepo.findAllByKonferencija(konf);
         List<String> rez = new ArrayList<>();
         for(Fotografija slika : slike){

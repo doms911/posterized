@@ -35,7 +35,7 @@ public class OsobaUserDetailsService implements UserDetailsService {
                     commaSeparatedStringToAuthorityList(korisnik.getUloga())
             );
         } else {
-            throw new UsernameNotFoundException("No user " + username);
+            throw new UsernameNotFoundException("Ne postoji korisnik " + username);
         }
     }
 }

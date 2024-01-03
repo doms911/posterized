@@ -62,11 +62,11 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public String dohvatiMjesto(Integer pin){
         if (konferencijaRepo.countByPin(pin) == 0){
-            Assert.hasText("","Konferencija does not exist.");
+            Assert.hasText("","Konferencija ne postoji.");
         }
         Konferencija konf = konferencijaRepo.findByPin(pin);
         if (konf.getMjesto() == null){
-            Assert.hasText("","Place isn't set.");
+            Assert.hasText("","Mjesto ne postoji.");
         }
 
         String apiKey="6THFAJBEM3ED86RX799RZ3YTJ";
@@ -98,21 +98,21 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
     @Override
     public Konferencija createKonferencija(Integer pin, String email, String naziv) {
-        Assert.notNull(pin, "Pin must be given.");
+        Assert.notNull(pin, "Pin mora biti naveden.");
         if (konferencijaRepo.countByPin(pin) > 0){
-            Assert.hasText("","Konferencija already exists.");
+            Assert.hasText("","Konferencija već postoji.");
         }
         Konferencija konferencija = new Konferencija();
-        Assert.hasText(naziv, "Naziv must be given");
+        Assert.hasText(naziv, "Naziv mora biti naveden.");
         if (konferencijaRepo.countByNazivCaseInsensitive(naziv) > 0){
-            Assert.hasText("","Naziv already exists.");
+            Assert.hasText("","Konferencija s istim nazivom već postoji.");
         }
-        Assert.hasText(email, "Email must be given");
+        Assert.hasText(email, "Email mora biti naveden.");
         Assert.isTrue(email.matches(EMAIL_FORMAT),
-                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+                "Email mora biti u ispravnom obliku, npr. user@example.com, a ne '" + email + "'."
         );
         if (oService.countByEmail(email) == 0) {
-            Assert.hasText("", "Osoba with email " + email + " does not exists");
+            Assert.hasText("", "Admin s emailom " + email + " ne postoji.");
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
@@ -124,9 +124,9 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public void zavrsiKonferencija(String admin, String naziv) {
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
-        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
+        if(konf == null) Assert.hasText("","Konferencija s nazivom " + naziv + " ne postoji.");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
         long currentTimeWithoutMillis = System.currentTimeMillis() / 1000 * 1000;
         Timestamp timestampWithoutMillis = new Timestamp(currentTimeWithoutMillis);
         konf.setVrijemeKraja(timestampWithoutMillis);
@@ -146,13 +146,13 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
         if(rezultati == null) return;
-        String poruka = "You are invited to the award ceremony for the conference " +
-                konf.getNaziv() + " at " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
-                ", " + konf.getMjesto().getPbr() + ". The ceremony will take place on " +
+        String poruka = "Pozvani ste na dodjelu nagrada za konferenciju pod nazivom " +
+                konf.getNaziv() + " na adresi " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
+                ", " + konf.getMjesto().getPbr() + ". Dodjela nagrada održat će se " +
                 dateFormat.format(endDate);
 
         StringBuilder message = new StringBuilder(poruka);
-        message.append(". The awards have been won by the following winners:");
+        message.append(". Nagrade su osvojili sljedeći natjecatelji:");
 
         for (int i = 0; i < rezultati.size(); i++) {
             Map<String, String> winner = rezultati.get(i);
@@ -170,8 +170,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
-            messageBuilder.append("Your Rad '").append(name).append("' has won ").append(glasovi)
-                    .append(" votes and secured ").append(plasman).append(". place.\n");
+            messageBuilder.append("Vaš rad '").append(name).append("' je osvojio ").append(glasovi)
+                    .append(" glasova i osvojio je ").append(plasman).append(". mjesto!\n");
 
             Rad rad = radovi.stream()
                     .filter(rad2 -> rad2.getNaslov().equals(name))
@@ -179,7 +179,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
                     .orElse(null);
             final SimpleMailMessage email = new SimpleMailMessage();
             email.setTo(rad.getAutor().getEmail());
-            email.setSubject("Invitation to award ceremony and results");
+            email.setSubject("Pozivnica na dodjelu nagrada i rezultati");
             email.setText(message.toString() + messageBuilder);
             email.setFrom(env.getProperty("support.email"));
             mailSender.send(email);
@@ -190,7 +190,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             if(radovi.stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(korisnik)))continue;
             final SimpleMailMessage email = new SimpleMailMessage();
             email.setTo(korisnik);
-            email.setSubject("Invitation to award ceremony");
+            email.setSubject("Pozivnica na dodjelu nagrada");
             email.setText(message.toString());
             email.setFrom(env.getProperty("support.email"));
             mailSender.send(email);
@@ -199,37 +199,37 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, String adresa, List<String> sponzori) {
         Konferencija novaKonferencija = konferencijaRepo.findByNazivIgnoreCase(naziv);
-        if(novaKonferencija == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(!novaKonferencija.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(novaKonferencija == null) Assert.hasText("","Konferencija s nazivom " + naziv + " ne postoji.");
+        if(!novaKonferencija.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         Timestamp vrijemePocetkaT = null, vrijemeKrajaT = null;
         if(!vrijemePocetka.isEmpty()) {
             vrijemePocetkaT = Timestamp.valueOf(vrijemePocetka.replace("T", " ") + ":00");
         } else {
             if(novaKonferencija.getVrijemePocetka() == null)
-            Assert.hasText("", "VrijemePocetka must be given");
+            Assert.hasText("", "Vrijeme početka konferencije mora biti navedeno.");
         }
         if(!vrijemeKraja.isEmpty()) {
             vrijemeKrajaT = Timestamp.valueOf(vrijemeKraja.replace("T", " ") + ":00");
         } else {
             if(novaKonferencija.getVrijemeKraja() == null)
-                Assert.hasText("", "VrijemeKraja must be given");
+                Assert.hasText("", "Vrijeme kraja konferencije mora biti navedeno.");
         }
         if (!vrijemePocetka.isEmpty() && !vrijemeKraja.isEmpty() && vrijemePocetkaT.after(vrijemeKrajaT)) {
-            Assert.hasText("","The end of the conference must be after the start of the conference.");
+            Assert.hasText("","Kraj konferencije mora biti nakon početka iste.");
         } else if (vrijemePocetka.isEmpty() && !vrijemeKraja.isEmpty() && novaKonferencija.getVrijemePocetka().after(vrijemeKrajaT)){
-            Assert.hasText("","The end of the conference must be after the start of the conference.");
+            Assert.hasText("","Kraj konferencije mora biti nakon početka iste.");
         } else if (!vrijemePocetka.isEmpty() && vrijemeKraja.isEmpty() && vrijemePocetkaT.after(novaKonferencija.getVrijemeKraja())){
-            Assert.hasText("","The end of the conference must be after the start of the conference.");
+            Assert.hasText("","Kraj konferencije mora biti nakon početka iste.");
         }
 
-        if(urlVideo.isEmpty() && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "UrlVideo must be given");
+        if(urlVideo.isEmpty() && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "URL video prijenosa mora biti naveden.");
 
-        if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa must be given");
+        if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa mora biti navedena");
 
-        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto must be given");
+        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto mora biti navedeno.");
 
         if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
-            Assert.hasText("", "Pbr and mjesto must be changed together");
+            Assert.hasText("", "Poštanski broj i mjesto moraju biti promijenjeni zajedno.");
 
         Mjesto mjesto;
         if(!pbr.isEmpty() ) {
@@ -267,9 +267,9 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Transactional
     public void izbrisiKonf(String naziv){
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
+        if(konf == null) Assert.hasText("","Konferencija s nazivom " + naziv + " ne postoji.");
         if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija has already started");
+            Assert.hasText("","Konferencija je već počela.");
         for (Pokrovitelj pokr : pokrService.listAll()){
             pokr.getKonferencije().remove(konf);
         }
@@ -285,8 +285,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public List<Map<String, String>> rezultati(Integer pin){
         Konferencija konf = konferencijaRepo.findByPin(pin);
-        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
-        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
+        if(konf == null) Assert.hasText("","Konferencija s pinom " + pin + " ne postoji.");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);
         for (Rad rad : radoviList) {
@@ -313,9 +313,9 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public String dohvatiVideo(Integer pin) {
         Konferencija konf = konferencijaRepo.findByPin(pin);
-        if(konf == null) Assert.hasText("","Konferencija with pin " + pin + " does not exists");
+        if(konf == null) Assert.hasText("","Konferencija s pinom " + pin + " ne postoji.");
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija has already finished");
+            Assert.hasText("","Konferencija je već završila.");
         return konf.getUrlVideo();
     }
 }

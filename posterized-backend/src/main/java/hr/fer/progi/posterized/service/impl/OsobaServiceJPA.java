@@ -44,25 +44,25 @@ public class OsobaServiceJPA implements OsobaService {
     private PasswordEncoder pswdEncoder;
     @Override
     public void createAdminKorisnik(Osoba osoba) {
-        Assert.notNull(osoba, "Osoba object must be given");
+        Assert.notNull(osoba, "Podaci o korisniku moraju biti navedeni.");
         Assert.isNull(osoba.getId(),
-                "Osoba ID must be null, not" + osoba.getId()
+                "ID korisnika mora imati vrijednost null, a ne " + osoba.getId() + "."
         );
         String email = osoba.getEmail();
-        Assert.hasText(email, "Email must be given");
+        Assert.hasText(email, "Email mora biti naveden.");
         Assert.isTrue(email.matches(EMAIL_FORMAT),
-                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+                "Email mora biti u ispravnom obliku, npr. user@example.com, a ne '" + email + "'."
         );
         String ime = osoba.getIme();
-        Assert.hasText(ime, "Ime must be given");
+        Assert.hasText(ime, "Ime mora biti navedeno.");
         String prezime = osoba.getPrezime();
-        Assert.hasText(prezime, "Prezime must be given");
+        Assert.hasText(prezime, "Prezime mora biti navedeno.");
 
         String lozinka = osoba.getLozinka();
-        Assert.hasText(lozinka, "Lozinka must be given");
+        Assert.hasText(lozinka, "Lozinka mora biti navedena.");
         Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
-                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
-                        "letter and at least 8 characters in length "
+                "Lozinka mora biti u pravilnom obliku - barem jedan broj, jedno veliko slovo, jedno malo slovo " +
+                        "i mora sadržavati barem osam znakova."
         );
         String kodiranaLozinka = pswdEncoder.encode(osoba.getLozinka());
 
@@ -73,7 +73,7 @@ public class OsobaServiceJPA implements OsobaService {
                 osoba2.setUloga("korisnik");
                 osobaRepo.save(osoba2);
                 return;
-            } else Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+            } else Assert.hasText("", "Korisnik s emailom " + osoba.getEmail() + " već postoji.");
         }
         osoba.setLozinka(kodiranaLozinka);
         osobaRepo.save(osoba);
@@ -81,17 +81,17 @@ public class OsobaServiceJPA implements OsobaService {
 
     @Override
     public Osoba createAutor(Osoba osoba) {
-        Assert.notNull(osoba, "Osoba object must be given");
+        Assert.notNull(osoba, "Podaci o autoru moraju biti navedeni.");
         Assert.isNull(osoba.getId(),
-                "Osoba ID must be null, not" + osoba.getId()
+                "ID autora mora imati vrijednost null, a ne " + osoba.getId() + "."
         );
         String email = osoba.getEmail();
-        Assert.hasText(email, "Email must be given");
+        Assert.hasText(email, "Email mora biti naveden.");
         Assert.isTrue(email.matches(EMAIL_FORMAT),
-                "Email must be in a valid format, e.g., user@example.com, not '" + email + "'"
+                "Email mora biti u ispravnom obliku, npr. user@example.com, a ne '" + email + "'."
         );
         if (osobaRepo.countByEmail(osoba.getEmail()) > 0) {
-            Assert.hasText("", "Osoba with email " + osoba.getEmail() + " already exists");
+            Assert.hasText("", "Autor s emailom " + osoba.getEmail() + " već postoji.");
         }
         return osobaRepo.save(osoba);
     }
@@ -102,10 +102,10 @@ public class OsobaServiceJPA implements OsobaService {
     @Override
     public void saljiMail(Osoba osoba, String lozinka){
         final String url = env.getProperty("send.email.link") + "/forgot-password";
-        final String message = "Your current password is:" + lozinka + ", if you want to change it: ";
+        final String message = "Vaša trenutna lozinka je: " + lozinka + ", a ako ju želite promijeniti: ";
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(osoba.getEmail());
-        email.setSubject("Your Account");
+        email.setSubject("Vaš račun");
         email.setText(message + " \r\n" + url);
         email.setFrom(env.getProperty("support.email"));
         mailSender.send(email);
@@ -113,10 +113,10 @@ public class OsobaServiceJPA implements OsobaService {
     @Override
     @Transactional
     public void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token){
-        Assert.hasText(lozinka, "Lozinka must be given");
+        Assert.hasText(lozinka, "Lozinka mora biti navedena.");
         Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
-                "Password must be in a valid format, at least one number, one uppercase letter, one lowercase " +
-                        "letter and at least 8 characters in length "
+                "Lozinka mora biti u pravilnom obliku - barem jedan broj, jedno veliko slovo, jedno malo slovo " +
+                        "i mora sadržavati barem osam znakova."
         );
         osoba.setLozinka(pswdEncoder.encode(lozinka));
         osobaRepo.save(osoba);

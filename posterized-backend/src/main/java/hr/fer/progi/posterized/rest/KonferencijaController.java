@@ -9,7 +9,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -154,10 +153,10 @@ public class KonferencijaController {
     @GetMapping("/dohvatiRadove/{pin}")
     public List<Map<String, String>> prikaz3(@PathVariable("pin") String pin) {
         if (kService.countByPin(Integer.valueOf(pin)) == 0){
-            Assert.hasText("","Konferencija does not exist.");
+            Assert.hasText("","Konferencija ne postoji.");
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
-        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
         List<Map<String, String>> rezultat = new ArrayList<>();
         for(Rad rad : konf.getRadovi()){
             Map<String, String> radMapa = new HashMap<>();
@@ -173,7 +172,7 @@ public class KonferencijaController {
     @GetMapping("/pokrovitelji/{pin}")
     public List<Map<String, String>> dohvatiPokrovitelje(@PathVariable("pin") String pin){
         if (kService.countByPin(Integer.valueOf(pin)) == 0){
-            Assert.hasText("","Konferencija does not exist.");
+            Assert.hasText("","Konferencija ne postoji.");
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
         List<Map<String, String>> rezultat = new ArrayList<>();
