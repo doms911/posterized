@@ -14,7 +14,7 @@ import static org.springframework.security.core.authority.AuthorityUtils.commaSe
 
 @Service
 public class OsobaUserDetailsService implements UserDetailsService {
-    @Value("${hr.fer.progi.posterized.admin.password}")
+    @Value("${hr.fer.progi.posterized.superadmin.password}")
     private String superadminLozinkaHash;
 
     @Autowired
