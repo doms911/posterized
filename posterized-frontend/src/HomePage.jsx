@@ -44,10 +44,6 @@ const HomePage = (props) => {
                     </div>
                 )}
                 {/* Rest of the main content */}
-                <form action="/api/fotografija/naziv" method="post" enctype="multipart/form-data">
-        <input type="file" name="slike" id="images" accept="image/*" multiple required/>
-        <button type="submit">Upload Images</button>
-    </form>
             </main>
         </div>
     );
