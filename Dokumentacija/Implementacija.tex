@@ -46,10 +46,17 @@
 		
 		
 		\section{Dijagram razmještaja}
+
+			Dijagrami razmještaja pružaju uvid u organizaciju hardverskih komponenti i programske podrške koja se koristi u implementaciji sustava unutar njegovog radnog okruženja. Na jednom od poslužiteljskih računala smješten je web poslužitelj, dok se na drugom nalazi poslužitelj baze podataka. Klijenti koriste web preglednik kako bi pristupili web aplikaciji. Sustav je temeljen na klijent-poslužitelj arhitekturi, pri čemu se komunikacija između računala korisnika i poslužitelja odvija putem HTTP veze.
 			
-			\textbf{\textit{dio 2. revizije}}
+			Web poslužitelj odgovoran je za pružanje web stranica i servisa korisnicima, dok poslužitelj baze podataka čuva, upravlja i omogućava pristup podacima. Korištenjem web preglednika, korisnici ostvaruju pristup aplikaciji koja se nalazi na sustavu, a komunikacija se odvija preko standardne HTTP veze, osiguravajući efikasnu interakciju između klijenta i poslužitelja.
 			
-			 \textit{Potrebno je umetnuti \textbf{specifikacijski} dijagram razmještaja i opisati ga. Moguće je umjesto specifikacijskog dijagrama razmještaja umetnuti dijagram razmještaja instanci, pod uvjetom da taj dijagram bolje opisuje neki važniji dio sustava.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{dijagrami/dijagram_razmjestaja.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razmještaja}
+				\label{fig:promjene}
+			\end{figure}
 			
 			\eject 
 		

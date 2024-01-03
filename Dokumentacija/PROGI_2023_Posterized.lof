@@ -2,37 +2,38 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Dijagram obrazaca uporabe - administrator}}{14}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Dijagram obrazaca uporabe - korisnici}}{15}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Sekvencijski dijagram korištenja aplikacije}}{17}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Sekvencijski dijagram korištenja aplikacije od strane administratora}}{18}{figure.3.4}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Dijagram obrazaca uporabe - administrator}}{15}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Dijagram obrazaca uporabe - korisnici}}{16}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Sekvencijski dijagram korištenja aplikacije}}{18}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Sekvencijski dijagram korištenja aplikacije od strane administratora}}{19}{figure.3.4}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Organizacija sustava s najviše razine apstrakcije}}{20}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Organizacija aplikacije}}{21}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Dijagram baze podataka}}{25}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Dijagram razreda - DTO}}{26}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Dijagram razreda - glavni dijagram 1.dio}}{27}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Dijagram razreda - glavni dijagram 2.dio}}{27}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Dijagram razreda - glavni dijagram 3.dio}}{28}{figure.4.7}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Organizacija sustava s najviše razine apstrakcije}}{21}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Organizacija aplikacije}}{22}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Dijagram baze podataka}}{26}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Dijagram razreda - DTO}}{27}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Dijagram razreda - glavni dijagram 1.dio}}{28}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Dijagram razreda - glavni dijagram 2.dio}}{28}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Dijagram razreda - glavni dijagram 3.dio}}{29}{figure.4.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Izbornik za stvaranje nove baze podataka}}{36}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Stvaranje nove baze podataka}}{36}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Osnovni podatci o statusu baze podataka}}{37}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Podatci za pristupanje bazi podataka}}{37}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Datoteka \textit {application.properties}}}{38}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Stablo u kojem se nalazi \textit {Dockerfile}}}{38}{figure.5.6}%
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Izbornik za kreiranje web servisa}}{39}{figure.5.7}%
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Kreiranje web servisa - povezivanje s udaljenim repozitorijem}}{39}{figure.5.8}%
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Povezivanje s repozitorijem}}{40}{figure.5.9}%
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Pronađeni repozitorij}}{40}{figure.5.10}%
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Kreiranje web servisa - upisivanje osnovnih podataka}}{40}{figure.5.11}%
-\contentsline {figure}{\numberline {5.12}{\ignorespaces Navođenje \textit {Dockerfile} putanje}}{41}{figure.5.12}%
-\contentsline {figure}{\numberline {5.13}{\ignorespaces Logovi stvaranja i status web servisa}}{41}{figure.5.13}%
-\contentsline {figure}{\numberline {5.14}{\ignorespaces Datoteka \textit {app.js}}}{42}{figure.5.14}%
-\contentsline {figure}{\numberline {5.15}{\ignorespaces Datoteka \textit {setupProxy.js}}}{42}{figure.5.15}%
-\contentsline {figure}{\numberline {5.16}{\ignorespaces Datoteka \textit {package.lock}}}{43}{figure.5.16}%
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Kreiranje web servisa za frontend}}{43}{figure.5.17}%
-\contentsline {figure}{\numberline {5.18}{\ignorespaces Naredbe za build i start}}{44}{figure.5.18}%
-\contentsline {figure}{\numberline {5.19}{\ignorespaces Varijable okruženja}}{44}{figure.5.19}%
-\contentsline {figure}{\numberline {5.20}{\ignorespaces Uspostavljene instance}}{44}{figure.5.20}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Dijagram razmještaja}}{36}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Izbornik za stvaranje nove baze podataka}}{37}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Stvaranje nove baze podataka}}{37}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Osnovni podatci o statusu baze podataka}}{38}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Podatci za pristupanje bazi podataka}}{38}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Datoteka \textit {application.properties}}}{39}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Stablo u kojem se nalazi \textit {Dockerfile}}}{39}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Izbornik za kreiranje web servisa}}{40}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Kreiranje web servisa - povezivanje s udaljenim repozitorijem}}{40}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Povezivanje s repozitorijem}}{41}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Pronađeni repozitorij}}{41}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Kreiranje web servisa - upisivanje osnovnih podataka}}{41}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Navođenje \textit {Dockerfile} putanje}}{42}{figure.5.13}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Logovi stvaranja i status web servisa}}{42}{figure.5.14}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Datoteka \textit {app.js}}}{43}{figure.5.15}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Datoteka \textit {setupProxy.js}}}{43}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Datoteka \textit {package.lock}}}{44}{figure.5.17}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Kreiranje web servisa za frontend}}{44}{figure.5.18}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Naredbe za build i start}}{45}{figure.5.19}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Varijable okruženja}}{45}{figure.5.20}%
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Uspostavljene instance}}{45}{figure.5.21}%
 \addvspace {10\p@ }
