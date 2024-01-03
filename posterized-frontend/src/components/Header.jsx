@@ -16,16 +16,16 @@ const Header = (props) => {
             {isLoggedIn ? (
                 <div className="Header">
                      <Sidebar userRole = {userRole}/>
-                    <div className="LoggedIn">Pozdrav, {name}! Ulogirani ste u sustav.</div>
-                    <div className="LoggedIn"><button onClick={onLogout}>Logout</button></div>
+                    <div className="LoggedIn">Pozdrav, {name}! Prijavljeni ste u sustav.</div>
+                    <div className="LoggedIn"><button onClick={onLogout}>Odjava</button></div>
                 </div>
             ) : (
                 <div>
                     <Link to="/register">
-                        <button>Register</button>
+                        <button>Registracija</button>
                     </Link>
                     <Link to="/login">
-                        <button>Login</button>
+                        <button>Prijava</button>
                     </Link>
                 </div>
             )}

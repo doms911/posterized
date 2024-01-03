@@ -14,7 +14,7 @@ function Login(props) {
         e.preventDefault();
 
         if (!recaptchaValue) {
-            alert('Please complete the reCAPTCHA.');
+            alert('Molimo Vas riješite reCAPTCHA-u.');
             return;
         }
 
@@ -47,7 +47,7 @@ function Login(props) {
                     localStorage.setItem('username', username.toLowerCase());
                     localStorage.setItem('name', response.headers.get('X-Name'));
                     localStorage.setItem('userRole', userRole);
-                    alert('Prijava uspješna');
+                    alert('Prijava uspješna.');
                     onLogin();
                     window.location.replace('/');
                 }
@@ -60,7 +60,7 @@ function Login(props) {
     return (
         <div className="centered-wrapper">
             <div className="container">
-                    <h2>Log in</h2>
+                    <h2>Prijava</h2>
                     <form onSubmit={authenticate} id="moj">
                         <div >
                             <label>Email:</label>
@@ -73,7 +73,7 @@ function Login(props) {
                             />
                         </div>
                         <div>
-                            <label>Password:</label>
+                            <label>Lozinka:</label>
                             <input
                                 type="password"
                                 id="password"

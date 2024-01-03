@@ -65,7 +65,7 @@ function ChangePassword() {
                     udiv.insertBefore(noviDiv, udiv.firstElementChild);
                 });
             } else { //ako nije doslo do greske
-                setMessage("You have successfully changed your password."); //ovo pokrece crtanje diva u liniji 80
+                setMessage("Uspješno ste promijenili svoju lozinku."); //ovo pokrece crtanje diva u liniji 80
                 window.location.replace('/');
             }
         })
