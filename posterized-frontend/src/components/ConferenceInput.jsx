@@ -13,7 +13,6 @@ function ConferenceInput(props) {
         e.preventDefault();
         const body = `videoURL=${videoURL.toLowerCase()}&startTime=${startTime}&endTime=${endTime}&pbr=${pbr}`;
         const options = {
-            credentials: 'include',
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -21,7 +20,7 @@ function ConferenceInput(props) {
             },
             body: body,
         };
-        fetch('/api/conferenceInput', options)
+        fetch('/api/konferencija/nadopuniKonf', options)
             .then((response) => {
                 if (response.status === 401) {
                     alert('Dogodila se greška. Podaci nisu uneseni.');

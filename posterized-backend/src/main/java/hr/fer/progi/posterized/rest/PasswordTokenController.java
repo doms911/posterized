@@ -2,7 +2,7 @@ package hr.fer.progi.posterized.rest;
 
 import hr.fer.progi.posterized.domain.Osoba;
 import hr.fer.progi.posterized.domain.PasswordToken;
-import hr.fer.progi.posterized.service.AdminKorisnikService;
+import hr.fer.progi.posterized.service.OsobaService;
 import hr.fer.progi.posterized.service.PasswordTokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.*;
 @RequestMapping("/reset")
 public class PasswordTokenController {
     @Autowired
-    private AdminKorisnikService akService;
+    private OsobaService akService;
     @Autowired
     private PasswordTokenService passService;
     @Autowired
@@ -37,7 +37,7 @@ public class PasswordTokenController {
         }
         String token = UUID.randomUUID().toString();
         passService.createPasswordResetToken(osoba, token);
-        mailSender.send(napraviEmail("https://posterized.onrender.com", token, osoba));
+        mailSender.send(napraviEmail(env.getProperty("send.email.link"), token, osoba));
         response.put("message", "Reset Password");
         return response;
     }

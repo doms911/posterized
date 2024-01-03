@@ -1,4 +1,4 @@
-// ConferenceInput.jsx
+//AddConference.jsx
 import React, { useState } from 'react';
 import './login.css';
 
@@ -6,13 +6,14 @@ function AddConference() {
 
     const [pin, setPin] = useState('');
     const [adminEmail, setAdminEmail] = useState('');
+    const [naziv, setnaziv] = useState('');
+
    
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const body = `pin=${pin}&adminEmail=${adminEmail}`;
+        const body = `pin=${pin}&adminEmail=${adminEmail}&naziv=${naziv}`;
         const options = {
-            credentials: 'include',
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -20,10 +21,20 @@ function AddConference() {
             },
             body: body,
         };
-        fetch('/api/addConference', options)
-            .then((response) => {
-                if (response.status === 401) {
-                    alert('Dogodila se greška. Konferencija nije kreirana.');
+        fetch('/api/konferencija/stvoriKonf', options)
+        .then((response) => {
+            var stariDiv = document.getElementsByClassName('alert-container')[0];
+            if (stariDiv && stariDiv.parentElement) {
+                stariDiv.parentElement.removeChild(stariDiv);
+            }
+            if (response.status >= 300 && response.status < 600) {
+             response.json().then((data) => {
+                    var noviDiv = document.createElement('div');
+                    noviDiv.className = 'alert-container';
+                    noviDiv.textContent = data.message;
+                    var udiv = document.getElementsByClassName('container')[0];
+                    udiv.insertBefore(noviDiv, document.getElementById("moj"));
+                });
                 } else {
                     alert('Konferencija uspješno dodana');
                     window.location.replace('/');
@@ -50,12 +61,22 @@ function AddConference() {
                             />
                         </div>
                         <div>
-                            <label>Admin:</label>
+                            <label>Email admina:</label>
                             <input
                                 type="email"
                                 id="adminEmail"
                                 value={adminEmail}
                                 onChange={(e) => setAdminEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label>Naziv:</label>
+                            <input
+                                type="text"
+                                id="naziv"
+                                value={naziv}
+                                onChange={(e) => setnaziv(e.target.value)}
                                 required
                             />
                         </div>

@@ -1,24 +1,45 @@
-import React from 'react';
+
 export const SidebarData = [
     {
-        title: 'Home',
+        title: 'Početna stranica',
         path: '/',
-        cName: 'nav-text'
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik']
     },
     {
-        title: 'Link1',
-        path: '/link1',
-        cName: 'nav-text'
+        title: 'Dodaj admina',
+        path: '/addAdmin',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin']
     },
     {
-        title: 'Link2',
-        path: '/link2',
-        cName: 'nav-text'
+        title: 'Dodaj konferenciju',
+        path: '/addConference',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin']
     },
     {
-        title: 'Link3',
-        path: '/link3',
-        cName: 'nav-text'
+        title: 'Prikaz konferencija',
+        path: '/conferenceList',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin']
     },
-
+    {
+        title: 'Unos pina',
+        path: '/link',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik']
+    },
+    {
+        title: 'Dodaj sponzora',
+        path: '/link',
+        cName: 'nav-text',
+        allowedRoles: ['admin']
+    },
+    {
+        title: 'Dodaj rad i autora',
+        path: '/link',
+        cName: 'nav-text',
+        allowedRoles: ['admin']
+    },
 ];

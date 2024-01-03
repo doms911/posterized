@@ -1,6 +1,6 @@
 package hr.fer.progi.posterized.rest;
 
-import hr.fer.progi.posterized.service.AdminKorisnikService;
+import hr.fer.progi.posterized.service.OsobaService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -47,7 +47,7 @@ public class WebSecurityBasic {
         return new CorsFilter(source);
     }
     @Autowired
-    private AdminKorisnikService akService;
+    private OsobaService akService;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
@@ -64,7 +64,7 @@ public class WebSecurityBasic {
                         String email = ((UserDetails) authentication.getPrincipal()).getUsername();
                         String ime;
                         GrantedAuthority uloga;
-                        if(Objects.equals(email, "admin")) ime = email;
+                        if(Objects.equals(email, "superadmin")) ime = email;
                         else {
                             ime = akService.findByEmail(email.toLowerCase()).getIme();}
                         uloga = ((UserDetails) authentication.getPrincipal()).getAuthorities().stream().findFirst().orElse(null);
@@ -83,9 +83,10 @@ public class WebSecurityBasic {
                     }, matcher);
         });
         http.logout(configurer -> configurer
-                .logoutUrl("/logout")
-                .logoutSuccessHandler((request, response, authentication) ->
-                        response.setStatus(HttpStatus.NO_CONTENT.value())));
+                .logoutUrl("/logout").deleteCookies("JSESSIONID").invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessHandler((request, response, authentication) ->{
+                        response.setStatus(HttpStatus.NO_CONTENT.value());}));
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

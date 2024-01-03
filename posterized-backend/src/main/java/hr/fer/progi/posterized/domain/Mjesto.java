@@ -12,6 +12,7 @@ public class Mjesto {
     private Integer pbr;
     private String naziv;
 
+
     public Integer getPbr() {
         return pbr;
     }
@@ -27,4 +28,5 @@ public class Mjesto {
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
+
 }

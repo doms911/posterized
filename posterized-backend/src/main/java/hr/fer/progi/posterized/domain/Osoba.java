@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.annotations.Check;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "osoba")
@@ -21,7 +24,6 @@ public class Osoba {
     private String email;
 
     private String lozinka;
-
     @NotNull
     private String ime;
     @NotNull
@@ -29,6 +31,10 @@ public class Osoba {
     @NotNull
     private String uloga;
 
+    @OneToMany(mappedBy = "autor", orphanRemoval = true)
+    private Set<Rad> radovi = new HashSet<>();
+    @OneToMany(mappedBy = "korisnik")
+    Set<Prisutan_na> prisutnost;
     public String getIme() {
         return ime;
     }
@@ -77,15 +83,19 @@ public class Osoba {
         this.lozinka = lozinka;
     }
 
-    @Override
-    public String toString() {
-        return "Osoba{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", lozinka='" + lozinka + '\'' +
-                ", ime='" + ime + '\'' +
-                ", prezime='" + prezime + '\'' +
-                ", uloga='" + uloga + '\'' +
-                '}';
+    public Set<Rad> getRadovi() {
+        return radovi;
+    }
+
+    public void setRadovi(Set<Rad> radovi) {
+        this.radovi = radovi;
+    }
+
+    public Set<Prisutan_na> getPrisutnost() {
+        return prisutnost;
+    }
+
+    public void setPrisutnost(Set<Prisutan_na> prisutnost) {
+        this.prisutnost = prisutnost;
     }
 }

@@ -33,7 +33,7 @@ function Login(props) {
                 if (stariDiv && stariDiv.parentElement) {
                     stariDiv.parentElement.removeChild(stariDiv);
                 }
-                if (response.status === 401) {
+                if (response.status >= 300 && response.status < 600) {
                     response.json().then((data) => {
                         var noviDiv = document.createElement('div');
                         noviDiv.className = 'alert-container';
@@ -42,9 +42,11 @@ function Login(props) {
                         udiv.insertBefore(noviDiv, document.getElementById("moj"));
                     });
                 } else {
+                    const userRole = response.headers.get('X-Role');
                     Cookies.set('user', 'authenticated'); 
                     localStorage.setItem('username', username.toLowerCase());
                     localStorage.setItem('name', response.headers.get('X-Name'));
+                    localStorage.setItem('userRole', userRole);
                     alert('Prijava uspješna');
                     onLogin();
                     window.location.replace('/');

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma za unos podataka</title>
+</head>
+<body>
+
+<form action="/api/radovi/napravi" method="post" enctype="multipart/form-data">
+    <label for="ime">Prezime:</label>
+    <input type="text" id="ime" name="ime" required>
+    <!-- Ostala polja -->
+    <label for="prezime">Prezime:</label>
+    <input type="text" id="prezime" name="prezime" required>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+
+    <label for="naslov">Naslov:</label>
+    <input type="text" id="naslov" name="naslov" required>
+
+    <label for="poster">Poster:</label>
+    <input type="file" id="poster" name="poster" accept=".jpg, .jpeg, .png, .pdf" required>
+
+    <label for="pptx">PPTX:</label>
+    <input type="file" id="pptx" name="pptx" accept=".pptx" >
+
+    <label for="nazivKonf">Naziv konferencije:</label>
+    <input type="text" id="nazivKonf" name="nazivKonf" value="naziv">
+
+    <button type="submit">Pošalji</button>
+</form>
+
+<button id="deleteButton">Izbriši</button>
+<button id="voteButton">Glasaj</button>
+
+<script>
+    document.getElementById('deleteButton').addEventListener('click', function() {
+        // Slanje GET zahtjeva prema "/api"
+        fetch('/api/radovi/izbrisi/123')
+            .then(response => {
+                if (response.status >= 300 && response.status < 600) {
+                    response.json().then((data) => {alert(data.message)})}})
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+    document.getElementById('voteButton').addEventListener('click', function() {
+        // Slanje GET zahtjeva prema "/api/radovi/glasaj/123"
+        fetch('/api/prisutan/glasaj/123')
+            .then(response => {
+                if (response.status >= 300 && response.status < 600) {
+                    response.json().then((data) => {alert(data.message);})}})
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    });
+</script>
+
+</body>
+</html>

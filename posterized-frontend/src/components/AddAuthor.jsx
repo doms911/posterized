@@ -14,16 +14,25 @@ function AddAuthor(props) {
         const options = {
             credentials: 'include',
             method: 'POST',
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: body,
         };
         fetch('/api/addAuthor', options)
-            .then((response) => {
-                if (response.status === 401) {
-                    alert('Dogodila se greška. Autor nije dodan.');
+        .then((response) => {
+            var stariDiv = document.getElementsByClassName('alert-container')[0];
+            if (stariDiv && stariDiv.parentElement) {
+                stariDiv.parentElement.removeChild(stariDiv);
+            }
+            if (response.status >= 300 && response.status < 600) {
+                response.json().then((data) => {
+                    var noviDiv = document.createElement('div');
+                    noviDiv.className = 'alert-container';
+                    noviDiv.textContent = data.message;
+                    var udiv = document.getElementsByClassName('container')[0];
+                    udiv.insertBefore(noviDiv, document.getElementById("moj"));
+                });
                 } else {
                     alert('Autor uspješno dodan');
                     window.location.replace('/');

@@ -6,11 +6,15 @@ import Register from './components/Register.jsx';
 import Login from './components/login.jsx';
 import HomePage from './HomePage.jsx';
 import AddConference from './components/AddConference.jsx';
+import ConferenceInput from './components/ConferenceInput.jsx';
 import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
 import VideoStream from './components/videoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
+import AddAdmin from './components/AddAdmin.jsx';
+import ConferenceList from './components/ConferenceList.jsx';
+
 
 
 const App = () => {
@@ -56,11 +60,15 @@ const App = () => {
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
                 {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
+                {isLoggedIn && <Route path="/conferenceInput" element={<ConferenceInput />}/>}
                 {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
                 {!isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
+                {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin />} />}
+                {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
 
+                
             </Routes>
         </Router>
     );

@@ -1,17 +1,26 @@
 package hr.fer.progi.posterized.service;
 
 import hr.fer.progi.posterized.domain.Konferencija;
-import hr.fer.progi.posterized.domain.Osoba;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public interface KonferencijaService {
     List<Konferencija> listAll();
-    public Konferencija provjeriPin(Integer pin);
-    public Konferencija createKonferencija(Integer pin);
-    public boolean zapocniKonferencija(Integer pin);
-    public boolean zavrsiKonferencija(Integer pin);
+    List<Konferencija> prikazAdmin(String email);
+    Konferencija createKonferencija(Integer pin, String email, String naziv);
+    void izbrisiKonf(String naziv);
+    void zavrsiKonferencija(String admin, String nazivKonf);
 
-    public Konferencija updateKonferencija(String urlVideo, Integer pin, Timestamp vrijemePocetka, Timestamp vrijemeKraja, Integer pbr, String mjesto);
+    String dohvatiMjesto(Integer pin);
+    String dohvatiVideo(Integer pin);
+
+    Konferencija findByNazivIgnoreCase(String naziv);
+
+    void saljiMail(String naziv);
+
+    void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, String adresa, List<String> sponzori);
+    int countByPin(Integer pin);
+    Konferencija findByPin(Integer pin);
+    List<Map<String, String>> rezultati(Integer pin);
 }

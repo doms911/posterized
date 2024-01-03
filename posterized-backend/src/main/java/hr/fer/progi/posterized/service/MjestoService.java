@@ -7,7 +7,8 @@ import java.util.List;
 public interface MjestoService {
 
     List<Mjesto> listAll();
-
-    public Mjesto createMjesto(Integer pbr, String naziv);
+    Mjesto createMjesto(Integer pbr, String naziv);
+    Mjesto update(String naziv, Integer pbr);
+    Mjesto findByPbr(Integer pbr);
 
 }

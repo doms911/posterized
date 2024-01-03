@@ -24,7 +24,7 @@ function ChangePassword() {
             if (stariDiv && stariDiv.parentElement) {
                 stariDiv.parentElement.removeChild(stariDiv);
             }
-            if (response.status === 400) {  //ako je doslo do greske
+            if (response.status >= 300 && response.status < 600) {  //ako je doslo do greske
                 response.json().then((data) => { //otpakiraj backendov odgovor i izvuci data
                     var noviDiv = document.createElement('div'); //ubaci div s tekstom greske
                     noviDiv.className = 'alert-container';

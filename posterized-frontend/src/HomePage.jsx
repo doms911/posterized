@@ -13,7 +13,7 @@ const HomePage = (props) => {
     const handlePinSubmit = async () => {
         try {
             console.log("Submitting PIN:", pin);
-            const response = await axios.post("/api/pin", null, {
+            const response = await axios.post("/api/konferencija/pin", null, {
                 params: { pin: pin },
                 headers: {
                     'Content-Type': 'application/json',

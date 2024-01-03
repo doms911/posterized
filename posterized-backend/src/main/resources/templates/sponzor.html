@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Fajla</title>
+</head>
+<body>
+<h1>Forma za Upload Fajla</h1>
+<form id="uploadForm" enctype="multipart/form-data">
+  <label for="url">Unesite URL:</label>
+  <input type="url" name="url" id="url" placeholder="https://example.com" required>
+  <br>
+
+  <label for="naziv">Unesite naziv fajla:</label>
+  <input type="text" name="naziv" id="naziv" placeholder="Naziv fajla" required>
+  <br>
+
+  <label for="file">Izaberite fajl:</label>
+  <input type="file" name="logo" id="file" accept=".jpg, .jpeg, .png" required>
+  <br>
+
+  <button type="button" onclick="submitForm()">Otpremi Fajl</button>
+
+  <div id="imageContainer" style="margin-top: 20px;">
+    <img id="uploadedImage" alt="Prikazana slika" style="max-width: 100%;">
+  </div>
+</form>
+
+<script>
+  function submitForm() {
+    const form = document.getElementById('uploadForm');
+    const formData = new FormData(form);
+
+    fetch('/api/pokrovitelj', {
+      method: 'POST',
+      body: formData
+    })
+            .then(response => response.json())
+            .then(data => {
+              // Prikazi sliku
+              const imageUrl = data.imageUrl;
+              showImage(imageUrl);
+            })
+            .catch(error => console.error('Error:', error));
+  }
+
+  function showImage(imageUrl) {
+    const imageContainer = document.getElementById('imageContainer');
+    const uploadedImage = document.getElementById('uploadedImage');
+
+    // Postavi izvor slike
+    uploadedImage.src = imageUrl;
+
+    // Prikazi kontejner za sliku
+    imageContainer.style.display = 'block';
+  }
+</script>
+</body>
+</html>
