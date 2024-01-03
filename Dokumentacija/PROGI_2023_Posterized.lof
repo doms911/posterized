@@ -15,4 +15,17 @@
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Dijagram razreda - glavni dijagram 2.dio}}{27}{figure.4.6}%
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Dijagram razreda - glavni dijagram 3.dio}}{28}{figure.4.7}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Izbornik za stvaranje nove baze podataka}}{36}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Stvaranje nove baze podataka}}{36}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Osnovni podatci o statusu baze podataka}}{37}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Podatci za pristupanje bazi podataka}}{37}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Datoteka \textit {application.properties}}}{38}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Stablo u kojem se nalazi \textit {Dockerfile}}}{38}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Izbornik za kreiranje web servisa}}{39}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Kreiranje web servisa - povezivanje s udaljenim repozitorijem}}{39}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Povezivanje s repozitorijem}}{40}{figure.5.9}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Pronađeni repozitorij}}{40}{figure.5.10}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Kreiranje web servisa - upisivanje osnovnih podataka}}{40}{figure.5.11}%
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Navođenje \textit {Dockerfile} putanje}}{41}{figure.5.12}%
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Logovi stvaranja i status web servisa}}{41}{figure.5.13}%
 \addvspace {10\p@ }

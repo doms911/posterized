@@ -55,12 +55,112 @@
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+		Aplikacija je puštena u pogon koristeći alat Render. Koristeći korisničko sučelje koje Render pruža treba kreirati instancu baze podataka, instancu za web servis backenda te instancu za web servis frontenda aplikacije. Prvo treba kreirati bazu podataka PostgreSQL.
 			
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database1.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik za stvaranje nove baze podataka}
+				\label{fig:promjene}
+			\end{figure}
 			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			Potrebno je upisati ime baze, odabrati regiju poslužitelja instance i označiti tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Stvaranje nove baze podataka}
+				\label{fig:promjene}
+			\end{figure}
+			Nakon ovih koraka treba pokrenuti stvaranje pritiskom na tipku "Create".
+			
+			Pokazuje se prozor u kojemu su navedeni osnovni podatci o bazi kao ime, verzija, regija, prostor za pohranu, API ključ, itd.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Osnovni podatci o statusu baze podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kad je baza uspješno kreirana, potrebno je uzeti podatke koje treba dati backendu aplikacije. Ti podatci se nalaze u poljima \textit{Hostname}, \textit{Port}, \textit{Database}, \textit{Username}, \textit{Password} i \textit{External Database URL}.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/database4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Podatci za pristupanje bazi podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			 Za kreiranje backend web servisa potrebno je prvo napraviti pripremu pa automatsko kreiranje web servisa iz GitHub repozitorija. U projektu razvojnog okruženja treba dodati port servera, kontekstnu putanju, podatke za pristup bazi upisati u označeni prozor te izbrisati aktivni dev profil.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend8.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{application.properties}}
+				\label{fig:promjene}
+			\end{figure}
+			U projekt je potrebno ubaciti odgovarajući \textit{Dockerfile} na putanju \textit{./posterized-backend/docker/maven} koja je prikazana stablom.
+			\begin{figure}[H]
+				\includegraphics[scale=0.8]{slike/deploy/backend7.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Stablo u kojem se nalazi \textit{Dockerfile}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Kreiranje web servisa se pokreće iz Renderovog izbornika.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend00.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik za kreiranje web servisa}
+				\label{fig:promjene}
+			\end{figure}
+			Potrebno je povezati GitHub repozitorij s Renderom. Označiti "Build and deploy from a Git repository" i kliknuti "Next".
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend1.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa - povezivanje s udaljenim repozitorijem}
+				\label{fig:promjene}
+			\end{figure}
+			\pagebreak
+			Kliknuti "Connect GitHub", prijaviti se u račun, odobriti autorizaciju i kliknuti "Connect".
+			\begin{figure}[H]
+				\includegraphics[scale=0.25]{slike/deploy/backend2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Povezivanje s repozitorijem}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/backend3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Pronađeni repozitorij}
+				\label{fig:promjene}
+			\end{figure}
+			Upisati ime servisa i odabrati regiju koja je najbliža našoj lokaciji.  Pod \textit{Branch} odabrati master i upisati ime mape projekta. Odabrati tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/backend4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa - upisivanje osnovnih podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Otvoriti padajući izbornik "Advanced" i upisati putanju gdje se nalazi \textit{Dockerfile}, zatim kliknuti "Create Web Service".
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{slike/deploy/backend5.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Navođenje \textit{Dockerfile} putanje}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Web servis backenda je uspješno kreiran i pušten u pogon.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend6.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logovi stvaranja i status web servisa}
+				\label{fig:promjene}
+			\end{figure}
+			
+			% za frontend
+			
 			
 			
 			\eject 
