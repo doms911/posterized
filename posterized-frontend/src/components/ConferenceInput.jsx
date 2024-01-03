@@ -13,7 +13,6 @@ function ConferenceInput(props) {
         e.preventDefault();
         const body = `videoURL=${videoURL.toLowerCase()}&startTime=${startTime}&endTime=${endTime}&pbr=${pbr}`;
         const options = {
-            credentials: 'include',
             method: 'POST',
             credentials: 'include',
             headers: {

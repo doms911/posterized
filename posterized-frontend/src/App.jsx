@@ -12,6 +12,9 @@ import ForgotPassword from './components/ForgotPassword.jsx';
 import VideoStream from './components/videoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
+import AddAdmin from './components/AddAdmin.jsx';
+import ConferenceList from './components/ConferenceList.jsx';
+
 
 
 const App = () => {
@@ -62,6 +65,9 @@ const App = () => {
                 {!isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
+                {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin />} />}
+                {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
+
                 
             </Routes>
         </Router>

@@ -7,13 +7,15 @@ import Sidebar from './Sidebar'
 const Header = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const onLogout = props.onLogout;
-    const name = localStorage.getItem('name'); // Assuming you store the username in localStorage
+    const name = localStorage.getItem('name');
+    const userRole = localStorage.getItem('userRole');
+ 
 
     return (
         <header className="Header">
             {isLoggedIn ? (
                 <div className="Header">
-                    <Sidebar />
+                     <Sidebar userRole = {userRole}/>
                     <div className="LoggedIn">Pozdrav, {name}! Ulogirani ste u sustav.</div>
                     <div className="LoggedIn"><button onClick={onLogout}>Logout</button></div>
                 </div>
