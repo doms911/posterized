@@ -43,6 +43,7 @@ const App = () => {
                     localStorage.removeItem('name');
                     Cookies.remove('user');
                     setIsLoggedIn(false);
+                    window.location.replace('/');
                 }
             })
             .catch(error => {
