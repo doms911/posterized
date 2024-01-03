@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  3 JAN 2024 11:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  3 JAN 2024 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1009,6 +1009,27 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
 ) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
 \openout1 = `PROGI_2023_Posterized.aux'.
 
@@ -1164,7 +1185,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.28 ...: Prikaz aktivnosti grupe}{45}{chapter*.5}
+l.28 ...: Prikaz aktivnosti grupe}{49}{chapter*.5}
                                                   % [1
 
 ])
@@ -2187,18 +2208,136 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.5.12})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.164 			\eject
-               
+l.164 			P
+          rije kreiranja web servisa za frontend, potrebno je prvo pripremit...
+
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5.13})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.164 			\eject
-                <./slike/deploy/backend5.png> <./slike/deploy/backend6.png>])
+l.164 			P
+          rije kreiranja web servisa za frontend, potrebno je prvo pripremit...
+ <./slike/deploy/backend5.png> <./slike/deploy/backend6.png>]
+<slike/deploy/frontend5.png, id=497, 562.1pt x 800.9925pt>
+File: slike/deploy/frontend5.png Graphic file (type png)
+<use slike/deploy/frontend5.png>
+Package pdftex.def Info: slike/deploy/frontend5.png  used on input line 168.
+(pdftex.def)             Requested size: 224.83601pt x 320.39133pt.
+<slike/deploy/frontend6.png, id=498, 547.04375pt x 294.09875pt>
+File: slike/deploy/frontend6.png Graphic file (type png)
+<use slike/deploy/frontend6.png>
+Package pdftex.def Info: slike/deploy/frontend6.png  used on input line 176.
+(pdftex.def)             Requested size: 218.81361pt x 117.6374pt.
+
+Overfull \hbox (2.32562pt too wide) in paragraph at lines 174--180
+[]\OT1/jkp/m/n/12 Napisati \OT1/jkp/m/it/12 se-tup-Proxy.js \OT1/jkp/m/n/12 za 
+us-pos-tav-lja-nje proxyja izme[]du ra-zvoj-nog okru[]zja i API-
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[42
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.14})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.183 			P
+          otrebno je izmijeniti datoteku \textit{package.lock} kao na slici ...
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.15})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.183 			P
+          otrebno je izmijeniti datoteku \textit{package.lock} kao na slici ...
+ <./slike/deploy/frontend5.png> <./slike/deploy/frontend6.png>]
+<slike/deploy/frontend7.png, id=509, 392.46625pt x 152.57pt>
+File: slike/deploy/frontend7.png Graphic file (type png)
+<use slike/deploy/frontend7.png>
+Package pdftex.def Info: slike/deploy/frontend7.png  used on input line 185.
+(pdftex.def)             Requested size: 156.9837pt x 61.02692pt.
+<slike/deploy/frontend2.png, id=510, 1253.68375pt x 853.1875pt>
+File: slike/deploy/frontend2.png Graphic file (type png)
+<use slike/deploy/frontend2.png>
+Package pdftex.def Info: slike/deploy/frontend2.png  used on input line 195.
+(pdftex.def)             Requested size: 376.10803pt x 255.95822pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[43
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.16})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.202 			I
+          spod \textit{Runtime} pojavili su se linije za naredbe build i sta...
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.17})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.202 			I
+          spod \textit{Runtime} pojavili su se linije za naredbe build i sta...
+ <./slike/deploy/frontend7.png> <./slike/deploy/frontend2.png>]
+<slike/deploy/frontend3.png, id=520, 1271.75125pt x 435.6275pt>
+File: slike/deploy/frontend3.png Graphic file (type png)
+<use slike/deploy/frontend3.png>
+Package pdftex.def Info: slike/deploy/frontend3.png  used on input line 204.
+(pdftex.def)             Requested size: 381.52832pt x 130.68925pt.
+<slike/deploy/frontend4.png, id=521, 1260.71pt x 151.56625pt>
+File: slike/deploy/frontend4.png Graphic file (type png)
+<use slike/deploy/frontend4.png>
+Package pdftex.def Info: slike/deploy/frontend4.png  used on input line 212.
+(pdftex.def)             Requested size: 378.21593pt x 45.47021pt.
+<slike/deploy/success.png, id=522, 1218.5525pt x 245.91875pt>
+File: slike/deploy/success.png Graphic file (type png)
+<use slike/deploy/success.png>
+Package pdftex.def Info: slike/deploy/success.png  used on input line 220.
+(pdftex.def)             Requested size: 365.56857pt x 73.77618pt.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[44
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.18})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.230 			\eject
+               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.19})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.230 			\eject
+               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5.20})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.230 			\eject
+                <./slike/deploy/frontend3.png> <./slike/deploy/frontend4.png> <
+./slike/deploy/success.png>])
 \openout2 = `Zakljucak.aux'.
 
-
-(./Zakljucak.tex
+ (./Zakljucak.tex
 Poglavlje 6.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -2213,7 +2352,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[42
+[45
 
 
 
@@ -2248,12 +2387,25 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[43
+[46
 
 
 
 
-] (./PROGI_2023_Posterized.lof)
+] (./PROGI_2023_Posterized.lof
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[47
+
+
+
+])
 \tf@lof=\write5
 \openout5 = `PROGI_2023_Posterized.lof'.
 
@@ -2266,11 +2418,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[44
-
-
-
-]
+[48]
 \openout2 = `Dodatak.aux'.
 
  (./Dodatak.tex
@@ -2305,7 +2453,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[45
+[49
 
 
 ]
@@ -2322,7 +2470,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[46]
+[50]
 > Step: init table outer spec.
 > Step: parse table options.
 > Step: split table.
@@ -2340,7 +2488,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[47]
+[51]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2349,7 +2497,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[48]
+[52]
 Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
  []
@@ -2363,7 +2511,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[49] 
+[53] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./PROGI_2023_Posterized.aux (./Dnevnik_promjena_dokumentacije.aux)
 (./Opis_projektnog_zadatka.aux) (./Specifikacija_programske_potpore.aux)
@@ -2376,11 +2524,11 @@ Package rerunfilecheck Info: File `PROGI_2023_Posterized.out' has not changed.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 18027 strings out of 476025
- 324027 string characters out of 5790016
- 2011388 words of memory out of 5000000
- 37916 multiletter control sequences out of 15000+600000
- 577298 words of font info for 170 fonts, out of 8000000 for 9000
+ 18087 strings out of 476025
+ 325518 string characters out of 5790016
+ 2012388 words of memory out of 5000000
+ 37958 multiletter control sequences out of 15000+600000
+ 577363 words of font info for 170 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,116p,890b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -2392,10 +2540,10 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/loca
 l/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_2023_Posterized.pdf (50 pages, 3203050 bytes).
+Output written on PROGI_2023_Posterized.pdf (54 pages, 3808628 bytes).
 PDF statistics:
- 655 PDF objects out of 1000 (max. 8388607)
- 543 compressed objects within 6 object streams
- 183 named destinations out of 1000 (max. 500000)
- 329 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 706 PDF objects out of 1000 (max. 8388607)
+ 576 compressed objects within 6 object streams
+ 194 named destinations out of 1000 (max. 500000)
+ 364 words of extra memory for PDF output out of 10000 (max. 10000000)
 

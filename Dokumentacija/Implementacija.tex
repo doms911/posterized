@@ -160,7 +160,71 @@
 			\end{figure}
 			
 			% za frontend
+			\pagebreak
+			Prije kreiranja web servisa za frontend, potrebno je prvo pripremiti projekt frontenda za puštanje u pogon.
+			Treba napisati \textit{app.js} datoteku kao na slici. Ova datoteka je dio Node.js-a, odnosno Express frameworka koji je odgovoran u izgradnji RESTful API-ja za jednostrane, višestrane ili hibridne aplikacije.
 			
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend5.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{app.js}}
+				\label{fig:promjene}
+			\end{figure}
 			
+			Napisati \textit{setupProxy.js} za uspostavljanje proxyja između razvojnog okružja i API-ja koji služi izbjegavanju CORS grešaka što pridonosi lakšem razvoju aplikacije.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend6.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{setupProxy.js}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Potrebno je izmijeniti datoteku \textit{package.lock} kao na slici u označenom prozoru. 
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend7.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{package.lock}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kreiranje web servisa za frontend slično je kao za backend uz manje razlike. Započinje se u izborniku kao što je navedeno za backend.
+			
+			U postupku kreiranja web servisa u označene prozore treba upisati ime, kao \textit{Branch} odabrati master te ispod upisati ime mape projekta. Za \textit{Runtime} odabrati Node i označiti tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa za frontend}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Ispod \textit{Runtime} pojavili su se linije za naredbe build i start te ih je potrebno izmijeniti kao na slici.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Naredbe za build i start}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Odabrati "Environment Variables" i kreirati novu varijablu okruženja za adresu backenda koja je dostupna u "Dashboard" na Renderu. Jedinstvena adresa se dodjeljuje svakom kreiranom web servisu. Zatim kliknuti "Create Web Service" i pričekati "build" i "deploy" procese.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Varijable okruženja}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kada status servisa postane "Live", kliknuti na "Dashboard". Ako je sve uspješno postavljeno, instance će biti prikazane kao na slici.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/success.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Uspostavljene instance}
+				\label{fig:promjene}
+			\end{figure} 
+			
+			Aplikacija je puštena u pogon i spremna za uporabu. Pristupa se preko adrese koja je navedena za instancu frontenda. 
+			
+			\href{https://posterized.onrender.com}{https://posterized.onrender.com}
 			
 			\eject 

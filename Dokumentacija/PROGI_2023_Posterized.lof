@@ -28,4 +28,11 @@
 \contentsline {figure}{\numberline {5.11}{\ignorespaces Kreiranje web servisa - upisivanje osnovnih podataka}}{40}{figure.5.11}%
 \contentsline {figure}{\numberline {5.12}{\ignorespaces Navođenje \textit {Dockerfile} putanje}}{41}{figure.5.12}%
 \contentsline {figure}{\numberline {5.13}{\ignorespaces Logovi stvaranja i status web servisa}}{41}{figure.5.13}%
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Datoteka \textit {app.js}}}{42}{figure.5.14}%
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Datoteka \textit {setupProxy.js}}}{42}{figure.5.15}%
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Datoteka \textit {package.lock}}}{43}{figure.5.16}%
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Kreiranje web servisa za frontend}}{43}{figure.5.17}%
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Naredbe za build i start}}{44}{figure.5.18}%
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Varijable okruženja}}{44}{figure.5.19}%
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Uspostavljene instance}}{44}{figure.5.20}%
 \addvspace {10\p@ }
