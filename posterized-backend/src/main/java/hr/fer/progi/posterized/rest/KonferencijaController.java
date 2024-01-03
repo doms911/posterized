@@ -73,6 +73,7 @@ public class KonferencijaController {
             if(konferencija.getNaziv().equalsIgnoreCase(nazivKonf)) {
                 Map<String, String> konferencijaMapa = new HashMap<>();
                 konferencijaMapa.put("naziv", konferencija.getNaziv());
+                konferencijaMapa.put("pin", String.valueOf(konferencija.getPin()));
                 konferencijaMapa.put("urlVideo", konferencija.getUrlVideo());
                 konferencijaMapa.put("adresa", konferencija.getAdresa());
                 Timestamp vrijemePocetka = konferencija.getVrijemePocetka();
