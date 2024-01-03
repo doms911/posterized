@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@RestController
-@Controller
+@RestController
+//@Controller
 @RequestMapping("/pokrovitelj")
 public class PokroviteljController {
     @Autowired
@@ -36,8 +36,8 @@ public class PokroviteljController {
         }
         return rezultat;
     }
-    @GetMapping("/ab")
+    /*@GetMapping("/ab")
     public String createAdmin(){
         return "sponzor";
-    }
+    }*/
 }
