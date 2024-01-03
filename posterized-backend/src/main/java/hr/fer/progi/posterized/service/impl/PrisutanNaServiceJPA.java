@@ -32,15 +32,15 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
     @Override
     public List<Map<String, String>> provjeriPin(String korisnik, Integer pin) {
         if (kService.countByPin(pin) == 0){
-            Assert.hasText("","Konferencija does not exist.");
+            Assert.hasText("","Konferencija ne postoji.");
         }
         Konferencija konf = kService.findByPin(pin);
         if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija hasn't started yet");
+            Assert.hasText("","Konferencija još nije počela.");
 
         if(!korisnik.equals("superadmin")){
             Osoba osoba = oService.findByEmail(korisnik);
-            if(osoba == null) Assert.hasText("","Osoba does not exist.");
+            if(osoba == null) Assert.hasText("","Korisnik ne postoji.");
             PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
             kljuc.setKonfId(konf.getId());
             kljuc.setKorisnikId(osoba.getId());
@@ -86,20 +86,20 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
     @Override
     public void glasaj(String korisnik, String naslov){
         Rad rad = radService.findByNaslovIgnoreCase(naslov);
-        if(rad == null) Assert.hasText("","Rad with naslov " + naslov + " does not exists");
+        if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
 
         Konferencija konf = rad.getKonferencija();
         Osoba osoba = oService.findByEmail(korisnik);
         PrisutanNaKljuc kljuc = new PrisutanNaKljuc();
         kljuc.setKorisnikId(osoba.getId());
         kljuc.setKonfId(konf.getId());
-        if(prisRepo.findById(kljuc).isEmpty()) Assert.hasText("","You can't vote on this conference.");
+        if(prisRepo.findById(kljuc).isEmpty()) Assert.hasText("","Ne možete glasati na ovoj konferenciji.");
         if(konf.getVrijemePocetka() == null || konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija hasn't started yet");
+            Assert.hasText("","Konferencija još nije počela.");
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija has already finished");
+            Assert.hasText("","Konferencija je već završila.");
         Prisutan_na pris = prisRepo.findById(kljuc).get();
-        if(pris.isGlasao())Assert.hasText("","You have already voted.");
+        if(pris.isGlasao())Assert.hasText("","Već ste glasali.");
         pris.setGlasao(true);
         rad.setUkupnoGlasova(rad.getUkupnoGlasova() + 1);
         prisRepo.save(pris);

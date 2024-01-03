@@ -29,17 +29,17 @@ const HomePage = (props) => {
         <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <main className="main-content">
-                <h1>Welcome to the Homepage</h1>
+                <h1>Dobrodošli na početnu stranicu</h1>
                 {isLoggedIn && (
                     <div>
-                        <label htmlFor="pinInput">Enter PIN:</label>
+                        <label htmlFor="pinInput">Upišite PIN:</label>
                         <input
                             type="text"
                             id="pinInput"
                             value={pin}
                             onChange={(e) => setPin(e.target.value)}
                         />
-                        <button onClick={handlePinSubmit}>Check PIN</button>
+                        <button onClick={handlePinSubmit}>Provjeri PIN</button>
                         {pinMessage && <p>{pinMessage}</p>}
                     </div>
                 )}

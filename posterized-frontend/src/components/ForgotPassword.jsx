@@ -32,7 +32,7 @@ function ForgotPassword() {
                         udiv.insertBefore(noviDiv, udiv.firstElementChild);
                     });
                 } else { //ako nije doslo do greske
-                    setMessage("An email with instructions has been successfully sent to you."); //ovo pokrece crtanje diva u liniji 60
+                    setMessage("Poslan Vam je email s uputama za promjenu lozinke."); //ovo pokrece crtanje diva u liniji 60
                 }
             })
             .catch((error) => { //ako front uopce nije uspio poslat zahtjev backendu
@@ -45,7 +45,7 @@ function ForgotPassword() {
             <h2>Resetiranje Lozinke</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="email">E-mail:</label>
+                    <label htmlFor="email">Email:</label>
                     <input
                         type="email"
                         id="email"

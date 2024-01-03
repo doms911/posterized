@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -32,29 +31,29 @@ public class RadServiceJPA implements RadService {
     @Override
     public void createRad(String admin, Osoba autor, Rad rad, MultipartFile poster, MultipartFile pptx, String nazivKonf) {
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + nazivKonf + " does not exists");
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(konf == null) Assert.hasText("","Konferencija s nazivom " + nazivKonf + " ne postoji.");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija has already finished");
+            Assert.hasText("","Konferencija je već završila.");
 
-        Assert.notNull(autor, "Autor must be given");
-        Assert.hasText(autor.getIme(), "Ime autora must be given");
-        Assert.hasText(autor.getPrezime(), "Prezime autora must be given");
-        Assert.hasText(autor.getEmail(), "Email autora must be given");
+        Assert.notNull(autor, "Podaci o autoru moraju biti navedeni.");
+        Assert.hasText(autor.getIme(), "Ime autora mora biti navedeno.");
+        Assert.hasText(autor.getPrezime(), "Prezime autora mora biti navedeno.");
+        Assert.hasText(autor.getEmail(), "Email autora mora biti naveden.");
 
-        if(poster.isEmpty())Assert.notNull(poster,"Poster must be given");
+        if(poster.isEmpty())Assert.notNull(poster,"Poster mora biti učitan.");
 
-        Assert.notNull(rad, "Rad must be given");
-        Assert.hasText(rad.getNaslov(), "Naslov must be given");
+        Assert.notNull(rad, "Podaci o radu moraju biti navedeni.");
+        Assert.hasText(rad.getNaslov(), "Naslov mora biti naveden.");
         if (radRepo.countByNaslovIgnoreCase(rad.getNaslov()) > 0){
-            Assert.hasText("","Rad with name " + rad.getNaslov() + " already exits");
+            Assert.hasText("","Rad s naslovom " + rad.getNaslov() + " već postoji.");
         }
 
         Osoba osoba = oService.findByEmail(autor.getEmail());
         if(osoba == null) {
             osoba = oService.createAutor(autor);
         } else if(konf.getRadovi().stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(autor.getEmail()))){
-            Assert.hasText("","You are already registered for this conference with one Rad.");
+            Assert.hasText("","Na navedenoj konferenciji već postoji rad ovog autora.");
         }
         rad.setAutor(osoba);
         rad.setKonferencija(konf);
@@ -75,11 +74,11 @@ public class RadServiceJPA implements RadService {
     @Transactional
     public void izbrisiRad(String admin, String naslov){
         Rad rad = radRepo.findByNaslovIgnoreCase(naslov);
-        if(rad == null) Assert.hasText("","Rad with naslov " + naslov + " does not exists");
+        if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
         Konferencija konf = rad.getKonferencija();
-        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","You do not have access to this conference.");
+        if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija has already started");
+            Assert.hasText("","Konferencija je već počela.");
         konf.getRadovi().remove(rad);
         rad.getAutor().getRadovi().remove(rad);
 
@@ -97,8 +96,8 @@ public class RadServiceJPA implements RadService {
     @Override
     public void plasman(String naziv) {
         Konferencija konf = konfService.findByNazivIgnoreCase(naziv);
-        if(konf == null) Assert.hasText("","Konferencija with naziv " + naziv + " does not exists");
-        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija hasn't started yet");
+        if(konf == null) Assert.hasText("","Konferencija s nazivom " + naziv + " ne postoji.");
+        if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
 
         Set<Rad> radovi = konf.getRadovi();
         List<Rad> radoviList = new ArrayList<>(radovi);

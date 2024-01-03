@@ -16,7 +16,7 @@ public class MjestoController {
     private MjestoService mService;
 
     @PostMapping("")
-    public Mjesto createMjesto( Integer pbr, String Naziv){
+    public Mjesto createMjesto(Integer pbr, String Naziv){
         return mService.createMjesto(pbr, Naziv);
     }
 

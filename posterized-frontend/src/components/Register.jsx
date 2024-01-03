@@ -16,7 +16,7 @@ function Register() {
     async function save(event) {
         event.preventDefault();
         if (!recaptchaValue) {
-            alert('Please complete the reCAPTCHA.');
+            alert('Molimo Vas riješite reCAPTCHA-u.');
             return;
         }
         var stariDiv = document.getElementsByClassName('alert-container')[0];
@@ -36,7 +36,7 @@ function Register() {
                     'Content-Type': 'application/json',
                 },
             });
-            alert("Registracija uspješna");
+            alert("Registracija uspješna.");
             window.location.replace("/");
         } catch (err) {
             var noviDiv = document.createElement('div');
@@ -83,7 +83,7 @@ function Register() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="lozinka">Password:</label>
+                        <label htmlFor="lozinka">Lozinka:</label>
                         <input
                             type="password"
                             id="lozinka"
@@ -101,10 +101,10 @@ function Register() {
                         }
                     </div>
                     <div className="form-group">
-                        <Link to="/login">Already have an account? Log in</Link>
+                        <Link to="/login">Već imate račun? Prijavite se!</Link>
                     </div>
                     <div className="form-group">
-                        <button type="submit">Register</button>
+                        <button type="submit">Registracija</button>
                     </div>
                 </form>
             </div>
