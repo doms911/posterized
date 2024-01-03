@@ -1,51 +1,40 @@
 // HomePage.jsx
-import React, { useState } from 'react';
 import Header from './components/Header';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const HomePage = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const onLogout = props.onLogout;
 
-    const [pin, setPin] = useState('');
-    const [pinMessage, setPinMessage] = useState('');
-
-    const handlePinSubmit = async () => {
-        try {
-            console.log("Submitting PIN:", pin);
-            const response = await axios.post("/api/konferencija/pin", null, {
-                params: { pin: pin },
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            setPinMessage(`Conference found: ${response.data.naziv}`);
-        } catch (err) {
-            setPinMessage('Conference not found.');
-        }
-    };
 
     return (
         <div className="page-container">
-            <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <main className="main-content">
-                <h1>Dobrodošli na početnu stranicu</h1>
-                {isLoggedIn && (
-                    <div>
-                        <label htmlFor="pinInput">Upišite PIN:</label>
-                        <input
-                            type="text"
-                            id="pinInput"
-                            value={pin}
-                            onChange={(e) => setPin(e.target.value)}
-                        />
-                        <button onClick={handlePinSubmit}>Provjeri PIN</button>
-                        {pinMessage && <p>{pinMessage}</p>}
-                    </div>
-                )}
-                {/* Rest of the main content */}
-            </main>
-        </div>
+      <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
+      <main className="main-content">
+        {isLoggedIn ? (
+         <div className="image" style={{ backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/headway-F2KRf_QfCqw-unsplash.jpg?alt=media&token=c9dd7219-ea1b-4f47-91f5-da81ec34ebf8")' }}>
+         <div className="text">
+             <h1>Dobrodošli!</h1>
+             <div>Unesite <Link to="/pinInput"> pin</Link> kako biste pristupili konferenciji.
+            </div>
+         </div>
+         </div>
+        ) : (
+            <div className="image" style={{ backgroundImage: 'url("https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/headway-F2KRf_QfCqw-unsplash.jpg?alt=media&token=c9dd7219-ea1b-4f47-91f5-da81ec34ebf8")' }}>
+            <div className="text">
+                <h1>Dobrodošli!</h1>
+            <div>
+            <Link to="/login"> Prijavite se</Link> kako biste pristupili konferencijama i ostalim pojedinostima.
+            </div>
+            <div>
+              Nemate račun? <Link to="/register">Registrirajte se</Link>.
+            </div> 
+            </div>
+            </div>
+        )}
+      </main>
+    </div>
     );
 };
 

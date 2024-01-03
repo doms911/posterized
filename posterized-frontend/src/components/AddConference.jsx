@@ -1,9 +1,12 @@
 //AddConference.jsx
 import React, { useState } from 'react';
 import './login.css';
+import Header from './Header';
 
-function AddConference() {
+function AddConference(props) {
 
+    const isLoggedIn = props.isLoggedIn;
+    const onLogout = props.onLogout;
     const [pin, setPin] = useState('');
     const [adminEmail, setAdminEmail] = useState('');
     const [naziv, setnaziv] = useState('');
@@ -37,7 +40,6 @@ function AddConference() {
                 });
                 } else {
                     alert('Konferencija uspješno dodana');
-                    window.location.replace('/');
                 }
             })
             .catch((error) => {
@@ -47,9 +49,10 @@ function AddConference() {
 
     return (
         <div className="centered-wrapper">
+            <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <div className="container">
                     <h2>Nova konferencija</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} id="moj">
                         <div>
                             <label>Pin:</label>
                             <input

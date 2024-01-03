@@ -14,6 +14,7 @@ import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
 import AddAdmin from './components/AddAdmin.jsx';
 import ConferenceList from './components/ConferenceList.jsx';
+import PinInput from './components/PinInput.jsx';
 
 
 
@@ -59,13 +60,14 @@ const App = () => {
                 />
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
-                {isLoggedIn && <Route path="/addConference" element={<AddConference />}/>}
-                {isLoggedIn && <Route path="/conferenceInput" element={<ConferenceInput />}/>}
+                {isLoggedIn && <Route path="/addConference" element={<AddConference isLoggedIn={isLoggedIn} onLogout={handleLogout}/>}/>}
+                {isLoggedIn && <Route path="/conferenceInput" element={<ConferenceInput isLoggedIn={isLoggedIn} onLogout={handleLogout}/>}/>}
+                {isLoggedIn && <Route path="/pinInput" element={<PinInput isLoggedIn={isLoggedIn} onLogout={handleLogout}/>}/>}
                 {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />}/>}
                 {!isLoggedIn && <Route path="/live" element={<VideoStream />}/>}
                 {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />}/>}
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
-                {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin />} />}
+                {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
 
                 

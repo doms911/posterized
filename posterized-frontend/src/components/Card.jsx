@@ -1,9 +1,8 @@
 // Card.jsx
 import React from 'react';
-import Header from './Header';
 
 function Card(props) {
-  const { children, title, isLoggedIn, onLogout } = props;
+  const { children, title} = props;
 
   return (
     <div className="Card">

@@ -1,45 +1,50 @@
-// ConferenceList.jsx
-import * as React from "react";
+import React, { useState } from 'react';
 import Conference from './Conference.jsx';
-import Card from "./Card.jsx";
-import Header from "./Header.jsx";
-import "./ConferenceList.css";
-
+import Card from './Card.jsx';
+import Header from './Header.jsx';
+import './ConferenceList.css';
 
 function ConferenceList(props) {
-  const [conferences, setConferences] = React.useState([]);
+  const [conferences, setConferences] = useState([]);
+  const [error, setError] = useState(null);
   const isLoggedIn = props.isLoggedIn;
   const onLogout = props.onLogout;
 
-
   React.useEffect(() => {
     fetch('/api/konferencija/prikaziSve')
-      .then(data => data.json())
-      .then(conferences => setConferences(conferences))
+      .then((data) => data.json())
+      .then((conferences) => setConferences(conferences))
+      .catch((err) => {
+        setError(err.response ? err.response.data.message : 'Nepoznata greška');
+      });
   }, []);
 
   const izbrisiKonferenciju = async (naziv) => {
     try {
       await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' });
-      setConferences(prevConferences => prevConferences.filter(conf => conf.naziv !== naziv));
-    } catch (error) {
-      console.error('Greška prilikom brisanja konferencije:', error);
+      setConferences((prevConferences) => prevConferences.filter((conf) => conf.naziv !== naziv));
+    } catch (err) {
+      setError(err.response ? err.response.data.message : 'Nepoznata greška');
     }
   };
 
-  console.log(isLoggedIn)
-
   return (
     <div>
-    <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-    <Card title="Konferencije" isLoggedIn={isLoggedIn} onLogout={onLogout}>
-      {conferences.map(conference => (
-        <div key={conference.naziv}>
-          <Conference conference={conference} />
-          <button onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
+      <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
+      <div className="naslov">Popis svih konferencija</div>
+      {error && (
+        <div className="alert-container">
+          <p>{error}</p>
         </div>
-      ))}
-    </Card>
+      )}
+      <Card isLoggedIn={isLoggedIn} onLogout={onLogout}>
+        {conferences.map((conference) => (
+          <div className="conference" key={conference.naziv}>
+            <Conference conference={conference} />
+            <button onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
+          </div>
+        ))}
+      </Card>
     </div>
   );
 }

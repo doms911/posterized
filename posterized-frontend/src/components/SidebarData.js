@@ -26,7 +26,7 @@ export const SidebarData = [
     },
     {
         title: 'Unos pina',
-        path: '/link',
+        path: '/pinInput',
         cName: 'nav-text',
         allowedRoles: ['superadmin', 'admin', 'korisnik']
     },
