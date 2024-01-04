@@ -73,6 +73,10 @@ public class OsobaServiceJPA implements OsobaService {
                 osoba2.setUloga("korisnik");
                 osobaRepo.save(osoba2);
                 return;
+            } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
+                osoba2.setUloga("admin");
+                osobaRepo.save(osoba2);
+                return;
             } else Assert.hasText("", "Korisnik s emailom " + osoba.getEmail() + " već postoji.");
         }
         osoba.setLozinka(kodiranaLozinka);
