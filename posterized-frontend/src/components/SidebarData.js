@@ -32,7 +32,7 @@ export const SidebarData = [
     },
     {
         title: 'Dodaj sponzora',
-        path: '/link',
+        path: '/addSponsor',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },

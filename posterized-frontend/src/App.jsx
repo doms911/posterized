@@ -16,7 +16,7 @@ import AddAdmin from './components/AddAdmin.jsx';
 import ConferenceList from './components/ConferenceList.jsx';
 import PinInput from './components/PinInput.jsx';
 import AddAuthor from "./components/AddAuthor";
-
+import AddSponsor from "./components/AddSponsor";
 
 
 const App = () => {
@@ -78,7 +78,8 @@ const App = () => {
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
                 {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
-                {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
+                {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout} selectedConference={selectedConference}/>} />}
+                {isLoggedIn && <Route path="/addSponsor" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout} selectedConference={selectedConference}/>} />}
                 
             </Routes>
         </Router>
