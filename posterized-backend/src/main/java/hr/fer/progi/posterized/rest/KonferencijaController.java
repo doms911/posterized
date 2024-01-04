@@ -25,12 +25,12 @@ public class KonferencijaController {
     @PostMapping("/stvoriKonf")
     public Konferencija createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
                                            @RequestParam("naziv") String naziv){
-        return kService.createKonferencija(Integer.valueOf(pin), email, naziv);
+        return kService.createKonferencija(pin, email, naziv);
     }
 
     @Secured("superadmin")
     @GetMapping("/prikaziSve")
-    public List<Map<String, String>> prikazKonf() {
+    public List<Map<String, String>> prikazSvihKonf() {
         List<Konferencija> konferencije = kService.listAll();
         List<Map<String, String>> rezultat = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class KonferencijaController {
     }
     @Secured("admin")
     @GetMapping("/prikaziAdminuNazive")
-    public List<String> prikaz1(@AuthenticationPrincipal User user) {
+    public List<String> prikazAdminuNazive(@AuthenticationPrincipal User user) {
         String email = user.getUsername();
         List<Konferencija> konferencije = kService.prikazAdmin(email);
         List<String> rezultat = new ArrayList<>();
@@ -62,7 +62,7 @@ public class KonferencijaController {
     }
     @Secured("admin")
     @GetMapping("/prikaziAdminuKonf/{naziv}")
-    public List<Map<String, String>> prikaz2(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+    public List<Map<String, String>> prikazAdminuKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
         String email = user.getUsername();
         List<Konferencija> konferencije = kService.prikazAdmin(email);
         List<Map<String, String>> rezultat = new ArrayList<>();
@@ -118,7 +118,7 @@ public class KonferencijaController {
 
     @Secured("admin")
     @PostMapping("/nadopuniKonf/{naziv}")
-    public void updateKonferencija(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
+    public void updateKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
                                            @RequestParam("urlVideo") String urlVideo,
                                            @RequestParam("vrijemePocetka") String vrijemePocetka,
                                            @RequestParam("vrijemeKraja") String vrijemeKraja,
@@ -129,7 +129,7 @@ public class KonferencijaController {
     }
 
     @GetMapping("/izbrisiKonf/{naziv}")
-    public void izbrisiKonferencija (@PathVariable("naziv") String nazivKonf){
+    public void izbrisiKonf (@PathVariable("naziv") String nazivKonf){
         kService.izbrisiKonf(nazivKonf);
     }
 
@@ -143,15 +143,17 @@ public class KonferencijaController {
     };
 
     @Secured("admin")
-    @GetMapping("/zavrsiKonf/{naziv}")
-    public void zavrsiKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+    @PostMapping("/zavrsiKonf/{naziv}")
+    public void zavrsiKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
+                           @RequestParam("vrijeme") String vrijeme,
+                           @RequestParam("lokacija") String lokacija) {
         String email = user.getUsername();
         kService.zavrsiKonferencija(email, nazivKonf);
-        kService.saljiMail(nazivKonf);
+        kService.saljiMail(nazivKonf, vrijeme, lokacija);
     }
 
     @GetMapping("/dohvatiRadove/{pin}")
-    public List<Map<String, String>> prikaz3(@PathVariable("pin") String pin) {
+    public List<Map<String, String>> prikazRadova(@PathVariable("pin") String pin) {
         if (kService.countByPin(Integer.valueOf(pin)) == 0){
             Assert.hasText("","Konferencija ne postoji.");
         }

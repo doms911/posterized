@@ -8,7 +8,7 @@ import java.util.Map;
 public interface KonferencijaService {
     List<Konferencija> listAll();
     List<Konferencija> prikazAdmin(String email);
-    Konferencija createKonferencija(Integer pin, String email, String naziv);
+    Konferencija createKonferencija(String pin, String email, String naziv);
     void izbrisiKonf(String naziv);
     void zavrsiKonferencija(String admin, String nazivKonf);
 
@@ -17,7 +17,7 @@ public interface KonferencijaService {
 
     Konferencija findByNazivIgnoreCase(String naziv);
 
-    void saljiMail(String naziv);
+    void saljiMail(String naziv, String vrijeme, String lokacija);
 
     void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjesto, String pbr, String adresa, List<String> sponzori);
     int countByPin(Integer pin);
