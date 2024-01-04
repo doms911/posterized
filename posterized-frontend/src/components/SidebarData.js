@@ -38,7 +38,7 @@ export const SidebarData = [
     },
     {
         title: 'Dodaj rad i autora',
-        path: '/link',
+        path: '/addAuthor',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },

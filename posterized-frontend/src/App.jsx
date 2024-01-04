@@ -15,11 +15,13 @@ import SuperAdmin from './components/superadmin.jsx';
 import AddAdmin from './components/AddAdmin.jsx';
 import ConferenceList from './components/ConferenceList.jsx';
 import PinInput from './components/PinInput.jsx';
+import AddAuthor from "./components/AddAuthor";
 
 
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [selectedConference, setSelectedConference] = useState(null);
 
     useEffect(() => {
         const userCookie = Cookies.get('user');
@@ -51,13 +53,19 @@ const App = () => {
             });
     };
 
+    const handleSelectConference = (conference) => {
+        setSelectedConference(conference);
+        localStorage.setItem('selectedConference', conference);
+    };
+
+
     return (
-        
         <Router>
             <Routes>
                 <Route
                     path="/"
-                    element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} />}
+                    element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} selectedConference={selectedConference}
+                                       onSelectConference={handleSelectConference}/>}
                 />
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
@@ -70,7 +78,7 @@ const App = () => {
                 {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />}/>}
                 {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
-
+                {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 
             </Routes>
         </Router>
