@@ -42,4 +42,10 @@ export const SidebarData = [
         cName: 'nav-text',
         allowedRoles: ['admin']
     },
+    {
+        title: 'Konferencije',
+        path: '/adminconferenceList',
+        cName: 'nav-text',
+        allowedRoles: ['admin']
+    },
 ];

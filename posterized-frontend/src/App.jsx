@@ -16,12 +16,13 @@ import AddAdmin from './components/AddAdmin.jsx';
 import ConferenceList from './components/ConferenceList.jsx';
 import PinInput from './components/PinInput.jsx';
 import AddAuthor from "./components/AddAuthor";
+import AdminConference from './components/AdminConference.jsx';
+import AdminConferenceList from './components/AdminConferenceList.jsx'
 
 
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [selectedConference, setSelectedConference] = useState(null);
 
     useEffect(() => {
         const userCookie = Cookies.get('user');
@@ -53,19 +54,12 @@ const App = () => {
             });
     };
 
-    const handleSelectConference = (conference) => {
-        setSelectedConference(conference);
-        localStorage.setItem('selectedConference', conference);
-    };
-
-
     return (
         <Router>
             <Routes>
                 <Route
                     path="/"
-                    element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} selectedConference={selectedConference}
-                                       onSelectConference={handleSelectConference}/>}
+                    element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} />}
                 />
                 {!isLoggedIn && <Route path="/register" element={<Register />} />}
                 {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
@@ -79,6 +73,7 @@ const App = () => {
                 {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
+                {isLoggedIn && <Route path="/adminConferenceList" element={<AdminConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 
             </Routes>
         </Router>

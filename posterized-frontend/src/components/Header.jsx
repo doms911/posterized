@@ -8,15 +8,13 @@ const Header = (props) => {
     const onLogout = props.onLogout;
     const name = localStorage.getItem('name');
     const userRole = localStorage.getItem('userRole');
-    const selectedConference = props.selectedConference;
 
 
     return (
         <header className="Header">
             {isLoggedIn ? (
                 <div className="Header">
-                    {userRole==='admin' && selectedConference && <Sidebar userRole={userRole} />}
-                    {userRole==='superadmin' && <Sidebar userRole={userRole} />}
+                   <Sidebar userRole={userRole}/>
                     <div className="LoggedIn">Pozdrav, {name}! Prijavljeni ste u sustav.</div>
                     <div className="LoggedIn">
                         <button onClick={onLogout}>Odjava</button>
