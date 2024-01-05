@@ -256,6 +256,20 @@ U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije
 			\eject
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
+			 Dijagram komponenti prikazan na slici opisuje strukturu web aplikacije razdijeljenu na višestruke komponente koje omogućavaju njen rad i interakciju s korisnicima. Pristup sustavu ostvaruje se putem dva osnovna sučelja.
+			 
+			 Prvo sučelje omogućava dohvat HTML, CSS i JS datoteka koje čine frontend dio aplikacije. Komponente frontenda koriste React biblioteku za izgradnju korisničkog sučelja i organizirane su u logičke cjeline prema tipovima korisnika koji im pristupaju, kao što su superadministratori, administratori, registrirani i neregistrirani korisnici.
+			 
+			 Router je ključna komponenta koja određuje koja će se datoteka poslužiti temeljem URL-a na koji korisnik dođe. Kroz ovu komponentu, zahtjevi korisnika se usmjeravaju prema odgovarajućim dijelovima aplikacije.
+			 
+			 Backend dio aplikacije pristupa se preko sučelja koje poslužuje JSON podatke. Ova komponenta se bavi obradom zahtjeva i komunikacijom s bazom podataka. Komunikacija s bazom podataka se odvija preko posebnog SQL API sučelja, a podaci se poslužuju kroz REST API.
+			 
+			 Svi dijelovi sustava su međusobno povezani i ovise o funkcionalnostima koje pružaju jedni drugima. Na primjer, REST API poslužuje kao most između frontenda i baze podataka, omogućavajući dinamičan i responzivan korisnički doživljaj. Dijagram detaljno prikazuje kako korisnički zahtjevi prolaze kroz različite slojeve aplikacije kako bi se dobili potrebni podaci ili izvršile akcije.
+			 
+			 \begin{figure}[H]
+			 	\includegraphics[scale=0.45]{dijagrami/dijagram_komponenata.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+			 	\centering
+			 	\caption{Dijagram komponenata}
+			 	\label{fig:promjene}
+			 \end{figure}
 		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
