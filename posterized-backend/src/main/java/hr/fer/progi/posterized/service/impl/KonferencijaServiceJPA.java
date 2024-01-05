@@ -17,7 +17,6 @@ import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -97,8 +96,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public Konferencija createKonferencija(Integer pin, String email, String naziv) {
-        Assert.notNull(pin, "Pin mora biti naveden.");
+    public Konferencija createKonferencija(String pinS, String email, String naziv) {
+        Assert.hasText(pinS, "Pin mora biti naveden.");
+        if (!pinS.matches("\\d+")) {
+            Assert.hasText("","Pin mora sadržavati samo brojeve.");
+        }
+        Integer pin = Integer.valueOf(pinS);
         if (konferencijaRepo.countByPin(pin) > 0){
             Assert.hasText("","Konferencija već postoji.");
         }
@@ -137,18 +140,21 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Autowired
     private JavaMailSender mailSender;
     @Override
-    public void saljiMail(String naziv){
+    public void saljiMail(String naziv, String vrijeme, String lokacija){
+        Assert.hasText(vrijeme, "Vrijeme dodjele nagrade mora biti navedeno.");
+        Timestamp vrijemeT = null;
+        vrijemeT = Timestamp.valueOf(vrijeme.replace("T", " ") + ":00");
+        Assert.hasText(lokacija, "Lokacija dodjele nagrade mora biti navedena.");
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
 
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Instant endTime = konf.getVrijemeKraja().toInstant().plus(5, ChronoUnit.DAYS);
+        Instant endTime = vrijemeT.toInstant();
         Date endDate = Date.from(endTime);
 
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
         if(rezultati == null) return;
         String poruka = "Pozvani ste na dodjelu nagrada za konferenciju pod nazivom " +
-                konf.getNaziv() + " na adresi " + konf.getAdresa() + ", " + konf.getMjesto().getNaziv() +
-                ", " + konf.getMjesto().getPbr() + ". Dodjela nagrada održat će se " +
+                konf.getNaziv() + " na adresi " + lokacija + ". Dodjela nagrada održat će se " +
                 dateFormat.format(endDate);
 
         StringBuilder message = new StringBuilder(poruka);

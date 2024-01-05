@@ -1,17 +1,28 @@
-// Sidebar.jsx
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineBars } from 'react-icons/ai';
 import { IoClose } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import { SidebarData } from './SidebarData';
 import './Sidebar.css';
+import AdminConference from './AdminConference';
 
 const Sidebar = ({ userRole }) => {
-   // console.log('userRole in Sidebar:', userRole);
+  const [error, setError] = useState(null);
   const [sidebar, setSidebar] = useState(false);
+  const [adminConferences, setAdminConferences] = useState([]);
 
+  React.useEffect(() => {
+    console.log(userRole)
+    fetch('/api/konferencija/prikaziAdminuNazive')
+      .then((data) => data.json())
+      .then((adminConferences) => setAdminConferences(adminConferences))
+      .catch((err) => {
+        setError(err.response ? err.response.data.message : 'Nepoznata greška');
+      });
+      console.log(adminConferences)
+  }, []);
+  
   const showSidebar = () => setSidebar(!sidebar);
 
   const filteredSidebarData = SidebarData.filter(item => {
@@ -34,15 +45,29 @@ const Sidebar = ({ userRole }) => {
                 <IoClose />
               </Link>
             </li>
-            {filteredSidebarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
+            {filteredSidebarData.map((item, index) => (
+              <li key={index} className={item.cName}>
+                <Link to={item.path}>
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+            {userRole === "admin" && (
+  <li className='admin-conferences'>
+    
+    <ul>
+      {Array.isArray(adminConferences) ? (
+        adminConferences.map((adminConference, index) => (
+          <AdminConference key={index} adminConference={adminConference} />
+        ))
+      ) : (
+        <p>Nema</p>
+      )}
+    </ul>
+  </li>
+)}
+
+       
           </ul>
         </nav>
       </IconContext.Provider>
@@ -51,3 +76,4 @@ const Sidebar = ({ userRole }) => {
 };
 
 export default Sidebar;
+

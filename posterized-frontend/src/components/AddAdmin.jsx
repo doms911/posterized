@@ -1,9 +1,13 @@
 //AddAdmin.jsx
+import Header from './Header';
 import axios from 'axios';
-import './Register.css';
+import './login.css';
 import {useState} from "react";
 
-function AddAdmin() {
+function AddAdmin(props) {
+
+    const isLoggedIn = props.isLoggedIn;
+    const onLogout = props.onLogout;
     const [ime, setIme] = useState('');
     const [prezime, setPrezime] = useState('');
     const [email, setEmail] = useState('');
@@ -30,7 +34,6 @@ function AddAdmin() {
                 },
             });
             alert("Admin je uspješno dodan!");
-            window.location.replace("/");
         } catch (err) {
             var noviDiv = document.createElement('div');
             noviDiv.className = 'alert-container';
@@ -42,6 +45,7 @@ function AddAdmin() {
 
     return (
         <div className="centered-wrapper">
+            <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <div className="register-container">
                 <h2>Dodavanje admina</h2>
                 <form onSubmit={save} id="moj">

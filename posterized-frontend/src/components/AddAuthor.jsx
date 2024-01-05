@@ -1,9 +1,12 @@
 // AddAuthor.jsx
 import React, { useState } from 'react';
 import './login.css';
+import Header from './Header';
 
 function AddAuthor(props) {
 
+    const isLoggedIn = props.isLoggedIn;
+    const onLogout = props.onLogout;
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
@@ -35,7 +38,6 @@ function AddAuthor(props) {
                 });
                 } else {
                     alert('Autor uspješno dodan');
-                    window.location.replace('/');
                 }
             })
             .catch((error) => {
@@ -45,9 +47,10 @@ function AddAuthor(props) {
 
     return (
         <div className="centered-wrapper">
+            <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <div className="container">
                     <h2>Dodavanje autora</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} id="moj">
                         <div>
                             <label>Ime:</label>
                             <input

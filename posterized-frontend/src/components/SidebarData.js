@@ -26,7 +26,7 @@ export const SidebarData = [
     },
     {
         title: 'Unos pina',
-        path: '/link',
+        path: '/pinInput',
         cName: 'nav-text',
         allowedRoles: ['superadmin', 'admin', 'korisnik']
     },
@@ -38,7 +38,13 @@ export const SidebarData = [
     },
     {
         title: 'Dodaj rad i autora',
-        path: '/link',
+        path: '/addAuthor',
+        cName: 'nav-text',
+        allowedRoles: ['admin']
+    },
+    {
+        title: 'Konferencije',
+        path: '/adminconferenceList',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },

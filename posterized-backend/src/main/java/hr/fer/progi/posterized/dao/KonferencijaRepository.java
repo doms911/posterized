@@ -14,7 +14,7 @@ public interface KonferencijaRepository extends JpaRepository<Konferencija,Long>
     List<Konferencija> findAllByAdminKonf_id(Long id);
     int countByPin(Integer pin);
     int countByNaziv(String naziv);
-    @Query("SELECT COUNT(p) FROM Pokrovitelj p WHERE LOWER(p.naziv) = LOWER(:naziv)")
+    @Query("SELECT COUNT(p) FROM Konferencija p WHERE LOWER(p.naziv) = LOWER(:naziv)")
     long countByNazivCaseInsensitive(@Param("naziv") String naziv);
 
     List<Konferencija> deleteByNazivIgnoreCase(String naziv);

@@ -1,9 +1,12 @@
 // ConferenceInput.jsx
 import React, { useState } from 'react';
+import Header from './Header';
 import './login.css';
 
 function ConferenceInput(props) {
 
+    const isLoggedIn = props.isLoggedIn;
+    const onLogout = props.onLogout;
     const [videoURL, setVideoURL] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
@@ -26,7 +29,6 @@ function ConferenceInput(props) {
                     alert('Dogodila se greška. Podaci nisu uneseni.');
                 } else {
                     alert('Podaci uspješno dodani');
-                    window.location.replace('/');
                 }
             })
             .catch((error) => {
@@ -36,6 +38,7 @@ function ConferenceInput(props) {
 
     return (
         <div className="centered-wrapper">
+            <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <div className="container">
                     <h2>Unos podataka o konferenciji</h2>
                     <form onSubmit={handleSubmit}>
