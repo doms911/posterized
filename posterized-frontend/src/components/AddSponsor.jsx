@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import axios from 'axios';
 import './login.css';
+import qs from 'qs';
 
 function AddSponsor(props) {
   const isLoggedIn = props.isLoggedIn;
@@ -20,28 +21,31 @@ function AddSponsor(props) {
       stariDiv.parentElement.removeChild(stariDiv);
     }
   
-    try {
-      // Koristite ispravan redoslijed argumenata, prvo URL, a zatim podaci
-      await axios.post('/api/pokrovitelj', {
-        naziv: naziv,
-        url: url,
-        logo: logo,
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      alert("Sponzor je uspješno dodan!");
-    } catch (err) {
-      // Kreirajte novi div za prikaz poruke o grešci
-      var noviDiv = document.createElement('div');
-      noviDiv.className = 'alert-container';
-      noviDiv.textContent = err.response.data.message;
-      
-      // Dodajte novi div na odgovarajuće mjesto
-      var udiv = document.getElementsByClassName('register-container')[0];
-      udiv.insertBefore(noviDiv, document.getElementById("moj"));
-    }
+    const formData = new FormData();
+    formData.append('naziv', naziv);
+    formData.append('url', url);
+    formData.append('logo', logo);
+
+    fetch('/api/pokrovitelj', {
+        method: 'POST',
+        body: formData
+    }).then(response => {
+      var stariDiv = document.getElementsByClassName('alert-container')[0];
+      if (stariDiv && stariDiv.parentElement) {
+          stariDiv.parentElement.removeChild(stariDiv);
+      }
+      if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => {
+              var noviDiv = document.createElement('div');
+              noviDiv.className = 'alert-container';
+              noviDiv.textContent = data.message;
+              var udiv = document.getElementById('moj');
+              udiv.insertBefore(noviDiv, udiv.firstElementChild);
+          });
+      }})
+  .catch(error => {
+      console.error('Error:', error);
+  });
   }
 
   return (

@@ -29,7 +29,7 @@ public class PokroviteljServiceJPA implements PokroviteljService {
             Assert.hasText("", "Pokrovitelj s nazivom " + pokrovitelj.getNaziv() + " već postoji.");
         }
         if (pokroviteljRepo.countByUrl(pokrovitelj.getUrl()) > 0) {
-            Assert.hasText("", "Pokrovitelj s URL-om " + pokrovitelj.getNaziv() + " već postoji.");
+            Assert.hasText("", "Pokrovitelj s URL-om " + pokrovitelj.getUrl() + " već postoji.");
         }
         Media slika = new Media();
         pokrovitelj.setUrlSlike(slika.upload(logo, naziv, "pokrovitelji"));

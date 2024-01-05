@@ -24,36 +24,7 @@ import AdminConference from './components/AdminConference.jsx';
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [adminConferences, setAdminConferences] = useState([]);
-
-
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
-              credentials: 'include',
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            });
       
-            if (!response.ok) {
-              throw new Error(`Server error: ${response.status}`);
-            }
-      
-            const data = await response.json();
-            setAdminConferences(data);
-          } catch (err) {
-            console.error(err.response ? err.response.data.message : 'Nepoznata greška');
-          }
-        };
-      
-        if (adminConferences.length === 0) {
-          fetchData();
-        }
-      }, [adminConferences]);  // Dodajte adminConferences kao ovisnost kako bi se useEffect ponovno pokrenuo kada se adminConferences promijeni
-      
-    
       useEffect(() => {
         const userCookie = Cookies.get('user');
         if (userCookie) {

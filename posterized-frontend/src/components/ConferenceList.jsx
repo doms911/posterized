@@ -41,7 +41,7 @@ function ConferenceList(props) {
         {conferences.map((conference) => (
           <div className="conference" key={conference.naziv}>
             <Conference conference={conference} />
-            <button onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
+            <button id = 'gumbBrisi' onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
           </div>
         ))}
       </Card>

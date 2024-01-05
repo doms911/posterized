@@ -57,14 +57,14 @@ const Sidebar = ({ userRole }) => {
                 <IoClose />
               </Link>
             </li>
-            {filteredSidebarData.map((item, index) => (
+            {filteredSidebarData.filter(item => item.path !== '/pinInput').map((item, index) => (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
                   <span>{item.title}</span>
                 </Link>
               </li>
             ))}
-            {userRole === 'admin' && (
+            {userRole === 'admin' && adminConferences.length !== 0 && (
               <li className='nav-menu-items'>
                
                   {adminConferences.map((adminConference, index) => (
@@ -73,11 +73,16 @@ const Sidebar = ({ userRole }) => {
                         <span>{adminConference}</span>
                       </Link>
                     </div>
-                  ))}
-                  {adminConferences.length === 0 && <p>Nema konferencija</p>}
-                
+                  ))}                
               </li>
             )}
+           {filteredSidebarData.filter(item => item.path === '/pinInput').map((item, index) => (
+              <li key={index} className={item.cName}>
+                <Link to={item.path}>
+                  <span>{item.title}</span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
       </IconContext.Provider>
