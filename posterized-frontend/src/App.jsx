@@ -16,43 +16,73 @@ import AddAdmin from './components/AddAdmin.jsx';
 import ConferenceList from './components/ConferenceList.jsx';
 import PinInput from './components/PinInput.jsx';
 import AddAuthor from "./components/AddAuthor";
+import AddSponsor from "./components/AddSponsor.jsx"
 import AdminConference from './components/AdminConference.jsx';
-import AdminConferenceList from './components/AdminConferenceList.jsx'
 
 
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [adminConferences, setAdminConferences] = useState([]);
+
 
     useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
+              credentials: 'include',
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+      
+            if (!response.ok) {
+              throw new Error(`Server error: ${response.status}`);
+            }
+      
+            const data = await response.json();
+            setAdminConferences(data);
+          } catch (err) {
+            console.error(err.response ? err.response.data.message : 'Nepoznata greška');
+          }
+        };
+      
+        if (adminConferences.length === 0) {
+          fetchData();
+        }
+      }, [adminConferences]);  // Dodajte adminConferences kao ovisnost kako bi se useEffect ponovno pokrenuo kada se adminConferences promijeni
+      
+    
+      useEffect(() => {
         const userCookie = Cookies.get('user');
         if (userCookie) {
-            setIsLoggedIn(true);
+          setIsLoggedIn(true);
         }
-    }, []);
-
-    const handleLogin = () => {
+      }, []);
+    
+      const handleLogin = () => {
         setIsLoggedIn(true);
-    };
-
-    const handleLogout = () => {
+      };
+    
+      const handleLogout = () => {
         fetch("/api/logout", {
-            method: 'POST',
-            credentials: 'include', 
+          method: 'POST',
+          credentials: 'include', 
         })
-            .then(response => {
-                if (response.ok) {
-                    localStorage.removeItem('username');
-                    localStorage.removeItem('name');
-                    Cookies.remove('user');
-                    setIsLoggedIn(false);
-                    window.location.replace('/');
-                }
-            })
-            .catch(error => {
-                console.error('Logout error:', error);
-            });
-    };
+          .then(response => {
+            if (response.ok) {
+              localStorage.removeItem('username');
+              localStorage.removeItem('name');
+              Cookies.remove('user');
+              setIsLoggedIn(false);
+              window.location.replace('/');
+            }
+          })
+          .catch(error => {
+            console.error('Logout error:', error);
+          });
+      };
 
     return (
         <Router>
@@ -73,8 +103,19 @@ const App = () => {
                 {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
-                {isLoggedIn && <Route path="/adminConferenceList" element={<AdminConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
+                {isLoggedIn && <Route path="/addSponsor" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
+
                 
+
+                {adminConferences.map((adminConference, index) => (
+                <Route
+                key={index}
+                path={`/konferencija/${adminConference}`}
+                element={<AdminConference isLoggedIn={isLoggedIn} onLogout={handleLogout}/>}
+                />
+                 ))}
+
+                                
             </Routes>
         </Router>
     );

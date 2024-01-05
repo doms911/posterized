@@ -1,13 +1,13 @@
-import "./ConferenceList.css"
+// AdminConference.jsx
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-function AdminConference(props) {
-    const {naziv} = props.adminConference;
+const AdminConference = () => {
+  const { nazivKonferencije } = useParams();
   
-    return (
-      <div>
-      <p>Naziv: {naziv}</p>
-      </div>
-    );
-  }
-  
-  export default AdminConference;
+  return (
+    <div>Konferencija: {nazivKonferencije}</div>
+  )
+};
+
+export default AdminConference;

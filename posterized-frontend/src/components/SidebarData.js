@@ -32,19 +32,13 @@ export const SidebarData = [
     },
     {
         title: 'Dodaj sponzora',
-        path: '/link',
+        path: '/addSponsor',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },
     {
         title: 'Dodaj rad i autora',
         path: '/addAuthor',
-        cName: 'nav-text',
-        allowedRoles: ['admin']
-    },
-    {
-        title: 'Konferencije',
-        path: '/adminconferenceList',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },
