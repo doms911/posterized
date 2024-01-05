@@ -37,7 +37,8 @@ function Login(props) {
                     response.json().then((data) => {
                         var noviDiv = document.createElement('div');
                         noviDiv.className = 'alert-container';
-                        noviDiv.textContent = data.message;
+                        const poruka = data.message === "Bad credentials" ? "Pogrešni podatci" : data.message;
+                        noviDiv.textContent = poruka;
                         var udiv = document.getElementsByClassName('container')[0];
                         udiv.insertBefore(noviDiv, document.getElementById("moj"));
                     });
