@@ -5,30 +5,42 @@ import { IoClose } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 import { SidebarData } from './SidebarData';
 import './Sidebar.css';
-import AdminConference from './AdminConference';
 
 const Sidebar = ({ userRole }) => {
   const [error, setError] = useState(null);
   const [sidebar, setSidebar] = useState(false);
   const [adminConferences, setAdminConferences] = useState([]);
 
-  React.useEffect(() => {
-    console.log(userRole)
-    fetch('/api/konferencija/prikaziAdminuNazive')
-      .then((data) => data.json())
-      .then((adminConferences) => setAdminConferences(adminConferences))
-      .catch((err) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (userRole === 'admin') {
+          const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
+            credentials: 'include',
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+          }
+
+          const data = await response.json();
+          setAdminConferences(data);
+        }
+      } catch (err) {
         setError(err.response ? err.response.data.message : 'Nepoznata greška');
-      });
-      console.log(adminConferences)
-  }, []);
-  
+      }
+    };
+
+    fetchData();
+  }, [userRole]);
+
   const showSidebar = () => setSidebar(!sidebar);
 
-  const filteredSidebarData = SidebarData.filter(item => {
-    // Filtrira stavke bočne trake prema dopuštenim ulogama
-    return item.allowedRoles.includes(userRole);
-  });
+  const filteredSidebarData = SidebarData.filter(item => item.allowedRoles.includes(userRole));
 
   return (
     <>
@@ -48,26 +60,24 @@ const Sidebar = ({ userRole }) => {
             {filteredSidebarData.map((item, index) => (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>
-                  {item.title}
+                  <span>{item.title}</span>
                 </Link>
               </li>
             ))}
-            {userRole === "admin" && (
-  <li className='admin-conferences'>
-    
-    <ul>
-      {Array.isArray(adminConferences) ? (
-        adminConferences.map((adminConference, index) => (
-          <AdminConference key={index} adminConference={adminConference} />
-        ))
-      ) : (
-        <p>Nema</p>
-      )}
-    </ul>
-  </li>
-)}
-
-       
+            {userRole === 'admin' && (
+              <li className='nav-menu-items'>
+               
+                  {adminConferences.map((adminConference, index) => (
+                    <div className='nav-text' key={index}>
+                      <Link to={`/konferencija/${adminConference}`} className='menu-bars'>
+                        <span>{adminConference}</span>
+                      </Link>
+                    </div>
+                  ))}
+                  {adminConferences.length === 0 && <p>Nema konferencija</p>}
+                
+              </li>
+            )}
           </ul>
         </nav>
       </IconContext.Provider>
@@ -76,4 +86,3 @@ const Sidebar = ({ userRole }) => {
 };
 
 export default Sidebar;
-
