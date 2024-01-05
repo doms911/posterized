@@ -13,8 +13,8 @@ const Sidebar = ({ userRole }) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (userRole === 'admin') {
       try {
-        if (userRole === 'admin') {
           const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
             credentials: 'include',
             method: 'GET',
@@ -29,10 +29,9 @@ const Sidebar = ({ userRole }) => {
 
           const data = await response.json();
           setAdminConferences(data);
-        }
       } catch (err) {
         setError(err.response ? err.response.data.message : 'Nepoznata greška');
-      }
+      }}
     };
 
     fetchData();

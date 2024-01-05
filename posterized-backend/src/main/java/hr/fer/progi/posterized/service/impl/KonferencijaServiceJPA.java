@@ -114,12 +114,23 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Assert.isTrue(email.matches(EMAIL_FORMAT),
                 "Email mora biti u ispravnom obliku, npr. user@example.com, a ne '" + email + "'."
         );
-        if (oService.countByEmail(email) == 0) {
+        Osoba osoba = oService.findByEmail(email);
+        if (oService.countByEmail(email) == 0 || osoba.getUloga().equals("autor")) {
             Assert.hasText("", "Admin s emailom " + email + " ne postoji.");
+        }
+        if(osoba.getUloga().equals("korisnik")) {
+            Osoba o1 = new Osoba();
+            o1.setUloga("admin");
+            o1.setId(null);
+            o1.setEmail(osoba.getEmail());
+            o1.setIme(osoba.getIme());
+            o1.setPrezime(osoba.getPrezime());
+            o1.setLozinka(osoba.getLozinka());
+            oService.createAdminKorisnik(o1);
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
-        konferencija.setAdminKonf(oService.findByEmail(email));
+        konferencija.setAdminKonf(osoba);
         return konferencijaRepo.save(konferencija);
     }
 
