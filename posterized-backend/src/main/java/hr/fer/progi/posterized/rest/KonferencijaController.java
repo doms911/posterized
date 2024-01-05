@@ -187,4 +187,22 @@ public class KonferencijaController {
         }
         return rezultat;
     }
+
+    @Secured("admin")
+    @GetMapping("/prikaziAdminuSponzoreKonf/{naziv}")
+    public List<String> prikaziAdminuSponzoreKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+        String email = user.getUsername();
+        List<Konferencija> konferencije = kService.prikazAdmin(email);
+        List<String> rezultat = new ArrayList<>();
+
+        for (Konferencija konferencija : konferencije) {
+            if(konferencija.getNaziv().equalsIgnoreCase(nazivKonf)) {
+                for (Pokrovitelj pokr : konferencija.getPokrovitelji()){
+                    rezultat.add(pokr.getNaziv());
+                }
+                return rezultat;
+            }
+        }
+        return rezultat;
+    }
 }

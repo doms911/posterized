@@ -261,7 +261,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
                     novaKonferencija.getPokrovitelji().add(pokr);
                 }
             }
-        } else if (sponzori.isEmpty())novaKonferencija.getPokrovitelji().clear();
+        }
 
         if(!urlVideo.isEmpty()){novaKonferencija.setUrlVideo(urlVideo);}
         if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
