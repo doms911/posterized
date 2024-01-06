@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
 import './login.css';
 
 function ConferenceInput(props) {

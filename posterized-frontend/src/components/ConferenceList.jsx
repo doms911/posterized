@@ -29,7 +29,7 @@ function ConferenceList(props) {
   };
 
   return (
-    <div>
+    <div className='pagee'>
       <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
       <div className="naslov">Popis svih konferencija</div>
       {error && (
@@ -41,7 +41,7 @@ function ConferenceList(props) {
         {conferences.map((conference) => (
           <div className="conference" key={conference.naziv}>
             <Conference conference={conference} />
-            <button id = 'gumbBrisi' onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
+            <button id='delete' onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
           </div>
         ))}
       </Card>

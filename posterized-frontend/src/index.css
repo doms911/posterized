@@ -30,7 +30,7 @@ body {
 }
 
 .page-container {
-  display: flex;
+  display: inline;
   flex-direction: column;
   min-height: 100vh;
 }
@@ -66,7 +66,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid white;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -84,9 +84,9 @@ button:focus-visible {
 }
 
 .image {
-  background-size: cover; 
-  background-position: center bottom; 
-  height: 100vh; 
+  background-size: cover; /* Da slika popuni cijeli kontejner */
+  background-position: center bottom; /* Postavljanje pozicije slike (više prema dnu) */
+  height: 100vh; /* Visina kontejnera na 100% visine prozora preglednika */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,15 +94,3 @@ button:focus-visible {
   text-align: center;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
