@@ -73,6 +73,7 @@ const App = () => {
             if (response.ok) {
               localStorage.removeItem('username');
               localStorage.removeItem('name');
+              localStorage.removeItem('userRole');
               Cookies.remove('user');
               setIsLoggedIn(false);
               window.location.replace('/');
