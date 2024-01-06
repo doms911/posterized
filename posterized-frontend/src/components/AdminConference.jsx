@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
 import ConferenceInput from './ConferenceInput';
+import './AdminConference.css';
 
 const AdminConference = (props) => {
     const [error, setError] = useState(null);
@@ -128,25 +129,14 @@ const AdminConference = (props) => {
   };
 
   return (
-    <div>
+    <div className="page">
       <div>
         <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-        <h1>{adminConference}</h1>
-
-        <button onClick={changeIsActive}>
-          Nadopuni podatke
-        </button>
-        {isActive && <ConferenceInput imeKonferencije={adminConference}/>}
-        <input type="file" accept=".jpg, .jpeg, .png" multiple onChange={handleImageChange} />
-        <button onClick={handleImageUpload}>Pošalji slike</button>
-      </div>
-      <div>
-        <button onClick={handleFinishConference}>Završi konferenciju</button>
-      </div>
-      <div>
-  <h2>Radovi:</h2>
+        <h1 className='name'>{adminConference}</h1>
+        <div>
+  <h2 className='content'>Radovi:</h2>
   {receivedPapers.length > 1 ? (
-    <ul>
+    <ul className="conference">
       {receivedPapers
         .filter((paper, index) => index !== 0) // Izuzimanje rada na indeksu 0
         .map((paper) => (
@@ -165,9 +155,25 @@ const AdminConference = (props) => {
         ))}
     </ul>
   ) : (
-    <p>Nema dostavljenih radova.</p>
+    <p className='content'>Nema dostavljenih radova.</p>
   )}
 </div>
+        <div className='things'>
+        <div className='content'>
+        <button onClick={changeIsActive}>
+          Nadopuni podatke
+        </button>
+        {isActive && <ConferenceInput imeKonferencije={adminConference}/>}
+        </div>
+        <div className='content'>
+        <input type="file" accept=".jpg, .jpeg, .png" multiple onChange={handleImageChange} />
+        <button onClick={handleImageUpload}>Pošalji slike</button>
+        </div>
+      </div>
+      <div className ='content'>
+        <button onClick={handleFinishConference}>Završi konferenciju</button>
+      </div>
+      </div>
 
     </div>
   );

@@ -52,7 +52,7 @@ function AddSponsor(props) {
   return (
     <div className="centered-wrapper">
       <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-      <div className="register-container">
+      <div className="container">
         <h2>Dodavanje sponzora</h2>
         <form onSubmit={save} id="moj">
           <div className="form-group">
