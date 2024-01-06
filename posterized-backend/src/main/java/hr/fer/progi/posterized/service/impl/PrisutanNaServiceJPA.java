@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PrisutanNaServiceJPA implements PrisutanNaService {
@@ -72,7 +73,15 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
             radService.plasman(konf.getNaziv());
             List<Map<String, String>> rezultati = kService.rezultati(pin);
-            if(rezultati != null)rezultat.addAll(rezultati);
+            if(rezultati != null){
+                rezultati = rezultati.stream()
+                        .filter(element -> {
+                            String plasman = element.get("plasman");
+                            return plasman != null && Integer.parseInt(plasman) <= 3;
+                        })
+                        .collect(Collectors.toList());
+                rezultat.addAll(rezultati);
+            }
             return rezultat;
         }
         return rezultat;
