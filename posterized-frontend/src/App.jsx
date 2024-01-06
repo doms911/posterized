@@ -24,6 +24,34 @@ import AdminConference from './components/AdminConference.jsx';
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [adminConferences, setAdminConferences] = useState([]);
+    const [error, setError] = useState(null);
+    const userRole = localStorage.getItem('userRole');
+
+    useEffect(() => {
+        const fetchData = async () => {
+          if(userRole==="admin") {
+          try {
+              const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
+                credentials: 'include',
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+    
+              if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+              }
+    
+              const data = await response.json();
+              setAdminConferences(data);
+          } catch (err) {
+            setError(err.response ? err.response.data.message : 'Nepoznata greška');
+          }}
+        };
+    
+        fetchData();
+      }, []);
       
       useEffect(() => {
         const userCookie = Cookies.get('user');
@@ -75,16 +103,15 @@ const App = () => {
                 {isLoggedIn && <Route path="/conferenceList" element={<ConferenceList isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
                 {isLoggedIn && <Route path="/addSponsor" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout}/>} />}
-
-                
+                {isLoggedIn && <Route path="/conferenceInput" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
 
                 {adminConferences.map((adminConference, index) => (
                 <Route
-                key={index}
-                path={`/konferencija/${adminConference}`}
-                element={<AdminConference isLoggedIn={isLoggedIn} onLogout={handleLogout}/>}
+                    key={index}
+                    path={`/konferencija/${adminConference}`}
+                    element={<AdminConference isLoggedIn={isLoggedIn} onLogout={handleLogout} adminConference={adminConference}/>}
                 />
-                 ))}
+                ))}
 
                                 
             </Routes>
