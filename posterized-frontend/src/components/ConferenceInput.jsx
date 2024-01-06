@@ -39,9 +39,9 @@ function ConferenceInput(props) {
         setPbr(data[0].pbr);
         setAdresa(data[0].adresa);
         setMjesto(data[0].mjesto);
-        setVideoURL(data[0].videoURL);
-        setStartTime(data[0].startTime);
-        setEndTime(data[0].endTime);
+        setVideoURL(data[0].urlVideo);
+        setStartTime(data[0].vrijemePocetka);
+        setEndTime(data[0].vrijemeKraja);
 
         // Dohvati sponzore
         const sponsorsResponse = await fetch('/api/pokrovitelj', {
@@ -58,13 +58,34 @@ function ConferenceInput(props) {
 
         const sponsorsData = await sponsorsResponse.json();
         setSponsors(sponsorsData);
+
+        const selectedSponsorsResponse = await fetch('/api/konferencija/prikaziAdminuSponzoreKonf/' + props.imeKonferencije, {
+            credentials: 'include',
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (!selectedSponsorsResponse.ok) {
+            throw new Error(`Server error: ${selectedSponsorsResponse.status}`);
+          }
+  
+          const selectedSponsorsData = await selectedSponsorsResponse.json();
+          setSelectedSponsors(selectedSponsorsData);
+
       } catch (err) {
         console.error(err.response ? err.response.data.message : 'Nepoznata greška');
       }
+      
     };
+
+    
 
     fetchData();
   }, []);
+
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -99,7 +120,7 @@ function ConferenceInput(props) {
         <form onSubmit={handleSubmit}>
         <div>
   <label>Naziv:</label>
-  <input
+  <input 
     type="text"
     id="naziv"
     value={naziv || ''}  // Dodajte "|| ''" kako biste spriječili undefined
