@@ -33,10 +33,11 @@
 		\item Mjesto
 		\item Fotografija
 		\item Pokrovitelj	
-		\item Pokrovitelj\_na	
+		\item Pokrovitelj\_na
+		\item Password\_token	
 	\end{itemize}
 			\subsection{Opis tablica}
-			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen i ukupan broj osvojenih glasova na toj konferenciji. Atribut naziv prezentacije je opcionalan te stoga može poprimiti vrijednost null. Entitet Rad u binarnoj je vezi \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno onim njegovim n-torkama kojima je vrijednost atributa uloga "autor".
+			Entitet \textbf {Rad} sadrži sve važne informacije o radu. Sadrži atribute: ID rada, naziv postera, naziv prezentacije, naslov rada, ID autora, ID konferencije na koju je prijavljen, osvojeni plasman, url postera i prezentacije i ukupan broj osvojenih glasova na toj konferenciji. Atributi naziv prezentacije, url prezentacije i plasman su opcionalni te stoga mogu poprimiti vrijednost null. Entitet Rad u binarnoj je vezi \textit{(Many-to-One)} s entitetom Konferencija i u vezi \textit{(Many-to-One)} s entitetom Osoba.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -51,11 +52,14 @@
 					nazivPptx & VARCHAR &   naziv prezentacije koja prikazuje rad, može biti null\\ \hline 
 					naslov & VARCHAR	&    naslov rada\\ \hline 
 					ukupnoGlasova & INT &   ukupan broj osvojenih glasova na konferenciji\\ \hline 
+					urlPoster	& VARCHAR &   	url postera koji prikazuje rad\\ \hline 
+					urlPptx & VARCHAR &   url prezentacije koja prikazuje rad, može biti null\\ \hline 
+					plasman & INT &   plasman na konferenciji, može biti null\\ \hline 
 					\SetCell{LightBlue}idKonf	& SERIAL &   	jedinstveni identifikator konferencije\\ \hline 
 					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednosti "admin", "korisnik" ili "autor" (u slučaju da autor postane i korisnik, njegova će uloga biti korisnik). Entitet Osoba (uloga autor) u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, (uloga admin) s entitetom Konferencija \textit{(One-to-Many)}, (uloga korisnik) s entitetom Konferencija \textit{(Many-to-Many)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednosti "admin", "korisnik" ili "autor". Entitet Osoba u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, s entitetom Konferencija \textit{(One-to-Many)}, s entitetom Konferencija \textit{(Many-to-Many)} i s entitetom Paassword\_token \textit{(One-to-One)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -73,7 +77,7 @@
 					uloga & VARCHAR &  uloga osobe\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-One)} s entitetom Osoba, odnosno s onim njegovim n-torkama kojima je vrijednost atributa uloga "admin" i \textit{(Many-to-Many)} s n-torkama kojima je vrijednost atributa uloga "korisnik", u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
+			\noindent Entitet \textbf {Konferencija} sadrži informacije o stručnoj konferenciji koja će se održati. Sadrži atribute: ID konferencije, poveznica na video prijenos konferencije, pin za ulazak na konferenciju, vrijeme početka i vrijeme kraja konferencije, ID admina zaduženog za konferenciju i adresu i poštanski broj mjesta u kojem se održava konferencija. Entitet Konferencija u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, u binarnoj vezi \textit{(Many-to-One)} i \textit{(Many-to-Many)} s entitetom Osoba, u vezi \textit{(Many-to-One)} s entitetom Mjesto, \textit{(One-to-Many)} s entitetom Fotografija i \textit{(Many-to-Many)} s entitetom Pokrovitelj.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -89,11 +93,12 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					pin & INT &   jedinstveni pin konferencije\\ \hline 
 					vrijemePocetak & TIMESTAMP	&    početak konferencije\\ \hline 
 					vrijemeKraj & TIMESTAMP	&    kraj konferencije\\ \hline 
+					adresa	& VARCHAR &   	 adresa konferencije\\ \hline 
 					\SetCell{LightBlue} idAdmin & SERIAL &   jedinstveni identifikator admina zaduženog za konferenciju\\ \hline 
 					\SetCell{LightBlue} pbr & INT &   poštanski broj mjesta u kojem se održava konferencija\\ \hline 
 				\end{longtblr}		
 
-			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Osoba, odnosno veze onih njegovih n-torka kojima je vrijednost atributa uloga "korisnik" s entitetom Konferencija.
+			\noindent Entitet \textbf {Prisutan\_na} sadrži informacije o prisutnosti pojedinog korisnika na određenoj konferenciji te je li glasao na njoj ili ne. Sadrži atribute: ID konferencije, ID korisnika i glasao. Entitet Prisutan\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Osoba s entitetom Konferencija.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -122,7 +127,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					naziv	& VARCHAR &   	naziv mjesta\\ \hline 
 				\end{longtblr}
 
-			\noindent Entitet \textbf {Fotografija} sadrži informacije o uslikanoj fotografiji te na kojoj konferenciji je uslikana. Sadrži atribute: ID fotografije, naziv fotografije i ID konferencije. Entitet Fotografija u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-One)}. 
+			\noindent Entitet \textbf {Fotografija} sadrži informacije o uslikanoj fotografiji te na kojoj konferenciji je uslikana. Sadrži atribute: ID fotografije, url fotografije i ID konferencije. Entitet Fotografija u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-One)}. 
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -133,11 +138,11 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{Fotografija}}	 \\ \hline[3pt]
 					\SetCell{LightGreen}id & SERIAL	&  	jedinstveni identifikator fotografije\\ \hline
-					naziv	& VARCHAR &   	naziv fotografije\\ \hline 
+					urlSlike	& VARCHAR &   	url fotografije\\ \hline 
 					\SetCell{LightBlue}idKonf & SERIAL &   jedinstveni identifikator konferencije\\ \hline 
 				\end{longtblr}
 
-			\noindent Entitet \textbf {Pokrovitelj} sadrži informacije o pokrovitelju. Sadrži atribute: ID pokrovitelja,  url stranice pokrovitelja i naziv pokrovitelja. Entitet Pokrovitelj u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-Many)}. 
+			\noindent Entitet \textbf {Pokrovitelj} sadrži informacije o pokrovitelju. Sadrži atribute: ID pokrovitelja,  url stranice pokrovitelja, naziv pokrovitelja i url slike. Entitet Pokrovitelj u binarnoj je vezi s entitetom Konferencija \textit{(Many-to-Many)}. 
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -150,6 +155,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					\SetCell{LightGreen}id & SERIAL	&  	jedinstveni identifikator pokrovitelja\\ \hline
 					url	& VARCHAR &   	poveznica na stranicu pokrovitelja\\ \hline 
 					naziv	& VARCHAR &   	naziv pokrovitelja\\ \hline 
+					urlSlike	& VARCHAR &   	logo pokrovitelja\\ \hline
 				\end{longtblr}
 
 			\noindent Entitet \textbf {Pokrovitelj\_na} sadrži informacije o uključenosti pokrovitelja na pojedinoj konferenciji. Sadrži atribute: ID konferencije i ID pokrovitelja. Entitet Pokrovitelj\_na rezultat je binarne veze \textit{(Many-to-Many)} entiteta Pokrovitelj i Konferencija.
@@ -165,7 +171,21 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 					\SetCell{LightGreen}idKonf & SERIAL	&  	jedinstveni identifikator konferencije \\ \hline
 					\SetCell{LightGreen}idPokrovitelj	& SERIAL &   	jedinstveni identifikator pokrovitelja\\ \hline 
 				\end{longtblr}
-	
+			\noindent Entitet \textbf {Password\_token} sadrži informacije o tokenu koji je pojedina osoba dobila kada je zatražila promjenu lozinke. Sadrži atribute: ID tokena, istek tokena, token i ID osobe čiji je token. Entitet Password\_token u binarnoj je vezi s entitetom Osoba \textit{(One-to-One)}. .
+				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{Pokrovitelj\_na}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}id & SERIAL	&  	jedinstveni identifikator tokena \\ \hline
+					istek	& DATE &   	datum isteka tokena\\ \hline 
+					token	& VARCHAR &   	token\\ \hline 
+					\SetCell{LightBlue}idOsoba & SERIAL &   jedinstveni identifikator osobe\\ \hline 
+				\end{longtblr}
 			\subsection{Dijagram baze podataka}
 %				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
 					\begin{figure}[H]
