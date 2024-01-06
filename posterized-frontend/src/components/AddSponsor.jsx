@@ -42,7 +42,8 @@ function AddSponsor(props) {
               var udiv = document.getElementById('moj');
               udiv.insertBefore(noviDiv, udiv.firstElementChild);
           });
-      }})
+      }else alert("Sponzor je uspješno dodan!");}
+      )
   .catch(error => {
       console.error('Error:', error);
   });

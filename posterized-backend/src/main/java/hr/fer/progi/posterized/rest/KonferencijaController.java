@@ -159,13 +159,20 @@ public class KonferencijaController {
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
         if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
+        Boolean gotovo = false;
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
+            gotovo = true;
+        }
         List<Map<String, String>> rezultat = new ArrayList<>();
         for(Rad rad : konf.getRadovi()){
             Map<String, String> radMapa = new HashMap<>();
             radMapa.put("naslov", rad.getNaslov());
             radMapa.put("urlPptx", rad.getUrlPptx());
             radMapa.put("urlPoster", rad.getUrlPoster());
-            //radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            if(gotovo) {
+                if(rad.getUkupnoGlasova() != null) radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+                if(rad.getPlasman() != null) radMapa.put("plasman", String.valueOf(rad.getPlasman()));
+            }
             rezultat.add(radMapa);
         }
         return rezultat;
