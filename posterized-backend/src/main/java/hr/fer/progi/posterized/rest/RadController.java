@@ -31,7 +31,7 @@ public class RadController {
     public void createRad( @AuthenticationPrincipal User user, @RequestParam("ime") String ime,
     @RequestParam("prezime") String prezime, @RequestParam("email") String email,
                           @RequestParam("naslov") String naslov, @RequestParam("poster") MultipartFile poster,
-                          @RequestParam("pptx") MultipartFile pptx,
+                          @RequestParam(value = "pptx", required = false) MultipartFile pptx,
                           @RequestParam("nazivKonf") String nazivKonf){
         Osoba autor = new Osoba();
         autor.setIme(ime);

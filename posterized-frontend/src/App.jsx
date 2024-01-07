@@ -22,8 +22,35 @@ import AdminConference from './components/AdminConference.jsx';
 
 const App = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [adminConferences, setAdminConferences] = useState([]);
     const [error, setError] = useState(null);
-    const adminConferences = JSON.parse(localStorage.getItem('adminConferencesLocal')) || [];
+    const userRole = localStorage.getItem('userRole');
+
+    useEffect(() => {
+      const fetchData = async () => {
+        if(userRole==="admin") {
+        try {
+            const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
+              credentials: 'include',
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+
+            if (!response.ok) {
+              throw new Error(`Server error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setAdminConferences(data);
+        } catch (err) {
+          setError(err.response ? err.response.data.message : 'Nepoznata greška');
+        }}
+      };
+
+      fetchData();
+    }, []);
   
     useEffect(() => {
       const userCookie = Cookies.get('user');
@@ -45,6 +72,7 @@ const App = () => {
           if (response.ok) {
             localStorage.removeItem('username');
             localStorage.removeItem('name');
+            localStorage.removeItem('userRole');
             Cookies.remove('user');
             setIsLoggedIn(false);
             window.location.replace('/');

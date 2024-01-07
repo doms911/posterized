@@ -153,20 +153,16 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     @Override
     public void saljiMail(String naziv, String vrijeme, String lokacija){
         Assert.hasText(vrijeme, "Vrijeme dodjele nagrade mora biti navedeno.");
-        Timestamp vrijemeT = null;
-        vrijemeT = Timestamp.valueOf(vrijeme.replace("T", " ") + ":00");
         Assert.hasText(lokacija, "Lokacija dodjele nagrade mora biti navedena.");
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
 
         final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Instant endTime = vrijemeT.toInstant();
-        Date endDate = Date.from(endTime);
 
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
         if(rezultati == null) return;
         String poruka = "Pozvani ste na dodjelu nagrada za konferenciju pod nazivom " +
                 konf.getNaziv() + " na adresi " + lokacija + ". Dodjela nagrada održat će se " +
-                dateFormat.format(endDate);
+                vrijeme;
 
         StringBuilder message = new StringBuilder(poruka);
         message.append(". Nagrade su osvojili sljedeći natjecatelji:");

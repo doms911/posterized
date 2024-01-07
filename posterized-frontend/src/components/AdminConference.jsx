@@ -6,7 +6,6 @@ import './AdminConference.css';
 
 const AdminConference = (props) => {
     const [error, setError] = useState(null);
-    const [isActive, setIsActive] = useState(false); 
   const isLoggedIn = props.isLoggedIn;
   const onLogout = props.onLogout;
   const { adminConference } = props;
@@ -27,29 +26,26 @@ const AdminConference = (props) => {
           credentials: 'include',
         });
 
-        if (!response.ok) {
-          throw new Error(`Server error: ${response.status}`);
+        if (response.status >= 300 && response.status < 600) {
+          const data = await response.json();
+          alert(data.message);
+        } else {
+          const data = await response.json();
+          setReceivedPapers(data);
         }
-
-        const data = await response.json();
-        console.log(data);
-        setReceivedPapers(data);
       } catch (error) {
         console.error(error.message || 'Nepoznata greška');
-      }
+      } 
     };
 
     fetchReceivedPapers();
-  }, [adminConference]);
+}, [adminConference]);
 
   const handleImageChange = (e) => {
     const files = e.target.files;
     setSelectedImages(files);
   };
 
-  const changeIsActive = () => {
-    setIsActive(!isActive);
-  }
 
   const handleImageUpload = async () => {
     const formData = new FormData();
@@ -57,21 +53,16 @@ const AdminConference = (props) => {
       formData.append('slike', selectedImages[i]);
     }
 
-    try {
-      const response = await fetch(`/api/fotografija/${adminConference}`, {
+    fetch(`/api/fotografija/${adminConference}`, {
         method: 'POST',
         credentials: 'include',
         body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
-      }
-
-      alert('Slike uspješno poslane.');
-    } catch (error) {
-      console.error(error.message || 'Nepoznata greška');
-    }
+      }).then((response) => {
+        if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => { 
+            alert(data.message); 
+          });
+        } else alert('Slike uspješno poslane.');})
   };
 
   const handleFinishConference = async () => {
@@ -80,53 +71,65 @@ const AdminConference = (props) => {
 
     // Pošalji GET na /api/radovi/plasman/<naziv konf koju zavrsava>
     try {
-      const getResponse = await fetch(`/api/radovi/plasman/${adminConference}`, {
+      fetch(`/api/radovi/plasman/${adminConference}`, {
         method: 'GET',
         credentials: 'include',
+      }).then((response) => {
+        if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => { 
+            alert(data.message); 
+          });
+        } else {
+    
+          // Iskoci forma za unos detalja dodjele nagrada
+          const time = prompt('Unesite vrijeme dodjele nagrada:');
+          const location = prompt('Unesite lokaciju dodjele nagrada:');
+    
+          // Spremi detalje dodjele nagrada
+          const formData = new URLSearchParams();
+          formData.append('vrijeme', encodeURIComponent(time));
+          formData.append('lokacija', encodeURIComponent(location));
+
+          // Pošalji POST na www/api/konferencija/zavrsiKonf/<naziv konf koju zavrsava>
+          fetch(`/api/konferencija/zavrsiKonf/${adminConference}`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString(),
+          }).then((response) => {
+            if (response.status >= 300 && response.status < 600) {
+              response.json().then((data) => { 
+                alert(data.message); 
+              });
+            } else {
+              alert('Konferencija uspješno završena.');
+            }
+          });
+        }
       });
-
-      if (!getResponse.ok) {
-        throw new Error(`Server error: ${getResponse.status}`);
-      }
-
-      // Iskoci forma za unos detalja dodjele nagrada
-      const time = prompt('Unesite vrijeme dodjele nagrada:');
-      const location = prompt('Unesite lokaciju dodjele nagrada:');
-
-      // Spremi detalje dodjele nagrada
-      setAwardCeremonyDetails({
-        time: time,
-        location: location,
-      });
-
-      // Pošalji POST na /api/konferencija/zavrsiKonf/<naziv konf koju zavrsava>
-      const postResponse = await fetch(`/api/konferencija/zavrsiKonf/${adminConference}`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(awardCeremonyDetails),
-      });
-
-      if (!postResponse.ok) {
-        throw new Error(`Server error: ${postResponse.status}`);
-      }
-
-      alert('Konferencija uspješno završena.');
     } catch (error) {
       console.error(error.message || 'Nepoznata greška');
     }
-  };
+  }
+    
 
   const handleDeletePaper = async (naziv) => {
     try {
-      await fetch(`/api/radovi/izbrisi/${naziv}`, { method: 'GET' });
-      setReceivedPapers((prevPapers) => prevPapers.filter((paper) => paper.naziv !== naziv));
+      fetch(`/api/radovi/izbrisi/${naziv}`, { method: 'GET' }).then((response) => {
+        if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => { 
+            alert(data.message); 
+          });
+        } else {
+          setReceivedPapers((prevPapers) => prevPapers.filter((paper) => paper.naziv !== naziv));
+        }
+      });
     } catch (err) {
       setError(err.response ? err.response.data.message : 'Nepoznata greška');
     }
-  };
+  }
 
   return (
     <div className="page">
@@ -160,10 +163,8 @@ const AdminConference = (props) => {
 </div>
         <div className='things'>
         <div className='content'>
-        <button onClick={changeIsActive}>
           Nadopuni podatke
-        </button>
-        {isActive && <ConferenceInput imeKonferencije={adminConference}/>}
+        {<ConferenceInput imeKonferencije={adminConference}/>}
         </div>
         <div className='content'>
         <input type="file" accept=".jpg, .jpeg, .png" multiple onChange={handleImageChange} />

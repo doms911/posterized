@@ -63,7 +63,7 @@ public class RadServiceJPA implements RadService {
         Media objekt = new Media();
         rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), nazivKonf+"/posteri"));
         rad.setNazivPoster(objekt.getFileName());
-        if(!pptx.isEmpty()){
+        if(pptx != null && !pptx.isEmpty()){
             rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), nazivKonf+"/pptx"));
             rad.setNazivPptx(objekt.getFileName());
         }
