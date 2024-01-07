@@ -79,8 +79,8 @@ public class RadServiceJPA implements RadService {
         if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
         Konferencija konf = rad.getKonferencija();
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
-        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija je već počela.");
+        //if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
+            //Assert.hasText("","Konferencija je već počela.");
         konf.getRadovi().remove(rad);
         rad.getAutor().getRadovi().remove(rad);
 

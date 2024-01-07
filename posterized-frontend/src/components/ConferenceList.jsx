@@ -20,6 +20,8 @@ function ConferenceList(props) {
   }, []);
 
   const izbrisiKonferenciju = async (naziv) => {
+    const isConfirmed = window.confirm("Jeste li sigurni da želite izbrisati konferenciju?");
+    if(!isConfirmed) return;
     try {
       await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' }).then((response) => {
         if (response.status >= 300 && response.status < 600) {

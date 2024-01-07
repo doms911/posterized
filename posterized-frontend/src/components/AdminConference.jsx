@@ -119,6 +119,8 @@ const AdminConference = (props) => {
     
 
   const handleDeletePaper = async (naziv) => {
+    const isConfirmed = window.confirm("Jeste li sigurni da želite izbrisati rad?");
+    if(!isConfirmed) return;
     try {
       fetch(`/api/radovi/izbrisi/${naziv}`, { method: 'GET' }).then((response) => {
         if (response.status >= 300 && response.status < 600) {
@@ -127,7 +129,7 @@ const AdminConference = (props) => {
           });
         } else {
           alert('Rad uspješno izbrisan');
-          setReceivedPapers((prevPapers) => prevPapers.filter((paper) => paper.naziv !== naziv));
+          setReceivedPapers((prevPapers) => prevPapers.filter((paper) => paper.naslov !== naziv));
         }
       });
     } catch (err) {
