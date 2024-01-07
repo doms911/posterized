@@ -41,5 +41,26 @@ export const SidebarData = [
         path: '/pinInput',
         cName: 'nav-text',
         allowedRoles: ['superadmin', 'admin', 'korisnik']
+    },
+    {
+        title: 'Glasaj',
+        path: '/posters',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
+    },
+    {
+        title: 'Livestream',
+        path: '/videoStream',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
+    },
+    {
+        title: 'Galerija',
+        path: '/pictures',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
     }
 ];

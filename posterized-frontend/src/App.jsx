@@ -9,7 +9,7 @@ import AddConference from './components/AddConference.jsx';
 import ConferenceInput from './components/ConferenceInput.jsx';
 import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
-import VideoStream from './components/videoStream.jsx';
+import VideoStream from './components/VideoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
 import AddAdmin from './components/AddAdmin.jsx';
@@ -18,6 +18,9 @@ import PinInput from './components/PinInput.jsx';
 import AddAuthor from "./components/AddAuthor";
 import AddSponsor from "./components/AddSponsor.jsx"
 import AdminConference from './components/AdminConference.jsx';
+import Sidebar from "./components/Sidebar";
+import Posters from "./components/Posters";
+import Pictures from "./components/Pictures";
 
 
 const App = () => {
@@ -25,6 +28,8 @@ const App = () => {
     const [adminConferences, setAdminConferences] = useState([]);
     const [error, setError] = useState(null);
     const userRole = localStorage.getItem('userRole');
+
+    const [isPinValid, setIsPinValid] = useState(false);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -76,13 +81,20 @@ const App = () => {
             Cookies.remove('user');
             setIsLoggedIn(false);
             window.location.replace('/');
+            Cookies.remove('isPinValid');
+            Cookies.remove('conferencePin');
           }
         })
         .catch(error => {
           console.error('Logout error:', error);
         });
     };
-  
+
+    const handlePinValidation = (isValid) => {
+        setIsPinValid(isValid);
+    };
+
+
     return (
       <Router>
         <Routes>
@@ -90,13 +102,13 @@ const App = () => {
             path="/"
             element={<HomePage isLoggedIn={isLoggedIn} onLogout={handleLogout} />}
           />
+
           {!isLoggedIn && <Route path="/register" element={<Register />} />}
           {!isLoggedIn && <Route path="/login" element={<Login onLogin={handleLogin} />} />}
           {isLoggedIn && <Route path="/addConference" element={<AddConference isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
           {isLoggedIn && <Route path="/conferenceInput" element={<ConferenceInput isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
-          {isLoggedIn && <Route path="/pinInput" element={<PinInput isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
+          {isLoggedIn && <Route path="/pinInput" element={<PinInput isLoggedIn={isLoggedIn} onLogout={handleLogout} onPinValidation={handlePinValidation}/>} />}
           {!isLoggedIn && <Route path="/forgot-password" element={<ForgotPassword />} />}
-          {!isLoggedIn && <Route path="/live" element={<VideoStream />} />}
           {!isLoggedIn && <Route path="/changePassword" element={<ChangePassword />} />}
           {isLoggedIn && <Route path="/superadmin" element={<SuperAdmin />} />}
           {isLoggedIn && <Route path="/addAdmin" element={<AddAdmin isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
@@ -104,6 +116,9 @@ const App = () => {
           {isLoggedIn && <Route path="/addAuthor" element={<AddAuthor isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
           {isLoggedIn && <Route path="/addSponsor" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
           {isLoggedIn && <Route path="/conferenceInput" element={<AddSponsor isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
+            {isLoggedIn && <Route path="/videoStream" element={<VideoStream isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
+            {isLoggedIn && <Route path="/pictures" element={<Pictures isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
+            {isLoggedIn && <Route path="/posters" element={<Posters isLoggedIn={isLoggedIn} onLogout={handleLogout} />} />}
   
           {adminConferences.length > 0 && (
             adminConferences.map((adminConference, index) => (

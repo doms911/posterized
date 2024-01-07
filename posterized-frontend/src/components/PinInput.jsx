@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import Header from './Header';
 import axios from 'axios';
 import "./PinInput.css"
+import Cookies from "js-cookie";
 
 const PinInput = (props) => {
     const isLoggedIn = props.isLoggedIn;
     const onLogout = props.onLogout;
+    const onPinValidation = props.onPinValidation;
 
     const [pin, setPin] = useState('');
     const [pinMessage, setPinMessage] = useState('');
@@ -21,12 +23,16 @@ const PinInput = (props) => {
                     'Content-Type': 'application/json',
                 },
             });
+            Cookies.set('isPinValid', 'true', { expires: 1 }); // Postavljanje kolačića na 1 dan
+            Cookies.set('conferencePin', pin, { expires: 1 });
             setPinMessage(`Conference found: ${response.data[0].naziv}`);
             setConferenceInfo(response.data);
-            console.log("Response Data:", response.data); // Logovanje celog odgovora
+            console.log("Response Data:", response.data);
         } catch (err) {
            alert(err.response.data.message);
-            setConferenceInfo(null);
+            Cookies.remove('isPinValid');
+            Cookies.remove('conferencePin');
+            onPinValidation(false);
         }
     };
 
