@@ -173,7 +173,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
             if(Integer.valueOf(plasman) >=4)break;
-            message.append("\n- ").append(plasman).append(". place : ").append(name).append(", ").append(glasovi).append(" votes");
+            message.append("\n- ").append(plasman).append(". mjesto : ").append(name).append(", ").append(glasovi).append(" glasova");
         }
         message.append(".\n\n");
         Set<Rad> radovi = konf.getRadovi();
