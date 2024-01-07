@@ -10,20 +10,33 @@ const PinInput = (props) => {
 
     const [pin, setPin] = useState('');
     const [pinMessage, setPinMessage] = useState('');
+    const [conferenceInfo, setConferenceInfo] = useState(null);
+
 
     const handlePinSubmit = async () => {
         try {
             console.log("Submitting PIN:", pin);
-            const response = await axios.post("/api/konferencija/pin", null, {
-                params: { pin: pin },
+            const response = await axios.get(`/api/prisutan/${pin}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            setPinMessage(`Conference found: ${response.data.naziv}`);
+            setPinMessage(`Conference found: ${response.data[0].naziv}`);
+            setConferenceInfo(response.data);
+            console.log("Response Data:", response.data); // Logovanje celog odgovora
         } catch (err) {
             setPinMessage('Conference not found.');
+            setConferenceInfo(null);
         }
+    };
+
+    const isConferenceFinished = () => {
+        if (conferenceInfo) {
+            const vrijemeKrajaKonferencije = new Date(conferenceInfo.vrijemeKraja);
+            const trenutnoVrijeme = new Date();
+            return vrijemeKrajaKonferencije < trenutnoVrijeme;
+        }
+        return false;
     };
 
     return (
@@ -44,9 +57,32 @@ const PinInput = (props) => {
                 <button name="dodaj" onClick={handlePinSubmit}>Provjeri PIN</button>
                 {pinMessage && <p>{pinMessage}</p>}
                 </div>
-            </div>  
+                {conferenceInfo && (
+                    <div>
+                        <h3>Konferencija: {conferenceInfo[0].naziv}</h3>
+                        <p>Mjesto: {conferenceInfo[0].mjesto}</p>
+                        <p>Adresa: {conferenceInfo[0].adresa}</p>
+                        <p>pbr: {conferenceInfo[0].pbr}</p>
+                        <p>Admin: {conferenceInfo[0].admin}</p>
+                        <p>Vrijeme početka: {conferenceInfo[0].vrijemePocetka}</p>
+                        <p>Vrijeme kraja: {conferenceInfo[0].vrijemeKraja}</p>
+                        {isConferenceFinished() ? (
+                            <div>
+                                <p>Konferencija je završena.</p>
+                                {/* Dodatne informacije za završenu konferenciju */}
+                            </div>
+                        ) : (
+                            <div>
+                                <p>Konferencija je u toku.</p>
+                                {/* Informacije relevantne za konferenciju koja je u toku */}
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
             </div>
         </div>
+
     );
 };
 
