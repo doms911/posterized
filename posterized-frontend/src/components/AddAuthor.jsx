@@ -27,24 +27,27 @@ function AddAuthor(props) {
         // Dohvati popis konferencija
         const fetchConferences = async () => {
             try {
-                const response = await fetch('/api/konferencija/prikaziAdminuNazive', {
+                fetch('/api/konferencija/prikaziAdminuNazive', {
                     credentials: 'include',
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
+                }).then((response) => {
+                    if (response.status >= 300 && response.status < 600) {
+                        response.json().then((data) => {
+                            alert(data.message);
+                        });
+                    } else {
+                        response.json().then((data) => {
+                            setConferences(data);
+                        });
+                    }
                 });
-
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
-                }
-
-                const data = await response.json();
-                setConferences(data); // Pretpostavljam da data sadrži popis naziva konferencija
             } catch (err) {
                 console.error(err.message);
             }
-        };
+        };        
 
         fetchConferences();
     }, []);
@@ -93,7 +96,7 @@ function AddAuthor(props) {
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
             <div className="container">
                 <h2>Dodavanje rada i autora</h2>
-                <form onSubmit={handleSubmit}>
+                <form id ="moj" onSubmit={handleSubmit}>
                     <div>
                         <label>Ime:</label>
                         <input
@@ -145,7 +148,6 @@ function AddAuthor(props) {
                             type="file"
                             accept=".ppt,.pptx"
                             onChange={handlePresentationChange}
-                            required
                         />
                     </div>
                     <div>

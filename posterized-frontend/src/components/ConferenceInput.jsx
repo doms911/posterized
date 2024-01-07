@@ -81,10 +81,10 @@ function ConferenceInput(props) {
                         response.json().then((data) => { 
                           alert(data.message); 
                         });
-                      }
+                      }else {
                       response.json().then((selectedSponsorsData) => {
                         setSelectedSponsors(selectedSponsorsData);
-                      });
+                      })};
                     });
                   });
                 }
