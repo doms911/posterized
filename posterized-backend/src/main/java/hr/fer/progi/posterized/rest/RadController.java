@@ -14,18 +14,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@RestController
-//@Controller
+//@RestController
+@Controller
 @RequestMapping("/radovi")
 public class RadController {
 
     @Autowired
     private RadService radService;
 
-    /*@GetMapping("")
+    @GetMapping("")
     public String createAdmin(){
         return "rad";
-    }*/
+    }
 
     @PostMapping("/napravi")
     public void createRad( @AuthenticationPrincipal User user, @RequestParam("ime") String ime,
