@@ -216,13 +216,13 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         if(!novaKonferencija.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         Timestamp vrijemePocetkaT = null, vrijemeKrajaT = null;
         if(!vrijemePocetka.isEmpty()) {
-            vrijemePocetkaT = Timestamp.valueOf(vrijemePocetka.replace("T", " ") + ":00");
+            vrijemePocetkaT = Timestamp.valueOf(vrijemePocetka + ":00");
         } else {
             if(novaKonferencija.getVrijemePocetka() == null)
             Assert.hasText("", "Vrijeme početka konferencije mora biti navedeno.");
         }
         if(!vrijemeKraja.isEmpty()) {
-            vrijemeKrajaT = Timestamp.valueOf(vrijemeKraja.replace("T", " ") + ":00");
+            vrijemeKrajaT = Timestamp.valueOf(vrijemeKraja + ":00");
         } else {
             if(novaKonferencija.getVrijemeKraja() == null)
                 Assert.hasText("", "Vrijeme kraja konferencije mora biti navedeno.");
@@ -281,7 +281,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     public void izbrisiKonf(String naziv){
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
         if(konf == null) Assert.hasText("","Konferencija s nazivom " + naziv + " ne postoji.");
-        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
+        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
             Assert.hasText("","Konferencija je već počela.");
         for (Pokrovitelj pokr : pokrService.listAll()){
             pokr.getKonferencije().remove(konf);

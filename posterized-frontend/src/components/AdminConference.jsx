@@ -66,6 +66,8 @@ const AdminConference = (props) => {
   };
 
   const handleFinishConference = async () => {
+    const isConfirmed = window.confirm("Jeste li sigurni da želite završiti konferenciju? Više nećete moći urediti njene podatke, a svim sudionicima bit će poslane obavijesti o dodjeli nagrada");
+    if(!isConfirmed) return;
     // Onemogući slanje forme pod (a)
     setCanSubmitForm(false);
 
@@ -80,10 +82,11 @@ const AdminConference = (props) => {
             alert(data.message); 
           });
         } else {
-    
-          // Iskoci forma za unos detalja dodjele nagrada
-          const time = prompt('Unesite vrijeme dodjele nagrada:');
-          const location = prompt('Unesite lokaciju dodjele nagrada:');
+          var time, location;
+          time = prompt('Unesite vrijeme dodjele nagrada:');
+            if (!time) return;
+          location = prompt('Unesite lokaciju dodjele nagrada:');
+          if (!location) return;
     
           // Spremi detalje dodjele nagrada
           const formData = new URLSearchParams();
@@ -123,6 +126,7 @@ const AdminConference = (props) => {
             alert(data.message); 
           });
         } else {
+          alert('Rad uspješno izbrisan');
           setReceivedPapers((prevPapers) => prevPapers.filter((paper) => paper.naziv !== naziv));
         }
       });
@@ -137,6 +141,20 @@ const AdminConference = (props) => {
         <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
         <h1 className='name'>{adminConference}</h1>
         <div>
+        <div className='things'>
+        <div className='content'>
+          Nadopuni podatke
+        {<ConferenceInput imeKonferencije={adminConference} canSubmit={canSubmitForm}/>}
+        </div>
+        <div className='content'>
+        <input type="file" accept=".jpg, .jpeg, .png" multiple onChange={handleImageChange} />
+        <button onClick={handleImageUpload}>Pošalji slike</button>
+        </div>
+      </div>
+      <div className ='content'>
+        <button onClick={handleFinishConference}>Završi konferenciju</button>
+      </div>
+      </div>
   <h2 className='content'>Radovi:</h2>
   {receivedPapers.length > 1 ? (
     <ul className="conference">
@@ -161,20 +179,6 @@ const AdminConference = (props) => {
     <p className='content'>Nema dostavljenih radova.</p>
   )}
 </div>
-        <div className='things'>
-        <div className='content'>
-          Nadopuni podatke
-        {<ConferenceInput imeKonferencije={adminConference}/>}
-        </div>
-        <div className='content'>
-        <input type="file" accept=".jpg, .jpeg, .png" multiple onChange={handleImageChange} />
-        <button onClick={handleImageUpload}>Pošalji slike</button>
-        </div>
-      </div>
-      <div className ='content'>
-        <button onClick={handleFinishConference}>Završi konferenciju</button>
-      </div>
-      </div>
 
     </div>
   );

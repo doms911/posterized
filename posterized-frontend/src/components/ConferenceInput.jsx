@@ -105,13 +105,16 @@ function ConferenceInput(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if(!props.canSubmit){
+      alert('Već ste završili konferenciju');
+      return;}
     var finalBodyArray = [];
     selectedSponsors.forEach((izbor) => {
       finalBodyArray.push(`sponzori=${izbor}`);
     });
     // Postavite svoju logiku za slanje podataka na server
-    startTime = startTime.replace(' ', 'T');
-    endTime= endTime.replace(' ', 'T');
+    startTime = startTime.replace('T', ' ');
+    endTime= endTime.replace('T', ' ');
     const body = `urlVideo=${videoURL}&vrijemePocetka=${startTime}&vrijemeKraja=${endTime}&mjesto=${mjesto}&pbr=${pbr}&adresa=${adresa}`;
     if(selectedSponsors.length == 0)finalBodyArray.push(`sponzori=`);
     var finalBody = body + '&' + finalBodyArray.join('&');

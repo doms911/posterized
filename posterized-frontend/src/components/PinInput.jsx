@@ -25,16 +25,14 @@ const PinInput = (props) => {
             setConferenceInfo(response.data);
             console.log("Response Data:", response.data); // Logovanje celog odgovora
         } catch (err) {
-            setPinMessage('Conference not found.');
+           alert(err.response.data.message);
             setConferenceInfo(null);
         }
     };
 
     const isConferenceFinished = () => {
-        if (conferenceInfo) {
-            const vrijemeKrajaKonferencije = new Date(conferenceInfo.vrijemeKraja);
-            const trenutnoVrijeme = new Date();
-            return vrijemeKrajaKonferencije < trenutnoVrijeme;
+        if (conferenceInfo.length > 1) {
+            return true;
         }
         return false;
     };

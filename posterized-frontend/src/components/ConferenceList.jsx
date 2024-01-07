@@ -21,8 +21,14 @@ function ConferenceList(props) {
 
   const izbrisiKonferenciju = async (naziv) => {
     try {
-      await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' });
-      setConferences((prevConferences) => prevConferences.filter((conf) => conf.naziv !== naziv));
+      await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' }).then((response) => {
+        if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => { 
+            alert(data.message); 
+          });
+        } else {
+          alert('Konferencija uspješno izbrisana');
+          setConferences((prevConferences) => prevConferences.filter((conf) => conf.naziv !== naziv));}})
     } catch (err) {
       setError(err.response ? err.response.data.message : 'Nepoznata greška');
     }

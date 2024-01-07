@@ -75,3 +75,14 @@
 span {
     margin-left:16px;
 }
+
+.nav-menu-items li::marker {
+    color: transparent;
+    display: none;
+    unicode-bidi: unset;
+    font-variant-numeric: unset;
+    text-transform: unset;
+    text-indent: unset !important;
+    text-align: unset !important;
+    text-align-last: unset !important;
+}
