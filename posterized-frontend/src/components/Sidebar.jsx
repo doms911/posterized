@@ -10,7 +10,6 @@ const Sidebar = ({ userRole }) => {
   const [error, setError] = useState(null);
   const [sidebar, setSidebar] = useState(false);
   const [adminConferences, setAdminConferences] = useState([]);
-  const [adminConferencesLocal, setAdminConferencesLocal] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +29,6 @@ const Sidebar = ({ userRole }) => {
 
           const data = await response.json();
           setAdminConferences(data);
-          localStorage.setItem('adminConferencesLocal', JSON.stringify(data));
 
       } catch (err) {
         setError(err.response ? err.response.data.message : 'Nepoznata greška');
