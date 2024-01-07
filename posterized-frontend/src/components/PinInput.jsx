@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import axios from 'axios';
-import "./login.css"
+import "./PinInput.css"
 
 const PinInput = (props) => {
     const isLoggedIn = props.isLoggedIn;

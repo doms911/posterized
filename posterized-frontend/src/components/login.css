@@ -1,4 +1,5 @@
 .centered-wrapper {
+    background-color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,16 +35,13 @@ button[name="prijava"], button[name="dodaj"] {
 }
 
 /* Hover state of the button */
-button[name="prijava"], button[name="dodaj"]:hover {
+button[name="prijava"]:hover, button[name="dodaj"]:hover {
     background-color: white;
-    border-color: black;
+   
     color: black;
 }
 
-/* Focus state of the button, if you want to change it as well */
-button[name="prijava"], button[name="dodaj"]:focus {
-    border-color: black; /* Green border, for example */
-}
+
 
 .alert-container {
     display: block;
