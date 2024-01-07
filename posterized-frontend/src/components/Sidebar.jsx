@@ -67,6 +67,41 @@ const Sidebar = ({ userRole }) => {
                   </Link>
                 </li>
             ))}
+            {filteredSidebarData.filter(item => item.path === '/addAdmin').map((item, index) => (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+            ))}
+            {filteredSidebarData.filter(item => item.path === '/addConference').map((item, index) => (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+            ))}
+            {filteredSidebarData.filter(item => item.path === '/conferenceList').map((item, index) => (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+            ))}
+            {filteredSidebarData.filter(item => item.path === '/addSponsor').map((item, index) => (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+            ))}
+            {filteredSidebarData.filter(item => item.path === '/addAuthor').map((item, index) => (
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+            ))}
             {userRole === 'admin' && adminConferences.length !== 0 && (
                 <li className='nav-menu-items'>
 
