@@ -20,6 +20,10 @@
     margin: 0 auto; /* This will take effect if flex properties are not enough */
 }
 
+.namee {
+    display: grid;
+}
+
 input[type="text"], input[type="password"], input[type="number"], input[type="datetime-local"], input[type="email"] {
     margin-bottom: 10px;
     padding: 10px;
@@ -54,3 +58,22 @@ button[name="prijava"]:hover, button[name="dodaj"]:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: center;
 }  
+
+  sponsors {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Stiliziranje selecta */
+  select {
+    width: 95%; 
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  /* Stiliziranje opcija */
+  option {
+    padding: 5px;
+    font-size: 14px;
+  }
+  

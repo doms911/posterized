@@ -210,13 +210,13 @@ function ConferenceInput(props) {
             />
           </div>
           <div>
-            <label>Sponzori:</label>
+            <div className='sponsors'>Odaberite sponzore:</div>
             <select
-              multiple
+             multiple
               value={selectedSponsors}
               onChange={(e) => setSelectedSponsors(Array.from(e.target.selectedOptions, (option) => option.value))}
             >
-              {[...sponsors, "niti jedan"].map((sponsor) => (
+              {["Niti jedan", ...sponsors].map((sponsor) => (
                 <option key={sponsor} value={sponsor}>
                   {sponsor}
                 </option>
