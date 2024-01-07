@@ -84,7 +84,7 @@ function Login(props) {
                             />
                         </div>
                         <div>
-                            <a href="/forgot-password">Forgot your password?</a>
+                            <a href="/forgot-password">Zaboravili ste lozinku?</a>
                         </div>
                         <ReCAPTCHA
                             sitekey="6LfenzQpAAAAAHbcZlqaCK71MpSypvUydA3g4mMS"

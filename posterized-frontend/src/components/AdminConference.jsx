@@ -144,8 +144,7 @@ const AdminConference = (props) => {
         <h1 className='name'>{adminConference}</h1>
         <div>
         <div className='things'>
-        <div className='content'>
-          Nadopuni podatke
+        <div>
         {<ConferenceInput imeKonferencije={adminConference} canSubmit={canSubmitForm}/>}
         </div>
         <div className='content'>
@@ -159,11 +158,11 @@ const AdminConference = (props) => {
       </div>
   <h2 className='content'>Radovi:</h2>
   {receivedPapers.length > 1 ? (
-    <ul className="conference">
+    <ul>
       {receivedPapers
         .filter((paper, index) => index !== 0) // Izuzimanje rada na indeksu 0
         .map((paper) => (
-          <li key={paper.naslov}>
+          <li className="conference" key={paper.naslov}>
             <div>Naslov: {paper.naslov}</div>
             <div>Ime: {paper.ime}</div>
             <div>Prezime: {paper.prezime}</div>

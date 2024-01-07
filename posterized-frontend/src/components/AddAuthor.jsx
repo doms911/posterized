@@ -97,7 +97,7 @@ function AddAuthor(props) {
             <div className="container">
                 <h2>Dodavanje rada i autora</h2>
                 <form id ="moj" onSubmit={handleSubmit}>
-                    <div>
+                    <div className='namee'>
                         <label>Ime:</label>
                         <input
                             type="text"

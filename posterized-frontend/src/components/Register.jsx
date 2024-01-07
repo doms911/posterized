@@ -50,7 +50,7 @@ function Register() {
     return (
         <div className="centered-wrapper">
             <div className="register-container">
-                <h2>Create a new account</h2>
+                <h2>Kreirajte novi račun</h2>
                 <form onSubmit={save} id="moj">
                     <div className="form-group">
                         <label htmlFor="ime">Ime:</label>
@@ -102,7 +102,7 @@ function Register() {
                         <Link to="/login">Već imate račun? Prijavite se!</Link>
                     </div>
                     <div className="form-group">
-                        <button type="submit">Registracija</button>
+                        <button type="submit">Registriraj se</button>
                     </div>
                 </form>
             </div>
