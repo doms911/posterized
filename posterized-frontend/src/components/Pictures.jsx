@@ -3,6 +3,7 @@ import "./Pictures.css"; // Kreirajte i stilizujte po potrebi
 import Header from "./Header";
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import Sponsors from "./Sponsors";
 
 function Pictures({ isLoggedIn, onLogout }) {
     const [imageUrls, setImageUrls] = useState([]);
@@ -53,6 +54,7 @@ function Pictures({ isLoggedIn, onLogout }) {
     return (
         <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
+            <Sponsors />
             <div className="centered-wrapper">
                 {errorMessage ? (
                     <div className="error-message">
