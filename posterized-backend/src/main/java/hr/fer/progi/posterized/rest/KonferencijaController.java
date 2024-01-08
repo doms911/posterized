@@ -23,9 +23,9 @@ public class KonferencijaController {
     private KonferencijaService kService;
     @Secured("superadmin")
     @PostMapping("/stvoriKonf")
-    public Konferencija createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
+    public void createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
                                            @RequestParam("naziv") String naziv){
-        return kService.createKonferencija(pin, email, naziv);
+        kService.createKonferencija(pin, email, naziv);
     }
 
     @Secured("superadmin")

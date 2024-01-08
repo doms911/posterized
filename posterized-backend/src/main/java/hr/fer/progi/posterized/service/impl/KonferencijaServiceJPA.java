@@ -16,7 +16,6 @@ import org.springframework.util.Assert;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -98,7 +97,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
-    public Konferencija createKonferencija(String pinS, String email, String naziv) {
+    public void createKonferencija(String pinS, String email, String naziv) {
         Assert.hasText(pinS, "Pin mora biti naveden.");
         if (!pinS.matches("\\d+")) {
             Assert.hasText("","Pin mora sadržavati samo brojeve.");
@@ -133,7 +132,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
         konferencija.setAdminKonf(osoba);
-        return konferencijaRepo.save(konferencija);
+        konferencijaRepo.save(konferencija);
     }
 
 
