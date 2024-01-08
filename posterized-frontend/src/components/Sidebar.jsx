@@ -6,14 +6,11 @@ import { IconContext } from 'react-icons';
 import { SidebarData } from './SidebarData';
 import './Sidebar.css';
 import Cookies from "js-cookie";
-
 const Sidebar = ({ userRole }) => {
   const [error, setError] = useState(null);
   const [sidebar, setSidebar] = useState(false);
   const [adminConferences, setAdminConferences] = useState([]);
-
   const isPinValid = Cookies.get('isPinValid') === 'true';
-
   useEffect(() => {
     const fetchData = async () => {
       if (userRole === 'admin') {
@@ -25,26 +22,19 @@ const Sidebar = ({ userRole }) => {
               'Content-Type': 'application/json',
             },
           });
-
           if (!response.ok) {
             throw new Error(`Server error: ${response.status}`);
           }
-
           const data = await response.json();
           setAdminConferences(data);
-
       } catch (err) {
         setError(err.response ? err.response.data.message : 'Nepoznata greška');
       }}
     };
-
     fetchData();
   }, [userRole]);
-
   const showSidebar = () => setSidebar(!sidebar);
-
   const filteredSidebarData = SidebarData.filter(item => item.allowedRoles.includes(userRole));
-
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -148,5 +138,4 @@ const Sidebar = ({ userRole }) => {
     </>
   );
 };
-
 export default Sidebar;

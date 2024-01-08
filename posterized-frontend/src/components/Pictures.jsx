@@ -27,20 +27,27 @@ function Pictures({ isLoggedIn, onLogout }) {
         fetchImages();
     }, []);
 
-    const handleDownload = (url) => {
-        axios({
-            url: url,
-            method: 'GET',
-            responseType: 'blob',
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
+    const handleDownload = async (imageUrl) => {
+        console.log(imageUrl);
+        try {
+          const response = await axios.get('/api/fotografija/preuzmi', {
+            params: {
+                url: imageUrl,
+            },
+            responseType: 'arraybuffer',
+        });
+    
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const downloadUrl = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'image.jpg'); 
+            link.href = downloadUrl;
+            link.setAttribute('download', 'image.jpg');
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        });
+        } catch (error) {
+            console.error('Error downloading image:', error);
+        }
     };
 
     return (
