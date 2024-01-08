@@ -1,5 +1,5 @@
     import React, { useEffect, useState } from 'react';
-    import "./videoStream.css";
+    import "./VideoStream.css";
     import Header from "./Header";
     import Cookies from "js-cookie";
     import axios from "axios";

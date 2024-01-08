@@ -1,0 +1,60 @@
+.posters-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 60px; /* Space below header */
+    padding-bottom: 50px; /* Space at the bottom */
+    width: 100%; /* Full width */
+    height: auto; /* Adjust height automatically */
+}
+
+.work-container {
+    display: flex;
+    flex-direction: column; /* Stack title/author and PDF vertically */
+    align-items: center;
+    width: 80%;
+    margin-bottom: 30px; /* Spacing between each work */
+}
+
+.work-info {
+    text-align: center;
+    margin: 20px 0 10px; /* Adjust the top margin to push the title down */
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-between; /* Space out PDF and vote button */
+    align-items: flex-start;
+    width: 100%;
+}
+
+.pdf-container {
+    display: flex; /* Use flex to contain the iframe properly */
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Allow PDF to grow */
+    padding: 10px;
+    height: auto; /* Adjust height automatically */
+}
+
+.pdf-document {
+    width: auto; /* Adjust width automatically */
+    height: 500px; /* Fixed height, you can adjust as needed */
+    border: none;
+}
+
+.voting-container {
+    flex-shrink: 0; /* Prevent the button from shrinking */
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: start; /* Align the button to the top */
+    padding: 0 10px; /* Padding on the sides of the button */
+}
+
+/* Rest of the CSS ... */
+
+header {
+    position: relative;
+    z-index: 10; /* Above other content */
+}
