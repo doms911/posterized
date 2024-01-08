@@ -1,0 +1,16 @@
+.sponsors-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.sponsors-container img {
+    width: 100px;
+    margin: 5px;
+    transition: transform 0.3s ease;
+}
+
+.sponsors-container img:hover {
+    transform: scale(1.1);
+}

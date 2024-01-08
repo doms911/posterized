@@ -3,6 +3,7 @@
     import Header from "./Header";
     import Cookies from "js-cookie";
     import axios from "axios";
+    import Sponsors from "./Sponsors";
 
     function VideoStream({ isLoggedIn, onLogout }) {
         const [videoUrl, setVideoUrl] = useState('');
@@ -38,6 +39,7 @@
         return (
             <div className="page-container">
                 <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
+                <Sponsors />
                 <div className="centered-wrapper">
                     {errorMessage ? (
                         <div className="error-message">
