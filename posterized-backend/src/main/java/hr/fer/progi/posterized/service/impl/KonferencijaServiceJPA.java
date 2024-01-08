@@ -318,6 +318,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             mapa.put("urlPptx", rad.getUrlPptx());
             mapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
             mapa.put("plasman", String.valueOf(rad.getPlasman()));
+            mapa.put("ime", rad.getAutor().getIme());
+            mapa.put("prezime", rad.getAutor().getPrezime());
             rez.add(mapa);
         }
         return rez;
