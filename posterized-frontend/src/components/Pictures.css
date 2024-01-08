@@ -1,0 +1,28 @@
+.centered-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-item {
+    margin: 10px;
+}
+
+
+
+.error-message {
+    color: red;
+    margin-bottom: 20px;
+}
+.image-item img {
+    max-width: 100%; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
+    height: auto;    /* Visina će biti automatski prilagođena zadržavajući odnos stranica */
+}

@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -48,5 +52,21 @@ public class FotografijaServiceJPA implements FotografijaService {
             rez.add(slika.getUrlSlike());
         }
         return rez;
+    }
+
+    @Override
+    public byte[] preuzmi(String url) throws IOException {
+        URL imageUrl = new URL(url);
+        try (InputStream inputStream = imageUrl.openStream();
+             ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
+
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            return outputStream.toByteArray();
+        }
     }
 }

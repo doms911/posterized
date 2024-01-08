@@ -1,19 +1,62 @@
-import React from 'react';
-import "./videoStream.css"
+    import React, { useEffect, useState } from 'react';
+    import "./videoStream.css";
+    import Header from "./Header";
+    import Cookies from "js-cookie";
+    import axios from "axios";
 
-function videoStream() {
-    //hardcodiran url, mijenjat kad dode backend
-    const videoSrc = 'neki url';
+    function VideoStream({ isLoggedIn, onLogout }) {
+        const [videoUrl, setVideoUrl] = useState('');
+        const [errorMessage, setErrorMessage] = useState('');
 
-    return (
-        <div className="video-stream-container">
-            <h2>Video Prijenos</h2>
-            <video width="720" height="480" controls>
-                <source src={videoSrc} type="video/mp4" />
-                Nažalost, vaš preglednik ne podržava ugrađeni video.
-            </video>
-        </div>
-    );
-}
+        useEffect(() => {
+            const fetchVideo = async () => {
+                const pin = Cookies.get('conferencePin');
+                if (pin) {
+                    try {
+                        const response = await axios.get(`/api/konferencija/dohvatiVideo/${pin}`);
+                        const videoId = extractYouTubeId(response.data); // Funkcija za izvlačenje ID-a videa
+                        setVideoUrl(`https://www.youtube.com/embed/${videoId}`);
+                    } catch (err) {
+                        setErrorMessage(err.response.data.message || 'Došlo je do greške prilikom dohvata videa.');
+                    }
+                } else {
+                    setErrorMessage('PIN nije definisan.');
+                }
+            };
 
-export default videoStream;
+            fetchVideo();
+        }, []);
+
+        // Funkcija za izvlačenje YouTube ID-a iz URL-a
+        const extractYouTubeId = (url) => {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+
+            return (match && match[2].length === 11) ? match[2] : null;
+        };
+
+        return (
+            <div className="page-container">
+                <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
+                <div className="centered-wrapper">
+                    {errorMessage ? (
+                        <div className="error-message">
+                            <p>{errorMessage}</p>
+                        </div>
+                    ) : (
+                        <iframe
+                            width="720"
+                            height="480"
+                            src={videoUrl}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            title="Live Stream Video">
+                        </iframe>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    export default VideoStream;

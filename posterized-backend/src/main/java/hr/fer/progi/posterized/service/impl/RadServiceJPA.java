@@ -54,15 +54,17 @@ public class RadServiceJPA implements RadService {
             osoba = oService.createAutor(autor);
         } else if(konf.getRadovi().stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(autor.getEmail()))){
             Assert.hasText("","Na navedenoj konferenciji već postoji rad ovog autora.");
+        }else if(osoba.getEmail().equals(konf.getAdminKonf().getEmail())){
+            Assert.hasText("","Na navedenoj konferenciji navedeni autor je ujedno i admin te stoga ne može prijaviti svoj rad.");
         }
         rad.setAutor(osoba);
         rad.setKonferencija(konf);
 
         Media objekt = new Media();
-        rad.setUrlPoster(objekt.upload(poster, UUID.randomUUID().toString(), nazivKonf+"/posteri"));
+        rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), nazivKonf+"/posteri"));
         rad.setNazivPoster(objekt.getFileName());
-        if(!pptx.isEmpty()){
-            rad.setUrlPptx(objekt.upload(pptx, UUID.randomUUID().toString(), nazivKonf+"/pptx"));
+        if(pptx != null && !pptx.isEmpty()){
+            rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), nazivKonf+"/pptx"));
             rad.setNazivPptx(objekt.getFileName());
         }
         konf.getRadovi().add(rad);
@@ -77,8 +79,8 @@ public class RadServiceJPA implements RadService {
         if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
         Konferencija konf = rad.getKonferencija();
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
-        if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().after(new Timestamp(System.currentTimeMillis())))
-            Assert.hasText("","Konferencija je već počela.");
+        //if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
+            //Assert.hasText("","Konferencija je već počela.");
         konf.getRadovi().remove(rad);
         rad.getAutor().getRadovi().remove(rad);
 

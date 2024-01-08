@@ -56,7 +56,7 @@ function ChangePassword() {
                 stariDiv.parentElement.removeChild(stariDiv);
             }
             if(message)setMessage(''); //ako je za prosli zahtjev bila postavljena poruka kad je bilo uspjesno sad i nju izbrisi, ovo mozda inaca nece trebat ak nema ispisa za uspjesno
-            if (response.status === 400) {  //ako je doslo do greske
+            if (response.status >= 300 && response.status < 600) {  //ako je doslo do greske
                 response.json().then((data) => { //otpakiraj backendov odgovor i izvuci data
                     var noviDiv = document.createElement('div'); //ubaci div za tekst greske
                     noviDiv.className = 'alert-container';
