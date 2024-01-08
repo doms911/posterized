@@ -4,6 +4,7 @@ import Header from './Header';
 import axios from 'axios';
 import "./PinInput.css"
 import Cookies from "js-cookie";
+import Sponsors from "./Sponsors";
 
 const PinInput = (props) => {
     const isLoggedIn = props.isLoggedIn;
@@ -77,6 +78,7 @@ const PinInput = (props) => {
     return (
         <div className="page-container" >
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
+            <Sponsors />
             <div className="centered-wrapper">
                 <div className="container">
                     <h2>Pristupite konferenciji</h2>
