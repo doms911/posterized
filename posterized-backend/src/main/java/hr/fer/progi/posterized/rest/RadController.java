@@ -9,6 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,6 +62,7 @@ public class RadController {
     @GetMapping("/{naslov}")
     public List<Map<String, String>> prikaziAdminuRad(@PathVariable("naslov") String naslov){
         Rad rad = radService.findByNaslovIgnoreCase(naslov);
+        Assert.notNull(rad,"Rad ne postoji.");
         List<Map<String, String>> rezultat = new ArrayList<>();
         Map<String, String> radMapa = new HashMap<>();
         radMapa.put("naslov", rad.getNaslov());

@@ -105,6 +105,7 @@ public class OsobaServiceJPA implements OsobaService {
     private JavaMailSender mailSender;
     @Override
     public void saljiMail(Osoba osoba, String lozinka){
+        Assert.notNull(osoba, "Osoba ne postoji.");
         final String url = env.getProperty("send.email.link") + "/forgot-password";
         final String message = "Vaša trenutna lozinka je: " + lozinka + ", a ako ju želite promijeniti: ";
         final SimpleMailMessage email = new SimpleMailMessage();
@@ -118,6 +119,7 @@ public class OsobaServiceJPA implements OsobaService {
     @Transactional
     public void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token){
         Assert.hasText(lozinka, "Lozinka mora biti navedena.");
+        Assert.notNull(osoba, "Osoba ne postoji.");
         Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
                 "Lozinka mora biti u pravilnom obliku - barem jedan broj, jedno veliko slovo, jedno malo slovo " +
                         "i mora sadržavati barem osam znakova."

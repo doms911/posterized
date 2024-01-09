@@ -8,6 +8,7 @@ import hr.fer.progi.posterized.service.PasswordTokenService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
 @Service
@@ -16,6 +17,7 @@ public class PasswordTokenServiceJPA implements PasswordTokenService {
     private PasswordTokenRepository passwordTokenRepo;
     @Override
     public void createPasswordResetToken(Osoba osoba, String token) {
+        Assert.notNull(osoba, "Osoba ne postoji.");
         PasswordToken myToken = passwordTokenRepo.findByOsoba_id(osoba.getId());
         if (myToken ==null) {
             myToken = new PasswordToken(token, osoba);
