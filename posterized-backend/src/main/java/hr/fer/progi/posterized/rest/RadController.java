@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 //@Controller
@@ -41,6 +44,36 @@ public class RadController {
         Rad rad = new Rad();
         rad.setNaslov(naslov);
         radService.createRad(user.getUsername(), autor, rad, poster, pptx, nazivKonf);
+    }
+
+    @Secured("admin")
+    @PostMapping("/nadopuniRad/{stari_naslov}")
+    public void updateRad(@PathVariable("stari_naslov") String stariNazivRad, @RequestParam("naslov") String nazivRada, @AuthenticationPrincipal User user,
+                           @RequestParam("ime") String ime,
+                           @RequestParam("prezime") String prezime,
+                           @RequestParam("email") String email,
+                           @RequestParam("poster") MultipartFile poster,
+                           @RequestParam(value = "pptx", required = false) MultipartFile pptx,
+                           @RequestParam("nazivKonf") String nazivKonf){
+        radService.updateRad(user.getUsername(), nazivKonf, stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
+    }
+
+    @Secured("admin")
+    @GetMapping("/{naslov}")
+    public List<Map<String, String>> prikaziAdminuRad(@PathVariable("naslov") String naslov){
+        Rad rad = radService.findByNaslovIgnoreCase(naslov);
+        List<Map<String, String>> rezultat = new ArrayList<>();
+        Map<String, String> radMapa = new HashMap<>();
+        radMapa.put("naslov", rad.getNaslov());
+        radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+        radMapa.put("urlPptx", rad.getUrlPptx());
+        radMapa.put("urlPoster", rad.getUrlPoster());
+        Osoba autor = rad.getAutor();
+        radMapa.put("ime", autor.getIme());
+        radMapa.put("prezime", autor.getPrezime());
+        radMapa.put("mail", autor.getEmail());
+        rezultat.add(radMapa);
+        return rezultat;
     }
 
     @GetMapping("/izbrisi/{naslov}")
