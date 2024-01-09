@@ -70,6 +70,8 @@ public class OsobaServiceJPA implements OsobaService {
             Osoba osoba2 = osobaRepo.findByEmail(email);
             if(osoba2.getUloga().equals("autor")) {
                 osoba2.setLozinka(kodiranaLozinka);
+                osoba2.setIme(ime);
+                osoba2.setPrezime(prezime);
                 osoba2.setUloga("korisnik");
                 osobaRepo.save(osoba2);
                 return;

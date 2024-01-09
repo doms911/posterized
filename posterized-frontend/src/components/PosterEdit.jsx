@@ -103,13 +103,14 @@ const handleSubmit = async (e) =>  {
             var noviDiv = document.createElement('div');
             noviDiv.className = 'alert-container';
             noviDiv.textContent = data.message;
-            var udiv = document.getElementByClassName('container')[0];
-            udiv.insertBefore(noviDiv, document.getElementById("moj2"));
+            var udiv = document.getElementById('moj2');
+            udiv.insertBefore(noviDiv, document.getElementById("moj"));
         } else {
             alert('Podaci uspješno poslani!');
+            props.toggle();
             window.location.reload(false);
         }
-        props.toggle();
+    
 
     }catch(error) {
         console.error('Error:', error);
@@ -118,9 +119,9 @@ const handleSubmit = async (e) =>  {
 
   return (
     <div className="centered-wrapper">
-            <div className="container">
+            <div id ="moj2" className="container">
                 <h2>Uređivanje rada</h2>
-                <form id ="moj2" onSubmit={handleSubmit}>
+                <form id ="moj" onSubmit={handleSubmit}>
                     <div className='namee'>
                         <label>Ime:</label>
                         <input
