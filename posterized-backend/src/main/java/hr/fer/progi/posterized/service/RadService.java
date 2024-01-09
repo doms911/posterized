@@ -15,5 +15,5 @@ public interface RadService {
     Rad findByNaslovIgnoreCase(String naslov);
     void plasman(String naziv);
 
-    void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx);
+    void updateRad(String admin, String nazivKonf, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx);
 }

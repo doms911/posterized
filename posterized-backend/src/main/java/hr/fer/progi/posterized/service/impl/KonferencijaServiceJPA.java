@@ -237,17 +237,17 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             Assert.hasText("","Kraj konferencije mora biti nakon početka iste.");
         }
 
-        if((urlVideo == "null") && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "URL video prijenosa mora biti naveden.");
+        if(urlVideo.isEmpty() && novaKonferencija.getUrlVideo() == null) Assert.hasText("", "URL video prijenosa mora biti naveden.");
 
-        if((adresa == null) && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa mora biti navedena");
+        if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa mora biti navedena");
 
-        if(((pbr == null) || (mjestoNaziv == null)) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto mora biti navedeno.");
+        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto mora biti navedeno.");
 
-        if((!(pbr == null) && (mjestoNaziv == null)) || ((pbr== null) && !(mjestoNaziv == null)))
+        if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
             Assert.hasText("", "Poštanski broj i mjesto moraju biti promijenjeni zajedno.");
 
         Mjesto mjesto;
-        if(!(pbr == null) ) {
+        if(!pbr.isEmpty() ) {
             mjesto = mjService.findByPbr(Integer.valueOf(pbr));
 
             if (mjesto != null) {
@@ -272,8 +272,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             }
         }
 
-        if(!(urlVideo.isEmpty())){novaKonferencija.setUrlVideo(urlVideo);} else Assert.hasText("", "Url mora biti naveden.");
-        if(!(adresa == null)){novaKonferencija.setAdresa(adresa);} else Assert.hasText("", "Adresa mora biti navedena");
+        if(!urlVideo.isEmpty()){novaKonferencija.setUrlVideo(urlVideo);}
+        if(!adresa.isEmpty()){novaKonferencija.setAdresa(adresa);}
         if(!vrijemeKraja.isEmpty())novaKonferencija.setVrijemeKraja(vrijemeKrajaT);
         if(!vrijemePocetka.isEmpty())novaKonferencija.setVrijemePocetka(vrijemePocetkaT);
         konferencijaRepo.save(novaKonferencija);
