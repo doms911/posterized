@@ -115,7 +115,7 @@ function ConferenceInput(props) {
     // Postavite svoju logiku za slanje podataka na server
     startTime = startTime.replace('T', ' ');
     endTime= endTime.replace('T', ' ');
-    const body = `urlVideo=${videoURL}&vrijemePocetka=${startTime}&vrijemeKraja=${endTime}&mjesto=${mjesto}&pbr=${pbr}&adresa=${adresa}`;
+    const body = `urlVideo=${videoURL ? videoURL : ''}&vrijemePocetka=${startTime ? startTime : ''}&vrijemeKraja=${endTime ? endTime : ''}&mjesto=${mjesto ? mjesto : ''}&pbr=${pbr ? pbr : ''}&adresa=${adresa ? adresa : ''}`;
     if(selectedSponsors.length == 0)finalBodyArray.push(`sponzori=`);
     var finalBody = body + '&' + finalBodyArray.join('&');
     
