@@ -71,7 +71,7 @@ public class RadController {
         Osoba autor = rad.getAutor();
         radMapa.put("ime", autor.getIme());
         radMapa.put("prezime", autor.getPrezime());
-        radMapa.put("mail", autor.getEmail());
+        radMapa.put("email", autor.getEmail());
         rezultat.add(radMapa);
         return rezultat;
     }
