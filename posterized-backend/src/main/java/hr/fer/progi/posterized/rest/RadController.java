@@ -67,6 +67,7 @@ public class RadController {
         radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
         radMapa.put("urlPptx", rad.getUrlPptx());
         radMapa.put("urlPoster", rad.getUrlPoster());
+        radMapa.put("nazivKonf", rad.getKonferencija().getNaziv());
         Osoba autor = rad.getAutor();
         radMapa.put("ime", autor.getIme());
         radMapa.put("prezime", autor.getPrezime());

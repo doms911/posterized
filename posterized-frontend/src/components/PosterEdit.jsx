@@ -86,7 +86,7 @@ const handleSubmit = async (e) =>  {
     formData.append('pptx', presentationFile);
     formData.append('nazivKonf', selectedConference);
     try {
-        const response = await fetch('api/radovi/nadopuniRad/' + props.naslov, {
+        const response = await fetch('/api/radovi/nadopuniRad/' + props.naslov, {
             method: 'POST',
             body: formData,
         });
@@ -103,10 +103,11 @@ const handleSubmit = async (e) =>  {
             var noviDiv = document.createElement('div');
             noviDiv.className = 'alert-container';
             noviDiv.textContent = data.message;
-            var udiv = document.getElementsByClassName('container')[0];
-            udiv.insertBefore(noviDiv, document.getElementById("moj"));
+            var udiv = document.getElementByClassName('container')[0];
+            udiv.insertBefore(noviDiv, document.getElementById("moj2"));
         } else {
             alert('Podaci uspješno poslani!');
+            window.location.reload(false);
         }
         props.toggle();
 
@@ -119,7 +120,7 @@ const handleSubmit = async (e) =>  {
     <div className="centered-wrapper">
             <div className="container">
                 <h2>Uređivanje rada</h2>
-                <form id ="moj" onSubmit={handleSubmit}>
+                <form id ="moj2" onSubmit={handleSubmit}>
                     <div className='namee'>
                         <label>Ime:</label>
                         <input
@@ -158,21 +159,22 @@ const handleSubmit = async (e) =>  {
                     </div>
                     <div>
                         <label>Poster (PDF, max 1000KB):</label>
-                        <input
-                            type="file"
-                            accept=".pdf"
-                            onChange={handlePosterChange}
-                            required
-                        />
-                    </div>
-                    <div>
+                            <input
+                                type="file"
+                                accept=".pdf"
+                                onChange={handlePosterChange}
+                                required
+                            />
+                        </div>
+
+                        <div>
                         <label>Prezentacija (PPTX/PPT, max 1000KB):</label>
-                        <input
-                            type="file"
-                            accept=".ppt,.pptx"
-                            onChange={handlePresentationChange}
-                        />
-                    </div>
+                            <input
+                                type="file"
+                                accept=".ppt,.pptx"
+                                onChange={handlePresentationChange}
+                            />
+                        </div>
                     <div>
                         <label>Konferencija:</label>
                         <select
@@ -187,7 +189,7 @@ const handleSubmit = async (e) =>  {
                         </select>
                     </div>
                     <div>
-                        <button type="submit">Dodaj autora i rad</button>
+                        <button type="submit">Spremi</button>
                     </div>
                 </form>
             </div>
