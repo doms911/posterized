@@ -210,6 +210,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             email.setFrom(env.getProperty("support.email"));
             mailSender.send(email);
         }
+        final SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(konf.getAdminKonf().getEmail());
+        email.setSubject("Dodjela nagrada");
+        email.setText(message.toString());
+        email.setFrom(env.getProperty("support.email"));
+        mailSender.send(email);
     }
     @Override
     public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, String adresa, List<String> sponzori) {

@@ -120,8 +120,8 @@ public class RadServiceJPA implements RadService {
     @Override
     public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx) {
         Rad rad = radRepo.findByNaslovIgnoreCase(stariNazivRad);
+        Assert.notNull(rad,"Rad ne postoji.");
         if(!rad.getKonferencija().getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
-        if(rad == null) Assert.hasText("","Rad ne postoji.");
         if(!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad)) rad.setNaslov(nazivRad);
         if(!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) rad.getAutor().setIme(ime);
         if(!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime())) rad.getAutor().setPrezime(prezime);

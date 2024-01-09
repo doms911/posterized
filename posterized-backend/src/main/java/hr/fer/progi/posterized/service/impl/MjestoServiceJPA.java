@@ -43,6 +43,7 @@ public class MjestoServiceJPA implements MjestoService {
     @Override
     public Mjesto update(String naziv, Integer pbr){
         Mjesto mj = mjestoRepo.findByPbr(pbr);
+        Assert.notNull(mj,"Mjesto ne postoji.");
         mj.setNaziv(naziv);
         return mjestoRepo.save(mj);
     }
