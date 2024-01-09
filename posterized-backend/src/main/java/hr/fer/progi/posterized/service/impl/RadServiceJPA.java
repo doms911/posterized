@@ -46,7 +46,7 @@ public class RadServiceJPA implements RadService {
         Assert.notNull(rad, "Podaci o radu moraju biti navedeni.");
         Assert.hasText(rad.getNaslov(), "Naslov mora biti naveden.");
         if (radRepo.countByNaslovIgnoreCase(rad.getNaslov()) > 0){
-            Assert.hasText("","Rad s naslovom " + rad.getNaslov() + " već postoji.");
+            Assert.hasText("","Rad s naslovom '" + rad.getNaslov() + "' već postoji.");
         }
 
         Osoba osoba = oService.findByEmail(autor.getEmail());
@@ -76,7 +76,7 @@ public class RadServiceJPA implements RadService {
     @Transactional
     public void izbrisiRad(String admin, String naslov){
         Rad rad = radRepo.findByNaslovIgnoreCase(naslov);
-        if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
+        if(rad == null) Assert.hasText("","Rad s naslovom '" + naslov + "' ne postoji.");
         Konferencija konf = rad.getKonferencija();
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         //if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
