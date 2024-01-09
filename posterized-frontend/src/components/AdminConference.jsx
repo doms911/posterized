@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
 import ConferenceInput from './ConferenceInput';
+import PosterEdit from './PosterEdit'
 import './AdminConference.css';
 
+
 const AdminConference = (props) => {
-    const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
   const isLoggedIn = props.isLoggedIn;
   const onLogout = props.onLogout;
   const { adminConference } = props;
@@ -16,6 +18,9 @@ const AdminConference = (props) => {
     location: '',
   });
   const [receivedPapers, setReceivedPapers] = useState([]);
+  const [seen, setSeen] = useState(false);
+  const [editedPaper, setEditedPaper] = useState(null);
+
 
   useEffect(() => {
     // Učitaj sve radove koje ste dobili
@@ -39,7 +44,13 @@ const AdminConference = (props) => {
     };
 
     fetchReceivedPapers();
-}, [adminConference]);
+  }, [adminConference]);
+
+  function togglePop(naslov) {
+    setEditedPaper(naslov);
+    setSeen(!seen);
+  }
+  
 
   const handleImageChange = (e) => {
     const files = e.target.files;
@@ -170,6 +181,10 @@ const AdminConference = (props) => {
             <div>Ukupno glasova: {paper.ukupnoGlasova}</div>
             <div>Pptx: <a href={paper.urlPptx}>{paper.urlPptx}</a></div>
             <div>Poster: <a href={paper.urlPoster} target="_blank">{paper.urlPoster}</a></div>
+            <button onClick={() => togglePop(paper.naslov)}>Uredi</button>
+            {seen && editedPaper === paper.naslov && (
+            <PosterEdit naslov={editedPaper} toggle={() => togglePop(null)} />
+          )}
             <button key={`delete-${paper.naslov}`} onClick={() => handleDeletePaper(paper.naslov)}>
               Izbriši
             </button>

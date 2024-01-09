@@ -53,9 +53,10 @@ public class RadController {
                            @RequestParam("prezime") String prezime,
                            @RequestParam("email") String email,
                            @RequestParam("poster") MultipartFile poster,
-                           @RequestParam(value = "pptx", required = false) MultipartFile pptx){
+                           @RequestParam(value = "pptx", required = false) MultipartFile pptx) {
         radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
     }
+    
 
     @GetMapping("/izbrisi/{naslov}")
     public void izbrisiRad (@PathVariable("naslov") String naslov, @AuthenticationPrincipal User user){
