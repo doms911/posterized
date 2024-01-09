@@ -53,27 +53,8 @@ public class RadController {
                            @RequestParam("prezime") String prezime,
                            @RequestParam("email") String email,
                            @RequestParam("poster") MultipartFile poster,
-                           @RequestParam(value = "pptx", required = false) MultipartFile pptx,
-                           @RequestParam("nazivKonf") String nazivKonf){
-        radService.updateRad(user.getUsername(), nazivKonf, stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
-    }
-
-    @Secured("admin")
-    @GetMapping("/{naslov}")
-    public List<Map<String, String>> prikaziAdminuRad(@PathVariable("naslov") String naslov){
-        Rad rad = radService.findByNaslovIgnoreCase(naslov);
-        List<Map<String, String>> rezultat = new ArrayList<>();
-        Map<String, String> radMapa = new HashMap<>();
-        radMapa.put("naslov", rad.getNaslov());
-        radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
-        radMapa.put("urlPptx", rad.getUrlPptx());
-        radMapa.put("urlPoster", rad.getUrlPoster());
-        Osoba autor = rad.getAutor();
-        radMapa.put("ime", autor.getIme());
-        radMapa.put("prezime", autor.getPrezime());
-        radMapa.put("mail", autor.getEmail());
-        rezultat.add(radMapa);
-        return rezultat;
+                           @RequestParam(value = "pptx", required = false) MultipartFile pptx){
+        radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
     }
 
     @GetMapping("/izbrisi/{naslov}")
