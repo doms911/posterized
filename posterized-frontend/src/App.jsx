@@ -9,7 +9,7 @@ import AddConference from './components/AddConference.jsx';
 import ConferenceInput from './components/ConferenceInput.jsx';
 import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
-import VideoStream from './components/videoStream.jsx';
+import VideoStream from './components/VideoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
 import AddAdmin from './components/AddAdmin.jsx';
