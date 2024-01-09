@@ -118,23 +118,24 @@ public class RadServiceJPA implements RadService {
     }
 
     @Override
-    public void updateRad(String admin, String nazivKonf, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx) {
+    public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx) {
         Rad rad = radRepo.findByNaslovIgnoreCase(stariNazivRad);
+        if(!rad.getKonferencija().getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         if(rad == null) Assert.hasText("","Rad ne postoji.");
-        if(!nazivRad.isEmpty() && !nazivKonf.equalsIgnoreCase(stariNazivRad)) rad.setNaslov(nazivRad);
+        if(!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad)) rad.setNaslov(nazivRad);
         if(!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) rad.getAutor().setIme(ime);
         if(!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime())) rad.getAutor().setPrezime(prezime);
         if(!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())) rad.getAutor().setEmail(email);
         if(!poster.isEmpty()) {
             Media objekt = new Media();
-            objekt.deleteFile(rad.getNazivPoster(), nazivKonf+"/posteri");
-            rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), nazivKonf+"/posteri"));
+            objekt.deleteFile(rad.getNazivPoster(), rad.getKonferencija().getNaziv()+"/posteri");
+            rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/posteri"));
             rad.setNazivPoster(objekt.getFileName());
         }
         if(pptx != null && !pptx.isEmpty()){
             Media objekt = new Media();
-            objekt.deleteFile(rad.getNazivPptx(), nazivKonf+"/pptx");
-            rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), nazivKonf+"/pptx"));
+            objekt.deleteFile(rad.getNazivPptx(), rad.getKonferencija().getNaziv()+"/pptx");
+            rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/pptx"));
             rad.setNazivPptx(objekt.getFileName());
         }
         radRepo.save(rad);
