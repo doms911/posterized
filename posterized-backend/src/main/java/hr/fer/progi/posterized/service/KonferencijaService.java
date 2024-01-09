@@ -8,7 +8,7 @@ import java.util.Map;
 public interface KonferencijaService {
     List<Konferencija> listAll();
     List<Konferencija> prikazAdmin(String email);
-    Konferencija createKonferencija(String pin, String email, String naziv);
+    void createKonferencija(String pin, String email, String naziv);
     void izbrisiKonf(String naziv);
     void zavrsiKonferencija(String admin, String nazivKonf);
 

@@ -9,7 +9,7 @@ import AddConference from './components/AddConference.jsx';
 import ConferenceInput from './components/ConferenceInput.jsx';
 import Cookies from 'js-cookie';
 import ForgotPassword from './components/ForgotPassword.jsx';
-import VideoStream from './components/videoStream.jsx';
+import VideoStream from './components/VideoStream.jsx';
 import ChangePassword from './components/changePassword.jsx';
 import SuperAdmin from './components/superadmin.jsx';
 import AddAdmin from './components/AddAdmin.jsx';
@@ -83,7 +83,12 @@ const App = () => {
             setIsLoggedIn(false);
             window.location.replace('/');
             Cookies.remove('isPinValid');
+            var cookies = document.cookie.split(";");
+            for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.startsWith('votedFor_'))Cookies.remove(cookie.split('=')[0]);}
             Cookies.remove('conferencePin');
+            Cookies.remove('conferenceInfo');
           }
         })
         .catch(error => {

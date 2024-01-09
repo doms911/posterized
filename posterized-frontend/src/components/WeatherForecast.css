@@ -1,0 +1,6 @@
+.weather-container {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    z-index: 1000;
+}
