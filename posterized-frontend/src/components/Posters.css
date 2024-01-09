@@ -24,9 +24,8 @@
 
 .content-container {
     display: flex;
-    justify-content: space-between; /* Space out PDF and vote button */
-    align-items: flex-start;
-    width: 100%;
+    align-items: start;
+    
 }
 
 .pdf-container {
@@ -51,8 +50,6 @@
     align-items: start; /* Align the button to the top */
     padding: 0 10px; /* Padding on the sides of the button */
 }
-
-/* Rest of the CSS ... */
 
 header {
     position: relative;
