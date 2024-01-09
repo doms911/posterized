@@ -5,6 +5,7 @@ import axios from 'axios';
 import "./PinInput.css"
 import Cookies from "js-cookie";
 import Sponsors from "./Sponsors";
+import WeatherForecast from "./WeatherForecast";
 
 const PinInput = (props) => {
     const isLoggedIn = props.isLoggedIn;
@@ -79,6 +80,7 @@ const PinInput = (props) => {
         <div className="page-container" >
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <Sponsors />
+            <WeatherForecast/>
             <div className="centered-wrapper">
                 <div className="container">
                     <h2>Pristupite konferenciji</h2>

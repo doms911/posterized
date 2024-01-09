@@ -4,6 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import "./Posters.css";
 import Sponsors from "./Sponsors";
+import WeatherForecast from "./WeatherForecast";
 
 function Posters({ isLoggedIn, onLogout }) {
     const [works, setWorks] = useState([]);
@@ -52,6 +53,7 @@ function Posters({ isLoggedIn, onLogout }) {
         <div className="posters-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <Sponsors />
+            <WeatherForecast/>
             {works.map((work, index) => (
                 <div key={index} className="work-container">
                     <div className="work-info">

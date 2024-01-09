@@ -4,6 +4,7 @@
     import Cookies from "js-cookie";
     import axios from "axios";
     import Sponsors from "./Sponsors";
+    import WeatherForecast from "./WeatherForecast";
 
     function VideoStream({ isLoggedIn, onLogout }) {
         const [videoUrl, setVideoUrl] = useState('');
@@ -40,6 +41,7 @@
             <div className="page-container">
                 <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
                 <Sponsors />
+                <WeatherForecast/>
                 <div className="centered-wrapper">
                     {errorMessage ? (
                         <div className="error-message">
