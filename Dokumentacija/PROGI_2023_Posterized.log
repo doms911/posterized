@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  8 JAN 2024 18:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  9 JAN 2024 12:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1936,10 +1936,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
-
- []
-
 <dijagrami/dijagram_stanja.png, id=402, 1188.44pt x 717.68124pt>
 File: dijagrami/dijagram_stanja.png Graphic file (type png)
 <use dijagrami/dijagram_stanja.png>
@@ -2638,7 +2634,7 @@ Here is how much of TeX's memory you used:
  326665 string characters out of 5790016
  2012388 words of memory out of 5000000
  37986 multiletter control sequences out of 15000+600000
- 578897 words of font info for 173 fonts, out of 8000000 for 9000
+ 578962 words of font info for 173 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,116p,761b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -2650,7 +2646,7 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/loca
 l/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_2023_Posterized.pdf (57 pages, 4228877 bytes).
+Output written on PROGI_2023_Posterized.pdf (57 pages, 4228612 bytes).
 PDF statistics:
  739 PDF objects out of 1000 (max. 8388607)
  598 compressed objects within 6 object streams
