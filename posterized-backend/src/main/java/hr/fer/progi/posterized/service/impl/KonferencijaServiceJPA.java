@@ -92,6 +92,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         builder.setParameter("key", apiKey);
         StringBuilder builderNew = new StringBuilder(builder.toString());
         builderNew.append("&include=current");
+        builderNew.append("&unitGroup=metric");
 
         return builderNew.toString();
     }
