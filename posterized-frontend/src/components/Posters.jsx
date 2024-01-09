@@ -27,18 +27,21 @@ function Posters({ isLoggedIn, onLogout }) {
         const url = `/api/prisutan/glasaj/${encodedTitle}`;
 
         try {
-            const response = await fetch(url, {
+            fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include',
-            });
-            await response.json();
+            }).then((response) => {
+                if (response.status >= 300 && response.status < 600) {
+                    response.json().then((data) => {alert(data.message);})}
+                else{
             console.log('Success: Vote cast for', title);
+            alert('Vaš glas je zabilježen');
 
             // Set a cookie to indicate that the user has voted for this work
-            Cookies.set(`votedFor_${encodedTitle}`, 'true', { expires: 1 }); // Expires in 1 day
+            Cookies.set(`votedFor_${encodedTitle}`, 'true', { expires: 1 });}}) // Expires in 1 day
         } catch (error) {
             console.error('Error during voting:', error);
         }
@@ -79,9 +82,9 @@ function Posters({ isLoggedIn, onLogout }) {
                                     <p>Plasman: {work.plasman}</p>
                                 </div>
                             ) : hasVoted(work.naslov) ? (
-                                <p>Thank you for voting!</p>
+                                <p>Hvala na glasanju!</p>
                             ) : (
-                                <button type="button" onClick={() => handleVote(work.naslov, index)}>Vote</button>
+                                <button type="button" onClick={() => handleVote(work.naslov, index)}>Glasaj</button>
                             )}
                         </div>
                     </div>

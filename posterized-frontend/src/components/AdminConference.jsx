@@ -168,8 +168,8 @@ const AdminConference = (props) => {
             <div>Prezime: {paper.prezime}</div>
             <div>Mail: {paper.mail}</div>
             <div>Ukupno glasova: {paper.ukupnoGlasova}</div>
-            <div>Pptx: {paper.urlPptx}</div>
-            <div>Poster: {paper.urlPoster}</div>
+            <div>Pptx: <a href={paper.urlPptx}>{paper.urlPptx}</a></div>
+            <div>Poster: <a href={paper.urlPoster} target="_blank">{paper.urlPoster}</a></div>
             <button key={`delete-${paper.naslov}`} onClick={() => handleDeletePaper(paper.naslov)}>
               Izbriši
             </button>

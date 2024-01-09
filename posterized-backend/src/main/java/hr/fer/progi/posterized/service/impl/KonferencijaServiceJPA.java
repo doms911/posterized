@@ -16,7 +16,6 @@ import org.springframework.util.Assert;
 import java.net.URISyntaxException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
@@ -91,12 +90,14 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         }
 
         builder.setParameter("key", apiKey);
+        StringBuilder builderNew = new StringBuilder(builder.toString());
+        builderNew.append("&include=current");
 
-        return builder.toString();
+        return builderNew.toString();
     }
 
     @Override
-    public Konferencija createKonferencija(String pinS, String email, String naziv) {
+    public void createKonferencija(String pinS, String email, String naziv) {
         Assert.hasText(pinS, "Pin mora biti naveden.");
         if (!pinS.matches("\\d+")) {
             Assert.hasText("","Pin mora sadržavati samo brojeve.");
@@ -131,7 +132,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
         konferencija.setAdminKonf(osoba);
-        return konferencijaRepo.save(konferencija);
+        konferencijaRepo.save(konferencija);
     }
 
 
@@ -318,6 +319,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             mapa.put("urlPptx", rad.getUrlPptx());
             mapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
             mapa.put("plasman", String.valueOf(rad.getPlasman()));
+            mapa.put("ime", rad.getAutor().getIme());
+            mapa.put("prezime", rad.getAutor().getPrezime());
             rez.add(mapa);
         }
         return rez;

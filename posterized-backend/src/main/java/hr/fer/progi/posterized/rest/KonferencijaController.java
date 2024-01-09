@@ -23,9 +23,9 @@ public class KonferencijaController {
     private KonferencijaService kService;
     @Secured("superadmin")
     @PostMapping("/stvoriKonf")
-    public Konferencija createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
+    public void createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
                                            @RequestParam("naziv") String naziv){
-        return kService.createKonferencija(pin, email, naziv);
+        kService.createKonferencija(pin, email, naziv);
     }
 
     @Secured("superadmin")
@@ -169,6 +169,8 @@ public class KonferencijaController {
             radMapa.put("naslov", rad.getNaslov());
             radMapa.put("urlPptx", rad.getUrlPptx());
             radMapa.put("urlPoster", rad.getUrlPoster());
+            radMapa.put("ime", rad.getAutor().getIme());
+            radMapa.put("prezime", rad.getAutor().getPrezime());
             if(gotovo) {
                 if(rad.getUkupnoGlasova() != null) radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
                 if(rad.getPlasman() != null) radMapa.put("plasman", String.valueOf(rad.getPlasman()));

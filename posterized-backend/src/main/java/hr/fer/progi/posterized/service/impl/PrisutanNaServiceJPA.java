@@ -96,6 +96,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
     public void glasaj(String korisnik, String naslov){
         Rad rad = radService.findByNaslovIgnoreCase(naslov);
         if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
+        if (korisnik.equals("superadmin"))Assert.hasText("","Ne možete glasati na ovoj konferenciji.");
 
         Konferencija konf = rad.getKonferencija();
         Osoba osoba = oService.findByEmail(korisnik);
