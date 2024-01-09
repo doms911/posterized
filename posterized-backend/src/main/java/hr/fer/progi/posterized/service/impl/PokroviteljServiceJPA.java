@@ -25,11 +25,12 @@ public class PokroviteljServiceJPA implements PokroviteljService {
         String url = pokrovitelj.getUrl();
         Assert.hasText(url, "URL mora biti naveden.");
         if(logo.isEmpty()) Assert.hasText("", "Logo mora biti učitan.");
-        if (pokroviteljRepo.countByNazivCaseInsensitive(pokrovitelj.getNaziv()) > 0) {
-            Assert.hasText("", "Pokrovitelj s nazivom " + pokrovitelj.getNaziv() + " već postoji.");
+        if (pokroviteljRepo.countByUrlCaseInsensitive(pokrovitelj.getUrl()) > 0) {
+            Assert.hasText("", "Pokrovitelj s URL-om '" + pokrovitelj.getUrl() + "' već postoji pod nazivom: '" +
+                    pokroviteljRepo.findByUrlIgnoreCase(pokrovitelj.getUrl()).getNaziv() + "'.");
         }
-        if (pokroviteljRepo.countByUrl(pokrovitelj.getUrl()) > 0) {
-            Assert.hasText("", "Pokrovitelj s URL-om " + pokrovitelj.getNaziv() + " već postoji.");
+        if (pokroviteljRepo.countByNazivCaseInsensitive(pokrovitelj.getNaziv()) > 0) {
+            Assert.hasText("", "Pokrovitelj s nazivom '" + pokrovitelj.getNaziv() + "' već postoji.");
         }
         Media slika = new Media();
         pokrovitelj.setUrlSlike(slika.upload(logo, naziv, "pokrovitelji"));

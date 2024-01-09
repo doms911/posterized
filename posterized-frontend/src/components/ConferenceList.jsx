@@ -20,16 +20,24 @@ function ConferenceList(props) {
   }, []);
 
   const izbrisiKonferenciju = async (naziv) => {
+    const isConfirmed = window.confirm("Jeste li sigurni da želite izbrisati konferenciju?");
+    if(!isConfirmed) return;
     try {
-      await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' });
-      setConferences((prevConferences) => prevConferences.filter((conf) => conf.naziv !== naziv));
+      await fetch(`/api/konferencija/izbrisiKonf/${naziv}`, { method: 'GET' }).then((response) => {
+        if (response.status >= 300 && response.status < 600) {
+          response.json().then((data) => { 
+            alert(data.message); 
+          });
+        } else {
+          alert('Konferencija uspješno izbrisana');
+          setConferences((prevConferences) => prevConferences.filter((conf) => conf.naziv !== naziv));}})
     } catch (err) {
       setError(err.response ? err.response.data.message : 'Nepoznata greška');
     }
   };
 
   return (
-    <div>
+    <div className='pagee'>
       <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
       <div className="naslov">Popis svih konferencija</div>
       {error && (
@@ -41,7 +49,7 @@ function ConferenceList(props) {
         {conferences.map((conference) => (
           <div className="conference" key={conference.naziv}>
             <Conference conference={conference} />
-            <button onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
+            <button id='delete' onClick={() => izbrisiKonferenciju(conference.naziv)}>Obriši</button>
           </div>
         ))}
       </Card>

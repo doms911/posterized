@@ -19,7 +19,7 @@ public class Osoba {
     private Long id;
 
     @NotNull
-    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+", flags = Pattern.Flag.CASE_INSENSITIVE)
+    //@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]+", flags = Pattern.Flag.CASE_INSENSITIVE)
     @Column(unique = true)
     private String email;
 

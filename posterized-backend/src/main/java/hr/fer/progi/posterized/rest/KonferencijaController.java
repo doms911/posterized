@@ -23,9 +23,9 @@ public class KonferencijaController {
     private KonferencijaService kService;
     @Secured("superadmin")
     @PostMapping("/stvoriKonf")
-    public Konferencija createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
+    public void createKonferencija(@RequestParam("pin") String pin, @RequestParam("adminEmail") String email,
                                            @RequestParam("naziv") String naziv){
-        return kService.createKonferencija(pin, email, naziv);
+        kService.createKonferencija(pin, email, naziv);
     }
 
     @Secured("superadmin")
@@ -159,13 +159,22 @@ public class KonferencijaController {
         }
         Konferencija konf = kService.findByPin(Integer.valueOf(pin));
         if(konf.getVrijemePocetka()==null)Assert.hasText("","Konferencija još nije počela.");
+        Boolean gotovo = false;
+        if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis()))) {
+            gotovo = true;
+        }
         List<Map<String, String>> rezultat = new ArrayList<>();
         for(Rad rad : konf.getRadovi()){
             Map<String, String> radMapa = new HashMap<>();
             radMapa.put("naslov", rad.getNaslov());
             radMapa.put("urlPptx", rad.getUrlPptx());
             radMapa.put("urlPoster", rad.getUrlPoster());
-            //radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+            radMapa.put("ime", rad.getAutor().getIme());
+            radMapa.put("prezime", rad.getAutor().getPrezime());
+            if(gotovo) {
+                if(rad.getUkupnoGlasova() != null) radMapa.put("ukupnoGlasova", String.valueOf(rad.getUkupnoGlasova()));
+                if(rad.getPlasman() != null) radMapa.put("plasman", String.valueOf(rad.getPlasman()));
+            }
             rezultat.add(radMapa);
         }
         return rezultat;
@@ -184,6 +193,24 @@ public class KonferencijaController {
             pokrMapa.put("url", pokr.getUrl());
             pokrMapa.put("urlSlike", pokr.getUrlSlike());
             rezultat.add(pokrMapa);
+        }
+        return rezultat;
+    }
+
+    @Secured("admin")
+    @GetMapping("/prikaziAdminuSponzoreKonf/{naziv}")
+    public List<String> prikaziAdminuSponzoreKonf(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user) {
+        String email = user.getUsername();
+        List<Konferencija> konferencije = kService.prikazAdmin(email);
+        List<String> rezultat = new ArrayList<>();
+
+        for (Konferencija konferencija : konferencije) {
+            if(konferencija.getNaziv().equalsIgnoreCase(nazivKonf)) {
+                for (Pokrovitelj pokr : konferencija.getPokrovitelji()){
+                    rezultat.add(pokr.getNaziv());
+                }
+                return rezultat;
+            }
         }
         return rezultat;
     }

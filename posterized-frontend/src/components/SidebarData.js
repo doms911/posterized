@@ -1,9 +1,9 @@
 
 export const SidebarData = [
     {
-        title: 'Početna stranica',
+        title: <img src="https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/preuzmi.png?alt=media&token=e2e76ce9-e25f-4649-bdd1-149d77ce9b0c" alt="Početna stranica" style={{ width: '40px', height: '40px' , margin: 'auto'}}/>,
         path: '/',
-        cName: 'nav-text',
+        cName: 'nav-homepage',
         allowedRoles: ['superadmin', 'admin', 'korisnik']
     },
     {
@@ -25,14 +25,8 @@ export const SidebarData = [
         allowedRoles: ['superadmin']
     },
     {
-        title: 'Unos pina',
-        path: '/pinInput',
-        cName: 'nav-text',
-        allowedRoles: ['superadmin', 'admin', 'korisnik']
-    },
-    {
         title: 'Dodaj sponzora',
-        path: '/link',
+        path: '/addSponsor',
         cName: 'nav-text',
         allowedRoles: ['admin']
     },
@@ -43,9 +37,30 @@ export const SidebarData = [
         allowedRoles: ['admin']
     },
     {
-        title: 'Konferencije',
-        path: '/adminconferenceList',
+        title: 'Unos pina',
+        path: '/pinInput',
         cName: 'nav-text',
-        allowedRoles: ['admin']
+        allowedRoles: ['superadmin', 'admin', 'korisnik']
     },
+    {
+        title: 'Glasaj',
+        path: '/posters',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
+    },
+    {
+        title: 'Livestream',
+        path: '/videoStream',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
+    },
+    {
+        title: 'Galerija',
+        path: '/pictures',
+        cName: 'nav-text',
+        allowedRoles: ['superadmin', 'admin', 'korisnik'],
+        requiresPinValidation: true,
+    }
 ];
