@@ -84,6 +84,20 @@ function AddAuthor(props) {
                 udiv.insertBefore(noviDiv, document.getElementById("moj"));
             } else {
                 alert('Autor uspješno dodan');
+
+                // Reset the state variables
+                setEmail('');
+                setName('');
+                setSurname('');
+                setNaslov('');
+                setPosterFile(null);
+                setPresentationFile(null);
+                setSelectedConference('');
+
+                // Manually reset file inputs
+                document.getElementById('posterInput').value = '';
+                document.getElementById('presentationInput').value = '';
+
             }
 
         }catch(error) {
@@ -137,6 +151,7 @@ function AddAuthor(props) {
                         <label>Poster (PDF, max 1000KB):</label>
                         <input
                             type="file"
+                            id="posterInput"
                             accept=".pdf"
                             onChange={handlePosterChange}
                             required
@@ -146,8 +161,10 @@ function AddAuthor(props) {
                         <label>Prezentacija (PPTX/PPT, max 1000KB):</label>
                         <input
                             type="file"
+                            id="presentationInput"
                             accept=".ppt,.pptx"
                             onChange={handlePresentationChange}
+                            required
                         />
                     </div>
                     <div>

@@ -135,7 +135,18 @@ function ConferenceInput(props) {
               noviDiv.textContent = data.message; //iz data izvuci poruku
               var udiv = document.getElementsByClassName('change-data-form')[0]; //ovo prilagoditi ovom htmlu dole za svaku stranicu ce bit drukcije
               udiv.insertBefore(noviDiv, udiv.firstElementChild);
-          });}else alert ('Podaci uspješno promijenjeni')}
+          });}
+      else {
+          alert('Podaci uspješno promijenjeni')
+          setVideoURL('');
+          setStartTime('');
+          setEndTime('');
+          setPbr(0);
+          setAdresa('');
+          setMjesto('');
+          setSelectedSponsors([]);
+      }
+  }
   )
   .catch((error) => {
       console.error('Error:', error);
