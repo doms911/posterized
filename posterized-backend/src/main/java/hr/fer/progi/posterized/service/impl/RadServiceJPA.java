@@ -118,26 +118,105 @@ public class RadServiceJPA implements RadService {
     }
 
     @Override
-    public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx) {
+    public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx, String nazivKonf) {
         Rad rad = radRepo.findByNaslovIgnoreCase(stariNazivRad);
         Assert.notNull(rad,"Rad ne postoji.");
         if(!rad.getKonferencija().getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
-        if(!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad)) rad.setNaslov(nazivRad);
-        if(!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) rad.getAutor().setIme(ime);
-        if(!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime())) rad.getAutor().setPrezime(prezime);
-        if(!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())) rad.getAutor().setEmail(email);
-        if(!poster.isEmpty()) {
+        if(!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad) && (radRepo.countByNaslovIgnoreCase(nazivRad) == 0) )
+            rad.setNaslov(nazivRad);
+        else if (!nazivRad.equalsIgnoreCase(stariNazivRad) && (radRepo.countByNaslovIgnoreCase(nazivRad) > 0))
+            Assert.hasText("", "Već postoji rad s ovim nazivom.");
+        if((!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())) || (!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) || (!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime()))) {
+            Osoba noviAutor = oService.findByEmail(email);
+
+            if (noviAutor == null) {
+                noviAutor = new Osoba();
+                noviAutor.setEmail(email);
+                noviAutor.setIme(ime);
+                noviAutor.setPrezime(prezime);
+                noviAutor.setUloga("autor");
+                Osoba osoba = oService.createAutor(noviAutor);
+                rad.setAutor(osoba);
+            } else {
+                Osoba finalNoviAutor = noviAutor;
+                if(rad.getKonferencija().getRadovi().stream().anyMatch(rad2 -> (rad2.getAutor().getEmail().equals(finalNoviAutor.getEmail()) && !rad2.getNaslov().equalsIgnoreCase(nazivRad)))){
+                    Assert.hasText("","Na navedenoj konferenciji već postoji rad ovog autora.");
+                } else if(noviAutor.getEmail().equals(rad.getKonferencija().getAdminKonf().getEmail())){
+                    Assert.hasText("","Na navedenoj konferenciji navedeni autor je ujedno i admin te stoga ne može prijaviti svoj rad.");
+                }
+                if (!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())){
+                    rad.getAutor().getRadovi().remove(rad);
+                    rad.setAutor(noviAutor);
+                }
+                if (((!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) || (!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime()))) && rad.getAutor().getEmail().equals(email)){
+                    if (noviAutor.getUloga().equals("autor")){
+                        for (Rad rad4 : noviAutor.getRadovi()){
+                            rad4.getAutor().setIme(ime);
+                            rad4.getAutor().setPrezime(prezime);
+                        }
+                        rad.getAutor().setIme(ime);
+                        rad.getAutor().setPrezime(prezime);
+                    } else {
+                        Assert.hasText("", "Ne možete promijeniti podatke za ovog korisnika.");
+                    }
+                }
+            };
+        }
+
+
+        if(poster != null && !poster.isEmpty()) {
             Media objekt = new Media();
-            objekt.deleteFile(rad.getNazivPoster(), rad.getKonferencija().getNaziv()+"/posteri");
+            if (!stariNazivRad.equalsIgnoreCase(nazivRad))
+                objekt.deleteFile(stariNazivRad, rad.getKonferencija().getNaziv()+"/posteri");
             rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/posteri"));
             rad.setNazivPoster(objekt.getFileName());
+        } else if (!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad) && (rad.getUrlPoster() != null)){
+            Media objekt = new Media();
+            rad.setUrlPoster(objekt.changeFileNamePdf(stariNazivRad, nazivRad, rad.getKonferencija().getNaziv()+"/posteri"));
+            int index = rad.getUrlPoster().lastIndexOf("/");
+            int index2 = rad.getUrlPoster().lastIndexOf("?");
+            String naziv = rad.getUrlPoster().substring(index+rad.getKonferencija().getNaziv().length()+14, index2);
+            rad.setNazivPoster(naziv);
         }
         if(pptx != null && !pptx.isEmpty()){
             Media objekt = new Media();
-            objekt.deleteFile(rad.getNazivPptx(), rad.getKonferencija().getNaziv()+"/pptx");
+            if (!stariNazivRad.equalsIgnoreCase(nazivRad))
+                objekt.deleteFile(stariNazivRad, rad.getKonferencija().getNaziv()+"/pptx");
             rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/pptx"));
             rad.setNazivPptx(objekt.getFileName());
+        } else if (!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad) && (rad.getUrlPptx() != null)){
+            Media objekt = new Media();
+            rad.setUrlPptx(objekt.changeFileNamePptx(stariNazivRad, nazivRad, rad.getKonferencija().getNaziv()+"/pptx"));
+            int index = rad.getUrlPptx().lastIndexOf("/");
+            int index2 = rad.getUrlPptx().lastIndexOf("?");
+            String naziv = rad.getUrlPptx().substring(index+rad.getKonferencija().getNaziv().length()+11, index2);
+            rad.setNazivPptx(naziv);
         }
+
+        if(!nazivKonf.isEmpty() && !nazivKonf.equalsIgnoreCase(rad.getKonferencija().getNaziv())){
+            Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
+            if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
+                Assert.hasText("","Konferencija je već završila.");
+            if (konf.getRadovi().stream().anyMatch(rad2 -> rad2.getAutor().getEmail().equals(rad.getAutor().getEmail()))){
+                Assert.hasText("","Na navedenoj konferenciji već postoji rad ovog autora.");
+            } else if(email.equals(konf.getAdminKonf().getEmail())){
+                Assert.hasText("","Na navedenoj konferenciji navedeni autor je ujedno i admin te stoga ne može prijaviti svoj rad.");
+            }
+            Media objekt = new Media();
+            rad.setUrlPoster(objekt.changeFilePlace(rad.getNazivPoster(), rad.getKonferencija().getNaziv()+"/posteri", nazivKonf+"/posteri"));
+            rad.setUrlPptx(objekt.changeFilePlace(rad.getNazivPptx(), rad.getKonferencija().getNaziv()+"/pptx", nazivKonf+"/pptx"));
+            rad.getKonferencija().getRadovi().remove(rad);
+            rad.setKonferencija(konf);
+            konf.getRadovi().add(rad);
+        }
+
+        Konferencija konf = rad.getKonferencija();
+        Osoba osoba = rad.getAutor();
+        konf.getRadovi().remove(rad);
+        osoba.getRadovi().remove(rad);
+        konf.getRadovi().add(rad);
+        osoba.getRadovi().add(rad);
+
         radRepo.save(rad);
     }
 

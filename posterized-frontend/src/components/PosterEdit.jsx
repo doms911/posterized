@@ -159,12 +159,11 @@ const handleSubmit = async (e) =>  {
                         />
                     </div>
                     <div>
-                        <label>Poster (PDF, max 1000KB):</label>
+                        <label>Novi poster (PDF, max 1000KB):</label>
                             <input
                                 type="file"
                                 accept=".pdf"
                                 onChange={handlePosterChange}
-                                required
                             />
                         </div>
 

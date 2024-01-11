@@ -53,9 +53,9 @@ public class RadController {
                            @RequestParam("ime") String ime,
                            @RequestParam("prezime") String prezime,
                            @RequestParam("email") String email,
-                           @RequestParam("poster") MultipartFile poster,
-                           @RequestParam(value = "pptx", required = false) MultipartFile pptx) {
-        radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
+                           @RequestParam(value = "poster", required = false) MultipartFile poster,
+                           @RequestParam(value = "pptx", required = false) MultipartFile pptx, @RequestParam("nazivKonf") String nazivKonf) {
+        radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx, nazivKonf);
     }
 
     @Secured("admin")
