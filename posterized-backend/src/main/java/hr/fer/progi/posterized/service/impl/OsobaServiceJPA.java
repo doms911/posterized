@@ -72,7 +72,8 @@ public class OsobaServiceJPA implements OsobaService {
                 osoba2.setLozinka(kodiranaLozinka);
                 osoba2.setIme(ime);
                 osoba2.setPrezime(prezime);
-                osoba2.setUloga("korisnik");
+                if(osoba.getUloga().equals("admin")) osoba2.setUloga("admin");
+                else osoba2.setUloga("korisnik");
                 osobaRepo.save(osoba2);
                 return;
             } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
