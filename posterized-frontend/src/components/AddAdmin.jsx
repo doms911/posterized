@@ -34,6 +34,10 @@ function AddAdmin(props) {
                 },
             });
             alert("Admin je uspješno dodan!");
+            setIme('');
+            setPrezime('');
+            setEmail('');
+            setLozinka('')
         } catch (err) {
             var noviDiv = document.createElement('div');
             noviDiv.className = 'alert-container';

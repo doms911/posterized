@@ -7,7 +7,6 @@ function WeatherForecast() {
     const [forecastUrl, setForecastUrl] = useState('');
     const [weatherData, setWeatherData] = useState(null);
     const pin = Cookies.get('conferencePin');
-    const [url, setUrl] = useState('');
 
     // Dohvat URL-a za prognozu vremena
     useEffect(() => {
@@ -29,9 +28,6 @@ function WeatherForecast() {
             axios.get(forecastUrl)
                 .then(response => {
                     setWeatherData(response.data);
-                    console.log(weatherData);// pretpostavka da je response.data JSON s podacima o vremenu
-                    setUrl('https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/prognoza%2F'+weatherData.days[0].icon+'.png?alt=media');
-                    console.log(url);
                 })
                 .catch(error => {
                     console.error('Error fetching the weather data:', error);
@@ -46,7 +42,7 @@ function WeatherForecast() {
                 <div>
                     <h4>Vrijeme u {weatherData.resolvedAddress}</h4>
                     <p>Temperatura: {weatherData.days[0].temp}°C</p>
-                    <img src={url} alt={weatherData.days[0].icon} />
+                    <img src={'https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/prognoza%2F'+weatherData.days[0].icon+'.png?alt=media'} alt={weatherData.days[0].icon} />
                 </div>
             )}
         </div>

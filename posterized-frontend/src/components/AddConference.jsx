@@ -40,6 +40,9 @@ function AddConference(props) {
                 });
                 } else {
                     alert('Konferencija uspješno dodana');
+                    setPin('');
+                    setAdminEmail('');
+                    setnaziv('');
                 }
             })
             .catch((error) => {

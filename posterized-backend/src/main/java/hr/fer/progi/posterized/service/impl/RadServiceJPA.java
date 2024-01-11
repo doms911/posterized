@@ -46,7 +46,7 @@ public class RadServiceJPA implements RadService {
         Assert.notNull(rad, "Podaci o radu moraju biti navedeni.");
         Assert.hasText(rad.getNaslov(), "Naslov mora biti naveden.");
         if (radRepo.countByNaslovIgnoreCase(rad.getNaslov()) > 0){
-            Assert.hasText("","Rad s naslovom " + rad.getNaslov() + " već postoji.");
+            Assert.hasText("","Rad s naslovom '" + rad.getNaslov() + "' već postoji.");
         }
 
         Osoba osoba = oService.findByEmail(autor.getEmail());
@@ -76,7 +76,7 @@ public class RadServiceJPA implements RadService {
     @Transactional
     public void izbrisiRad(String admin, String naslov){
         Rad rad = radRepo.findByNaslovIgnoreCase(naslov);
-        if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
+        if(rad == null) Assert.hasText("","Rad s naslovom '" + naslov + "' ne postoji.");
         Konferencija konf = rad.getKonferencija();
         if(!konf.getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
         //if(konf.getVrijemePocetka() != null && konf.getVrijemePocetka().before(new Timestamp(System.currentTimeMillis())))
@@ -117,5 +117,28 @@ public class RadServiceJPA implements RadService {
         }
     }
 
+    @Override
+    public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx) {
+        Rad rad = radRepo.findByNaslovIgnoreCase(stariNazivRad);
+        Assert.notNull(rad,"Rad ne postoji.");
+        if(!rad.getKonferencija().getAdminKonf().getEmail().equalsIgnoreCase(admin)) Assert.hasText("","Nemate pristup ovoj konferenciji.");
+        if(!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad)) rad.setNaslov(nazivRad);
+        if(!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) rad.getAutor().setIme(ime);
+        if(!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime())) rad.getAutor().setPrezime(prezime);
+        if(!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())) rad.getAutor().setEmail(email);
+        if(!poster.isEmpty()) {
+            Media objekt = new Media();
+            objekt.deleteFile(rad.getNazivPoster(), rad.getKonferencija().getNaziv()+"/posteri");
+            rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/posteri"));
+            rad.setNazivPoster(objekt.getFileName());
+        }
+        if(pptx != null && !pptx.isEmpty()){
+            Media objekt = new Media();
+            objekt.deleteFile(rad.getNazivPptx(), rad.getKonferencija().getNaziv()+"/pptx");
+            rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/pptx"));
+            rad.setNazivPptx(objekt.getFileName());
+        }
+        radRepo.save(rad);
+    }
 
 }

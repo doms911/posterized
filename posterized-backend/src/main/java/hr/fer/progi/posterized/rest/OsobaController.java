@@ -16,12 +16,14 @@ public class OsobaController {
     private OsobaService oService;
     @PostMapping("")
     public void createKorisnik(@RequestBody Osoba osoba) {
+        osoba.setUloga("korisnik");
         oService.createAdminKorisnik(osoba);
     }
 
     @PostMapping("/admin")
     @Secured("superadmin")
     public void createAdmin(@RequestBody Osoba osoba) {
+        osoba.setUloga("admin");
         String lozinka = osoba.getLozinka();
         oService.createAdminKorisnik(osoba);
         oService.saljiMail(osoba, lozinka);

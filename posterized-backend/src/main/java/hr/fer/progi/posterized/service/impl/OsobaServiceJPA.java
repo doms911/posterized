@@ -70,7 +70,10 @@ public class OsobaServiceJPA implements OsobaService {
             Osoba osoba2 = osobaRepo.findByEmail(email);
             if(osoba2.getUloga().equals("autor")) {
                 osoba2.setLozinka(kodiranaLozinka);
-                osoba2.setUloga("korisnik");
+                osoba2.setIme(ime);
+                osoba2.setPrezime(prezime);
+                if(osoba.getUloga().equals("admin")) osoba2.setUloga("admin");
+                else osoba2.setUloga("korisnik");
                 osobaRepo.save(osoba2);
                 return;
             } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
@@ -105,6 +108,7 @@ public class OsobaServiceJPA implements OsobaService {
     private JavaMailSender mailSender;
     @Override
     public void saljiMail(Osoba osoba, String lozinka){
+        Assert.notNull(osoba, "Osoba ne postoji.");
         final String url = env.getProperty("send.email.link") + "/forgot-password";
         final String message = "Vaša trenutna lozinka je: " + lozinka + ", a ako ju želite promijeniti: ";
         final SimpleMailMessage email = new SimpleMailMessage();
@@ -118,6 +122,7 @@ public class OsobaServiceJPA implements OsobaService {
     @Transactional
     public void promijeniOsobiLozinku(Osoba osoba, String lozinka, String token){
         Assert.hasText(lozinka, "Lozinka mora biti navedena.");
+        Assert.notNull(osoba, "Osoba ne postoji.");
         Assert.isTrue(lozinka.matches(LOZINKA_FORMAT),
                 "Lozinka mora biti u pravilnom obliku - barem jedan broj, jedno veliko slovo, jedno malo slovo " +
                         "i mora sadržavati barem osam znakova."
