@@ -74,11 +74,9 @@ public class OsobaServiceJPA implements OsobaService {
                 osoba2.setPrezime(prezime);
                 if(osoba.getUloga().equals("admin")) osoba2.setUloga("admin");
                 else osoba2.setUloga("korisnik");
-                osobaRepo.save(osoba2);
                 return;
             } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
                 osoba2.setUloga("admin");
-                osobaRepo.save(osoba2);
                 return;
             } else Assert.hasText("", "Korisnik s emailom " + osoba.getEmail() + " već postoji.");
         }
@@ -128,6 +126,5 @@ public class OsobaServiceJPA implements OsobaService {
                         "i mora sadržavati barem osam znakova."
         );
         osoba.setLozinka(pswdEncoder.encode(lozinka));
-        osobaRepo.save(osoba);
     }
 }

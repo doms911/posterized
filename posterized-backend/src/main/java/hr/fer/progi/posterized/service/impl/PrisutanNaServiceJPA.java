@@ -95,7 +95,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
     @Override
     public void glasaj(String korisnik, String naslov){
         Rad rad = radService.findByNaslovIgnoreCase(naslov);
-        if(rad == null) Assert.hasText("","Rad s naslovom " + naslov + " ne postoji.");
+        if(rad == null) Assert.hasText("","Rad s naslovom '" + naslov + "' ne postoji.");
         if (korisnik.equals("superadmin"))Assert.hasText("","Ne možete glasati na ovoj konferenciji.");
 
         Konferencija konf = rad.getKonferencija();
@@ -109,7 +109,7 @@ public class PrisutanNaServiceJPA implements PrisutanNaService {
         if(konf.getVrijemeKraja() != null && konf.getVrijemeKraja().before(new Timestamp(System.currentTimeMillis())))
             Assert.hasText("","Konferencija je već završila.");
         Prisutan_na pris = prisRepo.findById(kljuc).get();
-        if(pris.isGlasao())Assert.hasText("","Već ste glasali.");
+        if(pris.isGlasao())Assert.hasText("","Već ste glasali na ovoj konferenciji.");
         pris.setGlasao(true);
         rad.setUkupnoGlasova(rad.getUkupnoGlasova() + 1);
         prisRepo.save(pris);

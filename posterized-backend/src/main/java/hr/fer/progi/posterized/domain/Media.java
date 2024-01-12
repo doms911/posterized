@@ -7,7 +7,6 @@ import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
-import hr.fer.progi.posterized.service.impl.PokroviteljServiceJPA;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -135,9 +135,9 @@ public class RadServiceJPA implements RadService {
                 noviAutor.setIme(ime);
                 noviAutor.setPrezime(prezime);
                 noviAutor.setUloga("autor");
+                noviAutor.getRadovi().add(rad);
                 Osoba osoba = oService.createAutor(noviAutor);
                 rad.setAutor(osoba);
-                osoba.getRadovi().add(rad);
             } else {
                 Osoba finalNoviAutor = noviAutor;
                 if(rad.getKonferencija().getRadovi().stream().anyMatch(rad2 -> (rad2.getAutor().getEmail().equals(finalNoviAutor.getEmail()) && !rad2.getNaslov().equalsIgnoreCase(nazivRad)))){

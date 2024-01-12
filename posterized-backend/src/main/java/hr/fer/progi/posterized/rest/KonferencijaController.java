@@ -127,7 +127,7 @@ public class KonferencijaController {
                                    @RequestParam("sponzori") List<String> sponzori){
         kService.updateKonferencija(user.getUsername(), nazivKonf, urlVideo, vrijemePocetka,vrijemeKraja, mjesto, pbr, adresa, sponzori);
     }
-
+    @Secured("superadmin")
     @GetMapping("/izbrisiKonf/{naziv}")
     public void izbrisiKonf (@PathVariable("naziv") String nazivKonf){
         kService.izbrisiKonf(nazivKonf);
