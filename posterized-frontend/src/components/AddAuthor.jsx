@@ -149,7 +149,6 @@ function AddAuthor(props) {
                         <input
                             id="posterInput"
                             type="file"
-                            id="posterInput"
                             accept=".pdf"
                             onChange={handlePosterChange}
                             required
@@ -160,10 +159,8 @@ function AddAuthor(props) {
                         <input
                             id="presentationInput"
                             type="file"
-                            id="presentationInput"
                             accept=".ppt,.pptx"
                             onChange={handlePresentationChange}
-                            required
                         />
                     </div>
                     <div>
