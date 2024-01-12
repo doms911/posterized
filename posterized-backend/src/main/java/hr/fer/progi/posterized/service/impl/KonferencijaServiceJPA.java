@@ -121,14 +121,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             Assert.hasText("", "Admin s emailom " + email + " ne postoji.");
         }
         if(osoba.getUloga().equals("korisnik")) {
-            Osoba o1 = new Osoba();
-            o1.setUloga("admin");
-            o1.setId(null);
-            o1.setEmail(osoba.getEmail());
-            o1.setIme(osoba.getIme());
-            o1.setPrezime(osoba.getPrezime());
-            o1.setLozinka(osoba.getLozinka());
-            oService.createAdminKorisnik(o1);
+            osoba.setUloga("admin");
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
@@ -158,12 +151,10 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Assert.hasText(lokacija, "Lokacija dodjele nagrade mora biti navedena.");
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
 
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
         if(rezultati == null) return;
         String poruka = "Pozvani ste na dodjelu nagrada za konferenciju pod nazivom " +
-                konf.getNaziv() + " na adresi " + lokacija + ". Dodjela nagrada održat će se " +
+                konf.getNaziv() + " na lokaciji " + lokacija + ". Dodjela nagrada održat će se " +
                 vrijeme;
 
         StringBuilder message = new StringBuilder(poruka);
@@ -210,6 +201,12 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             email.setFrom(env.getProperty("support.email"));
             mailSender.send(email);
         }
+        final SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(konf.getAdminKonf().getEmail());
+        email.setSubject("Dodjela nagrada");
+        email.setText(message.toString());
+        email.setFrom(env.getProperty("support.email"));
+        mailSender.send(email);
     }
     @Override
     public void updateKonferencija(String admin, String naziv, String urlVideo, String vrijemePocetka, String vrijemeKraja, String mjestoNaziv, String pbr, String adresa, List<String> sponzori) {
@@ -241,7 +238,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
         if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa mora biti navedena");
 
-        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto mora biti navedeno.");
+        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto i poštanski broj moraju biti navedeni.");
 
         if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
             Assert.hasText("", "Poštanski broj i mjesto moraju biti promijenjeni zajedno.");

@@ -44,7 +44,7 @@ public class PasswordTokenController {
 
     private SimpleMailMessage napraviEmail(String contextPath, String token, Osoba osoba) {
         final String url = contextPath + "/changePassword?id=" + osoba.getId() + "&token=" + token;
-        final String message = "Ponovno postavi lozinku";
+        final String message = "Ponovno postavite lozinku";
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(osoba.getEmail());
         email.setSubject("Ponovno postavljanje lozinke");

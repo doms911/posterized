@@ -4,6 +4,7 @@ import hr.fer.progi.posterized.service.FotografijaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.List;
 public class FotografijaController {
     @Autowired
     FotografijaService fotoService;
+    @Secured("admin")
     @PostMapping("/{naziv}")
     public void dodajSlike(@PathVariable("naziv") String nazivKonf, @AuthenticationPrincipal User user,
                            @RequestParam("slike") List<MultipartFile> slike){
