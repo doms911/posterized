@@ -163,7 +163,7 @@ public class RadServiceJPA implements RadService {
         if(poster != null && !poster.isEmpty()) {
             Media objekt = new Media();
             if (!stariNazivRad.equalsIgnoreCase(nazivRad))
-                objekt.deleteFile(stariNazivRad, rad.getKonferencija().getNaziv()+"/posteri");
+                objekt.deleteFile(rad.getNazivPoster(), rad.getKonferencija().getNaziv()+"/posteri");
             rad.setUrlPoster(objekt.upload(poster, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/posteri"));
             rad.setNazivPoster(objekt.getFileName());
         } else if (!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad) && (rad.getUrlPoster() != null)){
@@ -177,7 +177,7 @@ public class RadServiceJPA implements RadService {
         if(pptx != null && !pptx.isEmpty()){
             Media objekt = new Media();
             if (!stariNazivRad.equalsIgnoreCase(nazivRad))
-                objekt.deleteFile(stariNazivRad, rad.getKonferencija().getNaziv()+"/pptx");
+                objekt.deleteFile(rad.getNazivPptx(), rad.getKonferencija().getNaziv()+"/pptx");
             rad.setUrlPptx(objekt.upload(pptx, rad.getNaslov(), rad.getKonferencija().getNaziv()+"/pptx"));
             rad.setNazivPptx(objekt.getFileName());
         } else if (!nazivRad.isEmpty() && !nazivRad.equalsIgnoreCase(stariNazivRad) && (rad.getUrlPptx() != null)){
