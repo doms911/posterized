@@ -137,6 +137,7 @@ public class RadServiceJPA implements RadService {
                 noviAutor.setUloga("autor");
                 Osoba osoba = oService.createAutor(noviAutor);
                 rad.setAutor(osoba);
+                osoba.getRadovi().add(rad);
             } else {
                 Osoba finalNoviAutor = noviAutor;
                 if(rad.getKonferencija().getRadovi().stream().anyMatch(rad2 -> (rad2.getAutor().getEmail().equals(finalNoviAutor.getEmail()) && !rad2.getNaslov().equalsIgnoreCase(nazivRad)))){
@@ -147,13 +148,10 @@ public class RadServiceJPA implements RadService {
                 if (!email.isEmpty() && !email.equalsIgnoreCase(rad.getAutor().getEmail())){
                     rad.getAutor().getRadovi().remove(rad);
                     rad.setAutor(noviAutor);
+                    noviAutor.getRadovi().add(rad);
                 }
                 if (((!ime.isEmpty() && !ime.equalsIgnoreCase(rad.getAutor().getIme())) || (!prezime.isEmpty() && !prezime.equalsIgnoreCase(rad.getAutor().getPrezime()))) && rad.getAutor().getEmail().equals(email)){
                     if (noviAutor.getUloga().equals("autor")){
-                        for (Rad rad4 : noviAutor.getRadovi()){
-                            rad4.getAutor().setIme(ime);
-                            rad4.getAutor().setPrezime(prezime);
-                        }
                         rad.getAutor().setIme(ime);
                         rad.getAutor().setPrezime(prezime);
                     } else {
@@ -162,8 +160,6 @@ public class RadServiceJPA implements RadService {
                 }
             };
         }
-
-
         if(poster != null && !poster.isEmpty()) {
             Media objekt = new Media();
             if (!stariNazivRad.equalsIgnoreCase(nazivRad))
@@ -209,14 +205,6 @@ public class RadServiceJPA implements RadService {
             rad.setKonferencija(konf);
             konf.getRadovi().add(rad);
         }
-
-        Konferencija konf = rad.getKonferencija();
-        Osoba osoba = rad.getAutor();
-        konf.getRadovi().remove(rad);
-        osoba.getRadovi().remove(rad);
-        konf.getRadovi().add(rad);
-        osoba.getRadovi().add(rad);
-
         radRepo.save(rad);
     }
 
