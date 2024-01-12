@@ -138,13 +138,6 @@ function ConferenceInput(props) {
           });}
       else {
           alert('Podaci uspješno promijenjeni')
-          setVideoURL('');
-          setStartTime('');
-          setEndTime('');
-          setPbr(0);
-          setAdresa('');
-          setMjesto('');
-          setSelectedSponsors([]);
       }
   }
   )
