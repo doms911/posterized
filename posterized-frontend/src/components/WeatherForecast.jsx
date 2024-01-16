@@ -39,7 +39,7 @@ function WeatherForecast() {
     return (
         <div className="weather-container">
             {weatherData && weatherData.days && weatherData.days.length > 0 && (
-                <div>
+                <div className="weather-container">
                     <h4>Vrijeme u {weatherData.resolvedAddress}</h4>
                     <p>Temperatura: {weatherData.days[0].temp}°C</p>
                     <img src={'https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/prognoza%2F'+weatherData.days[0].icon+'.png?alt=media'} alt={weatherData.days[0].icon} />

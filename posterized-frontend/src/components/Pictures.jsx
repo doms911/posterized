@@ -55,9 +55,8 @@ function Pictures({ isLoggedIn, onLogout }) {
     return (
         <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
-            <Sponsors />
             <WeatherForecast/>
-            <div className="centered-wrapper">
+            <div className="centeredWrapper">
                 {errorMessage ? (
                     <div className="error-message">
                         <p>{errorMessage}</p>
@@ -73,6 +72,7 @@ function Pictures({ isLoggedIn, onLogout }) {
                     </div>
                 )}
             </div>
+            <div className='sponsorss'><Sponsors /></div>
         </div>
     );
 }

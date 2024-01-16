@@ -1,6 +1,19 @@
 .weather-container {
-    position: fixed;
-    top: 100px;
+    position: absolute;
+    top: 3rem;
     right: 10px;
-    z-index: 1000;
+    width: 16rem;
+    align-items: center;
+}
+
+
+
+@media (max-width: 1000px) {
+    .weather-container{
+       display: flex;
+       flex-direction: column;
+       width: 100%;
+       align-items: center;
+       margin-right: -0.5rem;
+    }
 }

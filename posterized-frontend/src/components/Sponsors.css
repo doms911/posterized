@@ -1,8 +1,10 @@
 .sponsors-container {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    z-index: 1000;
+    display: flex;
+    position: relative;
+    bottom: 0;
+    left: 0.5rem;
+    align-items: center;
+
 }
 
 .sponsors-container img {
@@ -13,4 +15,17 @@
 
 .sponsors-container img:hover {
     transform: scale(1.1);
+}
+
+@media (max-width: 1000px) {
+    .sponsors-container {
+        margin-bottom: -30rem;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        align-content: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
 }
