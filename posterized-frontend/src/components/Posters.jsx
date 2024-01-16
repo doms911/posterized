@@ -55,8 +55,7 @@ function Posters({ isLoggedIn, onLogout }) {
     return (
         <div className="posters-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <Sponsors />
-            <WeatherForecast/>
+            <div><WeatherForecast/></div>
             {works.map((work, index) => (
                 <div key={index} className="work-container">
                     <div className="work-info">
@@ -91,6 +90,7 @@ function Posters({ isLoggedIn, onLogout }) {
                 </div>
 
             ))}
+            <div className='sponsor'><Sponsors /></div>
         </div>
     );
 }

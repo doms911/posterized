@@ -77,10 +77,11 @@ const PinInput = (props) => {
     };
 
     return (
-        <div className="page-container" >
+        <div className="pageContainer" >
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <Sponsors />
-            <WeatherForecast/>
+            <div className="pageContainer">
+            <div><WeatherForecast/></div>
+            <div className='sponsors-wrapper'><Sponsors /></div>
             <div className="centered-wrapper">
                 <div className="container">
                     <h2>Pristupite konferenciji</h2>
@@ -115,6 +116,7 @@ const PinInput = (props) => {
                         </div>
                     )}
                 </div>
+            </div>
             </div>
         </div>
     );

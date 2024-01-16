@@ -14,7 +14,11 @@
     flex-direction: column; /* Stack title/author and PDF vertically */
     align-items: center;
     width: 80%;
-    margin-bottom: 30px; /* Spacing between each work */
+    margin-top: 10rem;
+}
+
+.work-container button {
+    margin-top: 17rem;;
 }
 
 .work-info {
@@ -24,7 +28,9 @@
 
 .content-container {
     display: flex;
-    align-items: start;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     
 }
 
@@ -51,7 +57,26 @@
     padding: 0 10px; /* Padding on the sides of the button */
 }
 
+.sponsor {
+    width: 100%;
+    position: relative;
+    bottom: -3rem;
+}
+
 header {
     position: relative;
     z-index: 10; /* Above other content */
 }
+
+@media (max-width: 1000px) {
+    .posters-container{
+        margin-top: 12rem;
+        margin-bottom: 9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+}
+

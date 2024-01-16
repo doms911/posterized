@@ -1,4 +1,5 @@
-.centered-wrapper {
+.centeredWrapper {
+    margin-top: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,10 +11,16 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .image-item {
     margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 
@@ -25,4 +32,16 @@
 .image-item img {
     max-width: 100%; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
     height: auto;    /* Visina će biti automatski prilagođena zadržavajući odnos stranica */
+}
+
+.sponsorss {
+    position: absolute;
+    margin-top: 16rem;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .sponsorss {
+        margin-top: 1rem;
+    }
 }
