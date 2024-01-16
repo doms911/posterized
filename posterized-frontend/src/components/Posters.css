@@ -38,7 +38,7 @@
 }
 
 .pdf-document {
-    width: 200%; /* Adjust width automatically */
+    width: auto; /* Adjust width automatically */
     height: 500px; /* Fixed height, you can adjust as needed */
     border: none;
 }
@@ -48,24 +48,10 @@
     display: flex;
     justify-content: center; /* Center the button horizontally */
     align-items: start; /* Align the button to the top */
-    padding: 5px 0px; /* Padding on the sides of the button */
+    padding: 0 10px; /* Padding on the sides of the button */
 }
 
 header {
     position: relative;
     z-index: 10; /* Above other content */
 }
-
-.pdf-and-link-container {
-    display: flex; /* Use flex to contain the iframe properly */
-    flex-direction: column; /* Stack the PDF and link vertically */
-    align-items: center; /* Center the items */
-    padding: 10px;
-}
-
-.presentation-link {
-    margin-top: 10px; /* Add space between the PDF and the link */
-    text-decoration: none; /* Optional: removes underline from link */
-    color: #000; /* Optional: sets the text color of the link */
-}
-
