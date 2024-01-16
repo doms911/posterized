@@ -14,6 +14,7 @@ function Posters({ isLoggedIn, onLogout }) {
         if (pin) {
             axios.get(`/api/konferencija/dohvatiRadove/${pin}`)
                 .then(response => {
+                    console.log(response.data);
                     setWorks(response.data); // Assuming response.data is an array of works
                 })
                 .catch(error => {
@@ -56,21 +57,26 @@ function Posters({ isLoggedIn, onLogout }) {
         <div className="posters-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
             <Sponsors />
-            <WeatherForecast/>
+            <WeatherForecast />
             {works.map((work, index) => (
                 <div key={index} className="work-container">
                     <div className="work-info">
                         <h2>{work.naslov}</h2>
+                        <p>{work.ime} {work.prezime}</p> {/* Assuming 'ime' and 'prezime' are the properties */}
                     </div>
                     <div className="content-container">
                         <div className="pdf-container">
                             {work.urlPoster ? (
-                                <iframe
-                                    src={work.urlPoster}
-                                    className="pdf-document"
-                                    frameBorder="0"
-                                    title={work.naslov}
-                                ></iframe>
+                                <div className="pdf-and-link-container">
+                                    <iframe
+                                        src={work.urlPoster}
+                                        className="pdf-document"
+                                        frameBorder="0"
+                                        title={work.naslov}
+                                    ></iframe>
+                                    <a href={work.urlPptx} target="_blank" rel="noopener noreferrer"
+                                       className="presentation-link">Link za prezentaciju!</a>
+                                </div>
                             ) : (
                                 <p>Loading PDF...</p>
                             )}
@@ -89,10 +95,10 @@ function Posters({ isLoggedIn, onLogout }) {
                         </div>
                     </div>
                 </div>
-
             ))}
         </div>
     );
+
 }
 
 export default Posters;
