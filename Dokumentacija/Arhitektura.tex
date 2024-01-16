@@ -201,7 +201,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 		
 		
 			Radi preglednosti, dijagram je razlomljen na nekoliko dijelova. Na njima su prikazani razredi koji pripadaju backend dijelu MVC arhitekture.
-			Na slici 4.4 su prikazane DTO klase. DTO klase služe za prijenos podataka između baze podataka i serverske strane aplikacije. Ti su objekti zapravo preslika baze podataka, ali umjesto relacijske koristimo objektno-orijentiranu paradigmu. 
+			Na slici 4.4 je prikazan Model dio. Model klase služe za prijenos podataka između baze podataka i serverske strane aplikacije. Ti su objekti zapravo preslika baze podataka, ali umjesto relacijske koristimo objektno-orijentiranu paradigmu. 
 			Razred Konferencija predstavlja konferenciju koja se prikazuje u aplikaciji. 
 Razred Mjesto predstavlja lokaciju na kojoj se konferencija održava.
 Razred Osoba predstavlja čovjeka koji na neki način sudjeluje na konferenciji.  Taj razred ima atribut uloga kojim se određuje je li ta osoba autor, administrator ili posjetitelj konferencije. 
@@ -209,9 +209,11 @@ Razred Rad predstavlja rad (poster i/ili pptx) kojim se autor predstavlja na kon
 Razred PrisutanNa omogućuje da pratimo tko je na konferenciji te da li je ta osoba glasala za neki rad.
 Razred Fotografija predstavlja fotografije konferencije koje administrator stavlja u aplikaciju tijekom ili nakon konferencije.
 Razred Pokrovitelj predstavlja sponzore konferencije. 
+Razred PasswordToken omogućuje postavljanje i promjenu lozinku.
+Razred Media omogućuje lakši prikaz i pohranu medijskih sadržaja.
 
 			\begin{figure}[H]
-				\includegraphics[scale=0.4]{dijagrami/dto_klase.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\includegraphics[scale=0.35]{dijagrami/models.png}%veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram razreda - DTO}
 				\label{fig:promjena9}
