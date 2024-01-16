@@ -60,16 +60,21 @@ function Posters({ isLoggedIn, onLogout }) {
                 <div key={index} className="work-container">
                     <div className="work-info">
                         <h2>{work.naslov}</h2>
+                        <p>{work.ime} {work.prezime}</p> {/* Assuming 'ime' and 'prezime' are the properties */}
                     </div>
                     <div className="content-container">
                         <div className="pdf-container">
                             {work.urlPoster ? (
-                                <iframe
-                                    src={work.urlPoster}
-                                    className="pdf-document"
-                                    frameBorder="0"
-                                    title={work.naslov}
-                                ></iframe>
+                                <div className="pdf-and-link-container">
+                                    <iframe
+                                        src={work.urlPoster}
+                                        className="pdf-document"
+                                        frameBorder="0"
+                                        title={work.naslov}
+                                    ></iframe>
+                                    <a href={work.urlPptx} target="_blank" rel="noopener noreferrer"
+                                       className="presentation-link">Link za prezentaciju!</a>
+                                </div>
                             ) : (
                                 <p>Loading PDF...</p>
                             )}
