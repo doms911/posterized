@@ -1,6 +1,6 @@
 .video-stream-container {
     display: block;
-    max-width: 80%; /* Širina kontejnera prilagođena veličini ekrana */
+    width: 80%; /* Širina kontejnera prilagođena veličini ekrana */
     margin: 6rem auto; /* Centriranje kontejnera */
     padding: 5px; /* Unutarnji razmak */
     text-align: center; /* Centriranje naslova */
@@ -30,8 +30,7 @@
     height: 100%; /* Popuni cijeli roditeljski .video */
     border: none; /* Bez granica oko iframe-a */
 }
-
-.sponsors-container {
+sponsorsClassName .sponsors-container {
     display: flex;
     flex-wrap: wrap;
     margin-top: -5rem; /* Space between video and sponsors */
@@ -43,7 +42,6 @@
     .video-stream-container {
         margin-bottom: 0; /* Uklonite negativni margin kako biste izbjegli preklapanje */
     }
-
     .sponsorsClassName {
         position: absolute; /* Apsolutno pozicioniranje unutar roditeljskog relativno pozicioniranog kontejnera */
         bottom: 0; /* Pričvršćivanje na dno stranice */
@@ -52,6 +50,4 @@
         height: auto;
 
     }
-
-
 }
