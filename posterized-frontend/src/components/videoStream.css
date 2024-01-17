@@ -1,7 +1,7 @@
 .video-stream-container {
     display: block;
-    max-width: 100%; /* Širina kontejnera prilagođena veličini ekrana */
-    margin: 10rem auto; /* Centriranje kontejnera */
+    max-width: 80%; /* Širina kontejnera prilagođena veličini ekrana */
+    margin: 6rem auto; /* Centriranje kontejnera */
     padding: 5px; /* Unutarnji razmak */
     text-align: center; /* Centriranje naslova */
 }
@@ -9,16 +9,16 @@
 .video-stream-container h2 {
     font-size: 24px; /* Velika slova za naslov */
     color: #333; /* Tamnija boja teksta */
-    margin-bottom: 20px; /* Razmak ispod naslova */
+     /* Razmak ispod naslova */
 }
 
 .video {
     display: flex;
-    max-width: 80%; /* Osigurava da video zauzima 100% širine kontejnera */
+    max-width: 100%; /* Osigurava da video zauzima 100% širine kontejnera */
     height: 0; /* Postavljamo visinu na 0 kako bi održali omjer stranica */
     padding-bottom: 56.25%; /* Omjer stranica 16:9 (100 / 16 * 9) */
     position: relative; /* Relativna pozicija za apsolutno pozicioniranje iframe-a */
-    border-radius: 4px; /* Zaobljeni uglovi za video */
+     /* Zaobljeni uglovi za video */
    /* Skrivanje sadržaja izvan granica video kontejnera */
     margin: auto;
     align-content: center;
@@ -31,15 +31,27 @@
     border: none; /* Bez granica oko iframe-a */
 }
 
+.sponsors-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -5rem; /* Space between video and sponsors */
+}
 
 
 /* Opcionalno: Dodajte dodatne stilove za responsive dizajn */
 @media (max-width: 1000px) {
     .video-stream-container {
-        margin-bottom: -7rem;
+        margin-bottom: 0; /* Uklonite negativni margin kako biste izbjegli preklapanje */
     }
 
     .sponsorsClassName {
-        margin-top: 8rem;
+        position: absolute; /* Apsolutno pozicioniranje unutar roditeljskog relativno pozicioniranog kontejnera */
+        bottom: 0; /* Pričvršćivanje na dno stranice */
+        left: 0; /* Poravnavanje s lijeve strane */
+        width: 100%; /* Širina sponzora da zauzme cijelu širinu */
+        height: auto;
+
     }
+
+
 }

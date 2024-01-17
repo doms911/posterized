@@ -92,5 +92,8 @@ header {
         align-content: center;
         flex-wrap: wrap;
     }
+    .voting-container {
+        padding-bottom: 100px; /* Dajte malo prostora ispod gumba za glasanje */
+    }
 }
 
