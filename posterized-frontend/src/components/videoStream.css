@@ -1,6 +1,7 @@
 .video-stream-container {
+    display: block;
     max-width: 100%; /* Širina kontejnera prilagođena veličini ekrana */
-    margin: 20rem auto; /* Centriranje kontejnera */
+    margin: 10rem auto; /* Centriranje kontejnera */
     padding: 5px; /* Unutarnji razmak */
     text-align: center; /* Centriranje naslova */
 }
@@ -12,13 +13,15 @@
 }
 
 .video {
-    width: 100%; /* Osigurava da video zauzima 100% širine kontejnera */
+    display: flex;
+    max-width: 80%; /* Osigurava da video zauzima 100% širine kontejnera */
     height: 0; /* Postavljamo visinu na 0 kako bi održali omjer stranica */
     padding-bottom: 56.25%; /* Omjer stranica 16:9 (100 / 16 * 9) */
     position: relative; /* Relativna pozicija za apsolutno pozicioniranje iframe-a */
     border-radius: 4px; /* Zaobljeni uglovi za video */
    /* Skrivanje sadržaja izvan granica video kontejnera */
-    margin-left: -50%
+    margin: auto;
+    align-content: center;
 }
 
 #frame {
@@ -28,12 +31,7 @@
     border: none; /* Bez granica oko iframe-a */
 }
 
-.sponsorsClassName {
-    position: absolute;
-    margin-top: -15rem;
-    display: flex;
-    flex-wrap: wrap;
-}
+
 
 /* Opcionalno: Dodajte dodatne stilove za responsive dizajn */
 @media (max-width: 1000px) {

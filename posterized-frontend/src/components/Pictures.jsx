@@ -55,7 +55,6 @@ function Pictures({ isLoggedIn, onLogout }) {
     return (
         <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
-            <WeatherForecast/>
             <div className="centeredWrapper">
                 {errorMessage ? (
                     <div className="error-message">

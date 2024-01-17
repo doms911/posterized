@@ -14,16 +14,13 @@
     flex-direction: column; /* Stack title/author and PDF vertically */
     align-items: center;
     width: 80%;
-    margin-top: 10rem;
+    padding-top: 0px;
 }
 
-.work-container button {
-    margin-top: 17rem;;
-}
 
 .work-info {
     text-align: center;
-    margin: 20px 0 10px; /* Adjust the top margin to push the title down */
+    margin: 0px 0 10px; /* Adjust the top margin to push the title down */
 }
 
 .content-container {
@@ -73,7 +70,7 @@
 .presentation-link {
     margin-top: 10px; /* Add space between the PDF and the link */
     text-decoration: none; /* Optional: removes underline from link */
-    color: #000; /* Optional: sets the text color of the link */
+    /*color: #000; /* Optional: sets the text color of the link */
 }
 
 header {
@@ -83,7 +80,6 @@ header {
 
 @media (max-width: 1000px) {
     .posters-container{
-        margin-top: 12rem;
         margin-bottom: 9rem;
         display: flex;
         align-items: center;

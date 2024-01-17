@@ -1,5 +1,5 @@
 .centeredWrapper {
-    margin-top: 20rem;
+    margin-top: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,11 +8,9 @@
 }
 
 .images {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto;
     gap: 10px;
-    align-items: center;
-    justify-content: center;
 }
 
 .image-item {
@@ -21,8 +19,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    justify-self: center;
 }
-
 
 
 .error-message {
@@ -43,5 +41,21 @@
 @media (max-width: 1000px) {
     .sponsorss {
         margin-top: 1rem;
+    }
+
+    .images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .image-item {
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 }

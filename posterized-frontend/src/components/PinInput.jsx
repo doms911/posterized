@@ -37,7 +37,7 @@ const PinInput = (props) => {
             });
             Cookies.set('isPinValid', 'true', { expires: 1 }); // Postavljanje kolačića na 1 dan
             Cookies.set('conferencePin', pin, { expires: 1 });
-            setPinMessage(`Conference found: ${response.data[0].naziv}`);
+            setPinMessage(`Konferencija nađena: ${response.data[0].naziv}`);
             setConferenceInfo(response.data);
             console.log("Response Data:", response.data);
             saveConferenceInfoToCookie(response.data);

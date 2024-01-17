@@ -55,7 +55,6 @@ function Posters({ isLoggedIn, onLogout }) {
     return (
         <div className="posters-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <div><WeatherForecast/></div>
             {works.map((work, index) => (
                 <div key={index} className="work-container">
                     <div className="work-info">
@@ -73,7 +72,7 @@ function Posters({ isLoggedIn, onLogout }) {
                                         title={work.naslov}
                                     ></iframe>
                                     <a href={work.urlPptx} target="_blank" rel="noopener noreferrer"
-                                       className="presentation-link">Link za prezentaciju!</a>
+                                       className="presentation-link">Link na prezentaciju!</a>
                                 </div>
                             ) : (
                                 <p>Loading PDF...</p>
@@ -88,7 +87,7 @@ function Posters({ isLoggedIn, onLogout }) {
                             ) : hasVoted(work.naslov) ? (
                                 <p>Hvala na glasanju!</p>
                             ) : (
-                                <button type="button" onClick={() => handleVote(work.naslov, index)}>Glasaj</button>
+                                <button className="glasanje" type="button" onClick={() => handleVote(work.naslov, index)}>Glasaj</button>
                             )}
                         </div>
                     </div>

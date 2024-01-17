@@ -40,7 +40,6 @@ function VideoStream({ isLoggedIn, onLogout }) {
     return (
         <div><Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
         <div className="video-stream-container">
-            <div><WeatherForecast/></div>
             <div className='video'>
                 {errorMessage ? (
                     <div className="error-message">
