@@ -78,9 +78,14 @@ header {
     z-index: 10; /* Above other content */
 }
 
+.sponsorss {
+    position: absolute;
+    margin-top: 16rem;
+    width: 100%;
+}
+
 @media (max-width: 1000px) {
     .posters-container{
-        margin-bottom: 9rem;
         display: flex;
         align-items: center;
         justify-content: center;
