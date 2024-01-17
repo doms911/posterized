@@ -11,6 +11,7 @@ function Pictures({ isLoggedIn, onLogout }) {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const fetchImages = async () => {
             const pin = Cookies.get('conferencePin');
             console.log(pin);

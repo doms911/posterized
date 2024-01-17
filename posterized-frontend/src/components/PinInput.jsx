@@ -21,6 +21,7 @@ const PinInput = (props) => {
     const valid = Cookies.get('conferencePin');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const savedInfo = getConferenceInfoFromCookie();
         if (savedInfo) {
             setConferenceInfo(savedInfo);

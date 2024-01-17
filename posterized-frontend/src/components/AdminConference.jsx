@@ -24,6 +24,7 @@ const AdminConference = (props) => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Učitaj sve radove koje ste dobili
     const fetchReceivedPapers = async () => {
       try {

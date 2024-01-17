@@ -11,6 +11,7 @@ function VideoStream({ isLoggedIn, onLogout }) {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const fetchVideo = async () => {
             const pin = Cookies.get('conferencePin');
             if (pin) {

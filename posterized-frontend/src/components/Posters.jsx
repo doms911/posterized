@@ -11,6 +11,7 @@ function Posters({ isLoggedIn, onLogout }) {
     const pin = Cookies.get('conferencePin');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (pin) {
             axios.get(`/api/konferencija/dohvatiRadove/${pin}`)
                 .then(response => {
