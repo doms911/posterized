@@ -72,8 +72,10 @@ function Posters({ isLoggedIn, onLogout }) {
                                         frameBorder="0"
                                         title={work.naslov}
                                     ></iframe>
-                                    <a href={work.urlPptx} target="_blank" rel="noopener noreferrer"
-                                       className="presentation-link">Link na prezentaciju!</a>
+                                            {work.urlPptx && (
+                                            <a href={work.urlPptx} target="_blank" rel="noopener noreferrer" className="presentation-link">
+                                                Link na prezentaciju!
+                                            </a>)}
                                 </div>
                             ) : (
                                 <p>Loading PDF...</p>
