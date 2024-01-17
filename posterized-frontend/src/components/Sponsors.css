@@ -19,7 +19,7 @@
 
 @media (max-width: 1000px) {
     .sponsors-container {
-        margin-bottom: -30rem;
+        margin-bottom: -10rem;
         display: flex;
         flex-direction: row;
         width: 100%;

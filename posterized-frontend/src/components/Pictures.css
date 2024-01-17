@@ -32,19 +32,13 @@
     height: auto;    /* Visina će biti automatski prilagođena zadržavajući odnos stranica */
 }
 
-.sponsorss {
-    position: absolute;
-    margin-top: 16rem;
-    width: 100%;
-}
-
 @media (max-width: 1000px) {
     .sponsorss {
-        position: absolute; /* Apsolutno pozicioniranje unutar roditeljskog relativno pozicioniranog kontejnera */
-        bottom: 0; /* Pričvršćivanje na dno stranice */
-        left: 0; /* Poravnavanje s lijeve strane */
-        width: 100%; /* Širina sponzora da zauzme cijelu širinu */
-        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
     }
 
     .images {
