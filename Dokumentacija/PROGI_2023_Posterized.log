@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  18 JAN 2024 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  18 JAN 2024 15:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1037,14 +1037,20 @@ LaTeX Warning: Label `fig:promjene' multiply defined.
 
 LaTeX Warning: Label `fig:promjene' multiply defined.
 
-) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux))
+) (./Zakljucak.aux) (./Literatura.aux) (./Dodatak.aux
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+
+LaTeX Warning: Label `fig:promjene' multiply defined.
+
+))
 \openout1 = `PROGI_2023_Posterized.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 85.
 LaTeX Font Info:    Trying to load font information for OML+jkp on input line 8
 5.
-
-(/usr/local/texlive/2023/texmf-dist/tex/latex/kpfonts/omljkp.fd
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/kpfonts/omljkp.fd
 File: omljkp.fd 2006/08/15 v1.0
 )
 LaTeX Font Info:    ... okay on input line 85.
@@ -1322,12 +1328,17 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 18.01.2024. 
+[]\OT1/jkp/m/n/12 19.01.2024. 
  []
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 18.01.2024. 
+[]\OT1/jkp/m/n/12 19.01.2024. 
+ []
+
+
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
+[]\OT1/jkp/m/n/12 19.01.2024. 
  []
 
 > Step: build the whole table.
@@ -1444,12 +1455,17 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 18.01.2024. 
+[]\OT1/jkp/m/n/12 19.01.2024. 
  []
 
 
 Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 18.01.2024. 
+[]\OT1/jkp/m/n/12 19.01.2024. 
+ []
+
+
+Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
+[]\OT1/jkp/m/n/12 19.01.2024. 
  []
 
 )
@@ -2767,7 +2783,7 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/loca
 l/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_2023_Posterized.pdf (59 pages, 4391189 bytes).
+Output written on PROGI_2023_Posterized.pdf (59 pages, 4391118 bytes).
 PDF statistics:
  758 PDF objects out of 1000 (max. 8388607)
  609 compressed objects within 7 object streams
