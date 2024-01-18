@@ -256,17 +256,23 @@ U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije
 			\eject
 		
 		\section{Dijagram stanja}
-			
-			
-%			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
 
 			Dijagram stanja je vrsta dijagrama koji se koristi u inženjerstvu softvera za prikazivanje različitih stanja kroz koja objekt ili interakcija prolazi tijekom svog životnog ciklusa. Obuhvaća stanja, prijelaze i događaje koji uzrokuju promjene iz jednog stanja u drugo. Korisan je u fazi dizajna jer pomaže u razumijevanju i vizualizaciji kako korisnici interagiraju s sustavom, te kako se sustav ponaša u različitim situacijama.
+			
+			Početno stanje je "Početna stranica", iz koje korisnik može prijeći na "Prijava" ako odabere "Prijava" ili "Prikaži obrazac za prijavu". Ukoliko je prijava neuspješna, korisnik ostaje na početnoj stranici. U slučaju uspješne prijave, korisnik prelazi u stanje "Početna stranica – prijavljen korisnik" što je ustvari proširenje prvobitne početne stranice. 
+			
+			Daljnje mogućnosti uključuju odabir "Odjava" (korisnika) za povratak na početno stanje, "Livestream" za praćenje video prijenosa konferencije, "Galerija" za pregled galerije fotografija (s različitim ishodima ovisno o tome jesu li fotografije poslane ili ne), "Preuzmi" za pohranjivanje fotografija, te "Glasaj" za pregled radova i glasanje za poster te "Unos pina" za dodavanje konferencije.
+			
+			Na desnom dijelu dijagrama nalazi se stanje "Prikaži konferenciju", gdje korisnik može pristupiti konferenciji ako je PIN kod ispravan ili ostati na istoj stranici ako PIN kod nije ispravan. U tom stanju dostupne su osnovne informacije o konferenciji, vremenska prognoza te pokrovitelji.
+			
+			Dijagram je prikazan na sljedećoj stranici.
+
 			
 			\begin{figure}[H]
 				\includegraphics[scale=0.4]{dijagrami/dijagram_stanja.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 				\centering
 				\caption{Dijagram stanja}
-				\label{fig:promjene3}
+				\label{fig:promjene1}
 			\end{figure}			
 			
 			
