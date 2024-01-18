@@ -21,6 +21,7 @@ const PinInput = (props) => {
     const valid = Cookies.get('conferencePin');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const savedInfo = getConferenceInfoFromCookie();
         if (savedInfo) {
             setConferenceInfo(savedInfo);
@@ -37,7 +38,7 @@ const PinInput = (props) => {
             });
             Cookies.set('isPinValid', 'true', { expires: 1 }); // Postavljanje kolačića na 1 dan
             Cookies.set('conferencePin', pin, { expires: 1 });
-            setPinMessage(`Conference found: ${response.data[0].naziv}`);
+            setPinMessage(`Konferencija nađena: ${response.data[0].naziv}`);
             setConferenceInfo(response.data);
             console.log("Response Data:", response.data);
             saveConferenceInfoToCookie(response.data);
@@ -77,10 +78,11 @@ const PinInput = (props) => {
     };
 
     return (
-        <div className="page-container" >
+        <div className="pageContainer" >
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <Sponsors />
-            <WeatherForecast/>
+            <div className="pageContainer">
+            <div><WeatherForecast/></div>
+            <div className='sponsors-wrapper'><Sponsors /></div>
             <div className="centered-wrapper">
                 <div className="container">
                     <h2>Pristupite konferenciji</h2>
@@ -115,6 +117,7 @@ const PinInput = (props) => {
                         </div>
                     )}
                 </div>
+            </div>
             </div>
         </div>
     );

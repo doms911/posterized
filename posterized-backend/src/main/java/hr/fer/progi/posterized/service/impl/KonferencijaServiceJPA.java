@@ -166,7 +166,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
             if(Integer.valueOf(plasman) >=4)break;
-            message.append("\n- ").append(plasman).append(". mjesto : ").append(name).append(", ").append(glasovi).append(" glasova");
+            message.append("\n- ").append(plasman).append(". mjesto : ").append(name).append(" (").append(winner.get("ime"))
+                    .append(" ").append(winner.get("prezime")).append("), ").append(glasovi).append(" glasova");
         }
         message.append(".\n\n");
         Set<Rad> radovi = konf.getRadovi();
@@ -176,8 +177,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
-            messageBuilder.append("Vaš rad '").append(name).append("' je osvojio ").append(glasovi)
-                    .append(" glasova i osvojio je ").append(plasman).append(". mjesto!\n");
+            messageBuilder.append("Vaš rad '").append(name).append("' osvojio je ").append(glasovi)
+                    .append(" glasova i zauzeo ").append(plasman).append(". mjesto!\n");
 
             Rad rad = radovi.stream()
                     .filter(rad2 -> rad2.getNaslov().equals(name))

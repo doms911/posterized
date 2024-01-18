@@ -11,6 +11,7 @@ function VideoStream({ isLoggedIn, onLogout }) {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const fetchVideo = async () => {
             const pin = Cookies.get('conferencePin');
             if (pin) {
@@ -38,17 +39,15 @@ function VideoStream({ isLoggedIn, onLogout }) {
     };
 
     return (
-        <div className="page-container">
-            <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
-            <Sponsors />
-            <WeatherForecast/>
-            <div className="centered-wrapper">
+        <div><Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
+        <div className="video-stream-container">
+            <div className='video'>
                 {errorMessage ? (
                     <div className="error-message">
                         <p>{errorMessage}</p>
                     </div>
                 ) : (
-                    <iframe
+                    <iframe id='frame'
                         width="720"
                         height="480"
                         src={videoUrl}
@@ -59,6 +58,8 @@ function VideoStream({ isLoggedIn, onLogout }) {
                     </iframe>
                 )}
             </div>
+        </div>
+        <div className='sponsorsClassName'><Sponsors /></div>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ConferenceInput from './ConferenceInput';
 import PosterEdit from './PosterEdit'
 import './AdminConference.css';
+import Modal from './Modal';
 
 
 const AdminConference = (props) => {
@@ -13,16 +14,17 @@ const AdminConference = (props) => {
   const { adminConference } = props;
   const [selectedImages, setSelectedImages] = useState([]);
   const [canSubmitForm, setCanSubmitForm] = useState(true);
-  const [awardCeremonyDetails, setAwardCeremonyDetails] = useState({
-    time: '',
-    location: '',
-  });
   const [receivedPapers, setReceivedPapers] = useState([]);
   const [seen, setSeen] = useState(false);
   const [editedPaper, setEditedPaper] = useState(null);
+  const [awardLocation, setAwardLocation] = useState('');
+  const [awardTime, setAwardTime] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     // Učitaj sve radove koje ste dobili
     const fetchReceivedPapers = async () => {
       try {
@@ -93,18 +95,31 @@ const AdminConference = (props) => {
             alert(data.message); 
           });
         } else {
-          var time, location;
-          time = prompt('Unesite vrijeme dodjele nagrada:');
-            if (!time) return;
-          location = prompt('Unesite lokaciju dodjele nagrada:');
-          if (!location) return;
+          setIsModalOpen(true);
     
-          // Spremi detalje dodjele nagrada
-          const formData = new URLSearchParams();
-          formData.append('vrijeme', encodeURIComponent(time));
-          formData.append('lokacija', encodeURIComponent(location));
+
 
           // Pošalji POST na www/api/konferencija/zavrsiKonf/<naziv konf koju zavrsava>
+         
+        }
+      });
+    } catch (error) {
+      console.error(error.message || 'Nepoznata greška');
+    }
+  }
+
+   const endConferenceApi = async () => {
+             // Spremi detalje dodjele nagrada
+
+             if(awardTime.toString()==''||awardLocation==''){
+              alert('Datum i lokacija dodjele nagrada moraju biti postavljeni .');
+             }else{
+             const formData = new URLSearchParams();
+             formData.append('vrijeme', awardTime.toString().replace( "T" , " " ));
+             formData.append('lokacija', awardLocation);
+
+             
+    try {
           fetch(`/api/konferencija/zavrsiKonf/${adminConference}`, {
             method: 'POST',
             credentials: 'include',
@@ -118,14 +133,14 @@ const AdminConference = (props) => {
                 alert(data.message); 
               });
             } else {
+              setIsModalOpen(false);
               alert('Konferencija uspješno završena.');
             }
           });
-        }
-      });
     } catch (error) {
       console.error(error.message || 'Nepoznata greška');
     }
+  }
   }
     
 
@@ -148,8 +163,39 @@ const AdminConference = (props) => {
     }
   }
 
+
   return (
     <div className="page">
+            <Modal isOpen={isModalOpen} >
+      <div className ='content'>
+          <h4 className='black-font'>Završetak konferencije</h4>
+          <div>
+            <label className='black-font'>Datum dodjele nagrada:</label>
+            <input
+              type="datetime-local"
+              id="endTime"
+              value={awardTime || ''}
+              onChange={(e) => setAwardTime(e.target.value)}
+            />
+            </div>
+            <div>
+             <label className='black-font'>Lokacija dodjele nagrada:</label>
+            <input
+              type="text"
+              id="awardLocation"
+              value={awardLocation || ''}
+              onChange={(e) => setAwardLocation(e.target.value)}
+            />
+          </div>
+          <button onClick={() => setIsModalOpen(false)}>
+         Close
+        </button>
+        <button onClick={endConferenceApi}>
+         Završi konferenciju
+        </button>
+        </div>
+      </Modal>
+
       <div>
         <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
         <h1 className='name'>{adminConference}</h1>
@@ -179,8 +225,10 @@ const AdminConference = (props) => {
             <div>Prezime: {paper.prezime}</div>
             <div>Mail: {paper.mail}</div>
             <div>Ukupno glasova: {paper.ukupnoGlasova}</div>
-            <div>Pptx: <a href={paper.urlPptx}>{paper.urlPptx}</a></div>
-            <div>Poster: <a href={paper.urlPoster} target="_blank">{paper.urlPoster}</a></div>
+            <div >Pptx:</div> 
+            <div><a className='url' href={paper.urlPptx} target="_blank">{paper.urlPptx}</a></div>
+            <div>Poster:</div> 
+            <div> <a className='url' href={paper.urlPoster} target="_blank">{paper.urlPoster}</a></div>
             <button onClick={() => togglePop(paper.naslov)}>Uredi</button>
             {seen && editedPaper === paper.naslov && (
             <PosterEdit naslov={editedPaper} toggle={() => togglePop(null)} />

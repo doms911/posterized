@@ -11,6 +11,7 @@ function Posters({ isLoggedIn, onLogout }) {
     const pin = Cookies.get('conferencePin');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if (pin) {
             axios.get(`/api/konferencija/dohvatiRadove/${pin}`)
                 .then(response => {
@@ -55,22 +56,27 @@ function Posters({ isLoggedIn, onLogout }) {
     return (
         <div className="posters-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout} />
-            <Sponsors />
-            <WeatherForecast/>
             {works.map((work, index) => (
                 <div key={index} className="work-container">
                     <div className="work-info">
                         <h2>{work.naslov}</h2>
+                        <p>{work.ime} {work.prezime}</p> {/* Assuming 'ime' and 'prezime' are the properties */}
                     </div>
                     <div className="content-container">
                         <div className="pdf-container">
                             {work.urlPoster ? (
-                                <iframe
-                                    src={work.urlPoster}
-                                    className="pdf-document"
-                                    frameBorder="0"
-                                    title={work.naslov}
-                                ></iframe>
+                                <div className="pdf-and-link-container">
+                                    <iframe
+                                        src={work.urlPoster}
+                                        className="pdf-document"
+                                        frameBorder="0"
+                                        title={work.naslov}
+                                    ></iframe>
+                                            {work.urlPptx && (
+                                            <a href={work.urlPptx} target="_blank" rel="noopener noreferrer" className="presentation-link">
+                                                Link na prezentaciju!
+                                            </a>)}
+                                </div>
                             ) : (
                                 <p>Loading PDF...</p>
                             )}
@@ -84,13 +90,14 @@ function Posters({ isLoggedIn, onLogout }) {
                             ) : hasVoted(work.naslov) ? (
                                 <p>Hvala na glasanju!</p>
                             ) : (
-                                <button type="button" onClick={() => handleVote(work.naslov, index)}>Glasaj</button>
+                                <button className="glasanje" type="button" onClick={() => handleVote(work.naslov, index)}>Glasaj</button>
                             )}
                         </div>
                     </div>
                 </div>
 
             ))}
+            <div className='sponsor'><Sponsors /></div>
         </div>
     );
 }

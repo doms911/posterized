@@ -109,7 +109,7 @@ public class RadServiceJPA implements RadService {
             Rad rad = radoviList.get(i);
             Integer glasovi = rad.getUkupnoGlasova();
             if (i > 0 && (radoviList.get(i - 1).getUkupnoGlasova() > glasovi)) {
-                lastPlace = i + 1;
+                lastPlace = lastPlace + 1;
                 rad.setPlasman(lastPlace);
 
             } else rad.setPlasman(lastPlace);

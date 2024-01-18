@@ -1,4 +1,5 @@
-.centered-wrapper {
+.centeredWrapper {
+    margin-top: 10rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,22 +8,55 @@
 }
 
 .images {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto;
     gap: 10px;
+    max-width: 100%;
 }
 
 .image-item {
     margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    justify-self: center;
 }
-
-
+#gumbP{
+    bottom: 5px;
+}
 
 .error-message {
     color: red;
     margin-bottom: 20px;
 }
 .image-item img {
-    max-width: 100%; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
+    width: 400px; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
     height: auto;    /* Visina će biti automatski prilagođena zadržavajući odnos stranica */
+}
+
+@media (max-width: 1000px) {
+    .sponsorss {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+
+    .images {
+        grid-template-columns: auto;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .image-item {
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
 }

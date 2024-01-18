@@ -11,6 +11,7 @@ function Pictures({ isLoggedIn, onLogout }) {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const fetchImages = async () => {
             const pin = Cookies.get('conferencePin');
             console.log(pin);
@@ -55,9 +56,7 @@ function Pictures({ isLoggedIn, onLogout }) {
     return (
         <div className="page-container">
             <Header isLoggedIn={isLoggedIn} onLogout={onLogout}/>
-            <Sponsors />
-            <WeatherForecast/>
-            <div className="centered-wrapper">
+            <div className="centeredWrapper">
                 {errorMessage ? (
                     <div className="error-message">
                         <p>{errorMessage}</p>
@@ -67,12 +66,13 @@ function Pictures({ isLoggedIn, onLogout }) {
                         {imageUrls.map((url, index) => (
                             <div key={index} className="image-item">
                                 <img src={url} alt={`image-${index}`} />
-                                <button onClick={() => handleDownload(url)}>Preuzmi</button>
+                                <button id = "gumbP" onClick={() => handleDownload(url)}>Preuzmi</button>
                             </div>
                         ))}
                     </div>
                 )}
             </div>
+            <div className='sponsorss'><Sponsors /></div>
         </div>
     );
 }
