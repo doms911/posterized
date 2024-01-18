@@ -11,24 +11,27 @@
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 10px;
+    max-width: 100%;
 }
 
 .image-item {
     margin: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     justify-self: center;
 }
-
+#gumbP{
+    bottom: 5px;
+}
 
 .error-message {
     color: red;
     margin-bottom: 20px;
 }
 .image-item img {
-    max-width: 100%; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
+    width: 400px; /* Ovo će osigurati da slika ostane unutar svog kontejnera */
     height: auto;    /* Visina će biti automatski prilagođena zadržavajući odnos stranica */
 }
 
@@ -42,8 +45,7 @@
     }
 
     .images {
-        display: flex;
-        flex-wrap: wrap;
+        grid-template-columns: auto;
         gap: 10px;
         align-items: center;
         justify-content: center;

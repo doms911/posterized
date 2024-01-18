@@ -66,7 +66,7 @@ function Pictures({ isLoggedIn, onLogout }) {
                         {imageUrls.map((url, index) => (
                             <div key={index} className="image-item">
                                 <img src={url} alt={`image-${index}`} />
-                                <button onClick={() => handleDownload(url)}>Preuzmi</button>
+                                <button id = "gumbP" onClick={() => handleDownload(url)}>Preuzmi</button>
                             </div>
                         ))}
                     </div>
