@@ -2,11 +2,19 @@
 		
 		
 		\section{Korištene tehnologije i alati}
-		
-			\textbf{\textit{dio 2. revizije}}
 			
-			 \textit{Detaljno navesti sve tehnologije i alate koji su primijenjeni pri izradi dokumentacije i aplikacije. Ukratko ih opisati, te navesti njihovo značenje i mjesto primjene. Za svaki navedeni alat i tehnologiju je potrebno \textbf{navesti internet poveznicu} gdje se mogu preuzeti ili više saznati o njima}.
+			Tim uspješno komunicira putem aplikacija Discord i WhatsApp, omogućavajući efikasnu i brzu razmjenu informacija. 
 			
+			UML dijagrami napisani su u okruženju AstahUML. Koristimo ih za vizualizaciju i analizu softverskog rješenja, što pomaže boljem razumijevanju arhitekture i funkcionalnosti sustava.
+			
+			U procesu razvoja koristimo Git za upravljanje verzijama koda, s udaljenim repozitorijem na GitHubu. Ovo omogućava timsku suradnju, praćenje promjena i povratak na prethodne verzije koda po potrebi. Korištena razvojna okruženja su IntelliJ za programski jezik Java i WebStorm za p. jezik JavaScript, čime smo osigurali snažne alate za razvoj i debugiranje aplikacije. Što se tiče samog softverskog rješenja, frontend aplikacija je napisana u JavaScriptu, koristeći biblioteku ReactJS i Node.js za poslužitelja web aplikacije. Backend je napisan u Java Spring framework-u, time je pružena stabilnost serverskom dijelu.
+			
+			Za registraciju koristimo Google reCAPTCHA API kako bi povećavali sigurnost aplikacije. Sve slike koje koristimo skladištimo na Firebase Cloud platformi, pružajući pouzdanu infrastrukturu za upravljanje multimedijskim sadržajem. 
+			U fazi razvoja koristimo H2 bazu podataka, dok aplikacija u pogonu koristi udaljenu PostgreSQL instancu pruženu od strane Render platforme. Pogon aplikacije vršimo putem Render platforme, što omogućava jednostavan i efikasan proces.
+			
+			Za pisanje dokumentacije koristimo TexStudio okruženje, koje podržava LaTeX jezik. Ova kombinacija omogućava strukturirano i profesionalno dokumentiranje rješenja. 
+			
+			Sve ove tehnologije i alati zajedno čine tim sposobnim za efikasan razvoj, održavanje i dokumentiranje softverskog rješenja.
 			
 			\eject 
 		
@@ -38,21 +46,192 @@
 		
 		
 		\section{Dijagram razmještaja}
+
+			Dijagrami razmještaja pružaju uvid u organizaciju hardverskih komponenti i programske podrške koja se koristi u implementaciji sustava unutar njegovog radnog okruženja. Na jednom od poslužiteljskih računala smješten je web poslužitelj, dok se na drugom nalazi poslužitelj baze podataka. Klijenti koriste web preglednik kako bi pristupili web aplikaciji. Sustav je temeljen na klijent-poslužitelj arhitekturi, pri čemu se komunikacija između računala korisnika i poslužitelja odvija putem HTTP veze.
 			
-			\textbf{\textit{dio 2. revizije}}
+			Web poslužitelj odgovoran je za pružanje web stranica i servisa korisnicima, dok poslužitelj baze podataka čuva, upravlja i omogućava pristup podacima. Korištenjem web preglednika, korisnici ostvaruju pristup aplikaciji koja se nalazi na sustavu, a komunikacija se odvija preko standardne HTTP veze, osiguravajući efikasnu interakciju između klijenta i poslužitelja.
 			
-			 \textit{Potrebno je umetnuti \textbf{specifikacijski} dijagram razmještaja i opisati ga. Moguće je umjesto specifikacijskog dijagrama razmještaja umetnuti dijagram razmještaja instanci, pod uvjetom da taj dijagram bolje opisuje neki važniji dio sustava.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{dijagrami/dijagram_razmjestaja.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Dijagram razmještaja}
+				\label{fig:promjene}
+			\end{figure}
 			
 			\eject 
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+		Aplikacija je puštena u pogon koristeći alat Render. Koristeći korisničko sučelje koje Render pruža treba kreirati instancu baze podataka, instancu za web servis backenda te instancu za web servis frontenda aplikacije. Prvo treba kreirati bazu podataka PostgreSQL.
 			
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database1.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik za stvaranje nove baze podataka}
+				\label{fig:promjene}
+			\end{figure}
 			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			Potrebno je upisati ime baze, odabrati regiju poslužitelja instance i označiti tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Stvaranje nove baze podataka}
+				\label{fig:promjene}
+			\end{figure}
+			Nakon ovih koraka treba pokrenuti stvaranje pritiskom na tipku "Create".
 			
+			Pokazuje se prozor u kojemu su navedeni osnovni podatci o bazi kao ime, verzija, regija, prostor za pohranu, API ključ, itd.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/database3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Osnovni podatci o statusu baze podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kad je baza uspješno kreirana, potrebno je uzeti podatke koje treba dati backendu aplikacije. Ti podatci se nalaze u poljima \textit{Hostname}, \textit{Port}, \textit{Database}, \textit{Username}, \textit{Password} i \textit{External Database URL}.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/database4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Podatci za pristupanje bazi podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			 Za kreiranje backend web servisa potrebno je prvo napraviti pripremu pa automatsko kreiranje web servisa iz GitHub repozitorija. U projektu razvojnog okruženja treba dodati port servera, kontekstnu putanju, podatke za pristup bazi upisati u označeni prozor te izbrisati aktivni dev profil.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend8.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{application.properties}}
+				\label{fig:promjene}
+			\end{figure}
+			U projekt je potrebno ubaciti odgovarajući \textit{Dockerfile} na putanju \textit{./posterized-backend/docker/maven} koja je prikazana stablom.
+			\begin{figure}[H]
+				\includegraphics[scale=0.8]{slike/deploy/backend7.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Stablo u kojem se nalazi \textit{Dockerfile}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Kreiranje web servisa se pokreće iz Renderovog izbornika.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend00.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Izbornik za kreiranje web servisa}
+				\label{fig:promjene}
+			\end{figure}
+			Potrebno je povezati GitHub repozitorij s Renderom. Označiti "Build and deploy from a Git repository" i kliknuti "Next".
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend1.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa - povezivanje s udaljenim repozitorijem}
+				\label{fig:promjene}
+			\end{figure}
+			\pagebreak
+			Kliknuti "Connect GitHub", prijaviti se u račun, odobriti autorizaciju i kliknuti "Connect".
+			\begin{figure}[H]
+				\includegraphics[scale=0.25]{slike/deploy/backend2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Povezivanje s repozitorijem}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/backend3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Pronađeni repozitorij}
+				\label{fig:promjene}
+			\end{figure}
+			Upisati ime servisa i odabrati regiju koja je najbliža našoj lokaciji.  Pod \textit{Branch} odabrati master i upisati ime mape projekta. Odabrati tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/backend4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa - upisivanje osnovnih podataka}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Otvoriti padajući izbornik "Advanced" i upisati putanju gdje se nalazi \textit{Dockerfile}, zatim kliknuti "Create Web Service".
+			\begin{figure}[H]
+				\includegraphics[scale=0.35]{slike/deploy/backend5.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Navođenje \textit{Dockerfile} putanje}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Web servis backenda je uspješno kreiran i pušten u pogon.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/backend6.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Logovi stvaranja i status web servisa}
+				\label{fig:promjene}
+			\end{figure}
+			
+			% za frontend
+			\pagebreak
+			Prije kreiranja web servisa za frontend, potrebno je prvo pripremiti projekt frontenda za puštanje u pogon.
+			Treba napisati \textit{app.js} datoteku kao na slici. Ova datoteka je dio Node.js-a, odnosno Express frameworka koji je odgovoran u izgradnji RESTful API-ja za jednostrane, višestrane ili hibridne aplikacije.
+			
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend5.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{app.js}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Napisati \textit{setupProxy.js} za uspostavljanje proxyja između razvojnog okružja i API-ja koji služi izbjegavanju CORS grešaka što pridonosi lakšem razvoju aplikacije.
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend6.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{setupProxy.js}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Potrebno je izmijeniti datoteku \textit{package.lock} kao na slici u označenom prozoru. 
+			\begin{figure}[H]
+				\includegraphics[scale=0.4]{slike/deploy/frontend7.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Datoteka \textit{package.lock}}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kreiranje web servisa za frontend slično je kao za backend uz manje razlike. Započinje se u izborniku kao što je navedeno za backend.
+			
+			U postupku kreiranja web servisa u označene prozore treba upisati ime, kao \textit{Branch} odabrati master te ispod upisati ime mape projekta. Za \textit{Runtime} odabrati Node i označiti tip instance koji će se koristiti.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend2.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Kreiranje web servisa za frontend}
+				\label{fig:promjene}
+			\end{figure}
+			
+			\pagebreak
+			Ispod \textit{Runtime} pojavili su se linije za naredbe build i start te ih je potrebno izmijeniti kao na slici.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend3.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Naredbe za build i start}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Odabrati "Environment Variables" i kreirati novu varijablu okruženja za adresu backenda koja je dostupna u "Dashboard" na Renderu. Jedinstvena adresa se dodjeljuje svakom kreiranom web servisu. Zatim kliknuti "Create Web Service" i pričekati "build" i "deploy" procese.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/frontend4.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Varijable okruženja}
+				\label{fig:promjene}
+			\end{figure}
+			
+			Kada status servisa postane "Live", kliknuti na "Dashboard". Ako je sve uspješno postavljeno, instance će biti prikazane kao na slici.
+			\begin{figure}[H]
+				\includegraphics[scale=0.3]{slike/deploy/success.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+				\centering
+				\caption{Uspostavljene instance}
+				\label{fig:promjene}
+			\end{figure} 
+			
+			Aplikacija je puštena u pogon i spremna za uporabu. Pristupa se preko adrese koja je navedena za instancu frontenda. 
+			
+			\href{https://posterized.onrender.com}{https://posterized.onrender.com}
 			
 			\eject 
