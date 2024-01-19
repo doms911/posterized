@@ -20,6 +20,11 @@ public class MjestoServiceJPA implements MjestoService {
         return mjestoRepo.findAll();
     }
 
+    public MjestoServiceJPA(){
+    }
+    public MjestoServiceJPA(MjestoRepository ms){
+        this.mjestoRepo=ms;
+    }
     @Override
     public Mjesto createMjesto(Integer pbr, String naziv) {
 
