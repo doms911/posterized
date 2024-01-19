@@ -27,6 +27,12 @@ public class PasswordTokenServiceJPA implements PasswordTokenService {
         }
         passwordTokenRepo.save(myToken);
     }
+    public PasswordTokenServiceJPA(){
+
+    }
+    public PasswordTokenServiceJPA(PasswordTokenRepository ptr){
+        this.passwordTokenRepo=ptr;
+    }
 
     @Override
     public PasswordToken findByToken(String token) {

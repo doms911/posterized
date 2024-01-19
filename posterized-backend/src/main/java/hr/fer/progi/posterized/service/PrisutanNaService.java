@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface PrisutanNaService {
+public interface    PrisutanNaService {
     List<Map<String, String>> provjeriPin(String korisnik, Integer pin);
     Optional<Prisutan_na> findByPrisutanNaKljuc(PrisutanNaKljuc kljuc);
     void glasaj(String korisnik, String naslov);

@@ -51,6 +51,13 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         return konferencijaRepo.findByNazivIgnoreCase(naziv);
     }
 
+    public KonferencijaServiceJPA(){
+    }
+    public KonferencijaServiceJPA(KonferencijaRepository ks){
+        this.konferencijaRepo=ks;
+    }
+
+
     @Override
     public List<Konferencija> prikazAdmin(String email){
         Osoba osoba = oService.findByEmail(email);

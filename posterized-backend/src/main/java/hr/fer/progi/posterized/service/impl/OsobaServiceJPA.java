@@ -21,6 +21,14 @@ public class OsobaServiceJPA implements OsobaService {
     @Autowired
     private OsobaRepository osobaRepo;
 
+    public OsobaServiceJPA() {
+
+    }
+
+    public OsobaServiceJPA(OsobaRepository osobaRepository) {
+        this.osobaRepo = osobaRepository;
+    }
+
     @Override
     public List<Osoba> listAll() {
         List<Osoba> korisnici = osobaRepo.findByUloga("korisnik");
@@ -74,6 +82,10 @@ public class OsobaServiceJPA implements OsobaService {
                 osoba2.setPrezime(prezime);
                 if(osoba.getUloga().equals("admin")) osoba2.setUloga("admin");
                 else osoba2.setUloga("korisnik");
+
+                //osobaRepo.save(osoba2);
+                //osobaRepo.save(osoba2);
+
                 return;
             } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
                 osoba2.setUloga("admin");

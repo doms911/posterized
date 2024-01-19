@@ -17,6 +17,12 @@ public class PokroviteljServiceJPA implements PokroviteljService {
     @Autowired
     private PokroviteljRepository pokroviteljRepo;
 
+    public PokroviteljServiceJPA(){
+    }
+    public PokroviteljServiceJPA(PokroviteljRepository ps){
+        this.pokroviteljRepo=ps;
+    }
+
     @Override
     public Pokrovitelj createPokrovitelj(Pokrovitelj pokrovitelj, MultipartFile logo) throws IOException {
         Assert.notNull(pokrovitelj, "Podaci o pokrovitelju moraju biti navedeni.");
