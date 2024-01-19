@@ -34,7 +34,7 @@ public class Osoba {
     @OneToMany(mappedBy = "autor", orphanRemoval = true)
     private Set<Rad> radovi = new HashSet<>();
     @OneToMany(mappedBy = "korisnik")
-    Set<Prisutan_na> prisutnost;
+    private Set<Prisutan_na> prisutnost;
     public String getIme() {
         return ime;
     }

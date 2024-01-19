@@ -1,13 +1,17 @@
-.page-container {
+.pageContainer {
   background-color: #333;
-  display: flex;
+  display: inline;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Postavljanje visine na 100% visine prozora preglednika */
+  min-height: 100vh;
+
 }
 
-
+.sponsors-wrapper {
+  position: absolute;
+  bottom: -13rem;
+  left: 0%;
+  width: 100%
+}
 
 input {
   margin-bottom: 10px;
@@ -15,4 +19,19 @@ input {
 
 button {
   cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  .pageContainer {
+    margin-top: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.container {
+    width: 90%;
+}
 }

@@ -32,6 +32,7 @@ public class RadController {
     }*/
 
     @PostMapping("/napravi")
+    @Secured("admin")
     public void createRad( @AuthenticationPrincipal User user, @RequestParam("ime") String ime,
     @RequestParam("prezime") String prezime, @RequestParam("email") String email,
                           @RequestParam("naslov") String naslov, @RequestParam("poster") MultipartFile poster,
@@ -53,9 +54,9 @@ public class RadController {
                            @RequestParam("ime") String ime,
                            @RequestParam("prezime") String prezime,
                            @RequestParam("email") String email,
-                           @RequestParam("poster") MultipartFile poster,
-                           @RequestParam(value = "pptx", required = false) MultipartFile pptx) {
-        radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx);
+                           @RequestParam(value = "poster", required = false) MultipartFile poster,
+                           @RequestParam(value = "pptx", required = false) MultipartFile pptx, @RequestParam("nazivKonf") String nazivKonf) {
+        radService.updateRad(user.getUsername(), stariNazivRad, nazivRada, ime, prezime, email, poster, pptx, nazivKonf);
     }
 
     @Secured("admin")
@@ -80,6 +81,7 @@ public class RadController {
     
 
     @GetMapping("/izbrisi/{naslov}")
+    @Secured("admin")
     public void izbrisiRad (@PathVariable("naslov") String naslov, @AuthenticationPrincipal User user){
         radService.izbrisiRad(user.getUsername(), naslov);
     }

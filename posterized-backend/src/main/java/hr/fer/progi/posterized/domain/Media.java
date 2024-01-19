@@ -7,7 +7,6 @@ import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
-import hr.fer.progi.posterized.service.impl.PokroviteljServiceJPA;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -107,6 +106,99 @@ public class Media {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public String changeFileNamePdf(String name, String newName, String folder){
+        try {
+            InputStream inputStream = Media.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
+            Credentials credentials = GoogleCredentials.fromStream(inputStream);
+            Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+
+            String fullPath = folder + "/" + name + ".pdf";
+            BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
+
+            Blob blob = storage.get(blobId);
+            String fullPath2 = folder + "/" + newName + ".pdf";
+            BlobId blobId2 = BlobId.of("posterized-8e1c4.appspot.com", fullPath2);
+
+            if (blob != null) {
+                Blob newBlob = blob.toBuilder().setBlobId(blobId2).build();
+                storage.create(newBlob, blob.getContent());
+                blob.delete();
+
+                String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/%s?alt=media";
+                return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath2, StandardCharsets.UTF_8));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String changeFileNamePptx(String name, String newName, String folder){
+        try {
+            InputStream inputStream = Media.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
+            Credentials credentials = GoogleCredentials.fromStream(inputStream);
+            Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+
+            String fullPath = folder + "/" + name + ".pptx";
+            BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
+
+            Blob blob = storage.get(blobId);
+            if (blob != null) {
+                String fullPath2 = folder + "/" + newName + ".pptx";
+                BlobId blobId2 = BlobId.of("posterized-8e1c4.appspot.com", fullPath2);
+                Blob newBlob = blob.toBuilder().setBlobId(blobId2).build();
+                storage.create(newBlob, blob.getContent());
+                blob.delete();
+                String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/%s?alt=media";
+                return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath2, StandardCharsets.UTF_8));
+            } else {
+                fullPath = folder + "/" + name + ".ppt";
+                blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
+                blob = storage.get(blobId);
+                if (blob != null) {
+                    String fullPath2 = folder + "/" + newName + ".ppt";
+                    BlobId blobId2 = BlobId.of("posterized-8e1c4.appspot.com", fullPath2);
+                    Blob newBlob = blob.toBuilder().setBlobId(blobId2).build();
+                    storage.create(newBlob, blob.getContent());
+                    blob.delete();
+                    String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/%s?alt=media";
+                    return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath2, StandardCharsets.UTF_8));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String changeFilePlace(String name, String folder, String newFolder) {
+        try {
+            InputStream inputStream = Media.class.getClassLoader().getResourceAsStream("posterized-8e1c4-firebase-adminsdk-irr4i-050355aaff.json");
+            Credentials credentials = GoogleCredentials.fromStream(inputStream);
+            Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+
+            String fullPath = folder + "/" + name;
+            BlobId blobId = BlobId.of("posterized-8e1c4.appspot.com", fullPath);
+
+            Blob blob = storage.get(blobId);
+            if (blob != null){
+                String fullPath2 = newFolder + "/" + name;
+                BlobId blobId2 = BlobId.of("posterized-8e1c4.appspot.com", fullPath2);
+                Blob newBlob = blob.toBuilder().setBlobId(blobId2).build();
+                storage.create(newBlob, blob.getContent());
+                blob.delete();
+                String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/posterized-8e1c4.appspot.com/o/%s?alt=media";
+                return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath2, StandardCharsets.UTF_8));
+            } else{
+                return null;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

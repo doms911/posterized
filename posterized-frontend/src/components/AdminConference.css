@@ -7,7 +7,7 @@
 }
 
 .name {
-    padding-top: 6%;
+    padding-top: 5rem;
     padding-left: 2%;
 }
 
@@ -17,9 +17,36 @@
     display: block;
 }
 
+.url {
+    word-break: break-all;
+}
+
 .things {
     display: inline;
     padding-top: 2%;
 }
+
+.centar-wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.black-font{
+    color:black;
+}
+
+.conference {
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: -1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    align-items: center;
+    justify-content: space-between;
+  }
 
 

@@ -121,14 +121,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             Assert.hasText("", "Admin s emailom " + email + " ne postoji.");
         }
         if(osoba.getUloga().equals("korisnik")) {
-            Osoba o1 = new Osoba();
-            o1.setUloga("admin");
-            o1.setId(null);
-            o1.setEmail(osoba.getEmail());
-            o1.setIme(osoba.getIme());
-            o1.setPrezime(osoba.getPrezime());
-            o1.setLozinka(osoba.getLozinka());
-            oService.createAdminKorisnik(o1);
+            osoba.setUloga("admin");
         }
         konferencija.setPin(pin);
         konferencija.setNaziv(naziv);
@@ -158,12 +151,10 @@ public class KonferencijaServiceJPA implements KonferencijaService {
         Assert.hasText(lokacija, "Lokacija dodjele nagrade mora biti navedena.");
         Konferencija konf = konferencijaRepo.findByNazivIgnoreCase(naziv);
 
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
         List<Map<String, String>> rezultati = rezultati(konf.getPin());
         if(rezultati == null) return;
         String poruka = "Pozvani ste na dodjelu nagrada za konferenciju pod nazivom " +
-                konf.getNaziv() + " na adresi " + lokacija + ". Dodjela nagrada održat će se " +
+                konf.getNaziv() + " na lokaciji " + lokacija + ". Dodjela nagrada održat će se " +
                 vrijeme;
 
         StringBuilder message = new StringBuilder(poruka);
@@ -175,7 +166,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
             if(Integer.valueOf(plasman) >=4)break;
-            message.append("\n- ").append(plasman).append(". mjesto : ").append(name).append(", ").append(glasovi).append(" glasova");
+            message.append("\n- ").append(plasman).append(". mjesto : ").append(name).append(" (").append(winner.get("ime"))
+                    .append(" ").append(winner.get("prezime")).append("), ").append(glasovi).append(" glasova");
         }
         message.append(".\n\n");
         Set<Rad> radovi = konf.getRadovi();
@@ -185,8 +177,8 @@ public class KonferencijaServiceJPA implements KonferencijaService {
             String name = winner.get("naslov");
             String glasovi = winner.get("ukupnoGlasova");
             String plasman = winner.get("plasman");
-            messageBuilder.append("Vaš rad '").append(name).append("' je osvojio ").append(glasovi)
-                    .append(" glasova i osvojio je ").append(plasman).append(". mjesto!\n");
+            messageBuilder.append("Vaš rad '").append(name).append("' osvojio je ").append(glasovi)
+                    .append(" glasova i zauzeo ").append(plasman).append(". mjesto!\n");
 
             Rad rad = radovi.stream()
                     .filter(rad2 -> rad2.getNaslov().equals(name))
@@ -247,7 +239,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
 
         if(adresa.isEmpty() && novaKonferencija.getAdresa() == null) Assert.hasText("", "Adresa mora biti navedena");
 
-        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto mora biti navedeno.");
+        if((pbr.isEmpty() || mjestoNaziv.isEmpty()) && novaKonferencija.getMjesto() == null ) Assert.hasText("", "Mjesto i poštanski broj moraju biti navedeni.");
 
         if((!pbr.isEmpty() && mjestoNaziv.isEmpty()) || (pbr.isEmpty() && !mjestoNaziv.isEmpty()))
             Assert.hasText("", "Poštanski broj i mjesto moraju biti promijenjeni zajedno.");

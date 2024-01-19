@@ -40,13 +40,13 @@ public class Konferencija {
     private Set<Rad> radovi = new HashSet<>();
 
     @OneToMany(mappedBy = "konferencija", orphanRemoval = true)
-    Set<Prisutan_na> prisutnost;
+    private Set<Prisutan_na> prisutnost;
     @ManyToMany
     @JoinTable(
             name = "pokrovitelj_na",
             joinColumns = @JoinColumn(name = "konferencija_id"),
             inverseJoinColumns = @JoinColumn(name = "pokrovitelj_id"))
-    Set<Pokrovitelj> pokrovitelji = new HashSet<>();
+    private Set<Pokrovitelj> pokrovitelji = new HashSet<>();
 
 
     public Osoba getAdminKonf() {
