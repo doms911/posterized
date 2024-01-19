@@ -17,28 +17,10 @@
 			Sve ove tehnologije i alati zajedno čine tim sposobnim za efikasan razvoj, održavanje i dokumentiranje softverskog rješenja.
 			
 			\eject 
-		
-	
+			
 		\section{Ispitivanje programskog rješenja}
 			
-	Testiranje programskog riješenja smo proveli na dva        načina:
-        \begin{itemize}
-            \item Ispitivanje komponenti
-            \item Ispitivanje sustava
-        \end{itemize}
-        Ispitivanje komponenti smo ostvarili pomoću JUnit testova u programskom jeziku Java.\\
-        Za ispitivanje sustava koristili smo Selenium IDE. Selenium IDE je jednostavan, baziran na web pregledniku alat za automatizaciju testiranja web aplikacija koji omogućuje snimanje, uređivanje i ponovno izvođenje testova izravno unutar web preglednika.\\
-        Svaki dio sustava je ispitan, no zbog jednostavnosti u dokumentaciji ce biti prikazan samo dio ispitivanja.
-
-    
-
-			
-		
-	
-			
-			\section{Ispitivanje programskog rješenja}
-			
-			Testiranje programskog riješenja smo proveli na dva načina:
+			Testiranje programskog rješenja smo proveli na dva načina:
 			\begin{itemize}
 				\item Ispitivanje komponenti
 				\item Ispitivanje sustava
@@ -47,37 +29,75 @@
 			
 			Za ispitivanje sustava koristili smo Selenium IDE. Selenium IDE je jednostavan, baziran na web pregledniku alat za automatizaciju testiranja web aplikacija koji omogućuje snimanje, uređivanje i ponovno izvođenje testova izravno unutar web preglednika.
 			
-			Svaki dio sustava je ispitan, no zbog jednostavnosti u dokumentaciji ce biti prikazan samo dio ispitivanja.
+			Svaki dio sustava je ispitan, no zbog jednostavnosti u dokumentaciji će biti prikazan samo dio ispitivanja.
 			
 			\subsection{Ispitivanje komponenti}
-			\textit{Testni slučajevi analiziraju tok programa i međusobnu interakciju njegovih komponenti, poput broja poziva pojedine funkcije, pojavljivanja iznimaka, uspješnosti dohvaćanja željenih resursa, i slično.}
-			
-			\textbf{Testni slučajevi}
+
+			Testni slučajevi analiziraju tok programa i međusobnu interakciju njegovih komponenti, poput broja poziva pojedine funkcije, pojavljivanja iznimaka, uspješnosti dohvaćanja željenih resursa, i slično.
+
+			\textbf{Testni slučajevi} 
 			\begin{enumerate}
-				\item Registracija novog korisnika. Testira poziv repozitoriju.
+				\item Registracija novog korisnika\newline
+				Testira poziv repozitoriju.
 				\begin{figure}[H]
 					\includegraphics[scale=0.30]{slike/deploy/backTest1.png}
 					\centering
-					\caption{Registracija novog korisnika}
-					\label{fig:backTest1}
+					\label{fig:promjene1}
 				\end{figure}
-				% Repeat for other items with appropriate captions and unique labels
-			\end{enumerate}
+				
+				\item Pokušaj registracije null (bez podataka) korisnika\newline
+				Testiranje pozivanje funkcije createAutor s null osobom.
+				\begin{figure}[H]
+					\includegraphics[scale=0.30]{slike/deploy/backTest2.png}
+					\centering
+					\label{fig:promjene2}
+				\end{figure}
+				
+				\item Pokušaj registracije korisnika bez emaila\newline
+				\begin{figure}[H]
+					\includegraphics[scale=0.30]{slike/deploy/backTest3.png}
+					\centering
+					\label{fig:promjene3}
+				\end{figure}
+				
+				% Ovdje postavljamo brojač na 4
+				\setcounter{enumi}{3}
+				
+				\item Pokušaj dodavanja mjesta koje se već nalazi u bazi\newline
+				\begin{figure}[H]
+					\includegraphics[scale=0.30]{slike/deploy/backTest4.png}
+					\centering
+					\label{fig:promjene4}
+				\end{figure}
+				
+				\item Pokušaj stvaranja konferencije koja se već nalazi u bazi\newline
+				\begin{figure}[H]
+					\includegraphics[scale=0.30]{slike/deploy/backTest5.png}
+					\centering
+					\label{fig:promjene5}
+				\end{figure}
 			
-			\textbf{Rezultati testova}
+				\item Testiranje poziva funkcije za poziv token pri resetiranju lozinke.\newline
+				\begin{figure}[H]
+					\includegraphics[scale=0.30]{slike/deploy/backTest6.png}
+					\centering
+					\label{fig:promjene6}
+				\end{figure}
+			\end{enumerate}
+			\textbf{Rezultati testova} 
 			\begin{figure}[H]
 				\includegraphics[scale=0.30]{slike/deploy/backTestResults.png}
 				\centering
-				\caption{Rezultati testova}
-				\label{fig:backTestResults}
+				\label{fig:promjene6}
 			\end{figure}
+			
 			
 			
 			\subsection{Ispitivanje sustava}
 			
-			\textit{Ispitivanje čitavog sustava provedeno je pomoću alata Selenium IDE korištenjem radnog okvira Selenium. Ispitani su redovni slučajevi s realnim ulaznim parametrima, rubni uvjeti i poziv funkcionalnosti koja nije implementirana/izaziva pogresku pomoću čega je vidljivo na koji način sustav reagira kada nešto nije u potpunosti ostvareno.}
+		Ispitivanje čitavog sustava provedeno je pomoću alata Selenium IDE korištenjem radnog okvira Selenium. Ispitani su redovni slučajevi s realnim ulaznim parametrima, rubni uvjeti i poziv funkcionalnosti koja nije implementirana/izaziva pogrešku s pomoću čega je vidljivo na koji način sustav reagira kada nešto nije u potpunosti ostvareno.
 			
-			\textbf{Tijek izvodenja:}
+			\textbf{Tijek izvođenja:}
 			\begin{enumerate}
 				\item Klik na Selenium IDE u Google Chrome Browseru
 				\item Klik na “Add new test”
@@ -91,15 +111,15 @@
 			
 			\textbf{Testni slučajevi}
 			\begin{enumerate}
-				\item Uspješna odjava korisnika
+				\item Uspješna odjava korisnika\newline
 				\begin{figure}[H]
-					\includegraphics[scale=0.30]{slike/deploy/fTest2a.png}
+					\includegraphics[scale=0.40]{slike/deploy/fTest2a.png}
 					\centering
 					\caption{Uspješna odjava korisnika - dio 1}
 					\label{fig:fTest2a}
 				\end{figure}
 				\begin{figure}[H]
-					\includegraphics[scale=0.30]{slike/deploy/fTest2b.png}
+					\includegraphics[scale=0.40]{slike/deploy/fTest2b.png}
 					\centering
 					\caption{Uspješna odjava korisnika - dio 2}
 					\label{fig:fTest2b}
@@ -108,62 +128,58 @@
 			\end{enumerate}
 			
 			% Continue with the rest of your content, ensuring proper labels, captions, and text formatting.
-			
-    
-
-		   \item Neuspješna prijava korisnika
-		   Prijavljujemo se kao već registrirani korisnik sa netočnim podatcima (lozinkom).
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest1a.png}
-		   	\centering
-		   	\caption{Neuspješna prijava korisnika - dio 1}
-		   	\label{fig:fTest1a}
-		   \end{figure}
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest1b.png}
-		   	\centering
-		   	\caption{Neuspješna prijava korisnika - dio 2}
-		   	\label{fig:fTest1b}
-		   \end{figure}
-		   
-		   \item Neuspješna registracija korisnika
-		   Pri registraciji nije unesen email te se zato registracija ne izvršava pritiskom na gumb registracije.
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest3a.png}
-		   	\centering
-		   	\caption{Neuspješna registracija korisnika - dio 1}
-		   	\label{fig:fTest3a}
-		   \end{figure}
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest3b.png}
-		   	\centering
-		   	\caption{Neuspješna registracija korisnika - dio 2}
-		   	\label{fig:fTest3b}
-		   \end{figure}
-		   
-		   % Resetting the counter to 4
-		   \setcounter{enumi}{3}
-		   
-		   \item Uspješna redirekcija
-		   Uspješno mijenjamo stranice iz početne stranice na stranicu registracije. Nakon toga prebacujemo se na stranicu prijave.
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest4a.png}
-		   	\centering
-		   	\caption{Uspješna redirekcija - dio 1}
-		   	\label{fig:fTest4a}
-		   \end{figure}
-		   \begin{figure}[H]
-		   	\includegraphics[scale=0.30]{slike/deploy/fTest4b.png}
-		   	\centering
-		   	\caption{Uspješna redirekcija - dio 2}
-		   	\label{fig:fTest4b}
-		   \end{figure}
-   
-    
-
-  
+			\begin{enumerate}
+				\item Neuspješna prijava korisnika\newline
+				Prijavljujemo se kao već registrirani korisnik s netočnim podatcima (lozinkom).
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest1a.png}
+					\centering
+					\caption{Neuspješna prijava korisnika - dio 1}
+					\label{fig:fTest1a}
+				\end{figure}
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest1b.png}
+					\centering
+					\caption{Neuspješna prijava korisnika - dio 2}
+					\label{fig:fTest1b}
+				\end{figure}
+				
+				\item Neuspješna registracija korisnika\newline
+				Pri registraciji nije unesen email te se zato registracija ne izvršava pritiskom na gumb registracije.
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest3a.png}
+					\centering
+					\caption{Neuspješna registracija korisnika - dio 1}
+					\label{fig:fTest3a}
+				\end{figure}
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest3b.png}
+					\centering
+					\caption{Neuspješna registracija korisnika - dio 2}
+					\label{fig:fTest3b}
+				\end{figure}
+				
+				% Resetting the counter to 4
+				\setcounter{enumi}{3}
+				
+				\item Uspješna redirekcija\newline
+				Uspješno mijenjamo stranice iz početne stranice na stranicu registracije. Nakon toga prebacujemo se na stranicu prijave.
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest4a.png}
+					\centering
+					\caption{Uspješna redirekcija - dio 1}
+					\label{fig:fTest4a}
+				\end{figure}
+				\begin{figure}[H]
+					\includegraphics[scale=0.40]{slike/deploy/fTest4b.png}
+					\centering
+					\caption{Uspješna redirekcija - dio 2}
+					\label{fig:fTest4b}
+				\end{figure}
+			\end{enumerate}
+			\eject
 		
-		\eject
+		
 		\section{Dijagram razmještaja}
 
 			Dijagrami razmještaja pružaju uvid u organizaciju hardverskih komponenti i programske podrške koja se koristi u implementaciji sustava unutar njegovog radnog okruženja. Na jednom od poslužiteljskih računala smješten je web poslužitelj, dok se na drugom nalazi poslužitelj baze podataka. Klijenti koriste web preglednik kako bi pristupili web aplikaciji. Sustav je temeljen na klijent-poslužitelj arhitekturi, pri čemu se komunikacija između računala korisnika i poslužitelja odvija putem HTTP veze.
