@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  19 JAN 2024 18:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  19 JAN 2024 21:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1272,8 +1272,8 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
  []
 
 
-Overfull \hbox (1.33664pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 Topolevec,
+Overfull \hbox (1.82864pt too wide) in paragraph at lines 36--36
+[]\OT1/jkp/m/n/12 Topolovec,
  []
 
 
@@ -1388,8 +1388,8 @@ Overfull \hbox (6.59267pt too wide) in paragraph at lines 36--36
  []
 
 
-Overfull \hbox (1.33664pt too wide) in paragraph at lines 36--36
-[]\OT1/jkp/m/n/12 Topolevec,
+Overfull \hbox (1.82864pt too wide) in paragraph at lines 36--36
+[]\OT1/jkp/m/n/12 Topolovec,
  []
 
 
@@ -2769,7 +2769,7 @@ sr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/l
 ocal/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/loca
 l/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/te
 xlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_2023_Posterized.pdf (58 pages, 4370441 bytes).
+Output written on PROGI_2023_Posterized.pdf (58 pages, 4370433 bytes).
 PDF statistics:
  752 PDF objects out of 1000 (max. 8388607)
  604 compressed objects within 7 object streams

@@ -59,7 +59,7 @@
 					\SetCell{LightBlue}idAutor & SERIAL&    jedinstveni identifikator autora\\ \hline 
 				\end{longtblr}						
 			
-			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednosti "admin", "korisnik" ili "autor". Entitet Osoba u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, s entitetom Konferencija \textit{(One-to-Many)}, s entitetom Konferencija \textit{(Many-to-Many)} i s entitetom Paassword\_token \textit{(One-to-One)}.
+			\noindent Entitet \textbf {Osoba} sadrži informacije o autorima, korisnicima te adminima. Sadrži atribute: ID osobe, email, ime i prezime, lozinka (u slučaju da se radi o autoru koji ujedno nije i korisnik bit će null) i uloga koji može poprimiti vrijednosti "admin", "korisnik" ili "autor". Entitet Osoba u binarnoj je vezi s entitetom Rad \textit{(One-to-Many)}, s entitetom Konferencija \textit{(One-to-Many)}, s entitetom Konferencija \textit{(Many-to-Many)} i s entitetom Password\_token \textit{(One-to-One)}.
 				\begin{longtblr}[
 					label=none,
 					entry=none
@@ -206,7 +206,7 @@ trenutnih događanja u glavnoj konferencijskoj dvorani\\ \hline
 Razred Mjesto predstavlja lokaciju na kojoj se konferencija održava.
 Razred Osoba predstavlja čovjeka koji na neki način sudjeluje na konferenciji.  Taj razred ima atribut uloga kojim se određuje je li ta osoba autor, administrator ili posjetitelj konferencije. 
 Razred Rad predstavlja rad (poster i/ili pptx) kojim se autor predstavlja na konferenciji.
-Razred PrisutanNa omogućuje da pratimo tko je na konferenciji te da li je ta osoba glasala za neki rad.
+Razred PrisutanNa omogućuje da pratimo tko je na konferenciji te je li ta osoba glasala za neki rad.
 Razred Fotografija predstavlja fotografije konferencije koje administrator stavlja u aplikaciju tijekom ili nakon konferencije.
 Razred Pokrovitelj predstavlja sponzore konferencije. 
 Razred PasswordToken omogućuje postavljanje i promjenu lozinku.
@@ -257,9 +257,9 @@ U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije
 		
 		\section{Dijagram stanja}
 
-			Dijagram stanja je vrsta dijagrama koji se koristi u inženjerstvu softvera za prikazivanje različitih stanja kroz koja objekt ili interakcija prolazi tijekom svog životnog ciklusa. Obuhvaća stanja, prijelaze i događaje koji uzrokuju promjene iz jednog stanja u drugo. Korisan je u fazi dizajna jer pomaže u razumijevanju i vizualizaciji kako korisnici interagiraju s sustavom, te kako se sustav ponaša u različitim situacijama.
+			Dijagram stanja je vrsta dijagrama koji se koristi u inženjerstvu softvera za prikazivanje različitih stanja kroz koja objekt ili interakcija prolazi tijekom svog životnog ciklusa. Obuhvaća stanja, prijelaze i događaje koji uzrokuju promjene iz jednog stanja u drugo. Koristan je u fazi dizajna jer pomaže u razumijevanju i vizualizaciji kako korisnici interagiraju sa sustavom, te kako se sustav ponaša u različitim situacijama.
 			
-			Početno stanje je "Početna stranica", iz koje korisnik može prijeći na "Prijava" ako odabere "Prijava" ili "Prikaži obrazac za prijavu". Ukoliko je prijava neuspješna, korisnik ostaje na početnoj stranici. U slučaju uspješne prijave, korisnik prelazi u stanje "Početna stranica – prijavljen korisnik" gdje je potrebno unijeti ispravan PIN konferencije za proširenje funkcionalnosti. Korisnik se uvijek može odjaviti iz aplikacije klikom na gumb "Odjava", sve dok je prijavljen u sustav.
+			Početno stanje je "Početna stranica", iz koje korisnik može prijeći na "Prijava" ako odabere "Prijava" ili "Prikaži obrazac za prijavu". Ako je prijava neuspješna, korisnik ostaje na početnoj stranici. U slučaju uspješne prijave, korisnik prelazi u stanje "Početna stranica – prijavljen korisnik" gdje je potrebno unijeti ispravan PIN konferencije za proširenje funkcionalnosti. Korisnik se uvijek može odjaviti iz aplikacije klikom na gumb "Odjava", sve dok je prijavljen u sustav.
 			
 			Daljnje mogućnosti uključuju "Livestream" za praćenje video prijenosa konferencije, "Galerija" za pregled galerije fotografija (s različitim ishodima ovisno o tome jesu li fotografije poslane ili ne), "Preuzmi" za pohranjivanje fotografija te "Glasaj" za pregled radova i glasanje za poster.
 			
@@ -295,9 +295,9 @@ U klasi PosterizedApplication se nalazi glavna funkcija za pokretanje aplikacije
 		
 			 Dijagram komponenti prikazan na slici opisuje strukturu web aplikacije razdijeljenu na višestruke komponente koje omogućavaju njen rad i interakciju s korisnicima. Pristup sustavu ostvaruje se putem dva osnovna sučelja.
 			 
-			 Prvo sučelje omogućava dohvat HTML, CSS i JS datoteka koje čine frontend dio aplikacije. Komponente frontenda koriste React biblioteku za izgradnju korisničkog sučelja i organizirane su u logičke cjeline prema tipovima korisnika koji im pristupaju, kao što su superadministratori, administratori, registrirani i neregistrirani korisnici.
+			 Prvo sučelje omogućava dohvat HTML, CSS i JS datoteka koje čine frontend dio aplikacije. Komponente frontenda koriste React biblioteku za izgradnju korisničkog sučelja i organizirane su u logičke cjeline prema tipovima korisnika koji im pristupaju, kao što su superadministrator, administratori, registrirani i neregistrirani korisnici.
 			 
-			 Router je ključna komponenta koja određuje koja će se datoteka poslužiti temeljem URL-a na koji korisnik dođe. Kroz ovu komponentu, zahtjevi korisnika se usmjeravaju prema odgovarajućim dijelovima aplikacije.
+			 Router je ključna komponenta koja određuje koja će se datoteka poslužiti na temelju URL-a na koji korisnik dođe. Kroz ovu komponentu, zahtjevi korisnika se usmjeravaju prema odgovarajućim dijelovima aplikacije.
 			 
 			 Backend dio aplikacije pristupa se preko sučelja koje poslužuje JSON podatke. Ova komponenta se bavi obradom zahtjeva i komunikacijom s bazom podataka. Komunikacija s bazom podataka se odvija preko posebnog SQL API sučelja, a podaci se poslužuju kroz REST API.
 			 
