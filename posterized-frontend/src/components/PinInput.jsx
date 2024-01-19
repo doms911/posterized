@@ -83,7 +83,7 @@ const PinInput = (props) => {
             <div className="pageContainer">
             <div><WeatherForecast/></div>
             <div className='sponsors-wrapper'><Sponsors /></div>
-            <div className="centered-wrapper">
+            <div className="centered-wrapper1">
                 <div className="container">
                     <h2>Pristupite konferenciji</h2>
                     <div>
@@ -103,7 +103,7 @@ const PinInput = (props) => {
                             <h3>Konferencija: {conferenceInfo[0].naziv}</h3>
                             <p>Mjesto: {conferenceInfo[0].mjesto}</p>
                             <p>Adresa: {conferenceInfo[0].adresa}</p>
-                            <p>pbr: {conferenceInfo[0].pbr}</p>
+                            <p>Poštanski broj: {conferenceInfo[0].pbr}</p>
                             <p>Admin: {conferenceInfo[0].admin}</p>
                             <p>Vrijeme početka: {conferenceInfo[0].vrijemePocetka}</p>
                             <p>Vrijeme kraja: {conferenceInfo[0].vrijemeKraja}</p>

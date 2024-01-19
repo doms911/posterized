@@ -1,9 +1,9 @@
 .pageContainer {
   background-color: #333;
-  display: inline;
+  display:flex;
   flex-direction: column;
   min-height: 100vh;
-
+  justify-content: center;
 }
 
 .sponsors-wrapper {
@@ -21,12 +21,20 @@ button {
   cursor: pointer;
 }
 
+.centered-wrapper1{
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
 @media (max-width: 1000px) {
   .pageContainer {
     margin-top: 6rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     align-content: center;
     flex-wrap: wrap;
 }
