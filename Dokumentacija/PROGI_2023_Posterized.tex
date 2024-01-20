@@ -20,7 +20,7 @@
 \usepackage[classicReIm]{kpfonts}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
-
+\usepackage{advdate}
 \usepackage{float}
 \usepackage{setspace}
 \restylefloat{table}
@@ -77,7 +77,7 @@
 \rhead{Digitalni poster}
 \lfoot{Posterized}
 \cfoot{stranica \thepage/\pageref{LastPage}}
-\rfoot{\today}
+\rfoot{\AdvanceDate[-1]\today}
 \renewcommand{\headrulewidth}{0.2pt}
 \renewcommand{\footrulewidth}{0.2pt}
 

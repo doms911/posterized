@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  20 JAN 2024 00:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.10)  20 JAN 2024 00:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -945,9 +945,17 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@olf=\skip66
 \f@nch@O@orf=\skip67
 )
+(/usr/local/texlive/2023/texmf-dist/tex/latex/advdate/advdate.sty
+Package: advdate 1996/10/20 Advance Date Package
+\r@k=\count320
+\un@r=\count321
+\m@l=\count322
+\m@s=\count323
+\M@s=\count324
+)
 (/usr/local/texlive/2023/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count320
+\c@float@type=\count325
 \float@exts=\toks28
 \float@box=\box84
 \@float@everytoks=\toks29
@@ -1109,16 +1117,16 @@ LaTeX Font Info:    ... okay on input line 85.
 
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count321
+\scratchcounter=\count326
 \scratchdimen=\dimen285
 \scratchbox=\box86
-\nofMPsegments=\count322
-\nofMParguments=\count323
+\nofMPsegments=\count327
+\nofMParguments=\count328
 \everyMPshowfont=\toks31
-\MPscratchCnt=\count324
+\MPscratchCnt=\count329
 \MPscratchDim=\dimen286
-\MPnumerator=\count325
-\makeMPintoPDFobject=\count326
+\MPnumerator=\count330
+\makeMPintoPDFobject=\count331
 \everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -2971,10 +2979,10 @@ Package rerunfilecheck Info: File `PROGI_2023_Posterized.out' has not changed.
 (rerunfilecheck)             Checksum: C7BA501FFE4D56E1B0FC29A67283D3B1;4419.
  ) 
 Here is how much of TeX's memory you used:
- 18150 strings out of 476025
- 326281 string characters out of 5790016
+ 18204 strings out of 476025
+ 327199 string characters out of 5790016
  2012388 words of memory out of 5000000
- 37972 multiletter control sequences out of 15000+600000
+ 38022 multiletter control sequences out of 15000+600000
  562195 words of font info for 133 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  86i,13n,116p,761b,1080s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2982,7 +2990,7 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr
 /local/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/loc
 al/texlive/2023/texmf-dist/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_2023_Posterized.pdf (63 pages, 4938796 bytes).
+Output written on PROGI_2023_Posterized.pdf (63 pages, 4938805 bytes).
 PDF statistics:
  831 PDF objects out of 1000 (max. 8388607)
  659 compressed objects within 7 object streams
