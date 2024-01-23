@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,14 @@ public class RestExceptionHandler {
     protected ResponseEntity<?> handleIllegalArgument(Exception e, WebRequest req) {
         Map<String, String> props = new HashMap<>();
         props.put("message", e.getMessage());
+        props.put("status", "400");
+        props.put("error", "Bad Request");
+        return new ResponseEntity<>(props, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    protected ResponseEntity<?> handleDataIntegrityViolationException(DataIntegrityViolationException e) {
+        Map<String, String> props = new HashMap<>();
+        props.put("message", "Neuspješan unos podataka, provjerite jesu li Vaši podatci već uneseni.");
         props.put("status", "400");
         props.put("error", "Bad Request");
         return new ResponseEntity<>(props, HttpStatus.BAD_REQUEST);

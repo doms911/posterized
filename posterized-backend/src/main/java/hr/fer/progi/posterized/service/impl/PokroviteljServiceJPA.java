@@ -4,6 +4,7 @@ import hr.fer.progi.posterized.dao.PokroviteljRepository;
 import hr.fer.progi.posterized.domain.Pokrovitelj;
 import hr.fer.progi.posterized.domain.Media;
 import hr.fer.progi.posterized.service.PokroviteljService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,6 +25,7 @@ public class PokroviteljServiceJPA implements PokroviteljService {
     }
 
     @Override
+    @Transactional
     public Pokrovitelj createPokrovitelj(Pokrovitelj pokrovitelj, MultipartFile logo) throws IOException {
         Assert.notNull(pokrovitelj, "Podaci o pokrovitelju moraju biti navedeni.");
         String naziv = pokrovitelj.getNaziv();

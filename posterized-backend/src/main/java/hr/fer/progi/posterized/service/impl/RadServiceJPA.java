@@ -29,6 +29,7 @@ public class RadServiceJPA implements RadService {
 
 
     @Override
+    @Transactional
     public void createRad(String admin, Osoba autor, Rad rad, MultipartFile poster, MultipartFile pptx, String nazivKonf) {
         Konferencija konf = konfService.findByNazivIgnoreCase(nazivKonf);
         if(konf == null) Assert.hasText("","Konferencija s nazivom " + nazivKonf + " ne postoji.");
@@ -118,6 +119,7 @@ public class RadServiceJPA implements RadService {
     }
 
     @Override
+    @Transactional
     public void updateRad(String admin, String stariNazivRad, String nazivRad, String ime, String prezime, String email, MultipartFile poster, MultipartFile pptx, String nazivKonf) {
         Rad rad = radRepo.findByNaslovIgnoreCase(stariNazivRad);
         Assert.notNull(rad,"Rad ne postoji.");

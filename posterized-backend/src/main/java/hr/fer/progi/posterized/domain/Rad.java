@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Rad {
     @Id @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String naslov;
     private String urlPptx;
     private String urlPoster;

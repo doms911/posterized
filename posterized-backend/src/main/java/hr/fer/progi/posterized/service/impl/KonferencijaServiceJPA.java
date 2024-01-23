@@ -105,6 +105,7 @@ public class KonferencijaServiceJPA implements KonferencijaService {
     }
 
     @Override
+    @Transactional
     public void createKonferencija(String pinS, String email, String naziv) {
         Assert.hasText(pinS, "Pin mora biti naveden.");
         if (!pinS.matches("\\d+")) {

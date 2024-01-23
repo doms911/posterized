@@ -11,7 +11,9 @@ public class Pokrovitelj {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String url;
+    @Column(unique = true)
     private String naziv;
     private String urlSlike;
 

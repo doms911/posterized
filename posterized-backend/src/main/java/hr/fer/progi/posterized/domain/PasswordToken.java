@@ -14,7 +14,7 @@ public class PasswordToken {
     @Id
     @GeneratedValue
     private Long id;
-
+    @Column(unique = true)
     private String token;
 
     @OneToOne(targetEntity = Osoba.class, fetch = FetchType.EAGER)

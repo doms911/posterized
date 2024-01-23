@@ -51,6 +51,7 @@ public class OsobaServiceJPA implements OsobaService {
     @Autowired
     private PasswordEncoder pswdEncoder;
     @Override
+    @Transactional
     public void createAdminKorisnik(Osoba osoba) {
         Assert.notNull(osoba, "Podaci o korisniku moraju biti navedeni.");
         Assert.isNull(osoba.getId(),
@@ -97,6 +98,7 @@ public class OsobaServiceJPA implements OsobaService {
     }
 
     @Override
+    @Transactional
     public Osoba createAutor(Osoba osoba) {
         Assert.notNull(osoba, "Podaci o autoru moraju biti navedeni.");
         Assert.isNull(osoba.getId(),
