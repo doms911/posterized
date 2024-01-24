@@ -89,7 +89,7 @@ public class OsobaServiceJPA implements OsobaService {
 
                 return;
             } else if (!osoba2.getUloga().equals("admin") && osoba.getUloga().equals("admin")){
-                osoba2.setUloga("admin");
+                Assert.hasText("", "Korisnik s emailom " + osoba.getEmail() + " već postoji te ga pri stvaranju konferencije možete postaviti za admina.");
                 return;
             } else Assert.hasText("", "Korisnik s emailom " + osoba.getEmail() + " već postoji.");
         }
